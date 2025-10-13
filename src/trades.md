@@ -24,6 +24,8 @@ const draftData = await FileAttachment("data/draft-picks.json").json();
 console.log('Trades loaded:', trades.length, 'trades');
 console.log('Draft data seasons:', Object.keys(draftData));
 console.log('Sample trade:', trades[0]);
+console.log('Sample trade season:', trades[0]?.season);
+console.log('Sample trade week:', trades[0]?.week);
 ```
 
 ```js
@@ -60,7 +62,11 @@ function getDraftPickPlayer(round, season, originalRosterId) {
     p.round === round && p.roster_id === originalRosterId
   );
 
-  return pick ? pick.player_id : null;
+  return pick ? {
+    player_id: pick.player_id,
+    pick_no: pick.pick_no,
+    round: pick.round
+  } : null;
 }
 
 // Helper function to get player stats after trade week
@@ -101,7 +107,9 @@ function getPlayerStatsAfterTrade(playerId, tradeWeek) {
 
 // Get available seasons from draft data
 const availableSeasons = Object.keys(draftData).sort((a, b) => b.localeCompare(a)); // Sort descending (newest first)
+```
 
+```js
 // Create season selector
 const selectedSeason = view(Inputs.select(
   ["All Seasons", ...availableSeasons],
@@ -110,7 +118,9 @@ const selectedSeason = view(Inputs.select(
     value: "All Seasons"
   }
 ));
+```
 
+```js
 // Process trade data with performance stats
 const processedTrades = trades.map(trade => {
   // Get roster IDs from adds/drops instead of consenter_ids to find actual teams involved
@@ -153,14 +163,23 @@ const processedTrades = trades.map(trade => {
       const newOwner = pick.owner_id;
       const previousOwner = pick.previous_owner_id;
 
+      // Look up who was drafted with this pick
+      const draftInfo = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
+      const enrichedPick = {
+        ...pick,
+        draftedPlayer: draftInfo,
+        // Calculate stats for the drafted player (from draft year onwards, not from trade week)
+        draftedPlayerStats: draftInfo ? getPlayerStatsAfterTrade(draftInfo.player_id, 0) : null
+      };
+
       // Add to new owner's gained picks
       if (newOwner && rosterMoves[newOwner]) {
-        rosterMoves[newOwner].draftPicksGained.push(pick);
+        rosterMoves[newOwner].draftPicksGained.push(enrichedPick);
       }
 
       // Add to previous owner's lost picks
       if (previousOwner && rosterMoves[previousOwner]) {
-        rosterMoves[previousOwner].draftPicksLost.push(pick);
+        rosterMoves[previousOwner].draftPicksLost.push(enrichedPick);
       }
     });
   }
@@ -186,8 +205,16 @@ const processedTrades = trades.map(trade => {
       stats: getPlayerStatsAfterTrade(playerId, trade.week)
     }));
 
-    const acquiredTotalPoints = acquiredStats.reduce((sum, p) => sum + p.stats.totalPoints, 0);
-    const givenUpTotalPoints = givenUpStats.reduce((sum, p) => sum + p.stats.totalPoints, 0);
+    // Calculate total points including drafted players from gained picks
+    const draftPickPoints = moves.draftPicksGained.reduce((sum, pick) => {
+      return sum + (pick.draftedPlayerStats?.totalPoints || 0);
+    }, 0);
+    const draftPickPointsLost = moves.draftPicksLost.reduce((sum, pick) => {
+      return sum + (pick.draftedPlayerStats?.totalPoints || 0);
+    }, 0);
+
+    const acquiredTotalPoints = acquiredStats.reduce((sum, p) => sum + p.stats.totalPoints, 0) + draftPickPoints;
+    const givenUpTotalPoints = givenUpStats.reduce((sum, p) => sum + p.stats.totalPoints, 0) + draftPickPointsLost;
     const netPoints = acquiredTotalPoints - givenUpTotalPoints;
 
     return {
@@ -228,6 +255,7 @@ const processedTrades = trades.map(trade => {
 }).sort((a, b) => b.timestamp - a.timestamp);
 
 // Debug: Log processed trades
+console.log('Selected season:', selectedSeason);
 console.log('Processed trades count:', processedTrades.length);
 console.log('First processed trade:', processedTrades[0]);
 console.log('Trades by number of sides:', processedTrades.reduce((acc, t) => {
@@ -235,6 +263,21 @@ console.log('Trades by number of sides:', processedTrades.reduce((acc, t) => {
   acc[key] = (acc[key] || 0) + 1;
   return acc;
 }, {}));
+
+// Debug: Check why trades are filtered out
+const allProcessedBeforeFilter = trades.map(trade => {
+  const rosterIdsFromAdds = trade.adds ? Object.values(trade.adds).filter(id => id !== 0) : [];
+  const rosterIdsFromDrops = trade.drops ? Object.values(trade.drops).filter(id => id !== 0) : [];
+  const allRosterIds = [...new Set([...rosterIdsFromAdds, ...rosterIdsFromDrops])];
+  return {
+    season: trade.season,
+    week: trade.week,
+    rosterIds: allRosterIds,
+    rosterCount: allRosterIds.length
+  };
+});
+console.log('All trades before filter (first 5):', allProcessedBeforeFilter.slice(0, 5));
+console.log('Trades with 0 roster IDs:', allProcessedBeforeFilter.filter(t => t.rosterCount === 0).length);
 ```
 
 ```js
@@ -341,18 +384,30 @@ if (processedTrades.length === 0) {
                   </div>
                 `)}
                 ${trade.sides[0].draftPicksLost.map(pick => {
-                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
-                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
                   return html`
                     <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
-                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
-                      ${selectedPlayer ? html`
-                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
-                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                      ${draftedPlayer ? html`
+                        <div style="font-weight: 600;">${draftedPlayer.first_name} ${draftedPlayer.last_name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                          ${draftedPlayer.position} • (${pick.season} Round ${pick.round} Pick${pick.draftedPlayer.pick_no ? ` (${pick.draftedPlayer.pick_no} Overall)` : ''})
                         </div>
+                        ${pick.draftedPlayerStats && pick.draftedPlayerStats.gamesPlayed > 0 ? html`
+                          <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                            ${pick.draftedPlayerStats.gamesPlayed} games • ${pick.draftedPlayerStats.totalPoints.toFixed(1)} pts total
+                          </div>
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            Avg: ${pick.draftedPlayerStats.averagePoints.toFixed(1)} • Best: ${pick.draftedPlayerStats.bestWeek.toFixed(1)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            No games played
+                          </div>
+                        `}
                       ` : html`
+                        <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
                           ${isFuture ? "Future pick" : "Pick not found"}
                         </div>
@@ -386,18 +441,30 @@ if (processedTrades.length === 0) {
                   </div>
                 `)}
                 ${trade.sides[0].draftPicksGained.map(pick => {
-                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
-                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
                   return html`
                     <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
-                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
-                      ${selectedPlayer ? html`
-                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
-                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                      ${draftedPlayer ? html`
+                        <div style="font-weight: 600;">${draftedPlayer.first_name} ${draftedPlayer.last_name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                          ${draftedPlayer.position} • (${pick.season} Round ${pick.round} Pick${pick.draftedPlayer.pick_no ? ` (${pick.draftedPlayer.pick_no} Overall)` : ''})
                         </div>
+                        ${pick.draftedPlayerStats && pick.draftedPlayerStats.gamesPlayed > 0 ? html`
+                          <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                            ${pick.draftedPlayerStats.gamesPlayed} games • ${pick.draftedPlayerStats.totalPoints.toFixed(1)} pts total
+                          </div>
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            Avg: ${pick.draftedPlayerStats.averagePoints.toFixed(1)} • Best: ${pick.draftedPlayerStats.bestWeek.toFixed(1)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            No games played
+                          </div>
+                        `}
                       ` : html`
+                        <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
                           ${isFuture ? "Future pick" : "Pick not found"}
                         </div>
@@ -459,18 +526,30 @@ if (processedTrades.length === 0) {
                   </div>
                 `)}
                 ${(trade.sides[1]?.draftPicksLost || []).map(pick => {
-                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
-                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
                   return html`
                     <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
-                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
-                      ${selectedPlayer ? html`
-                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
-                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                      ${draftedPlayer ? html`
+                        <div style="font-weight: 600;">${draftedPlayer.first_name} ${draftedPlayer.last_name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                          ${draftedPlayer.position} • (${pick.season} Round ${pick.round} Pick${pick.draftedPlayer.pick_no ? ` (${pick.draftedPlayer.pick_no} Overall)` : ''})
                         </div>
+                        ${pick.draftedPlayerStats && pick.draftedPlayerStats.gamesPlayed > 0 ? html`
+                          <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                            ${pick.draftedPlayerStats.gamesPlayed} games • ${pick.draftedPlayerStats.totalPoints.toFixed(1)} pts total
+                          </div>
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            Avg: ${pick.draftedPlayerStats.averagePoints.toFixed(1)} • Best: ${pick.draftedPlayerStats.bestWeek.toFixed(1)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            No games played
+                          </div>
+                        `}
                       ` : html`
+                        <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
                           ${isFuture ? "Future pick" : "Pick not found"}
                         </div>
@@ -504,18 +583,30 @@ if (processedTrades.length === 0) {
                   </div>
                 `)}
                 ${(trade.sides[1]?.draftPicksGained || []).map(pick => {
-                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
-                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
                   return html`
                     <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
-                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
-                      ${selectedPlayer ? html`
-                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
-                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                      ${draftedPlayer ? html`
+                        <div style="font-weight: 600;">${draftedPlayer.first_name} ${draftedPlayer.last_name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                          ${draftedPlayer.position} • (${pick.season} Round ${pick.round} Pick${pick.draftedPlayer.pick_no ? ` (${pick.draftedPlayer.pick_no} Overall)` : ''})
                         </div>
+                        ${pick.draftedPlayerStats && pick.draftedPlayerStats.gamesPlayed > 0 ? html`
+                          <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                            ${pick.draftedPlayerStats.gamesPlayed} games • ${pick.draftedPlayerStats.totalPoints.toFixed(1)} pts total
+                          </div>
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            Avg: ${pick.draftedPlayerStats.averagePoints.toFixed(1)} • Best: ${pick.draftedPlayerStats.bestWeek.toFixed(1)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                            No games played
+                          </div>
+                        `}
                       ` : html`
+                        <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
                           ${isFuture ? "Future pick" : "Pick not found"}
                         </div>
