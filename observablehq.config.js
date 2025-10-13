@@ -11,7 +11,6 @@ export default {
     {name: "Players", path: "/players"},
     {name: "Matchups", path: "/matchups"},
     {name: "All-Play", path: "/allplay"},
-    {name: "Trades", path: "/trades"},
     {name: "Draft Overview", path: "/draft-overview"},
     {name: "Draft Retro", path: "/draft-retro"},
     {name: "Trade Retro", path: "/trade-retro"},
@@ -366,7 +365,6 @@ export default {
           <a href="./players" class="nav-link">Players</a>
           <a href="./matchups" class="nav-link">Matchups</a>
           <a href="./allplay" class="nav-link">All-Play</a>
-          <a href="./trades" class="nav-link">Trades</a>
           <a href="./draft-overview" class="nav-link">Draft Overview</a>
           <a href="./draft-retro" class="nav-link">Draft Retro</a>
           <a href="./trade-retro" class="nav-link">Trade Retro</a>

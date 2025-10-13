@@ -376,13 +376,53 @@ const totalPlayersTradedAcrossYears = processedTrades.reduce((sum, t) => {
 }, 0);
 
 const tradeCounts = {};
+const tradeRecords = {}; // Track win-loss-draw for each team
+
 processedTrades.forEach(t => {
   t.sides.forEach(s => {
     tradeCounts[s.username] = (tradeCounts[s.username] || 0) + 1;
+
+    // Initialize record if not exists
+    if (!tradeRecords[s.username]) {
+      tradeRecords[s.username] = { wins: 0, losses: 0, draws: 0 };
+    }
+
+    // Update record based on trade outcome
+    if (t.winner === 'Even Trade') {
+      tradeRecords[s.username].draws++;
+    } else if (t.winner === s.username) {
+      tradeRecords[s.username].wins++;
+    } else {
+      tradeRecords[s.username].losses++;
+    }
   });
 });
+
 const sortedTradeCounts = Object.entries(tradeCounts).sort((a, b) => b[1] - a[1]);
 const mostActiveTrader = sortedTradeCounts[0] ? sortedTradeCounts[0][0] : 'N/A';
+
+// Calculate best trade record (by win percentage, then total trades)
+const sortedTradeRecords = Object.entries(tradeRecords)
+  .map(([team, record]) => {
+    const totalTrades = record.wins + record.losses + record.draws;
+    const winPercentage = totalTrades > 0 ? (record.wins / totalTrades) * 100 : 0;
+    return {
+      team,
+      ...record,
+      totalTrades,
+      winPercentage,
+      record: `${record.wins}W-${record.losses}L-${record.draws}D`
+    };
+  })
+  .sort((a, b) => {
+    // Sort by win percentage, then by total wins
+    if (Math.abs(a.winPercentage - b.winPercentage) > 0.01) {
+      return b.winPercentage - a.winPercentage;
+    }
+    return b.wins - a.wins;
+  });
+
+const bestTradeRecord = sortedTradeRecords[0];
 
 // Find the trade with biggest long-term impact
 const biggestImpactTrade = processedTrades.reduce((biggest, trade) => {
@@ -408,6 +448,18 @@ const tradeStatsContent = html`
         ${sortedTradeCounts[0] ? sortedTradeCounts[0][1] : 0} trades
       </div>
     </div>
+    ${bestTradeRecord ? html`
+      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #10b981;">
+        <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Best Trade Record</div>
+        <div style="font-size: 16px; font-weight: bold; color: #10b981;">${bestTradeRecord.team}</div>
+        <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-top: 4px; font-weight: 600;">
+          ${bestTradeRecord.record}
+        </div>
+        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
+          ${bestTradeRecord.winPercentage.toFixed(1)}% win rate
+        </div>
+      </div>
+    ` : ''}
     ${biggestImpactTrade ? html`
       <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #ef4444;">
         <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Biggest Impact</div>
@@ -428,6 +480,79 @@ display(html`<details open class="section-collapse">
     ${tradeStatsContent}
   </div>
 </details>`);
+```
+
+```js
+// Display team trade records table
+if (sortedTradeRecords.length > 0) {
+  const teamRecordsTable = html`
+    <div style="background: var(--theme-background-alt); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+      <h3 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 700; color: var(--theme-accent);">
+        Team Trade Records
+      </h3>
+      <div style="padding: 12px 16px; background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; border-radius: 6px; margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
+        <strong style="color: #3b82f6; font-size: 14px;">📊 Note:</strong> These records are current and will change as traded draft picks are used and those players perform in future seasons.
+      </div>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+          <colgroup>
+            <col style="width: 70px;">
+            <col>
+            <col style="width: 130px;">
+            <col style="width: 70px;">
+            <col style="width: 80px;">
+            <col style="width: 75px;">
+            <col style="width: 70px;">
+            <col style="width: 75px;">
+          </colgroup>
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(255, 255, 255, 0.1);">
+              <th style="padding: 12px 8px; text-align: left; color: var(--theme-foreground-alt); font-weight: 600;">Rank</th>
+              <th style="padding: 12px 8px; text-align: left; color: var(--theme-foreground-alt); font-weight: 600;">Team</th>
+              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Record</th>
+              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Wins</th>
+              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Losses</th>
+              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Draws</th>
+              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Total</th>
+              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Win %</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${sortedTradeRecords.map((teamRecord, index) => {
+              const isTop3 = index < 3;
+              const rankColor = index === 0 ? '#fbbf24' : index === 1 ? '#d1d5db' : index === 2 ? '#cd7f32' : 'var(--theme-foreground-alt)';
+              const rowBg = index % 2 === 0 ? 'rgba(255, 255, 255, 0.02)' : 'transparent';
+              const rank = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1;
+              const winColor = teamRecord.winPercentage >= 50 ? '#22c55e' : teamRecord.winPercentage >= 33 ? '#f59e0b' : '#ef4444';
+
+              return html`<tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: ${rowBg};">
+                <td style="padding: 12px 8px; color: ${rankColor}; font-weight: ${isTop3 ? '700' : '500'}; white-space: nowrap; text-align: left;">${rank}</td>
+                <td style="padding: 12px 8px; font-weight: ${isTop3 ? '600' : '400'}; color: ${isTop3 ? 'var(--theme-accent)' : 'var(--theme-foreground)'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left;">${teamRecord.team}</td>
+                <td style="padding: 12px 8px; text-align: center; font-weight: 600; font-family: monospace; color: var(--theme-accent); white-space: nowrap;">${teamRecord.record}</td>
+                <td style="padding: 12px 8px; text-align: center; color: #22c55e; font-weight: 600;">${teamRecord.wins}</td>
+                <td style="padding: 12px 8px; text-align: center; color: #ef4444; font-weight: 600;">${teamRecord.losses}</td>
+                <td style="padding: 12px 8px; text-align: center; color: #94a3b8; font-weight: 600;">${teamRecord.draws}</td>
+                <td style="padding: 12px 8px; text-align: center; font-weight: 500;">${teamRecord.totalTrades}</td>
+                <td style="padding: 12px 8px; text-align: center; font-weight: 600; color: ${winColor}; white-space: nowrap;">${teamRecord.winPercentage.toFixed(1)}%</td>
+              </tr>`;
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 12px; color: var(--theme-foreground-alt); line-height: 1.6;">
+        <strong>How it works:</strong> A team "wins" a trade if they gain 20+ more career fantasy points than they gave up.
+        Trades with smaller differentials (&lt;20 pts) are considered "draws" (even trades). Rankings are based on win percentage.
+      </div>
+    </div>
+  `;
+
+  display(html`<details open class="section-collapse">
+    <summary class="section-summary">Team Trade Records - Win/Loss/Draw</summary>
+    <div class="section-content">
+      ${teamRecordsTable}
+    </div>
+  </details>`);
+}
 ```
 
 ```js
