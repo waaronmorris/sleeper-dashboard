@@ -95,3 +95,26 @@ Built with:
 - [Observable Plot](https://observablehq.com/plot/) - Visualization library
 - [Sleeper API](https://docs.sleeper.com/) - Fantasy football data
 - [Claude AI](https://www.anthropic.com/claude) - AI-powered weekly summaries
+
+## Support This Project
+
+If you find this dashboard useful for your league, consider supporting its development:
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/waaronmorris)
+
+Your support helps cover:
+- AI API costs for weekly summaries
+- Ongoing development and new features
+- Server and infrastructure costs
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+- Report bugs or issues
+- Suggest new features or analytics
+- Submit pull requests
+- Share with your fantasy football leagues
+
+## License
+
+MIT License - feel free to use and modify for your own leagues!
