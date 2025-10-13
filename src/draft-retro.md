@@ -267,9 +267,9 @@ const selectedTeam = view(Inputs.select(
     <li><strong>Poor:</strong> -50pts or more below round average</li>
   </ul>
 
-  <h4 style="margin: 1.5rem 0 0.75rem 0; color: var(--theme-accent);">Actuarial Triangle (Retention Timeline)</h4>
+  <h4 style="margin: 1.5rem 0 0.75rem 0; color: var(--theme-accent);">Roster Retention Timeline</h4>
   <p style="line-height: 1.8; margin-top: 0;">
-    The actuarial triangle tracks how many drafted players remain on each team's roster week by week throughout the season:
+    Track how many drafted players remain on each team's roster week by week throughout the season:
   </p>
   <ul style="line-height: 1.8; margin-top: 0;">
     <li><strong>Line Chart:</strong> Shows retention trends for all teams over time. Steeper drops indicate aggressive waiver wire activity</li>
@@ -608,7 +608,7 @@ if (!seasonDraftData || !seasonDraftData.picks || seasonDraftData.picks.length =
     </div>
   </details>`);
 
-  // Build actuarial triangle: track drafted player retention year-over-year
+  // Build retention timeline: track drafted player retention year-over-year
   const retentionTriangle = [];
 
   // Get all available years and weeks for year-over-year tracking
@@ -703,7 +703,7 @@ if (!seasonDraftData || !seasonDraftData.picks || seasonDraftData.picks.length =
     teamColors[team.teamName] = `hsl(${hue}, 70%, 60%)`;
   });
 
-  // Display actuarial triangle
+  // Display retention timeline
   const actuarialContent = html`
     <div style="margin-bottom: 30px;">
       <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
@@ -875,7 +875,7 @@ if (!seasonDraftData || !seasonDraftData.picks || seasonDraftData.picks.length =
   `;
 
   display(html`<details class="section-collapse">
-    <summary class="section-summary">Actuarial Triangle: Retention Over Time</summary>
+    <summary class="section-summary">Roster Retention Timeline</summary>
     <div class="section-content">
       ${actuarialContent}
     </div>
