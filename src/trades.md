@@ -1,336 +1,570 @@
 <div style="margin: 0 0 2rem 0;">
   <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
-    Trade Evaluation
+    Trade Postmortem
   </div>
   <h1 style="margin: 0 0 1rem 0; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, #f8fafc 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-    Trade Analyzer
+    Trade History & Performance Analysis
   </h1>
   <p style="font-size: 1.125rem; color: #cbd5e1; margin: 0; max-width: 800px; line-height: 1.6;">
-    Evaluate potential trades with data-driven player valuations. Compare roster values, analyze position impacts, and make informed decisions that improve your championship odds.
+    Review all completed trades and see how the traded players have performed since the trade. Compare actual fantasy points scored to determine who really won each deal.
   </p>
 </div>
 
 ```js
-import * as Plot from "@observablehq/plot";
-import * as d3 from "d3";
-
 // Load data
+const trades = await FileAttachment("data/trades.json").json();
 const rosters = await FileAttachment("data/rosters.json").json();
 const users = await FileAttachment("data/users.json").json();
 const players = await FileAttachment("data/players.json").json();
+const league = await FileAttachment("data/league.json").json();
+const matchupsData = await FileAttachment("data/matchups.json").json();
+const draftData = await FileAttachment("data/draft-picks.json").json();
+
+// Debug: Log data loaded
+console.log('Trades loaded:', trades.length, 'trades');
+console.log('Draft data seasons:', Object.keys(draftData));
+console.log('Sample trade:', trades[0]);
 ```
 
 ```js
-// Helper function to get team roster
-function getTeamRoster(userId) {
-  const roster = rosters.find(r => r.owner_id === userId);
-  if (!roster || !roster.players) return [];
-
-  return roster.players.map(playerId => {
-    const player = players[playerId];
-    return {
-      id: playerId,
-      name: player ? `${player.first_name} ${player.last_name}` : playerId,
-      position: player?.position || 'N/A',
-      team: player?.team || 'FA',
-      age: player?.age || 0,
-      years_exp: player?.years_exp || 0,
-      injury_status: player?.injury_status
-    };
-  }).filter(p => p.position !== 'DEF');
+// Helper function to get user by roster ID
+function getUserByRosterId(rosterId) {
+  const roster = rosters.find(r => r.roster_id === rosterId);
+  if (!roster) return null;
+  return users.find(u => u.user_id === roster.owner_id);
 }
 
-// Create player value map based on simple heuristics
-function calculatePlayerValue(player) {
-  let value = 100; // Base value
+// Helper function to get player name
+function getPlayerName(playerId) {
+  const player = players[playerId];
+  if (!player) return playerId;
+  return `${player.first_name} ${player.last_name}`;
+}
 
-  // Position modifiers
-  const positionValues = { QB: 1.2, RB: 1.5, WR: 1.3, TE: 1.0, K: 0.3 };
-  value *= (positionValues[player.position] || 1.0);
+// Helper function to get player position
+function getPlayerPosition(playerId) {
+  const player = players[playerId];
+  return player?.position || 'N/A';
+}
 
-  // Age penalty/bonus
-  if (player.age > 0) {
-    if (player.age < 25) value *= 1.2; // Young upside
-    else if (player.age > 30) value *= 0.8; // Age decline
+// Helper function to look up what player was selected with a draft pick
+function getDraftPickPlayer(round, season, originalRosterId) {
+  // Check if we have draft data for this season
+  const yearData = draftData[season];
+  if (!yearData || !yearData.picks) {
+    return null;
   }
 
-  // Experience factor
-  if (player.years_exp === 0) value *= 0.7; // Rookie discount
-  else if (player.years_exp >= 2 && player.years_exp <= 5) value *= 1.1; // Prime years
+  // Find the pick by round and roster_id (original owner)
+  const pick = yearData.picks.find(p =>
+    p.round === round && p.roster_id === originalRosterId
+  );
 
-  // Injury penalty
-  if (player.injury_status) value *= 0.7;
-
-  return Math.round(value);
+  return pick ? pick.player_id : null;
 }
-```
 
-```js
-// Team selectors
-const team1Select = Inputs.select(users, {
-  label: "Team 1",
-  format: u => u.display_name,
-  value: users[0]
-});
-const team1 = Generators.input(team1Select);
+// Helper function to get player stats after trade week
+function getPlayerStatsAfterTrade(playerId, tradeWeek) {
+  const stats = {
+    gamesPlayed: 0,
+    totalPoints: 0,
+    averagePoints: 0,
+    bestWeek: 0,
+    worstWeek: Infinity,
+    weeks: []
+  };
 
-const team2Select = Inputs.select(users.filter(u => u.user_id !== team1.user_id), {
-  label: "Team 2",
-  format: u => u.display_name,
-  value: users.find(u => u.user_id !== team1.user_id)
-});
-const team2 = Generators.input(team2Select);
-```
+  // Look through all weeks after the trade
+  matchupsData.forEach(weekData => {
+    if (weekData.week > tradeWeek) {
+      // Find any matchup where this player appeared
+      weekData.matchups.forEach(matchup => {
+        if (matchup.players_points && matchup.players_points[playerId] !== undefined) {
+          const points = matchup.players_points[playerId] || 0;
+          stats.gamesPlayed++;
+          stats.totalPoints += points;
+          stats.bestWeek = Math.max(stats.bestWeek, points);
+          stats.worstWeek = Math.min(stats.worstWeek, points);
+          stats.weeks.push({ week: weekData.week, points });
+        }
+      });
+    }
+  });
 
-```js
-// Get rosters for selected teams
-const team1Roster = getTeamRoster(team1.user_id);
-const team2Roster = getTeamRoster(team2.user_id);
+  if (stats.gamesPlayed > 0) {
+    stats.averagePoints = stats.totalPoints / stats.gamesPlayed;
+  }
+  if (stats.worstWeek === Infinity) stats.worstWeek = 0;
 
-// Add values to players
-const team1PlayersWithValue = team1Roster.map(p => ({
-  ...p,
-  value: calculatePlayerValue(p)
-})).sort((a, b) => b.value - a.value);
-
-const team2PlayersWithValue = team2Roster.map(p => ({
-  ...p,
-  value: calculatePlayerValue(p)
-})).sort((a, b) => b.value - a.value);
-```
-
-```js
-// Player selection for trade
-const team1PlayersSelect = Inputs.checkbox(team1PlayersWithValue, {
-  label: `${team1.display_name}'s Players to Trade Away`,
-  format: p => `${p.name} (${p.position}) - Value: ${p.value}`,
-  value: []
-});
-const team1TradePlayers = Generators.input(team1PlayersSelect);
-
-const team2PlayersSelect = Inputs.checkbox(team2PlayersWithValue, {
-  label: `${team2.display_name}'s Players to Trade Away`,
-  format: p => `${p.name} (${p.position}) - Value: ${p.value}`,
-  value: []
-});
-const team2TradePlayers = Generators.input(team2PlayersSelect);
-
-const tradeEvaluatorContent = html`
-  <div>
-    <p style="color: #cbd5e1; margin-bottom: 1.5rem;">
-      Select two teams and the players involved to evaluate trade fairness based on position scarcity, age, experience, and injury status.
-    </p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-      <div>${team1Select}</div>
-      <div>${team2Select}</div>
-    </div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px;">
-        ${team1PlayersSelect}
-      </div>
-      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px;">
-        ${team2PlayersSelect}
-      </div>
-    </div>
-  </div>
-`;
-
-display(html`<details open class="section-collapse">
-  <summary class="section-summary">Trade Evaluator</summary>
-  <div class="section-content">
-    ${tradeEvaluatorContent}
-  </div>
-</details>`);
-```
-
-```js
-if (team1TradePlayers.length > 0 || team2TradePlayers.length > 0) {
-  const team1Value = team1TradePlayers.reduce((sum, p) => sum + p.value, 0);
-  const team2Value = team2TradePlayers.reduce((sum, p) => sum + p.value, 0);
-  const valueDiff = Math.abs(team1Value - team2Value);
-  const diffPercent = team1Value > 0 ? (valueDiff / Math.max(team1Value, team2Value) * 100) : 0;
-
-  const isFair = diffPercent < 20; // Consider trade fair if within 20% value
-  const winner = team1Value > team2Value ? team1.display_name : team2Value > team1Value ? team2.display_name : "Even";
-
-  // Position analysis
-  const team1Positions = d3.rollup(team1TradePlayers, v => v.length, d => d.position);
-  const team2Positions = d3.rollup(team2TradePlayers, v => v.length, d => d.position);
-
-  const tradeAnalysisContent = html`
-    <div>
-      <div style="margin: 0 0 30px 0; padding: 30px; background: ${isFair ? '#22c55e20' : '#f59e0b20'}; border-left: 4px solid ${isFair ? '#22c55e' : '#f59e0b'}; border-radius: 8px;">
-        <h2 style="margin-top: 0;">${isFair ? '✅' : '⚠️'} Trade Evaluation</h2>
-
-        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 30px; align-items: center; margin: 30px 0;">
-          <div style="text-align: center;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">${team1.display_name}</div>
-            <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 15px;">Gives Up:</div>
-            <div style="background: var(--theme-background); padding: 15px; border-radius: 8px; min-height: 80px;">
-              ${team1TradePlayers.length > 0 ? team1TradePlayers.map(p => html`
-                <div style="margin: 5px 0;">${p.name} (${p.position})</div>
-              `) : html`<div style="color: var(--theme-foreground-alt);">No players selected</div>`}
-            </div>
-            <div style="margin-top: 20px; font-size: 24px; font-weight: bold; color: var(--theme-accent);">
-              Total Value: ${team1Value}
-            </div>
-          </div>
-
-          <div style="text-align: center;">
-            <div style="font-size: 32px;">⇄</div>
-          </div>
-
-          <div style="text-align: center;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">${team2.display_name}</div>
-            <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 15px;">Gives Up:</div>
-            <div style="background: var(--theme-background); padding: 15px; border-radius: 8px; min-height: 80px;">
-              ${team2TradePlayers.length > 0 ? team2TradePlayers.map(p => html`
-                <div style="margin: 5px 0;">${p.name} (${p.position})</div>
-              `) : html`<div style="color: var(--theme-foreground-alt);">No players selected</div>`}
-            </div>
-            <div style="margin-top: 20px; font-size: 24px; font-weight: bold; color: var(--theme-accent);">
-              Total Value: ${team2Value}
-            </div>
-          </div>
-        </div>
-
-        <div style="text-align: center; padding: 20px; background: var(--theme-background); border-radius: 8px;">
-          <div style="font-size: 16px; margin-bottom: 10px;">
-            <strong>Value Difference:</strong> ${valueDiff} points (${diffPercent.toFixed(1)}%)
-          </div>
-          <div style="font-size: 16px; margin-bottom: 10px;">
-            <strong>Trade Fairness:</strong> ${isFair ? 'Fair Trade' : 'Potentially Unbalanced'}
-          </div>
-          ${winner !== "Even" ? html`
-            <div style="font-size: 16px; color: var(--theme-accent);">
-              <strong>Advantage:</strong> ${winner}
-            </div>
-          ` : html`
-            <div style="font-size: 16px; color: var(--theme-accent);">
-              <strong>Result:</strong> Even Trade
-            </div>
-          `}
-        </div>
-      </div>
-
-      <div style="margin: 20px 0;">
-        <h3>Position Impact</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-          <div style="padding: 15px; background: var(--theme-background-alt); border-radius: 8px;">
-            <strong>${team1.display_name} Loses:</strong>
-            <ul style="margin: 10px 0;">
-              ${Array.from(team1Positions, ([pos, count]) => html`<li>${count} ${pos}</li>`)}
-            </ul>
-            <strong>Gains:</strong>
-            <ul style="margin: 10px 0;">
-              ${Array.from(team2Positions, ([pos, count]) => html`<li>${count} ${pos}</li>`)}
-            </ul>
-          </div>
-          <div style="padding: 15px; background: var(--theme-background-alt); border-radius: 8px;">
-            <strong>${team2.display_name} Loses:</strong>
-            <ul style="margin: 10px 0;">
-              ${Array.from(team2Positions, ([pos, count]) => html`<li>${count} ${pos}</li>`)}
-            </ul>
-            <strong>Gains:</strong>
-            <ul style="margin: 10px 0;">
-              ${Array.from(team1Positions, ([pos, count]) => html`<li>${count} ${pos}</li>`)}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  display(html`<details open class="section-collapse">
-    <summary class="section-summary">Trade Analysis Results</summary>
-    <div class="section-content">
-      ${tradeAnalysisContent}
-    </div>
-  </details>`);
+  return stats;
 }
-```
 
-```js
-// Calculate total roster values
-const allTeamValues = users.map(user => {
-  const roster = getTeamRoster(user.user_id);
-  const totalValue = roster.reduce((sum, p) => sum + calculatePlayerValue(p), 0);
-  const avgValue = roster.length > 0 ? totalValue / roster.length : 0;
+// Get available seasons from draft data
+const availableSeasons = Object.keys(draftData).sort((a, b) => b.localeCompare(a)); // Sort descending (newest first)
+
+// Create season selector
+const selectedSeason = view(Inputs.select(
+  ["All Seasons", ...availableSeasons],
+  {
+    label: "Filter by Season",
+    value: "All Seasons"
+  }
+));
+
+// Process trade data with performance stats
+const processedTrades = trades.map(trade => {
+  // Get roster IDs from adds/drops instead of consenter_ids to find actual teams involved
+  const rosterIdsFromAdds = trade.adds ? Object.values(trade.adds).filter(id => id !== 0) : [];
+  const rosterIdsFromDrops = trade.drops ? Object.values(trade.drops).filter(id => id !== 0) : [];
+  const allRosterIds = [...new Set([...rosterIdsFromAdds, ...rosterIdsFromDrops])];
+
+  // Build roster movements
+  const rosterMoves = {};
+  allRosterIds.forEach(rosterId => {
+    rosterMoves[rosterId] = {
+      added: [],
+      dropped: [],
+      draftPicksGained: [],
+      draftPicksLost: []
+    };
+  });
+
+  // Map adds to rosters (skip roster_id 0)
+  if (trade.adds) {
+    Object.entries(trade.adds).forEach(([playerId, rosterId]) => {
+      if (rosterId !== 0 && rosterMoves[rosterId]) {
+        rosterMoves[rosterId].added.push(playerId);
+      }
+    });
+  }
+
+  // Map drops to rosters (skip roster_id 0)
+  if (trade.drops) {
+    Object.entries(trade.drops).forEach(([playerId, rosterId]) => {
+      if (rosterId !== 0 && rosterMoves[rosterId]) {
+        rosterMoves[rosterId].dropped.push(playerId);
+      }
+    });
+  }
+
+  // Process draft picks in the trade
+  if (trade.draft_picks && trade.draft_picks.length > 0) {
+    trade.draft_picks.forEach(pick => {
+      const newOwner = pick.owner_id;
+      const previousOwner = pick.previous_owner_id;
+
+      // Add to new owner's gained picks
+      if (newOwner && rosterMoves[newOwner]) {
+        rosterMoves[newOwner].draftPicksGained.push(pick);
+      }
+
+      // Add to previous owner's lost picks
+      if (previousOwner && rosterMoves[previousOwner]) {
+        rosterMoves[previousOwner].draftPicksLost.push(pick);
+      }
+    });
+  }
+
+  // Calculate performance for each side
+  const sides = allRosterIds.map(rosterId => {
+    const user = getUserByRosterId(rosterId);
+    const moves = rosterMoves[rosterId];
+
+    // Get performance stats for players acquired
+    const acquiredStats = moves.added.map(playerId => ({
+      playerId,
+      name: getPlayerName(playerId),
+      position: getPlayerPosition(playerId),
+      stats: getPlayerStatsAfterTrade(playerId, trade.week)
+    }));
+
+    // Get performance stats for players given up
+    const givenUpStats = moves.dropped.map(playerId => ({
+      playerId,
+      name: getPlayerName(playerId),
+      position: getPlayerPosition(playerId),
+      stats: getPlayerStatsAfterTrade(playerId, trade.week)
+    }));
+
+    const acquiredTotalPoints = acquiredStats.reduce((sum, p) => sum + p.stats.totalPoints, 0);
+    const givenUpTotalPoints = givenUpStats.reduce((sum, p) => sum + p.stats.totalPoints, 0);
+    const netPoints = acquiredTotalPoints - givenUpTotalPoints;
+
+    return {
+      rosterId,
+      username: user?.display_name || `Team ${rosterId}`,
+      acquired: acquiredStats,
+      givenUp: givenUpStats,
+      draftPicksGained: moves.draftPicksGained || [],
+      draftPicksLost: moves.draftPicksLost || [],
+      acquiredTotalPoints,
+      givenUpTotalPoints,
+      netPoints
+    };
+  });
+
+  // Determine winner based on actual performance
+  const sortedSides = [...sides].sort((a, b) => b.netPoints - a.netPoints);
+  const pointsDiff = sortedSides.length >= 2 ? Math.abs(sortedSides[0].netPoints - (sortedSides[1]?.netPoints || 0)) : 0;
+  const winner = sortedSides.length >= 2 && pointsDiff > 10 ? sortedSides[0].username : "Even Trade";
 
   return {
-    team: user.display_name,
-    total_value: totalValue,
-    avg_value: avgValue,
-    roster_size: roster.length
+    ...trade,
+    sides,
+    winner,
+    pointsDiff,
+    timestamp: new Date(trade.created)
+    // season is already in the trade data from the loader
   };
-}).sort((a, b) => b.total_value - a.total_value);
+}).filter(trade => {
+  // Filter by selected season (trade.season comes from the data loader)
+  if (selectedSeason !== "All Seasons" && trade.season !== selectedSeason) {
+    return false;
+  }
 
-const rosterValueContent = html`
-  <div>
-    <h3 style="margin-top: 0; margin-bottom: 1rem;">League Roster Values</h3>
-    <p style="color: #cbd5e1; margin-bottom: 1.5rem;">
-      Compare total roster values across the league to identify teams positioned for trades or playoff runs.
-    </p>
-    ${Plot.plot({
-      marginLeft: 150,
-      height: users.length * 40,
-      x: {
-        label: "Total Roster Value",
-        grid: true
-      },
-      y: {
-        label: null
-      },
-      marks: [
-        Plot.barX(allTeamValues, {
-          x: "total_value",
-          y: "team",
-          fill: "var(--theme-accent)",
-          sort: { y: "-x" }
-        }),
-        Plot.text(allTeamValues, {
-          x: "total_value",
-          y: "team",
-          text: d => d.total_value,
-          dx: -10,
-          fill: "white",
-          textAnchor: "end"
-        })
-      ]
-    })}
-    <h3 style="margin: 2rem 0 1rem 0;">Team Value Breakdown</h3>
-    ${Inputs.table(allTeamValues, {
-      columns: ["team", "total_value", "avg_value", "roster_size"],
-      header: {
-        team: "Team",
-        total_value: "Total Value",
-        avg_value: "Avg Player Value",
-        roster_size: "Roster Size"
-      },
-      format: {
-        avg_value: x => x.toFixed(1)
-      }
-    })}
+  // Show all trades - even if they don't have 2 properly mapped sides
+  // This allows us to display historical trades even without roster mapping
+  return trade.sides.length > 0;
+}).sort((a, b) => b.timestamp - a.timestamp);
+
+// Debug: Log processed trades
+console.log('Processed trades count:', processedTrades.length);
+console.log('First processed trade:', processedTrades[0]);
+console.log('Trades by number of sides:', processedTrades.reduce((acc, t) => {
+  const key = t.sides.length;
+  acc[key] = (acc[key] || 0) + 1;
+  return acc;
+}, {}));
+```
+
+```js
+// Calculate summary stats
+const totalPlayersTrded = processedTrades.reduce((sum, t) => {
+  return sum + t.sides.reduce((sideSum, s) => sideSum + s.acquired.length, 0);
+}, 0);
+
+const tradeCounts = {};
+processedTrades.forEach(t => {
+  t.sides.forEach(s => {
+    tradeCounts[s.username] = (tradeCounts[s.username] || 0) + 1;
+  });
+});
+const sortedTradeCounts = Object.entries(tradeCounts).sort((a, b) => b[1] - a[1]);
+const mostActiveTrader = sortedTradeCounts[0] ? sortedTradeCounts[0][0] : 'N/A';
+
+const tradeStatsContent = html`
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+    <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid var(--theme-accent);">
+      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">
+        ${selectedSeason === "All Seasons" ? "Total Trades" : `${selectedSeason} Trades`}
+      </div>
+      <div style="font-size: 32px; font-weight: bold; color: var(--theme-accent);">${processedTrades.length}</div>
+    </div>
+    <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Players Traded</div>
+      <div style="font-size: 32px; font-weight: bold; color: #8b5cf6;">${totalPlayersTrded}</div>
+    </div>
+    <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #f59e0b;">
+      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Most Active</div>
+      <div style="font-size: 18px; font-weight: bold; color: #f59e0b;">${mostActiveTrader}</div>
+    </div>
   </div>
 `;
 
 display(html`<details open class="section-collapse">
-  <summary class="section-summary">Roster Value Comparison</summary>
+  <summary class="section-summary">League Trade Stats</summary>
   <div class="section-content">
-    ${rosterValueContent}
+    ${tradeStatsContent}
   </div>
 </details>`);
+```
+
+```js
+// Display each trade with performance analysis
+if (processedTrades.length === 0) {
+  display(html`
+    <div style="padding: 40px; text-align: center; background: var(--theme-background-alt); border-radius: 8px; margin: 20px 0;">
+      <div style="font-size: 48px; margin-bottom: 10px;">📊</div>
+      <h3 style="margin: 0 0 10px 0;">No Trades Yet</h3>
+      <p style="color: var(--theme-foreground-alt); margin: 0;">Trades will appear here once they are processed in your league.</p>
+    </div>
+  `);
+} else {
+  processedTrades.forEach((trade, index) => {
+    const weeksRemaining = matchupsData.length - trade.week;
+
+    const tradeContent = html`
+      <div style="margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <div style="font-size: 12px; color: var(--theme-foreground-alt); text-transform: uppercase; letter-spacing: 0.05em;">
+              Week ${trade.week} • ${trade.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • ${weeksRemaining} weeks of data
+            </div>
+            <div style="font-size: 18px; font-weight: bold; margin-top: 5px; color: ${trade.winner === 'Even Trade' ? 'var(--theme-accent)' : '#f59e0b'};">
+              ${trade.winner === 'Even Trade' ? '⚖️ Even Trade' : `🏆 Winner: ${trade.winner}`}
+            </div>
+            ${trade.pointsDiff > 0 ? html`
+              <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-top: 5px;">
+                Point differential: ${trade.pointsDiff.toFixed(1)} pts
+              </div>
+            ` : ''}
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: start;">
+          <!-- Side 1 -->
+          <div style="background: var(--theme-background-alt); padding: 20px; border-radius: 8px; ${trade.sides[0].username === trade.winner && trade.winner !== 'Even Trade' ? 'border: 2px solid #f59e0b;' : ''}">
+            <div style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: var(--theme-accent);">
+              ${trade.sides[0].username}
+            </div>
+
+            ${trade.sides[0].givenUp.length > 0 || trade.sides[0].draftPicksLost.length > 0 ? html`
+              <div style="margin-bottom: 15px;">
+                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+                  Gave Up:
+                </div>
+                ${trade.sides[0].givenUp.map(player => html`
+                  <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
+                    <div style="font-weight: 600;">${player.name}</div>
+                    <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                      ${player.position} • ${player.stats.gamesPlayed} games • ${player.stats.totalPoints.toFixed(1)} pts total
+                    </div>
+                    ${player.stats.gamesPlayed > 0 ? html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        Avg: ${player.stats.averagePoints.toFixed(1)} • Best: ${player.stats.bestWeek.toFixed(1)}
+                      </div>
+                    ` : html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        No games played since trade
+                      </div>
+                    `}
+                  </div>
+                `)}
+                ${trade.sides[0].draftPicksLost.map(pick => {
+                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
+                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const currentYear = new Date().getFullYear();
+                  const isFuture = parseInt(pick.season) > currentYear;
+                  return html`
+                    <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
+                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
+                      ${selectedPlayer ? html`
+                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
+                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                        </div>
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                          ${isFuture ? "Future pick" : "Pick not found"}
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
+              </div>
+            ` : ''}
+
+            ${trade.sides[0].acquired.length > 0 || trade.sides[0].draftPicksGained.length > 0 ? html`
+              <div>
+                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+                  Received:
+                </div>
+                ${trade.sides[0].acquired.map(player => html`
+                  <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
+                    <div style="font-weight: 600;">${player.name}</div>
+                    <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                      ${player.position} • ${player.stats.gamesPlayed} games • ${player.stats.totalPoints.toFixed(1)} pts total
+                    </div>
+                    ${player.stats.gamesPlayed > 0 ? html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        Avg: ${player.stats.averagePoints.toFixed(1)} • Best: ${player.stats.bestWeek.toFixed(1)}
+                      </div>
+                    ` : html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        No games played since trade
+                      </div>
+                    `}
+                  </div>
+                `)}
+                ${trade.sides[0].draftPicksGained.map(pick => {
+                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
+                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const currentYear = new Date().getFullYear();
+                  const isFuture = parseInt(pick.season) > currentYear;
+                  return html`
+                    <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
+                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
+                      ${selectedPlayer ? html`
+                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
+                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                        </div>
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                          ${isFuture ? "Future pick" : "Pick not found"}
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
+              </div>
+            ` : ''}
+
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;">
+                <div>
+                  <div style="color: var(--theme-foreground-alt);">Acquired Total:</div>
+                  <div style="font-weight: bold; color: #22c55e;">${trade.sides[0].acquiredTotalPoints.toFixed(1)} pts</div>
+                </div>
+                <div>
+                  <div style="color: var(--theme-foreground-alt);">Given Up Total:</div>
+                  <div style="font-weight: bold; color: #ef4444;">${trade.sides[0].givenUpTotalPoints.toFixed(1)} pts</div>
+                </div>
+              </div>
+              <div style="font-size: 16px; font-weight: bold; margin-top: 10px; color: ${trade.sides[0].netPoints > 0 ? '#22c55e' : trade.sides[0].netPoints < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
+                Net Gain: ${trade.sides[0].netPoints > 0 ? '+' : ''}${trade.sides[0].netPoints.toFixed(1)} pts
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div style="display: flex; align-items: center; justify-content: center; padding: 20px 0;">
+            <div style="font-size: 32px; color: var(--theme-foreground-alt);">⇄</div>
+          </div>
+
+          <!-- Side 2 -->
+          <div style="background: var(--theme-background-alt); padding: 20px; border-radius: 8px; ${trade.sides[1]?.username === trade.winner && trade.winner !== 'Even Trade' ? 'border: 2px solid #f59e0b;' : ''}">
+            <div style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: var(--theme-accent);">
+              ${trade.sides[1]?.username || 'Unknown'}
+            </div>
+
+            ${(trade.sides[1]?.givenUp.length > 0 || trade.sides[1]?.draftPicksLost.length > 0) ? html`
+              <div style="margin-bottom: 15px;">
+                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+                  Gave Up:
+                </div>
+                ${trade.sides[1].givenUp.map(player => html`
+                  <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
+                    <div style="font-weight: 600;">${player.name}</div>
+                    <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                      ${player.position} • ${player.stats.gamesPlayed} games • ${player.stats.totalPoints.toFixed(1)} pts total
+                    </div>
+                    ${player.stats.gamesPlayed > 0 ? html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        Avg: ${player.stats.averagePoints.toFixed(1)} • Best: ${player.stats.bestWeek.toFixed(1)}
+                      </div>
+                    ` : html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        No games played since trade
+                      </div>
+                    `}
+                  </div>
+                `)}
+                ${(trade.sides[1]?.draftPicksLost || []).map(pick => {
+                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
+                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const currentYear = new Date().getFullYear();
+                  const isFuture = parseInt(pick.season) > currentYear;
+                  return html`
+                    <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
+                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
+                      ${selectedPlayer ? html`
+                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
+                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                        </div>
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                          ${isFuture ? "Future pick" : "Pick not found"}
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
+              </div>
+            ` : ''}
+
+            ${(trade.sides[1]?.acquired.length > 0 || trade.sides[1]?.draftPicksGained.length > 0) ? html`
+              <div>
+                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+                  Received:
+                </div>
+                ${trade.sides[1].acquired.map(player => html`
+                  <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
+                    <div style="font-weight: 600;">${player.name}</div>
+                    <div style="font-size: 12px; color: var(--theme-foreground-alt);">
+                      ${player.position} • ${player.stats.gamesPlayed} games • ${player.stats.totalPoints.toFixed(1)} pts total
+                    </div>
+                    ${player.stats.gamesPlayed > 0 ? html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        Avg: ${player.stats.averagePoints.toFixed(1)} • Best: ${player.stats.bestWeek.toFixed(1)}
+                      </div>
+                    ` : html`
+                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 2px;">
+                        No games played since trade
+                      </div>
+                    `}
+                  </div>
+                `)}
+                ${(trade.sides[1]?.draftPicksGained || []).map(pick => {
+                  const selectedPlayerId = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
+                  const selectedPlayer = selectedPlayerId ? players[selectedPlayerId] : null;
+                  const currentYear = new Date().getFullYear();
+                  const isFuture = parseInt(pick.season) > currentYear;
+                  return html`
+                    <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
+                      <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
+                      ${selectedPlayer ? html`
+                        <div style="font-size: 12px; color: var(--theme-accent); margin-top: 4px;">
+                          ➜ Used to draft: ${selectedPlayer.first_name} ${selectedPlayer.last_name} (${selectedPlayer.position})
+                        </div>
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                          ${isFuture ? "Future pick" : "Pick not found"}
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
+              </div>
+            ` : ''}
+
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;">
+                <div>
+                  <div style="color: var(--theme-foreground-alt);">Acquired Total:</div>
+                  <div style="font-weight: bold; color: #22c55e;">${trade.sides[1]?.acquiredTotalPoints.toFixed(1) || '0.0'} pts</div>
+                </div>
+                <div>
+                  <div style="color: var(--theme-foreground-alt);">Given Up Total:</div>
+                  <div style="font-weight: bold; color: #ef4444;">${trade.sides[1]?.givenUpTotalPoints.toFixed(1) || '0.0'} pts</div>
+                </div>
+              </div>
+              <div style="font-size: 16px; font-weight: bold; margin-top: 10px; color: ${trade.sides[1]?.netPoints > 0 ? '#22c55e' : trade.sides[1]?.netPoints < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
+                Net Gain: ${trade.sides[1]?.netPoints > 0 ? '+' : ''}${trade.sides[1]?.netPoints.toFixed(1) || '0.0'} pts
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    display(html`<details open class="section-collapse">
+      <summary class="section-summary">Trade #${processedTrades.length - index}</summary>
+      <div class="section-content">
+        ${tradeContent}
+      </div>
+    </details>`);
+  });
+}
 ```
 
 ---
 
 <div style="margin-top: 40px; padding: 20px; background: var(--theme-background-alt); border-radius: 8px;">
-  <h3 style="margin-top: 0;">💡 Trade Analysis Notes</h3>
+  <h3 style="margin-top: 0;">💡 Trade Postmortem Notes</h3>
   <ul style="line-height: 1.8;">
-    <li><strong>Value Calculation:</strong> Based on position scarcity, age, experience, and injury status</li>
-    <li><strong>Fair Trade Threshold:</strong> Trades within 20% value difference are considered fair</li>
-    <li><strong>Position Needs:</strong> Consider your team's positional depth when evaluating trades</li>
-    <li><strong>Context Matters:</strong> This tool provides a starting point - consider playoff schedules, bye weeks, and team needs</li>
-    <li><strong>Dynasty Considerations:</strong> Young players may have higher long-term value than this tool reflects</li>
+    <li><strong>Performance Tracking:</strong> Shows actual fantasy points scored by each player since the trade was completed</li>
+    <li><strong>Winner Determination:</strong> Based on net point differential (>10 points) from actual game performance</li>
+    <li><strong>Limited Data:</strong> Recent trades may not have enough weeks of data for a fair comparison</li>
+    <li><strong>Context Matters:</strong> Injuries, benchings, and trades can affect post-trade performance</li>
+    <li><strong>Team Fit:</strong> A player scoring more points doesn't always mean the trade was bad if it filled a roster need</li>
   </ul>
 </div>
