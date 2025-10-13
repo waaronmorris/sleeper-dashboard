@@ -12,6 +12,7 @@ export default {
     {name: "Matchups", path: "/matchups"},
     {name: "All-Play", path: "/allplay"},
     {name: "Trades", path: "/trades"},
+    {name: "Ring of Honor", path: "/ring-of-honor"},
     {name: "Atrocity", path: "/atrocity"}
   ],
   theme: "dark",
@@ -363,6 +364,7 @@ export default {
           <a href="./matchups" class="nav-link">Matchups</a>
           <a href="./allplay" class="nav-link">All-Play</a>
           <a href="./trades" class="nav-link">Trades</a>
+          <a href="./ring-of-honor" class="nav-link">Ring of Honor</a>
           <a href="./atrocity" class="nav-link">Atrocity</a>
         \`;
 
