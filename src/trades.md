@@ -389,6 +389,8 @@ if (processedTrades.length === 0) {
                   const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
+                  const hasDraftData = draftData[pick.season] && draftData[pick.season].picks && draftData[pick.season].picks.length > 0;
+
                   return html`
                     <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
                       ${draftedPlayer ? html`
@@ -411,7 +413,7 @@ if (processedTrades.length === 0) {
                       ` : html`
                         <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                          ${isFuture ? "Future pick" : "Pick not found"}
+                          ${isFuture ? "Future pick" : !hasDraftData ? "Draft data not available" : "Pick not found"}
                         </div>
                       `}
                     </div>
@@ -446,6 +448,8 @@ if (processedTrades.length === 0) {
                   const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
+                  const hasDraftData = draftData[pick.season] && draftData[pick.season].picks && draftData[pick.season].picks.length > 0;
+
                   return html`
                     <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
                       ${draftedPlayer ? html`
@@ -468,7 +472,7 @@ if (processedTrades.length === 0) {
                       ` : html`
                         <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                          ${isFuture ? "Future pick" : "Pick not found"}
+                          ${isFuture ? "Future pick" : !hasDraftData ? "Draft data not available" : "Pick not found"}
                         </div>
                       `}
                     </div>
@@ -531,6 +535,8 @@ if (processedTrades.length === 0) {
                   const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
+                  const hasDraftData = draftData[pick.season] && draftData[pick.season].picks && draftData[pick.season].picks.length > 0;
+
                   return html`
                     <div style="padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 5px; border-radius: 4px;">
                       ${draftedPlayer ? html`
@@ -553,7 +559,7 @@ if (processedTrades.length === 0) {
                       ` : html`
                         <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                          ${isFuture ? "Future pick" : "Pick not found"}
+                          ${isFuture ? "Future pick" : !hasDraftData ? "Draft data not available" : "Pick not found"}
                         </div>
                       `}
                     </div>
@@ -588,6 +594,8 @@ if (processedTrades.length === 0) {
                   const draftedPlayer = pick.draftedPlayer ? players[pick.draftedPlayer.player_id] : null;
                   const currentYear = new Date().getFullYear();
                   const isFuture = parseInt(pick.season) > currentYear;
+                  const hasDraftData = draftData[pick.season] && draftData[pick.season].picks && draftData[pick.season].picks.length > 0;
+
                   return html`
                     <div style="padding: 8px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 5px; border-radius: 4px;">
                       ${draftedPlayer ? html`
@@ -610,7 +618,7 @@ if (processedTrades.length === 0) {
                       ` : html`
                         <div style="font-weight: 600;">📋 ${pick.season} Round ${pick.round} Pick</div>
                         <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                          ${isFuture ? "Future pick" : "Pick not found"}
+                          ${isFuture ? "Future pick" : !hasDraftData ? "Draft data not available" : "Pick not found"}
                         </div>
                       `}
                     </div>
