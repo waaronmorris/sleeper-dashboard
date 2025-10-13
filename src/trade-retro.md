@@ -109,12 +109,109 @@ function getPlayerStatsAllYearsAfterTrade(playerId, tradeYear, tradeWeek) {
   return stats;
 }
 
+// Helper function to get player stats from the draft year onward (for draft picks)
+function getPlayerStatsFromDraftYear(playerId, draftYear) {
+  const stats = {
+    gamesPlayed: 0,
+    totalPoints: 0,
+    averagePoints: 0,
+    bestWeek: 0,
+    worstWeek: Infinity,
+    yearlyBreakdown: {}
+  };
+
+  const allYears = Object.keys(matchupsAllYears).sort();
+
+  allYears.forEach(year => {
+    const yearData = matchupsAllYears[year];
+    if (!yearData || !yearData.matchups) return;
+
+    // Only count stats from draft year onward
+    if (parseInt(year) < parseInt(draftYear)) return;
+
+    let yearGames = 0;
+    let yearPoints = 0;
+
+    yearData.matchups.forEach(weekData => {
+      weekData.matchups.forEach(matchup => {
+        if (matchup.players_points && matchup.players_points[playerId] !== undefined) {
+          const points = matchup.players_points[playerId] || 0;
+          stats.gamesPlayed++;
+          stats.totalPoints += points;
+          stats.bestWeek = Math.max(stats.bestWeek, points);
+          stats.worstWeek = Math.min(stats.worstWeek, points);
+          yearGames++;
+          yearPoints += points;
+        }
+      });
+    });
+
+    if (yearGames > 0) {
+      stats.yearlyBreakdown[year] = {
+        games: yearGames,
+        points: yearPoints,
+        avg: yearPoints / yearGames
+      };
+    }
+  });
+
+  if (stats.gamesPlayed > 0) {
+    stats.averagePoints = stats.totalPoints / stats.gamesPlayed;
+  }
+  if (stats.worstWeek === Infinity) stats.worstWeek = 0;
+
+  return stats;
+}
+
+// Helper function to look up which player was drafted with a specific pick
+function getPlayerDraftedWithPick(pick) {
+  const draftYear = draftData[pick.season];
+  if (!draftYear || !draftYear.picks) return null;
+
+  // Find the pick that matches this roster_id and round
+  // We need to find which pick number corresponds to this roster and round
+  const draftPick = draftYear.picks.find(p =>
+    p.roster_id === pick.owner_id && p.round === pick.round
+  );
+
+  if (!draftPick || !draftPick.player_id) return null;
+
+  return {
+    playerId: draftPick.player_id,
+    name: getPlayerName(draftPick.player_id),
+    position: getPlayerPosition(draftPick.player_id),
+    pickNumber: draftPick.pick_no,
+    stats: getPlayerStatsFromDraftYear(draftPick.player_id, pick.season)
+  };
+}
+
 // Get available seasons from trades
 const availableSeasons = [...new Set(trades.map(t => t.season))].sort((a, b) => b.localeCompare(a));
 ```
 
 ```js
-// Create season selector
+// Get all unique teams that have been involved in trades
+const allTeamsInTrades = new Set();
+trades.forEach(trade => {
+  // Get roster IDs from adds/drops AND draft picks
+  const rosterIdsFromAdds = trade.adds ? Object.values(trade.adds).filter(id => id !== 0) : [];
+  const rosterIdsFromDrops = trade.drops ? Object.values(trade.drops).filter(id => id !== 0) : [];
+  const rosterIdsFromPicks = trade.draft_picks ? trade.draft_picks.flatMap(pick => [pick.owner_id, pick.previous_owner_id]) : [];
+  const allRosterIds = [...new Set([...rosterIdsFromAdds, ...rosterIdsFromDrops, ...rosterIdsFromPicks])];
+
+  allRosterIds.forEach(rosterId => {
+    const user = getUserByRosterId(rosterId);
+    if (user) {
+      allTeamsInTrades.add(user.display_name);
+    }
+  });
+});
+
+const availableTeams = [...allTeamsInTrades].sort();
+```
+
+```js
+// Create filters
 const selectedSeason = view(Inputs.select(
   ["All Seasons", ...availableSeasons],
   {
@@ -122,22 +219,33 @@ const selectedSeason = view(Inputs.select(
     value: "All Seasons"
   }
 ));
+
+const selectedTeam = view(Inputs.select(
+  ["All Teams", ...availableTeams],
+  {
+    label: "Filter by Team",
+    value: "All Teams"
+  }
+));
 ```
 
 ```js
 // Process trade data with year-over-year stats
 const processedTrades = trades.map(trade => {
-  // Get roster IDs from adds/drops
+  // Get roster IDs from adds/drops AND draft picks
   const rosterIdsFromAdds = trade.adds ? Object.values(trade.adds).filter(id => id !== 0) : [];
   const rosterIdsFromDrops = trade.drops ? Object.values(trade.drops).filter(id => id !== 0) : [];
-  const allRosterIds = [...new Set([...rosterIdsFromAdds, ...rosterIdsFromDrops])];
+  const rosterIdsFromPicks = trade.draft_picks ? trade.draft_picks.flatMap(pick => [pick.owner_id, pick.previous_owner_id]) : [];
+  const allRosterIds = [...new Set([...rosterIdsFromAdds, ...rosterIdsFromDrops, ...rosterIdsFromPicks])];
 
   // Build roster movements
   const rosterMoves = {};
   allRosterIds.forEach(rosterId => {
     rosterMoves[rosterId] = {
       added: [],
-      dropped: []
+      dropped: [],
+      picksAdded: [],
+      picksGivenUp: []
     };
   });
 
@@ -155,6 +263,27 @@ const processedTrades = trades.map(trade => {
     Object.entries(trade.drops).forEach(([playerId, rosterId]) => {
       if (rosterId !== 0 && rosterMoves[rosterId]) {
         rosterMoves[rosterId].dropped.push(playerId);
+      }
+    });
+  }
+
+  // Map draft picks to rosters with enriched player data
+  if (trade.draft_picks && trade.draft_picks.length > 0) {
+    trade.draft_picks.forEach(pick => {
+      // Enrich the pick with actual player data
+      const draftedPlayer = getPlayerDraftedWithPick(pick);
+      const enrichedPick = {
+        ...pick,
+        draftedPlayer
+      };
+
+      // Current owner received this pick
+      if (rosterMoves[pick.owner_id]) {
+        rosterMoves[pick.owner_id].picksAdded.push(enrichedPick);
+      }
+      // Previous owner gave up this pick
+      if (rosterMoves[pick.previous_owner_id]) {
+        rosterMoves[pick.previous_owner_id].picksGivenUp.push(enrichedPick);
       }
     });
   }
@@ -180,8 +309,18 @@ const processedTrades = trades.map(trade => {
       stats: getPlayerStatsAllYearsAfterTrade(playerId, trade.season, trade.week)
     }));
 
-    const acquiredTotalPoints = acquiredStats.reduce((sum, p) => sum + p.stats.totalPoints, 0);
-    const givenUpTotalPoints = givenUpStats.reduce((sum, p) => sum + p.stats.totalPoints, 0);
+    // Calculate points from drafted players received
+    const picksReceivedPoints = moves.picksAdded.reduce((sum, pick) => {
+      return sum + (pick.draftedPlayer?.stats.totalPoints || 0);
+    }, 0);
+
+    // Calculate points from drafted players given up
+    const picksGivenUpPoints = moves.picksGivenUp.reduce((sum, pick) => {
+      return sum + (pick.draftedPlayer?.stats.totalPoints || 0);
+    }, 0);
+
+    const acquiredTotalPoints = acquiredStats.reduce((sum, p) => sum + p.stats.totalPoints, 0) + picksReceivedPoints;
+    const givenUpTotalPoints = givenUpStats.reduce((sum, p) => sum + p.stats.totalPoints, 0) + picksGivenUpPoints;
     const netPoints = acquiredTotalPoints - givenUpTotalPoints;
 
     return {
@@ -189,6 +328,8 @@ const processedTrades = trades.map(trade => {
       username: user?.display_name || `Team ${rosterId}`,
       acquired: acquiredStats,
       givenUp: givenUpStats,
+      picksReceived: moves.picksAdded || [],
+      picksGivenUp: moves.picksGivenUp || [],
       acquiredTotalPoints,
       givenUpTotalPoints,
       netPoints
@@ -212,6 +353,15 @@ const processedTrades = trades.map(trade => {
   if (selectedSeason !== "All Seasons" && trade.season !== selectedSeason) {
     return false;
   }
+
+  // Filter by selected team
+  if (selectedTeam !== "All Teams") {
+    const teamInvolved = trade.sides.some(side => side.username === selectedTeam);
+    if (!teamInvolved) {
+      return false;
+    }
+  }
+
   return trade.sides.length > 0;
 }).sort((a, b) => b.timestamp - a.timestamp);
 
@@ -322,7 +472,7 @@ if (processedTrades.length === 0) {
               ${trade.sides[0].username}
             </div>
 
-            ${trade.sides[0].givenUp.length > 0 ? html`
+            ${(trade.sides[0].givenUp.length > 0 || trade.sides[0].picksGivenUp.length > 0) ? html`
               <div style="margin-bottom: 15px;">
                 <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
                   Gave Up:
@@ -352,10 +502,47 @@ if (processedTrades.length === 0) {
                     `}
                   </div>
                 `)}
+                ${trade.sides[0].picksGivenUp.map(pick => {
+                  const player = pick.draftedPlayer;
+                  return html`
+                    <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 8px; border-radius: 4px;">
+                      <div style="font-weight: 600; font-size: 14px;">
+                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
+                      </div>
+                      ${player ? html`
+                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
+                          ${player.position} • ${player.stats.gamesPlayed} career games
+                        </div>
+                        <div style="font-size: 13px; color: #ef4444; font-weight: 600; margin-top: 6px;">
+                          ${player.stats.totalPoints.toFixed(1)} total pts
+                        </div>
+                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
+                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+                                <span>${year}:</span>
+                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
+                              </div>
+                            `)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                            No production since draft
+                          </div>
+                        `}
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                          Draft not yet occurred
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
               </div>
             ` : ''}
 
-            ${trade.sides[0].acquired.length > 0 ? html`
+            ${(trade.sides[0].acquired.length > 0 || trade.sides[0].picksReceived.length > 0) ? html`
               <div>
                 <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
                   Received:
@@ -385,6 +572,43 @@ if (processedTrades.length === 0) {
                     `}
                   </div>
                 `)}
+                ${trade.sides[0].picksReceived.map(pick => {
+                  const player = pick.draftedPlayer;
+                  return html`
+                    <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 8px; border-radius: 4px;">
+                      <div style="font-weight: 600; font-size: 14px;">
+                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
+                      </div>
+                      ${player ? html`
+                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
+                          ${player.position} • ${player.stats.gamesPlayed} career games
+                        </div>
+                        <div style="font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 6px;">
+                          ${player.stats.totalPoints.toFixed(1)} total pts
+                        </div>
+                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
+                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+                                <span>${year}:</span>
+                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
+                              </div>
+                            `)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                            No production since draft
+                          </div>
+                        `}
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                          Draft not yet occurred
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
               </div>
             ` : ''}
 
@@ -416,7 +640,7 @@ if (processedTrades.length === 0) {
               ${trade.sides[1]?.username || 'Unknown'}
             </div>
 
-            ${(trade.sides[1]?.givenUp.length > 0) ? html`
+            ${((trade.sides[1]?.givenUp.length > 0) || (trade.sides[1]?.picksGivenUp.length > 0)) ? html`
               <div style="margin-bottom: 15px;">
                 <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
                   Gave Up:
@@ -446,10 +670,47 @@ if (processedTrades.length === 0) {
                     `}
                   </div>
                 `)}
+                ${(trade.sides[1]?.picksGivenUp || []).map(pick => {
+                  const player = pick.draftedPlayer;
+                  return html`
+                    <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 8px; border-radius: 4px;">
+                      <div style="font-weight: 600; font-size: 14px;">
+                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
+                      </div>
+                      ${player ? html`
+                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
+                          ${player.position} • ${player.stats.gamesPlayed} career games
+                        </div>
+                        <div style="font-size: 13px; color: #ef4444; font-weight: 600; margin-top: 6px;">
+                          ${player.stats.totalPoints.toFixed(1)} total pts
+                        </div>
+                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
+                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+                                <span>${year}:</span>
+                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
+                              </div>
+                            `)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                            No production since draft
+                          </div>
+                        `}
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                          Draft not yet occurred
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
               </div>
             ` : ''}
 
-            ${(trade.sides[1]?.acquired.length > 0) ? html`
+            ${((trade.sides[1]?.acquired.length > 0) || (trade.sides[1]?.picksReceived.length > 0)) ? html`
               <div>
                 <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
                   Received:
@@ -479,6 +740,43 @@ if (processedTrades.length === 0) {
                     `}
                   </div>
                 `)}
+                ${(trade.sides[1]?.picksReceived || []).map(pick => {
+                  const player = pick.draftedPlayer;
+                  return html`
+                    <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 8px; border-radius: 4px;">
+                      <div style="font-weight: 600; font-size: 14px;">
+                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
+                      </div>
+                      ${player ? html`
+                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
+                          ${player.position} • ${player.stats.gamesPlayed} career games
+                        </div>
+                        <div style="font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 6px;">
+                          ${player.stats.totalPoints.toFixed(1)} total pts
+                        </div>
+                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
+                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+                                <span>${year}:</span>
+                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
+                              </div>
+                            `)}
+                          </div>
+                        ` : html`
+                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
+                            No production since draft
+                          </div>
+                        `}
+                      ` : html`
+                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
+                          Draft not yet occurred
+                        </div>
+                      `}
+                    </div>
+                  `;
+                })}
               </div>
             ` : ''}
 
