@@ -169,9 +169,9 @@ function getPlayerDraftedWithPick(pick) {
   if (!draftYear || !draftYear.picks) return null;
 
   // Find the pick that matches this roster_id and round
-  // We need to find which pick number corresponds to this roster and round
+  // roster_id in pick represents the ORIGINAL draft slot, not the current owner
   const draftPick = draftYear.picks.find(p =>
-    p.roster_id === pick.owner_id && p.round === pick.round
+    p.roster_id === pick.roster_id && p.round === pick.round
   );
 
   if (!draftPick || !draftPick.player_id) return null;
