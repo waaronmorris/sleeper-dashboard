@@ -286,7 +286,7 @@ display(html`
     <div>
       <h3 style="margin-top: 0; color: #60a5fa; font-size: 1.25rem; font-weight: 700;">Schedule Luck Analyzer</h3>
       <p style="color: #cbd5e1; font-size: 0.9375rem; margin: 0; line-height: 1.6;">
-        Teams <strong style="color: #22c55e;">above the line</strong> had lucky schedules. Teams <strong style="color: #ef4444;">below the line</strong> faced tougher opponents than their record suggests.
+        Teams <strong style="color: #22c55e;">below the line</strong> had lucky schedules. Teams <strong style="color: #ef4444;">above the line</strong> faced tougher opponents than their record suggests.
       </p>
     </div>
   </div>
@@ -306,7 +306,7 @@ display(Plot.plot({
     fontFamily: "system-ui, -apple-system, sans-serif"
   },
   x: {
-    label: "Head-to-Head Win % →",
+    label: "All-Play Win % →",
     domain: [0, 1],
     tickFormat: d => `${(d * 100).toFixed(0)}%`,
     grid: true,
@@ -314,7 +314,7 @@ display(Plot.plot({
     labelOffset: 45
   },
   y: {
-    label: "↑ All-Play Win %",
+    label: "↑ Head-to-Head Win %",
     domain: [0, 1],
     tickFormat: d => `${(d * 100).toFixed(0)}%`,
     grid: true,
@@ -330,8 +330,8 @@ display(Plot.plot({
   marks: [
     // Team dots with bright, visible colors and white stroke
     Plot.dot(winRateData, {
-      x: "win_rate",
-      y: "allPlayWinPct",
+      x: "allPlayWinPct",
+      y: "win_rate",
       r: 12,
       fill: d => {
         const luck = d.scheduleLuck;
@@ -348,8 +348,8 @@ display(Plot.plot({
 
     // Team labels with better positioning
     Plot.text(winRateData, {
-      x: "win_rate",
-      y: "allPlayWinPct",
+      x: "allPlayWinPct",
+      y: "win_rate",
       text: "team",
       dy: -20,
       fontSize: 11,
