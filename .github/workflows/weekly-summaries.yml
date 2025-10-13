@@ -33,13 +33,13 @@ jobs:
       - name: Build data
         run: npm run build
         env:
-          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID || '1182940167115010048' }}
+          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID }}
 
       - name: Generate weekly summaries
         run: npm run generate-summaries
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID || '1182940167115010048' }}
+          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID }}
 
       - name: Check for new summaries
         id: check_changes
