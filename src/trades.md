@@ -164,9 +164,9 @@ const processedTrades = trades.map(trade => {
       const previousOwner = pick.previous_owner_id;
 
       // Look up who was drafted with this pick
-      // Use owner_id (who received it) instead of roster_id (original owner)
-      // because the team that receives the pick is the one who uses it in the draft
-      const draftInfo = getDraftPickPlayer(pick.round, pick.season, pick.owner_id);
+      // Use roster_id (original draft slot) to match the pick in the draft data
+      // The roster_id represents which draft position/slot the pick belongs to
+      const draftInfo = getDraftPickPlayer(pick.round, pick.season, pick.roster_id);
       const enrichedPick = {
         ...pick,
         draftedPlayer: draftInfo,
