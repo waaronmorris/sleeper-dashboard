@@ -313,15 +313,21 @@ async function calculateAtrocities() {
       baseScore = preGameScore * 0.85 + normalizedActualGap * 100 * 0.15;
     }
 
-    // Status bonus
+    // Status bonus - only apply if player didn't play (scored very few points)
+    // If they scored points, they played, so injury status doesn't count as a pre-game signal
     let statusBonus = 0;
     const status = decision.startedPlayer.status;
-    if (status === 'Out' || status === 'IR' || status === 'Suspended') {
-      statusBonus = 40;
-    } else if (status === 'Doubtful') {
-      statusBonus = 20;
-    } else if (status === 'Questionable') {
-      statusBonus = 5;
+    const starterActual = decision.startedPlayer.actual;
+
+    // Only apply status bonus if player scored 2 points or less (indicating they didn't really play)
+    if (starterActual <= 2) {
+      if (status === 'Out' || status === 'IR' || status === 'Suspended') {
+        statusBonus = 40;
+      } else if (status === 'Doubtful') {
+        statusBonus = 20;
+      } else if (status === 'Questionable') {
+        statusBonus = 5;
+      }
     }
 
     // Position volatility
