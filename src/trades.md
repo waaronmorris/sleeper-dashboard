@@ -57,10 +57,27 @@ function getDraftPickPlayer(round, season, originalRosterId) {
     return null;
   }
 
-  // Find the pick by round and roster_id (original owner)
-  const pick = yearData.picks.find(p =>
-    p.round === round && p.roster_id === originalRosterId
+  // For traded picks, we need to find who actually owned the pick at draft time
+  // Check tradedPicks to see if this pick was traded
+  const tradedPick = yearData.tradedPicks?.find(tp =>
+    tp.round === round && tp.roster_id === originalRosterId && tp.season === season
   );
+
+  // If the pick was traded, find the pick using the draft_slot (which matches roster_id for untradedpicks)
+  // For traded picks, we need to find by the owner at draft time
+  let pick;
+  if (tradedPick) {
+    // Find the pick by matching draft_slot to the original roster_id
+    // draft_slot represents the original draft position
+    pick = yearData.picks.find(p =>
+      p.round === round && p.draft_slot === originalRosterId
+    );
+  } else {
+    // For non-traded picks, roster_id should match
+    pick = yearData.picks.find(p =>
+      p.round === round && p.roster_id === originalRosterId
+    );
+  }
 
   return pick ? {
     player_id: pick.player_id,
