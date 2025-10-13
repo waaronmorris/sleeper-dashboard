@@ -12,7 +12,8 @@ export default {
     {name: "Matchups", path: "/matchups"},
     {name: "All-Play", path: "/allplay"},
     {name: "Trades", path: "/trades"},
-    {name: "Retro", path: "/retro"},
+    {name: "Draft Retro", path: "/draft-retro"},
+    {name: "Trade Retro", path: "/trade-retro"},
     {name: "Ring of Honor", path: "/ring-of-honor"},
     {name: "Atrocity", path: "/atrocity"}
   ],
@@ -365,7 +366,8 @@ export default {
           <a href="./matchups" class="nav-link">Matchups</a>
           <a href="./allplay" class="nav-link">All-Play</a>
           <a href="./trades" class="nav-link">Trades</a>
-          <a href="./retro" class="nav-link">Retro</a>
+          <a href="./draft-retro" class="nav-link">Draft Retro</a>
+          <a href="./trade-retro" class="nav-link">Trade Retro</a>
           <a href="./ring-of-honor" class="nav-link">Ring of Honor</a>
           <a href="./atrocity" class="nav-link">Atrocity</a>
         \`;
