@@ -17,6 +17,8 @@ export default {
   theme: "dark",
   style: "observablehq.css",
   head: `
+    <link rel="icon" type="image/svg+xml" href="./static/favicon.svg">
+    <link rel="alternate icon" href="./static/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#0a0e14">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -136,6 +138,67 @@ export default {
         -webkit-text-fill-color: transparent !important;
         background-clip: text !important;
         text-decoration: none !important;
+      }
+
+      /* Custom Footer */
+      .custom-footer {
+        margin-top: 4rem !important;
+        padding: 2rem 1rem !important;
+        background: rgba(26, 31, 41, 0.6) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .footer-content {
+        max-width: 800px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1.5rem !important;
+        flex-wrap: wrap !important;
+      }
+
+      .footer-text {
+        color: #94a3b8 !important;
+        font-size: 0.9375rem !important;
+        font-weight: 500 !important;
+      }
+
+      /* Buy Me a Coffee Button */
+      .bmc-button {
+        display: inline-block !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border-radius: 0.5rem !important;
+        overflow: hidden !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+      }
+
+      .bmc-button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(251, 176, 52, 0.3) !important;
+      }
+
+      .bmc-button img {
+        height: 40px !important;
+        width: auto !important;
+        display: block !important;
+        border: 0 !important;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 640px) {
+        .custom-footer {
+          padding: 1.5rem 1rem !important;
+        }
+
+        .footer-content {
+          flex-direction: column !important;
+          gap: 1rem !important;
+        }
+
+        .bmc-button img {
+          height: 36px !important;
+        }
       }
 
       /* Sidebar Navigation */
@@ -271,6 +334,23 @@ export default {
           </button>
           <h1><a href="./">Sleeper Analytics Pro</a></h1>
         \`;
+
+        // Create footer with Buy Me a Coffee
+        const footer = document.createElement('footer');
+        footer.className = 'custom-footer';
+        footer.innerHTML = \`
+          <div class="footer-content">
+            <div class="footer-text">
+              <span>Enjoying the analytics?</span>
+            </div>
+            <a href="https://buymeacoffee.com/waaronmorris" target="_blank" rel="noopener noreferrer" class="bmc-button">
+              <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" />
+            </a>
+          </div>
+        \`;
+
+        // Append footer to body
+        document.body.appendChild(footer);
 
         // Create navigation sidebar
         const nav = document.createElement('nav');

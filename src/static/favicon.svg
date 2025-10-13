@@ -1,0 +1,33 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background circle -->
+  <circle cx="32" cy="32" r="32" fill="#0a0e14"/>
+
+  <!-- Outer ring with accent color -->
+  <circle cx="32" cy="32" r="28" stroke="#22c55e" stroke-width="2" fill="none"/>
+
+  <!-- Football icon -->
+  <ellipse cx="32" cy="32" rx="16" ry="20" fill="#4ade80" transform="rotate(-20 32 32)"/>
+
+  <!-- Football laces -->
+  <line x1="32" y1="18" x2="32" y2="22" stroke="#0a0e14" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="26" x2="32" y2="30" stroke="#0a0e14" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="34" x2="32" y2="38" stroke="#0a0e14" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="42" x2="32" y2="46" stroke="#0a0e14" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Analytics chart line -->
+  <path d="M 12 48 L 20 40 L 28 44 L 36 36 L 44 40 L 52 32"
+        stroke="#22c55e"
+        stroke-width="2.5"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        opacity="0.8"/>
+
+  <!-- Data points on chart -->
+  <circle cx="12" cy="48" r="2" fill="#22c55e"/>
+  <circle cx="20" cy="40" r="2" fill="#22c55e"/>
+  <circle cx="28" cy="44" r="2" fill="#22c55e"/>
+  <circle cx="36" cy="36" r="2" fill="#22c55e"/>
+  <circle cx="44" cy="40" r="2" fill="#22c55e"/>
+  <circle cx="52" cy="32" r="2" fill="#22c55e"/>
+</svg>
