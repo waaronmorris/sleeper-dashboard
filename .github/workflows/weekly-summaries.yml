@@ -1,9 +1,9 @@
 name: Generate Weekly Summaries
 
 on:
-  # Run every Monday at 10 AM UTC (5 AM EST) - after the weekend games
+  # Run every Tuesday at 10 AM UTC (5 AM EST) - after Monday Night Football
   schedule:
-    - cron: '0 10 * * 1'
+    - cron: '0 10 * * 2'
 
   # Allow manual trigger
   workflow_dispatch:
