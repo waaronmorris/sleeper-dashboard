@@ -168,10 +168,24 @@ function getPlayerDraftedWithPick(pick) {
   const draftYear = draftData[pick.season];
   if (!draftYear || !draftYear.picks) return null;
 
-  // Find the pick that matches this roster_id and round
-  // roster_id in pick represents the ORIGINAL draft slot, not the current owner
+  // First, check if this pick was traded by looking in tradedPicks
+  // If it was traded, we need to find who actually made the pick (the new owner)
+  let actualRosterId = pick.roster_id; // Default to original roster_id
+
+  if (draftYear.tradedPicks && draftYear.tradedPicks.length > 0) {
+    const tradedPick = draftYear.tradedPicks.find(tp =>
+      tp.roster_id === pick.roster_id && tp.round === pick.round
+    );
+
+    if (tradedPick && tradedPick.owner_id) {
+      // This pick was traded, so the actual roster that made the pick is the owner_id
+      actualRosterId = tradedPick.owner_id;
+    }
+  }
+
+  // Now find the draft pick made by the actual owner
   const draftPick = draftYear.picks.find(p =>
-    p.roster_id === pick.roster_id && p.round === pick.round
+    p.roster_id === actualRosterId && p.round === pick.round
   );
 
   if (!draftPick || !draftPick.player_id) return null;

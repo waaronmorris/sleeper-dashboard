@@ -51,6 +51,15 @@ async function fetchLeagueChain(startLeagueId) {
   return leagues;
 }
 
+async function fetchAllDraftsForLeague(leagueId) {
+  const response = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/drafts`);
+  if (!response.ok) {
+    console.error(`Failed to fetch drafts for league ${leagueId}: ${response.statusText}`);
+    return [];
+  }
+  return await response.json();
+}
+
 async function getAllDraftData() {
   // Get all leagues in the chain
   const leagues = await fetchLeagueChain(LEAGUE_ID);
@@ -59,23 +68,42 @@ async function getAllDraftData() {
   const draftsByYear = {};
 
   for (const league of leagues) {
-    if (!league.draft_id) {
-      console.error(`No draft ID found for league ${league.league_id} (${league.season})`);
-      continue;
-    }
-
     try {
-      const [picks, tradedPicks] = await Promise.all([
-        fetchDraftPicks(league.draft_id),
-        fetchTradedPicks(league.draft_id)
-      ]);
+      // Fetch all drafts for this league (there may be multiple, e.g., rookie draft + startup)
+      const drafts = await fetchAllDraftsForLeague(league.league_id);
+
+      if (!drafts || drafts.length === 0) {
+        console.error(`No drafts found for league ${league.league_id} (${league.season})`);
+        continue;
+      }
+
+      // Fetch picks and traded picks for all drafts
+      const allPicks = [];
+      const allTradedPicks = [];
+
+      for (const draft of drafts) {
+        const [picks, tradedPicks] = await Promise.all([
+          fetchDraftPicks(draft.draft_id),
+          fetchTradedPicks(draft.draft_id)
+        ]);
+
+        allPicks.push(...(picks || []));
+        allTradedPicks.push(...(tradedPicks || []));
+      }
 
       draftsByYear[league.season] = {
-        draftId: league.draft_id,
+        draftIds: drafts.map(d => d.draft_id),
         leagueId: league.league_id,
         season: league.season,
-        picks: picks || [],
-        tradedPicks: tradedPicks || []
+        picks: allPicks,
+        tradedPicks: allTradedPicks,
+        drafts: drafts.map(d => ({
+          draft_id: d.draft_id,
+          type: d.type,
+          status: d.status,
+          rounds: d.settings?.rounds,
+          created: d.created
+        }))
       };
     } catch (error) {
       console.error(`Error fetching draft data for ${league.season}:`, error.message);
