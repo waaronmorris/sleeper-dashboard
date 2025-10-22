@@ -58,12 +58,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/week-summaries/
-          git commit -m "🤖 Auto-generate weekly summaries
+          git commit -m "$(cat <<'EOF'
+          🤖 Auto-generate weekly summaries
 
-Generated new AI-powered weekly summaries with atrocity commentary.
+          Generated new AI-powered weekly summaries with atrocity commentary.
 
-🤖 Automated by GitHub Actions
-Co-Authored-By: Claude <noreply@anthropic.com>"
+          🤖 Automated by GitHub Actions
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          EOF
+          )"
           git push
 
       - name: Summary
