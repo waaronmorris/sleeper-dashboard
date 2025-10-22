@@ -44,7 +44,7 @@ jobs:
       - name: Check for new summaries
         id: check_changes
         run: |
-          if git diff --quiet src/data/week-summaries/; then
+          if [ -z "$(git status --porcelain src/data/week-summaries/)" ]; then
             echo "changes=false" >> $GITHUB_OUTPUT
             echo "No new summaries generated"
           else
