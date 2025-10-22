@@ -38,27 +38,33 @@ if (!ANTHROPIC_API_KEY) {
 const PERSONAS = [
   {
     name: "Pat McAfee",
-    style: "Energetic, enthusiastic, uses lots of capitals and exclamations. Talks about 'BOOMS', 'BANGERS', and getting 'HYPED'. Very conversational and casual with modern slang."
+    style: "Energetic, enthusiastic, uses lots of capitals and exclamations. Signature phrases: 'BOOM!', 'BANGER!', 'FOR THE BRAND!', 'LETS GOOOO!'. Very conversational and casual with modern slang. Example: 'That's a BANGER of a performance! This guy is ELECTRIC, FOR THE BRAND!' Give managers wrestling-style nicknames.",
+    emphasis: ["big plays", "excitement", "energy"]
   },
   {
     name: "Lee Corso",
-    style: "Excited, uses catchphrases like 'Not so fast my friend!'. Builds suspense, makes predictions, references college football traditions. Enthusiastic and spirited."
+    style: "Excited, dramatic, builds suspense. Signature phrases: 'Not so fast my friend!', 'Oh boy!', 'Uh oh!'. Makes bold predictions, references traditions. Example: 'Not so fast my friend! You thought this was over? OH BOY were you wrong!' Create dramatic narratives.",
+    emphasis: ["upsets", "predictions", "drama"]
   },
   {
     name: "Stuart Scott",
-    style: "Cool, uses hip-hop references and pop culture. Phrases like 'Boo-yah!' and 'As cool as the other side of the pillow'. Smooth, rhythmic delivery with clever wordplay."
+    style: "Cool, smooth, hip-hop and pop culture references. Signature phrases: 'Boo-yah!', 'As cool as the other side of the pillow', 'He must be the bus driver because he was takin' him to school!' Rhythmic delivery with clever wordplay and analogies. Example: 'Boo-yah! That performance was cooler than the other side of the pillow!'",
+    emphasis: ["style", "wordplay", "pop culture"]
   },
   {
     name: "Scott Van Pelt",
-    style: "Laid-back, witty, conversational. Self-deprecating humor, references to late-night sports culture. Smooth delivery with clever observations and dry humor."
+    style: "Laid-back, witty, conversational with dry humor. References late-night sports culture, 'Bad Beats', and gambling. Self-deprecating and relatable. Example: 'Of course he left 40 points on the bench. That's a Bad Beat if I've ever seen one.' Sympathetic but sarcastic.",
+    emphasis: ["bad beats", "relatability", "dry humor"]
   },
   {
     name: "Rich Eisen",
-    style: "Polished, pop culture savvy, enthusiastic but measured. References movies, TV shows. Professional but personable, with quick wit and clever analogies."
+    style: "Polished, enthusiastic but measured. Heavy on pop culture references - movies, TV shows, music. Signature: comparing plays to movie scenes. Example: 'That comeback was like the Death Star assault in Star Wars - impossible odds, but he pulled it off!' Smart analogies and references.",
+    emphasis: ["comebacks", "movie/TV references", "smart analogies"]
   },
   {
     name: "Dan Patrick",
-    style: "Dry wit, catchphrases like 'En Fuego'. Deadpan humor, clever wordplay. Conversational and easy-going with subtle sarcasm."
+    style: "Dry wit, deadpan delivery with subtle sarcasm. Signature phrases: 'En Fuego!', 'You can't stop him, you can only hope to contain him'. Clever wordplay, easy-going. Example: 'He's en fuego! You can't stop him, you can only hope to contain him... and even that's not working.' Classic sports cliches with ironic twist.",
+    emphasis: ["irony", "cliches twisted", "deadpan"]
   }
 ];
 
@@ -216,6 +222,23 @@ async function generateSummary(weekData, persona) {
     });
   }
 
+  // Add variety instructions - randomly select special focus areas
+  const varietyInstructions = [];
+  const randomElements = [
+    "Give creative nicknames to at least 2 managers based on their performance",
+    "Create a rivalry storyline between two teams",
+    "Make a bold prediction for next week based on this week's results",
+    "Compare a key moment to a famous sports or pop culture moment",
+    "Identify the 'hero' and 'villain' of the week",
+    "Create a dramatic opening line that hooks the reader",
+    "End with a zinger or memorable quote about the week"
+  ];
+
+  // Randomly select 2-3 special instructions
+  const selectedCount = 2 + Math.floor(Math.random() * 2); // 2 or 3
+  const shuffled = [...randomElements].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, selectedCount);
+
   const prompt = `You are ${persona.name}, the legendary sports commentator. Write a 3-4 paragraph summary of this fantasy football week in your signature style.
 
 WEEK ${week} MATCHUP RESULTS:
@@ -232,7 +255,12 @@ ${atrocitiesText}
 
 Write in ${persona.name}'s style: ${persona.style}
 
-Keep it entertaining, highlight the most interesting matchups, notable performances, close games, and blowouts. If there were notable lineup mistakes (atrocities), roast the managers who left big points on the bench - make it funny but not mean-spirited. Make it feel like ${persona.name} is talking to fantasy football fans. Be conversational and engaging.
+Focus on what ${persona.name} emphasizes: ${persona.emphasis.join(', ')}
+
+SPECIAL INSTRUCTIONS FOR THIS WEEK:
+${selected.map((instruction, i) => `${i + 1}. ${instruction}`).join('\n')}
+
+Keep it entertaining, highlight the most interesting matchups, notable performances, close games, and blowouts. If there were notable lineup mistakes (atrocities), roast the managers who left big points on the bench - make it funny but not mean-spirited. Use ${persona.name}'s actual catchphrases and speaking style. Make it feel like ${persona.name} is talking directly to fantasy football fans. Be conversational and engaging.
 
 Return ONLY the summary text, no preamble or meta-commentary.`;
 
@@ -240,7 +268,9 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
 
   const message = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-latest',
-    max_tokens: 1024,
+    max_tokens: 1500,
+    temperature: 1.0,
+    top_p: 0.95,
     messages: [{
       role: 'user',
       content: prompt
