@@ -239,7 +239,7 @@ async function generateSummary(weekData, persona) {
   const shuffled = [...randomElements].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, selectedCount);
 
-  const prompt = `You are ${persona.name}, the legendary sports commentator. Write a 3-4 paragraph summary of this fantasy football week in your signature style.
+  const prompt = `You are ${persona.name}, the legendary sports commentator. Write a 4-4 paragraph summary of this fantasy football week in your signature style.
 
 WEEK ${week} MATCHUP RESULTS:
 ${matchupText}
@@ -267,7 +267,7 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
   console.log(`🤖 Generating summary for Week ${week} as ${persona.name}...`);
 
   const message = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-latest',
+    model: 'claude-sonnet-4-5',
     max_tokens: 1500,
     temperature: 1.0,
     top_p: 0.95,
@@ -316,6 +316,39 @@ function summaryExists(week) {
 }
 
 /**
+ * Check if a week is complete (weeks end Tuesday at 10 PM ET)
+ */
+function isWeekComplete(week, allMatchups) {
+  const now = new Date();
+
+  // Find the latest week number in the data
+  const latestWeek = Math.max(...allMatchups.map(m => m.week));
+
+  // If this week is before the latest week, it's definitely complete
+  if (week < latestWeek) {
+    return true;
+  }
+
+  // For the current/latest week, check if we're past Tuesday 10 PM
+  // Get the day of week (0 = Sunday, 1 = Monday, 2 = Tuesday, etc.)
+  const dayOfWeek = now.getDay();
+  const hours = now.getHours();
+
+  // If it's Wednesday or later, the week is complete
+  if (dayOfWeek >= 3) {
+    return true;
+  }
+
+  // If it's Tuesday after 10 PM, the week is complete
+  if (dayOfWeek === 2 && hours >= 22) {
+    return true;
+  }
+
+  // Otherwise, the week is still in progress
+  return false;
+}
+
+/**
  * Main execution
  */
 async function main() {
@@ -333,9 +366,22 @@ async function main() {
   console.log(`✅ Loaded ${atrocities.length} atrocities across all weeks\n`);
 
   // Determine which weeks to process
-  const weeksToProcess = specificWeek
-    ? [matchups.find(m => m.week === specificWeek)]
-    : matchups.filter(m => !summaryExists(m.week));
+  let weeksToProcess;
+  if (specificWeek) {
+    weeksToProcess = [matchups.find(m => m.week === specificWeek)];
+  } else {
+    // Find the latest week
+    const latestWeek = Math.max(...matchups.map(m => m.week));
+
+    // Filter weeks that don't have summaries and are complete
+    weeksToProcess = matchups.filter(m => !summaryExists(m.week) && isWeekComplete(m.week, matchups));
+
+    // Check if current week is incomplete and inform user
+    if (!summaryExists(latestWeek) && !isWeekComplete(latestWeek, matchups)) {
+      console.log(`⏳ Week ${latestWeek} is still in progress (weeks complete Tuesday at 10 PM)`);
+      console.log(`   Summary will be generated after the week completes\n`);
+    }
+  }
 
   if (weeksToProcess.length === 0) {
     if (specificWeek) {
