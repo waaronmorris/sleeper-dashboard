@@ -270,7 +270,6 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
     model: 'claude-sonnet-4-5',
     max_tokens: 1500,
     temperature: 1.0,
-    top_p: 0.95,
     messages: [{
       role: 'user',
       content: prompt
