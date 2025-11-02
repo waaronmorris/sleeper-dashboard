@@ -72,12 +72,19 @@ Get your Sleeper analytics dashboard up and running in minutes!
 - Highest scoring games
 - Head-to-head records
 
-### 💱 Trade Analyzer (`/trades`)
-- Interactive trade evaluator
-- Player value calculations
-- Position impact analysis
-- Roster value comparison
-- Fair trade assessment
+### 📜 Trade Retro (`/trade-retro`)
+- Historical trade tracking
+- Year-over-year impact analysis
+- Trade winner/loser determination
+- Draft pick value tracking
+- Career performance post-trade
+
+### 🎙️ Trade Analysis (`/trade-analysis`)
+- AI-powered expert commentary on every trade
+- 6 NFL analyst personas (Mel Kiper Jr., Adam Schefter, etc.)
+- Detailed player metrics and career stage analysis
+- Team context evaluation (contender vs rebuilding)
+- Draft pick valuation
 
 ## Data Refresh
 
