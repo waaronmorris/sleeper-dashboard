@@ -9,7 +9,8 @@
     "deploy": "observable build",
     "clean": "rimraf dist .observablehq/cache",
     "generate-summaries": "node src/data/generate-week-summaries.js",
-    "generate-summary": "node src/data/generate-week-summaries.js"
+    "generate-summary": "node src/data/generate-week-summaries.js",
+    "generate-trade-analysis": "node src/data/generate-trade-analysis.js"
   },
   "keywords": [],
   "author": "",
