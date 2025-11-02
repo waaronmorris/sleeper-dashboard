@@ -190,6 +190,105 @@ Potential improvements:
 - Check console for data loading errors
 - Verify all required data files exist in `.observablehq/cache/data/`
 
+## Automation with GitHub Actions
+
+To automatically generate trade analyses when new trades occur, create `.github/workflows/trade-analysis.yml`:
+
+```yaml
+name: Generate Trade Analyses
+
+on:
+  # Run twice per week during NFL season to catch new trades
+  # Tuesday at 11 AM UTC (after MNF) and Friday at 2 PM UTC (after waiver clears)
+  schedule:
+    - cron: '0 11 * * 2'  # Tuesday 11 AM UTC
+    - cron: '0 14 * * 5'  # Friday 2 PM UTC
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-trade-analyses:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build data
+        run: npm run build
+        env:
+          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID }}
+
+      - name: Generate trade analyses
+        run: npm run generate-trade-analysis
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID }}
+
+      - name: Check for new analyses
+        id: check_changes
+        run: |
+          if [ -z "$(git status --porcelain src/data/trade-summaries/)" ]; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No new trade analyses generated"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "New trade analyses detected!"
+          fi
+
+      - name: Commit and push new analyses
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/trade-summaries/
+          git commit -m "$(cat <<'EOF'
+          🤖 Auto-generate trade analyses
+
+          Generated new AI-powered trade commentary with NFL analyst personas.
+
+          🤖 Automated by GitHub Actions
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          EOF
+          )"
+          git push
+
+      - name: Summary
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          echo "✅ New trade analyses generated and pushed!"
+          echo "🚀 Deployment will trigger automatically"
+
+      - name: No new analyses
+        if: steps.check_changes.outputs.changes == 'false'
+        run: |
+          echo "ℹ️ All trades already have analyses"
+          echo "No action needed"
+```
+
+**Required GitHub Secrets:**
+- `ANTHROPIC_API_KEY` - Your Anthropic API key
+- `SLEEPER_LEAGUE_ID` - Your Sleeper league ID
+
+**Schedule:**
+- Runs twice per week to catch new trades
+- Can also be triggered manually from GitHub Actions UI
+
 ## Credits
 
 Built with:
