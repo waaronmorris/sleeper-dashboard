@@ -14,6 +14,7 @@ export default {
     {name: "Draft Overview", path: "/draft-overview"},
     {name: "Draft Retro", path: "/draft-retro"},
     {name: "Trade Retro", path: "/trade-retro"},
+    {name: "Trade Analysis", path: "/trade-analysis"},
     {name: "Ring of Honor", path: "/ring-of-honor"},
     {name: "Atrocity", path: "/atrocity"}
   ],
@@ -368,6 +369,7 @@ export default {
           <a href="./draft-overview" class="nav-link">Draft Overview</a>
           <a href="./draft-retro" class="nav-link">Draft Retro</a>
           <a href="./trade-retro" class="nav-link">Trade Retro</a>
+          <a href="./trade-analysis" class="nav-link">Trade Analysis</a>
           <a href="./ring-of-honor" class="nav-link">Ring of Honor</a>
           <a href="./atrocity" class="nav-link">Atrocity</a>
         \`;
