@@ -280,9 +280,9 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
 }
 
 /**
- * Save summary to JSON file
+ * Save summary to JSON file with matchup scores for change detection
  */
-function saveSummary(week, persona, summary, season) {
+function saveSummary(week, persona, summary, season, matchupScores) {
   const outputDir = join(__dirname, 'week-summaries');
 
   // Ensure directory exists
@@ -296,7 +296,9 @@ function saveSummary(week, persona, summary, season) {
     leagueId: LEAGUE_ID,
     persona: persona.name,
     summary,
-    generatedAt: new Date().toISOString()
+    generatedAt: new Date().toISOString(),
+    // Store matchup scores for change detection
+    matchupScores
   };
 
   // Include league ID in filename to handle multiple seasons/leagues
@@ -312,6 +314,96 @@ function saveSummary(week, persona, summary, season) {
 function summaryExists(week) {
   const outputPath = join(__dirname, 'week-summaries', `week-${week}-${LEAGUE_ID}.json`);
   return existsSync(outputPath);
+}
+
+/**
+ * Load existing summary data including stored scores
+ */
+function loadExistingSummary(week) {
+  const outputPath = join(__dirname, 'week-summaries', `week-${week}-${LEAGUE_ID}.json`);
+  if (!existsSync(outputPath)) {
+    return null;
+  }
+  try {
+    const content = readFileSync(outputPath, 'utf-8');
+    if (!content || content.trim() === '') {
+      return null;
+    }
+    return JSON.parse(content);
+  } catch (error) {
+    console.warn(`⚠️ Could not parse existing summary for week ${week}:`, error.message);
+    return null;
+  }
+}
+
+/**
+ * Extract matchup scores from processed data for comparison
+ */
+function extractMatchupScores(processedMatchups) {
+  return processedMatchups.map(m => ({
+    team1: m.team1,
+    team1Score: m.team1Score,
+    team2: m.team2,
+    team2Score: m.team2Score
+  })).sort((a, b) => a.team1.localeCompare(b.team1));
+}
+
+/**
+ * Check if scores have changed since last summary generation
+ */
+function haveScoresChanged(existingScores, currentScores) {
+  if (!existingScores || !currentScores) {
+    return true;
+  }
+  if (existingScores.length !== currentScores.length) {
+    return true;
+  }
+
+  // Sort both arrays consistently for comparison
+  const sortedExisting = [...existingScores].sort((a, b) => a.team1.localeCompare(b.team1));
+  const sortedCurrent = [...currentScores].sort((a, b) => a.team1.localeCompare(b.team1));
+
+  for (let i = 0; i < sortedExisting.length; i++) {
+    if (sortedExisting[i].team1Score !== sortedCurrent[i].team1Score ||
+        sortedExisting[i].team2Score !== sortedCurrent[i].team2Score) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Check if scores appear to be incomplete (e.g., all zeros or very low)
+ * This helps detect premature summary generation
+ */
+function areScoresComplete(matchupScores) {
+  if (!matchupScores || matchupScores.length === 0) {
+    return false;
+  }
+
+  const allScores = matchupScores.flatMap(m => [m.team1Score, m.team2Score]);
+  const totalScore = allScores.reduce((a, b) => a + b, 0);
+  const avgScore = totalScore / allScores.length;
+  const nonZeroCount = allScores.filter(s => s > 0).length;
+
+  // Scores are incomplete if:
+  // 1. All scores are zero
+  // 2. Average score is below 20 (way too low for fantasy football)
+  // 3. More than half the scores are zero
+  if (totalScore === 0) {
+    console.log(`   ⚠️ All scores are zero - week is incomplete`);
+    return false;
+  }
+  if (avgScore < 20) {
+    console.log(`   ⚠️ Average score (${avgScore.toFixed(2)}) is too low - week may be incomplete`);
+    return false;
+  }
+  if (nonZeroCount < allScores.length / 2) {
+    console.log(`   ⚠️ Too many zero scores (${allScores.length - nonZeroCount}/${allScores.length}) - week may be incomplete`);
+    return false;
+  }
+
+  return true;
 }
 
 /**
@@ -365,41 +457,96 @@ async function main() {
   console.log(`✅ Loaded ${atrocities.length} atrocities across all weeks\n`);
 
   // Determine which weeks to process
-  let weeksToProcess;
+  let weeksToProcess = [];
+  let weeksWithChangedScores = [];
+
   if (specificWeek) {
     weeksToProcess = [matchups.find(m => m.week === specificWeek)];
   } else {
     // Find the latest week
     const latestWeek = Math.max(...matchups.map(m => m.week));
 
-    // Filter weeks that don't have summaries and are complete
-    weeksToProcess = matchups.filter(m => !summaryExists(m.week) && isWeekComplete(m.week, matchups));
+    // Check all weeks - both new summaries and existing ones that may need updates
+    for (const weekData of matchups) {
+      const week = weekData.week;
 
-    // Check if current week is incomplete and inform user
-    if (!summaryExists(latestWeek) && !isWeekComplete(latestWeek, matchups)) {
-      console.log(`⏳ Week ${latestWeek} is still in progress (weeks complete Tuesday at 10 PM)`);
-      console.log(`   Summary will be generated after the week completes\n`);
+      if (!isWeekComplete(week, matchups)) {
+        if (week === latestWeek) {
+          console.log(`⏳ Week ${week} is still in progress (weeks complete Tuesday at 10 PM)`);
+          console.log(`   Summary will be generated after the week completes\n`);
+        }
+        continue;
+      }
+
+      const existingSummary = loadExistingSummary(week);
+
+      if (!existingSummary) {
+        // No existing summary - add to process list
+        weeksToProcess.push(weekData);
+      } else if (existingSummary.matchupScores) {
+        // Check if scores have changed since last generation
+        const processedData = processWeekData(weekData, rosters, users, atrocities);
+        const currentScores = extractMatchupScores(processedData.matchups);
+
+        if (haveScoresChanged(existingSummary.matchupScores, currentScores)) {
+          console.log(`🔄 Week ${week}: Scores have changed since last generation`);
+          weeksWithChangedScores.push(weekData);
+        }
+      } else {
+        // Old format without matchupScores - check if it needs regeneration
+        // by processing and checking if scores look valid
+        const processedData = processWeekData(weekData, rosters, users, atrocities);
+        const currentScores = extractMatchupScores(processedData.matchups);
+
+        // If the summary mentions zero scores but current data shows real scores,
+        // it was likely generated prematurely
+        const avgCurrentScore = currentScores.reduce((sum, m) => sum + m.team1Score + m.team2Score, 0) / (currentScores.length * 2);
+        if (avgCurrentScore > 50 && existingSummary.summary.toLowerCase().includes('zero')) {
+          console.log(`🔄 Week ${week}: Legacy summary may be premature (current avg: ${avgCurrentScore.toFixed(2)})`);
+          weeksWithChangedScores.push(weekData);
+        }
+      }
     }
   }
 
-  if (weeksToProcess.length === 0) {
+  // Combine new weeks and weeks with changed scores
+  const allWeeksToProcess = [...weeksToProcess, ...weeksWithChangedScores];
+
+  if (allWeeksToProcess.length === 0) {
     if (specificWeek) {
       console.log(`❌ Week ${specificWeek} not found in matchup data`);
     } else {
-      console.log('✅ All weeks already have summaries!');
+      console.log('✅ All weeks have up-to-date summaries!');
       console.log('To regenerate a specific week: node src/data/generate-week-summaries.js [week]');
     }
     return;
   }
 
-  console.log(`📝 Generating summaries for ${weeksToProcess.length} week(s)...\n`);
+  if (weeksToProcess.length > 0) {
+    console.log(`📝 New summaries to generate: ${weeksToProcess.map(w => w.week).join(', ')}`);
+  }
+  if (weeksWithChangedScores.length > 0) {
+    console.log(`🔄 Summaries to update (scores changed): ${weeksWithChangedScores.map(w => w.week).join(', ')}`);
+  }
+  console.log('');
 
   // Process each week
-  for (const weekData of weeksToProcess) {
+  for (const weekData of allWeeksToProcess) {
     if (!weekData) continue;
+
+    console.log(`📅 Processing Week ${weekData.week}...`);
 
     // Process week data
     const processedData = processWeekData(weekData, rosters, users, atrocities);
+
+    // Extract scores for storage and validation
+    const matchupScores = extractMatchupScores(processedData.matchups);
+
+    // Validate scores are complete before generating
+    if (!areScoresComplete(matchupScores)) {
+      console.log(`   ⏭️ Skipping Week ${weekData.week} - scores appear incomplete\n`);
+      continue;
+    }
 
     // Select random persona
     const persona = PERSONAS[Math.floor(Math.random() * PERSONAS.length)];
@@ -408,14 +555,14 @@ async function main() {
     try {
       const summary = await generateSummary(processedData, persona);
 
-      // Save to file
-      saveSummary(weekData.week, persona, summary, season);
+      // Save to file with matchup scores
+      saveSummary(weekData.week, persona, summary, season, matchupScores);
 
       console.log(`   Persona: ${persona.name}`);
       console.log(`   Preview: ${summary.substring(0, 100)}...\n`);
 
       // Rate limiting - wait 1 second between requests
-      if (weeksToProcess.length > 1) {
+      if (allWeeksToProcess.length > 1) {
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
     } catch (error) {
