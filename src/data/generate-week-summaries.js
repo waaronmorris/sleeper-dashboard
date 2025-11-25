@@ -71,8 +71,162 @@ const PERSONAS = [
 // Initialize Anthropic client
 const anthropic = new Anthropic({
   apiKey: ANTHROPIC_API_KEY,
-  
+
 });
+
+/**
+ * Extract top and bottom scoring starters for a team
+ */
+function getTeamPlayerPerformance(matchup, players) {
+  if (!matchup.starters || !matchup.starters_points) {
+    return { topPlayers: [], bottomPlayers: [] };
+  }
+
+  const starterPerformances = matchup.starters.map((playerId, index) => {
+    const player = players[playerId];
+    const points = matchup.starters_points[index] || 0;
+
+    return {
+      name: player ? `${player.first_name} ${player.last_name}` : 'Unknown',
+      position: player?.fantasy_positions?.[0] || player?.position || 'FLEX',
+      points: points
+    };
+  }).filter(p => p.name !== 'Unknown' && p.points !== null);
+
+  // Sort by points
+  const sorted = [...starterPerformances].sort((a, b) => b.points - a.points);
+
+  // Get top 2 and bottom 2 performers
+  const topPlayers = sorted.slice(0, 2);
+  const bottomPlayers = sorted.slice(-2).reverse();
+
+  return { topPlayers, bottomPlayers };
+}
+
+/**
+ * Calculate team trends from prior weeks
+ */
+function calculateTeamTrends(rosterId, allMatchups, currentWeek) {
+  const teamScores = [];
+
+  // Get all scores for this team up to current week
+  allMatchups
+    .filter(w => w.week <= currentWeek)
+    .forEach(weekData => {
+      const matchup = weekData.matchups.find(m => m.roster_id === rosterId);
+      if (matchup && matchup.points !== undefined) {
+        teamScores.push({
+          week: weekData.week,
+          points: matchup.points
+        });
+      }
+    });
+
+  if (teamScores.length < 2) {
+    return null;
+  }
+
+  // Sort by week
+  teamScores.sort((a, b) => a.week - b.week);
+
+  // Calculate stats
+  const allPoints = teamScores.map(s => s.points);
+  const seasonAvg = allPoints.reduce((a, b) => a + b, 0) / allPoints.length;
+
+  // Recent form (last 3 weeks)
+  const recentScores = teamScores.slice(-3);
+  const recentAvg = recentScores.reduce((a, b) => a + b.points, 0) / recentScores.length;
+
+  // Calculate streak
+  let streak = 0;
+  let streakType = null;
+  const currentScore = teamScores[teamScores.length - 1]?.points;
+
+  for (let i = teamScores.length - 1; i >= 0; i--) {
+    const aboveAvg = teamScores[i].points > seasonAvg;
+    if (streakType === null) {
+      streakType = aboveAvg ? 'hot' : 'cold';
+      streak = 1;
+    } else if ((streakType === 'hot' && aboveAvg) || (streakType === 'cold' && !aboveAvg)) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+
+  // Trend direction (comparing recent avg to season avg)
+  const trendPct = ((recentAvg - seasonAvg) / seasonAvg * 100);
+  let trendDirection = 'stable';
+  if (trendPct > 10) trendDirection = 'trending up';
+  else if (trendPct < -10) trendDirection = 'trending down';
+
+  // Calculate consistency (standard deviation)
+  const variance = allPoints.reduce((sum, p) => sum + Math.pow(p - seasonAvg, 2), 0) / allPoints.length;
+  const stdDev = Math.sqrt(variance);
+  const consistencyScore = stdDev < 15 ? 'consistent' : stdDev < 25 ? 'moderate' : 'volatile';
+
+  return {
+    seasonAvg: seasonAvg.toFixed(1),
+    recentAvg: recentAvg.toFixed(1),
+    streak: streak >= 2 ? { type: streakType, weeks: streak } : null,
+    trend: trendDirection,
+    consistency: consistencyScore,
+    highWeek: Math.max(...allPoints).toFixed(1),
+    lowWeek: Math.min(...allPoints).toFixed(1)
+  };
+}
+
+/**
+ * Find league-wide notable players for the week
+ */
+function getLeagueWidePlayerStats(weekMatchups, players) {
+  const allPlayerPerformances = [];
+
+  weekMatchups.forEach(matchup => {
+    if (!matchup.starters || !matchup.starters_points) return;
+
+    matchup.starters.forEach((playerId, index) => {
+      const player = players[playerId];
+      const points = matchup.starters_points[index] || 0;
+
+      if (player && points !== null) {
+        allPlayerPerformances.push({
+          name: `${player.first_name} ${player.last_name}`,
+          position: player.fantasy_positions?.[0] || player.position || 'FLEX',
+          points: points,
+          rosterId: matchup.roster_id
+        });
+      }
+    });
+  });
+
+  // Sort by points
+  const sorted = [...allPlayerPerformances].sort((a, b) => b.points - a.points);
+
+  // Top 3 performers league-wide
+  const topPerformers = sorted.slice(0, 3);
+
+  // Bottom 3 (busts)
+  const busts = sorted.filter(p => p.position !== 'K' && p.position !== 'DEF').slice(-3).reverse();
+
+  // Find biggest overperformers (position-specific)
+  const positionAvgs = {};
+  allPlayerPerformances.forEach(p => {
+    if (!positionAvgs[p.position]) positionAvgs[p.position] = [];
+    positionAvgs[p.position].push(p.points);
+  });
+
+  Object.keys(positionAvgs).forEach(pos => {
+    const avg = positionAvgs[pos].reduce((a, b) => a + b, 0) / positionAvgs[pos].length;
+    positionAvgs[pos] = avg;
+  });
+
+  return {
+    topPerformers,
+    busts,
+    positionAverages: positionAvgs
+  };
+}
 
 /**
  * Load data from cache or generate it
@@ -115,13 +269,22 @@ async function loadData() {
     atrocities = JSON.parse(readFileSync(atrocitiesPath, 'utf-8'));
   }
 
-  return { league, matchups, rosters, users, atrocities };
+  // Load players
+  const playersPath = join(cacheDir, 'players.json');
+  let players = {};
+  if (existsSync(playersPath)) {
+    players = JSON.parse(readFileSync(playersPath, 'utf-8'));
+  } else {
+    console.warn('⚠️ Players data not found. Player stats will be limited.');
+  }
+
+  return { league, matchups, rosters, users, atrocities, players };
 }
 
 /**
  * Process matchup data for a specific week
  */
-function processWeekData(weekData, rosters, users, atrocities) {
+function processWeekData(weekData, rosters, users, atrocities, players = {}, allMatchups = []) {
   const { week, matchups } = weekData;
 
   // Create roster lookup with user names
@@ -132,7 +295,8 @@ function processWeekData(weekData, rosters, users, atrocities) {
       userName: user?.display_name || `Team ${roster.roster_id}`,
       seasonPoints: (roster.settings?.fpts || 0) + (roster.settings?.fpts_decimal || 0) / 100,
       wins: roster.settings?.wins || 0,
-      losses: roster.settings?.losses || 0
+      losses: roster.settings?.losses || 0,
+      rosterId: roster.roster_id
     };
   });
 
@@ -156,19 +320,46 @@ function processWeekData(weekData, rosters, users, atrocities) {
       const winner = team1.points > team2.points ? roster1.userName : roster2.userName;
       const margin = Math.abs(team1.points - team2.points);
 
+      // Get player performance for each team
+      const team1Players = Object.keys(players).length > 0
+        ? getTeamPlayerPerformance(team1, players)
+        : { topPlayers: [], bottomPlayers: [] };
+      const team2Players = Object.keys(players).length > 0
+        ? getTeamPlayerPerformance(team2, players)
+        : { topPlayers: [], bottomPlayers: [] };
+
+      // Get team trends from prior weeks
+      const team1Trends = allMatchups.length > 0
+        ? calculateTeamTrends(team1.roster_id, allMatchups, week)
+        : null;
+      const team2Trends = allMatchups.length > 0
+        ? calculateTeamTrends(team2.roster_id, allMatchups, week)
+        : null;
+
       processedMatchups.push({
         team1: roster1.userName,
         team1Score: team1.points,
         team1SeasonAvg: roster1.seasonPoints,
+        team1TopPlayers: team1Players.topPlayers,
+        team1BottomPlayers: team1Players.bottomPlayers,
+        team1Trends: team1Trends,
         team2: roster2.userName,
         team2Score: team2.points,
         team2SeasonAvg: roster2.seasonPoints,
+        team2TopPlayers: team2Players.topPlayers,
+        team2BottomPlayers: team2Players.bottomPlayers,
+        team2Trends: team2Trends,
         winner,
         margin: margin.toFixed(2),
         isCloseGame: margin < 10
       });
     }
   });
+
+  // Get league-wide player stats
+  const leaguePlayerStats = Object.keys(players).length > 0
+    ? getLeagueWidePlayerStats(matchups, players)
+    : { topPerformers: [], busts: [], positionAverages: {} };
 
   // Calculate week statistics
   const allScores = processedMatchups.flatMap(m => [m.team1Score, m.team2Score]);
@@ -189,6 +380,7 @@ function processWeekData(weekData, rosters, users, atrocities) {
     week,
     matchups: processedMatchups,
     atrocities: weekAtrocities,
+    leaguePlayerStats,
     stats: {
       avgScore: avgScore.toFixed(2),
       highScore: highScore.toFixed(2),
@@ -206,12 +398,72 @@ function processWeekData(weekData, rosters, users, atrocities) {
  * Generate LLM summary for a week
  */
 async function generateSummary(weekData, persona) {
-  const { week, matchups, atrocities, stats } = weekData;
+  const { week, matchups, atrocities, stats, leaguePlayerStats } = weekData;
 
-  // Build matchup text
-  const matchupText = matchups.map(m =>
-    `${m.team1} (${m.team1Score}) vs ${m.team2} (${m.team2Score}) - ${m.winner} wins by ${m.margin}`
-  ).join('\n');
+  // Build detailed matchup text with player performances
+  const matchupText = matchups.map(m => {
+    let text = `${m.team1} (${m.team1Score}) vs ${m.team2} (${m.team2Score}) - ${m.winner} wins by ${m.margin}`;
+
+    // Add top performers for each team
+    if (m.team1TopPlayers?.length > 0) {
+      const topNames = m.team1TopPlayers.map(p => `${p.name} (${p.position}: ${p.points.toFixed(1)})`).join(', ');
+      text += `\n  ${m.team1}'s stars: ${topNames}`;
+    }
+    if (m.team1BottomPlayers?.length > 0) {
+      const bottomNames = m.team1BottomPlayers.map(p => `${p.name} (${p.position}: ${p.points.toFixed(1)})`).join(', ');
+      text += `\n  ${m.team1}'s duds: ${bottomNames}`;
+    }
+    if (m.team2TopPlayers?.length > 0) {
+      const topNames = m.team2TopPlayers.map(p => `${p.name} (${p.position}: ${p.points.toFixed(1)})`).join(', ');
+      text += `\n  ${m.team2}'s stars: ${topNames}`;
+    }
+    if (m.team2BottomPlayers?.length > 0) {
+      const bottomNames = m.team2BottomPlayers.map(p => `${p.name} (${p.position}: ${p.points.toFixed(1)})`).join(', ');
+      text += `\n  ${m.team2}'s duds: ${bottomNames}`;
+    }
+
+    return text;
+  }).join('\n\n');
+
+  // Build team trends text
+  let trendsText = '\nTEAM TRENDS & STREAKS:\n';
+  const teamsWithTrends = new Set();
+  matchups.forEach(m => {
+    if (m.team1Trends && !teamsWithTrends.has(m.team1)) {
+      teamsWithTrends.add(m.team1);
+      const t = m.team1Trends;
+      let trendLine = `${m.team1}: Season avg ${t.seasonAvg}, Recent avg ${t.recentAvg} (${t.trend})`;
+      if (t.streak) {
+        trendLine += ` - ${t.streak.weeks}-week ${t.streak.type} streak`;
+      }
+      trendLine += ` - ${t.consistency} scorer`;
+      trendsText += trendLine + '\n';
+    }
+    if (m.team2Trends && !teamsWithTrends.has(m.team2)) {
+      teamsWithTrends.add(m.team2);
+      const t = m.team2Trends;
+      let trendLine = `${m.team2}: Season avg ${t.seasonAvg}, Recent avg ${t.recentAvg} (${t.trend})`;
+      if (t.streak) {
+        trendLine += ` - ${t.streak.weeks}-week ${t.streak.type} streak`;
+      }
+      trendLine += ` - ${t.consistency} scorer`;
+      trendsText += trendLine + '\n';
+    }
+  });
+
+  // Build league-wide player stats text
+  let leaguePlayersText = '';
+  if (leaguePlayerStats?.topPerformers?.length > 0) {
+    leaguePlayersText = '\nLEAGUE-WIDE PLAYER HIGHLIGHTS:\n';
+    leaguePlayersText += 'Top performers: ' + leaguePlayerStats.topPerformers
+      .map(p => `${p.name} (${p.position}: ${p.points.toFixed(1)} pts)`)
+      .join(', ') + '\n';
+    if (leaguePlayerStats.busts?.length > 0) {
+      leaguePlayersText += 'Biggest busts: ' + leaguePlayerStats.busts
+        .map(p => `${p.name} (${p.position}: ${p.points.toFixed(1)} pts)`)
+        .join(', ') + '\n';
+    }
+  }
 
   // Build atrocities text
   let atrocitiesText = '';
@@ -239,11 +491,11 @@ async function generateSummary(weekData, persona) {
   const shuffled = [...randomElements].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, selectedCount);
 
-  const prompt = `You are ${persona.name}, the legendary sports commentator. Write a 4-4 paragraph summary of this fantasy football week in your signature style.
+  const prompt = `You are ${persona.name}, the legendary sports commentator. Write a 4-5 paragraph summary of this fantasy football week in your signature style.
 
-WEEK ${week} MATCHUP RESULTS:
+WEEK ${week} MATCHUP RESULTS (with top/bottom performers per team):
 ${matchupText}
-
+${trendsText}${leaguePlayersText}
 WEEK STATISTICS:
 - Average Score: ${stats.avgScore}
 - Highest Score: ${stats.highScore}
@@ -260,6 +512,14 @@ Focus on what ${persona.name} emphasizes: ${persona.emphasis.join(', ')}
 SPECIAL INSTRUCTIONS FOR THIS WEEK:
 ${selected.map((instruction, i) => `${i + 1}. ${instruction}`).join('\n')}
 
+IMPORTANT CONTENT GUIDELINES:
+- Reference specific PLAYERS by name when discussing matchups (e.g., "Josh Allen went nuclear with 35 points")
+- Call out the top performers and busts by name - give them credit or blame them!
+- Mention team trends and streaks when relevant (hot/cold teams, consistent vs volatile scorers)
+- Use the player stats provided to make your commentary specific and engaging
+- If a team won despite having duds in their lineup, point that out
+- If the league-wide top performer carried their team to victory, make it a storyline
+
 Keep it entertaining, highlight the most interesting matchups, notable performances, close games, and blowouts. If there were notable lineup mistakes (atrocities), roast the managers who left big points on the bench - make it funny but not mean-spirited. Use ${persona.name}'s actual catchphrases and speaking style. Make it feel like ${persona.name} is talking directly to fantasy football fans. Be conversational and engaging.
 
 Return ONLY the summary text, no preamble or meta-commentary.`;
@@ -268,7 +528,7 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
 
   const message = await anthropic.messages.create({
     model: 'claude-sonnet-4-5',
-    max_tokens: 1500,
+    max_tokens: 2000,
     temperature: 1.0,
     messages: [{
       role: 'user',
@@ -451,10 +711,11 @@ async function main() {
 
   // Load data
   console.log('📊 Loading data...');
-  const { league, matchups, rosters, users, atrocities } = await loadData();
+  const { league, matchups, rosters, users, atrocities, players } = await loadData();
   const season = league.season || new Date().getFullYear();
   console.log(`✅ Loaded ${matchups.length} weeks of matchups for ${season} season`);
-  console.log(`✅ Loaded ${atrocities.length} atrocities across all weeks\n`);
+  console.log(`✅ Loaded ${atrocities.length} atrocities across all weeks`);
+  console.log(`✅ Loaded ${Object.keys(players).length} players for enhanced stats\n`);
 
   // Determine which weeks to process
   let weeksToProcess = [];
@@ -485,7 +746,7 @@ async function main() {
         weeksToProcess.push(weekData);
       } else if (existingSummary.matchupScores) {
         // Check if scores have changed since last generation
-        const processedData = processWeekData(weekData, rosters, users, atrocities);
+        const processedData = processWeekData(weekData, rosters, users, atrocities, players, matchups);
         const currentScores = extractMatchupScores(processedData.matchups);
 
         if (haveScoresChanged(existingSummary.matchupScores, currentScores)) {
@@ -495,7 +756,7 @@ async function main() {
       } else {
         // Old format without matchupScores - check if it needs regeneration
         // by processing and checking if scores look valid
-        const processedData = processWeekData(weekData, rosters, users, atrocities);
+        const processedData = processWeekData(weekData, rosters, users, atrocities, players, matchups);
         const currentScores = extractMatchupScores(processedData.matchups);
 
         // If the summary mentions zero scores but current data shows real scores,
@@ -536,8 +797,8 @@ async function main() {
 
     console.log(`📅 Processing Week ${weekData.week}...`);
 
-    // Process week data
-    const processedData = processWeekData(weekData, rosters, users, atrocities);
+    // Process week data with player stats and trends
+    const processedData = processWeekData(weekData, rosters, users, atrocities, players, matchups);
 
     // Extract scores for storage and validation
     const matchupScores = extractMatchupScores(processedData.matchups);
