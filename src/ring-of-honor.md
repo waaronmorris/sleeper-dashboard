@@ -123,6 +123,18 @@ console.log('Sample team:', teamsWithRetirees[0]);
 ## Team Ring of Honor
 
 ```js
+// Create team selector for better navigation
+const teamNames = teamsWithRetirees.map(t => t.teamName);
+```
+
+```js
+const selectedTeamName = view(Inputs.select(teamNames, {
+  label: "Select Team",
+  value: teamNames[0]
+}));
+```
+
+```js
 if (teamsWithRetirees.length === 0) {
   display(html`
     <div style="padding: 40px; text-align: center; background: var(--theme-background-alt); border-radius: 8px; margin: 20px 0;">
@@ -132,7 +144,9 @@ if (teamsWithRetirees.length === 0) {
     </div>
   `);
 } else {
-  teamsWithRetirees.forEach((team, index) => {
+  // Show only the selected team
+  const selectedTeamData = teamsWithRetirees.find(t => t.teamName === selectedTeamName);
+  [selectedTeamData].forEach((team, index) => {
     const teamContent = html`
       <div style="margin-bottom: 30px;">
         <!-- Team Header -->
@@ -251,12 +265,8 @@ if (teamsWithRetirees.length === 0) {
       </div>
     `;
 
-    display(html`<details open class="section-collapse">
-      <summary class="section-summary">${team.teamName}'s Ring of Honor (${team.count} ${team.count === 1 ? 'Player' : 'Players'})</summary>
-      <div class="section-content">
-        ${teamContent}
-      </div>
-    </details>`);
+    // Display team content directly since we're using selector
+    display(teamContent);
   });
 }
 ```

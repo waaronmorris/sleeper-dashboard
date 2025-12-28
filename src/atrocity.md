@@ -257,7 +257,7 @@ const howItWorksContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">How Atrocity Scores Work</summary>
   <div class="section-content">
     ${howItWorksContent}
@@ -392,9 +392,25 @@ if (filteredAtrocities.length > 0) {
 ```
 
 ```js
-const hallOfShame = filteredAtrocities
-  .sort((a, b) => b.score - a.score)
-  .slice(0, 10);
+// Pagination for Hall of Shame
+const SHAME_PAGE_SIZE = 5;
+const allHallOfShame = filteredAtrocities.sort((a, b) => b.score - a.score);
+const shamePages = Math.max(1, Math.ceil(Math.min(allHallOfShame.length, 20) / SHAME_PAGE_SIZE));
+```
+
+```js
+const shamePage = view(Inputs.range([1, shamePages], {
+  step: 1,
+  value: 1,
+  label: "Page",
+  width: 150
+}));
+```
+
+```js
+const shameStart = (shamePage - 1) * SHAME_PAGE_SIZE;
+const shameEnd = Math.min(shameStart + SHAME_PAGE_SIZE, allHallOfShame.length, 20);
+const hallOfShame = allHallOfShame.slice(shameStart, shameEnd);
 
 // Build all entries as a single HTML block
 const hallOfShameEntries = hallOfShame.length === 0
@@ -479,7 +495,7 @@ const hallOfShameEntries = hallOfShame.length === 0
       <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
         <div>
           <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 4px;">
-            #${index + 1} • Week ${atrocity.week} • ${atrocity.userName}
+            #${shameStart + index + 1} • Week ${atrocity.week} • ${atrocity.userName}
           </div>
           <h3 style="margin: 0; color: ${severity.color};">
             ${severity.emoji} ${severity.label}
@@ -604,14 +620,42 @@ const hallOfShameEntries = hallOfShame.length === 0
 
 // Display the entire Hall of Shame section as one block
 display(html`<details open class="section-collapse">
-  <summary class="section-summary">🏆 Hall of Shame - Worst Decisions ${selectedTeam !== 'All Teams' ? `for ${selectedTeam}` : ''}${selectedWeek !== 'All Weeks' ? ` in ${selectedWeek}` : ''}</summary>
+  <summary class="section-summary">🏆 Hall of Shame - Top 20 Worst Decisions ${selectedTeam !== 'All Teams' ? `for ${selectedTeam}` : ''}${selectedWeek !== 'All Weeks' ? ` in ${selectedWeek}` : ''}</summary>
   <div class="section-content">
+    <div class="pagination-container" style="margin-bottom: 1.5rem;">
+      <div class="pagination-info">
+        Showing ${shameStart + 1}-${shameEnd} of ${Math.min(allHallOfShame.length, 20)} worst decisions
+      </div>
+      <div class="pagination-controls">
+        <span style="color: var(--color-text-muted); font-size: 0.875rem;">Page ${shamePage} of ${shamePages}</span>
+      </div>
+    </div>
     ${hallOfShameEntries}
   </div>
 </details>`);
 ```
 
 ```js
+// Pagination for Complete List
+const LIST_PAGE_SIZE = 15;
+const sortedAtrocities = filteredAtrocities.sort((a, b) => b.score - a.score);
+const listPages = Math.max(1, Math.ceil(sortedAtrocities.length / LIST_PAGE_SIZE));
+```
+
+```js
+const listPage = view(Inputs.range([1, listPages], {
+  step: 1,
+  value: 1,
+  label: "Page",
+  width: 150
+}));
+```
+
+```js
+const listStart = (listPage - 1) * LIST_PAGE_SIZE;
+const listEnd = Math.min(listStart + LIST_PAGE_SIZE, sortedAtrocities.length);
+const paginatedAtrocities = sortedAtrocities.slice(listStart, listEnd);
+
 // Build Complete List section content
 const completeListContent = filteredAtrocities.length === 0
   ? html`
@@ -622,10 +666,15 @@ const completeListContent = filteredAtrocities.length === 0
     </div>
   `
   : html`
-    <div style="margin-bottom: 16px; color: var(--theme-foreground-alt);">
-      Showing ${filteredAtrocities.length} atrocit${filteredAtrocities.length === 1 ? 'y' : 'ies'} sorted by score (highest first)
+    <div class="pagination-container" style="margin-bottom: 1rem;">
+      <div class="pagination-info">
+        Showing ${listStart + 1}-${listEnd} of ${sortedAtrocities.length} atrocit${sortedAtrocities.length === 1 ? 'y' : 'ies'}
+      </div>
+      <div class="pagination-controls">
+        <span style="color: var(--color-text-muted); font-size: 0.875rem;">Page ${listPage} of ${listPages}</span>
+      </div>
     </div>
-    ${Inputs.table(filteredAtrocities.sort((a, b) => b.score - a.score), {
+    ${Inputs.table(paginatedAtrocities, {
       columns: ["week", "userName", "position", "startedPlayer", "benchedPlayer", "score", "pointsLeft", "severity"],
       header: {
         week: "Week",
@@ -657,7 +706,7 @@ const completeListContent = filteredAtrocities.length === 0
   `;
 
 // Display the entire Complete List section as one block
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">📋 Complete List - All Atrocities ${selectedTeam !== 'All Teams' ? `for ${selectedTeam}` : ''}${selectedWeek !== 'All Weeks' ? ` in ${selectedWeek}` : ''}</summary>
   <div class="section-content">
     ${completeListContent}
@@ -671,7 +720,7 @@ const teamRankingsContent = html`
   <h3 style="margin-top: 40px;">Who Made the Worst Decisions?</h3>
   ${Plot.plot({
     marginLeft: 150,
-    height: userAtrocityStats.length * 50,
+    height: Math.min(500, userAtrocityStats.length * 50),
     x: {
       label: "Total Atrocity Score",
       grid: true
@@ -705,7 +754,7 @@ const teamRankingsContent = html`
 `;
 
 // Display the entire Team Atrocity Rankings section as one block
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Team Atrocity Rankings</summary>
   <div class="section-content">
     ${teamRankingsContent}
@@ -739,7 +788,7 @@ const teamStatsContent = html`${Inputs.table(userAtrocityStats, {
 })}`;
 
 // Display the entire Detailed Team Stats section as one block
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Detailed Team Stats</summary>
   <div class="section-content">
     ${teamStatsContent}
@@ -804,7 +853,7 @@ const weeklyTrendsContent = html`
 `;
 
 // Display the entire Weekly Atrocity Trends section as one block
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Weekly Atrocity Trends</summary>
   <div class="section-content">
     ${weeklyTrendsContent}
@@ -872,7 +921,7 @@ const positionBreakdownContent = html`
 `;
 
 // Display the entire Position Breakdown section as one block
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Position Breakdown</summary>
   <div class="section-content">
     ${positionBreakdownContent}
@@ -938,7 +987,7 @@ const severityDistributionContent = html`
 `;
 
 // Display the entire Severity Distribution section as one block
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Severity Distribution</summary>
   <div class="section-content">
     ${severityDistributionContent}

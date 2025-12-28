@@ -89,7 +89,7 @@ const positionData = Array.from(positionCounts, ([owner, positions]) => {
 display(Plot.plot({
   marginLeft: 150,
   marginBottom: 50,
-  height: Math.max(300, allRosteredPlayers.length * 2),
+  height: Math.min(500, Math.max(300, allRosteredPlayers.length * 2)),
   x: {
     label: "Number of Players →",
     labelAnchor: "center",
@@ -236,10 +236,38 @@ const filteredPlayers = selectedPosition === "all"
   ? allRosteredPlayers
   : allRosteredPlayers.filter(p => p.position === selectedPosition);
 
-const displayPlayers = filteredPlayers
-  .filter(p => p.name && p.position !== 'N/A')
-  .slice(0, 30);
+const validPlayers = filteredPlayers.filter(p => p.name && p.position !== 'N/A');
 
+// Pagination for players
+const PLAYER_PAGE_SIZE = 20;
+const playerTotalPages = Math.max(1, Math.ceil(validPlayers.length / PLAYER_PAGE_SIZE));
+```
+
+```js
+const playerPage = view(Inputs.range([1, playerTotalPages], {
+  step: 1,
+  value: 1,
+  label: "Page",
+  width: 150
+}));
+```
+
+```js
+const playerStart = (playerPage - 1) * PLAYER_PAGE_SIZE;
+const playerEnd = Math.min(playerStart + PLAYER_PAGE_SIZE, validPlayers.length);
+const displayPlayers = validPlayers.slice(playerStart, playerEnd);
+```
+
+<div class="pagination-container" style="margin-bottom: 1rem;">
+  <div class="pagination-info">
+    Showing ${playerStart + 1}-${playerEnd} of ${validPlayers.length} players
+  </div>
+  <div class="pagination-controls">
+    <span style="color: var(--color-text-muted); font-size: 0.875rem;">Page ${playerPage} of ${playerTotalPages}</span>
+  </div>
+</div>
+
+```js
 display(Inputs.table(displayPlayers, {
   columns: ["name", "position", "team", "age", "years_exp", "team_owner", "status"],
   header: {
@@ -263,9 +291,6 @@ display(Inputs.table(displayPlayers, {
 }));
 ```
 
-  <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-top: 1rem;">
-    Showing {displayPlayers.length} of {filteredPlayers.length} players
-  </p>
 </div>
 
 ## Injury Report

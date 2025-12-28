@@ -1222,3 +1222,219 @@ details.section-collapse:not([open]) > .section-summary::before {
 .section-content {
   padding: var(--space-xl);
 }
+
+/* ============================================================================
+   TAB SYSTEM
+   ============================================================================ */
+
+.tabs-container {
+  margin: var(--space-xl) 0;
+}
+
+.tabs-nav {
+  display: flex;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  background: var(--color-background-elevated);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs-nav--pills .tab-btn {
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tabs-nav--pills .tab-btn:hover {
+  background: var(--color-background-hover);
+  color: var(--color-text-primary);
+}
+
+.tabs-nav--pills .tab-btn.active {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.tabs-nav--underline {
+  background: transparent;
+  border-bottom: 2px solid var(--color-border);
+  border-radius: 0;
+  padding: 0;
+  gap: var(--space-lg);
+}
+
+.tabs-nav--underline .tab-btn {
+  padding: var(--space-md) var(--space-xs);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  margin-bottom: -2px;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs-nav--underline .tab-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.tabs-nav--underline .tab-btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.tab-panel {
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+/* ============================================================================
+   PAGINATION CONTROLS
+   ============================================================================ */
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background: var(--color-background-elevated);
+  border-radius: var(--radius-lg);
+  margin: var(--space-lg) 0;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.pagination-btn {
+  background: var(--color-background-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.pagination-select {
+  background: var(--color-background-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+}
+
+/* ============================================================================
+   SCROLLABLE CHART CONTAINER
+   ============================================================================ */
+
+.chart-scroll-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+  background: var(--color-background-card);
+  padding: var(--space-md);
+}
+
+.chart-scroll-container svg {
+  display: block;
+}
+
+.chart-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chart-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+/* ============================================================================
+   SECTION CONTROLS (Expand/Collapse All)
+   ============================================================================ */
+
+.section-controls {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.section-toggle-btn {
+  background: var(--color-background-elevated);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.section-toggle-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ============================================================================
+   RESPONSIVE TABS & PAGINATION
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .tabs-nav {
+    padding: var(--space-xs);
+    gap: 0;
+  }
+
+  .tab-btn {
+    padding: var(--space-xs) var(--space-sm) !important;
+    font-size: var(--font-size-xs) !important;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .pagination-controls {
+    justify-content: center;
+  }
+}

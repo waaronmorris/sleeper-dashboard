@@ -134,7 +134,7 @@ display(html`
 
 display(Plot.plot({
   marginLeft: 150,
-  height: rosters.length * 45,
+  height: Math.min(450, rosters.length * 45),
   x: {
     label: "Power Score",
     grid: true

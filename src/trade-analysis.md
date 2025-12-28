@@ -108,10 +108,35 @@ if (selectedSeason !== "All Seasons") {
 if (selectedPersona !== "All Analysts") {
   filteredAnalyses = filteredAnalyses.filter(a => a.persona === selectedPersona);
 }
+
+// Pagination settings
+const PAGE_SIZE = 5;
+const totalPages = Math.max(1, Math.ceil(filteredAnalyses.length / PAGE_SIZE));
 ```
 
-<div style="margin-bottom: 1rem; color: #94a3b8; font-size: 0.875rem;">
-  Showing ${filteredAnalyses.length} trade ${filteredAnalyses.length === 1 ? 'analysis' : 'analyses'}
+```js
+const currentPage = view(Inputs.range([1, totalPages], {
+  step: 1,
+  value: 1,
+  label: "Page",
+  width: 200
+}));
+```
+
+```js
+// Calculate paginated data
+const startIndex = (currentPage - 1) * PAGE_SIZE;
+const endIndex = Math.min(startIndex + PAGE_SIZE, filteredAnalyses.length);
+const paginatedAnalyses = filteredAnalyses.slice(startIndex, endIndex);
+```
+
+<div class="pagination-container">
+  <div class="pagination-info">
+    Showing ${startIndex + 1}-${endIndex} of ${filteredAnalyses.length} trade ${filteredAnalyses.length === 1 ? 'analysis' : 'analyses'}
+  </div>
+  <div class="pagination-controls">
+    <span style="color: var(--color-text-muted); font-size: 0.875rem;">Page ${currentPage} of ${totalPages}</span>
+  </div>
 </div>
 
 ```js
@@ -138,7 +163,7 @@ if (tradeAnalyses.length === 0) {
     </div>
   `);
 } else {
-  filteredAnalyses.forEach((analysis, index) => {
+  paginatedAnalyses.forEach((analysis, index) => {
     display(html`
       <div style="margin-bottom: 2rem; background: #1a1f29; border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
         <!-- Header -->
