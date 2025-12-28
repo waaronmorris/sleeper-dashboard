@@ -351,7 +351,7 @@ const scoreDistributionContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Score Distribution by Week</summary>
   <div class="section-content">
     ${scoreDistributionContent}
@@ -407,7 +407,7 @@ const marginAnalysisContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Margin of Victory Analysis</summary>
   <div class="section-content">
     ${marginAnalysisContent}
@@ -445,7 +445,7 @@ const closestMatchupsContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Closest Matchups</summary>
   <div class="section-content">
     ${closestMatchupsContent}
@@ -483,7 +483,7 @@ const highestScoringContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Highest Scoring Games</summary>
   <div class="section-content">
     ${highestScoringContent}
@@ -545,7 +545,7 @@ if (h2hData.length > 0) {
     </div>
   `;
 
-  display(html`<details open class="section-collapse">
+  display(html`<details class="section-collapse">
     <summary class="section-summary">Head-to-Head Records</summary>
     <div class="section-content">
       ${h2hContent}

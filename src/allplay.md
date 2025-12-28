@@ -194,7 +194,7 @@ const allPlayChartContent = html`
     ${Plot.plot({
       marginLeft: 200,
       marginBottom: 60,
-      height: teams.length * 60,
+      height: Math.min(500, teams.length * 60),
       x: {
         label: "All-Play Win Percentage →",
         grid: true,
@@ -250,7 +250,7 @@ const allPlayChartContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">All-Play Win Percentage</summary>
   <div class="section-content">
     ${allPlayChartContent}
@@ -316,7 +316,7 @@ const scheduleLuckContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Schedule Luck Analysis</summary>
   <div class="section-content">
     ${scheduleLuckContent}
@@ -397,7 +397,7 @@ const detailedAnalysisContent = html`
   </div>
 `;
 
-display(html`<details open class="section-collapse">
+display(html`<details class="section-collapse">
   <summary class="section-summary">Detailed Team Analysis</summary>
   <div class="section-content">
     ${detailedAnalysisContent}
