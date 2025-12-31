@@ -20,6 +20,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createHash } from 'crypto';
 import { getTradePersonas, getActiveRegion } from './personas.js';
+import { createTokenLogger } from './token-logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -29,6 +30,7 @@ const LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const FETCH_REAL_WORLD_CONTEXT = process.env.FETCH_REAL_WORLD_CONTEXT === 'true'; // Enable with FETCH_REAL_WORLD_CONTEXT=true
 const LEAGUE_TYPE = process.env.LEAGUE_TYPE || 'dynasty'; // 'dynasty' or 'redraft'
+const CLAUDE_MODEL = 'claude-sonnet-4-5';
 
 if (!LEAGUE_ID) {
   console.error('❌ Error: SLEEPER_LEAGUE_ID environment variable not set');
@@ -51,6 +53,9 @@ const PERSONAS = getTradePersonas();
 const anthropic = new Anthropic({
   apiKey: ANTHROPIC_API_KEY,
 });
+
+// Initialize token logger for cost tracking
+const tokenLogger = createTokenLogger({ model: CLAUDE_MODEL, script: 'generate-trade-analysis' });
 
 /**
  * Load data from cache or generate it
@@ -591,7 +596,7 @@ async function fetchPlayerRealWorldContext(playerNames, tradeDate) {
       const searchQuery = `${playerName} NFL fantasy football news ${new Date(tradeDate).getFullYear()}`;
 
       const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
+        model: CLAUDE_MODEL,
         max_tokens: 300,
         messages: [{
           role: 'user',
@@ -603,6 +608,9 @@ async function fetchPlayerRealWorldContext(playerNames, tradeDate) {
 Focus on facts that affect their FUTURE fantasy production, not just recent stats. Be explicit about starter vs backup status.`
         }]
       });
+
+      // Log token usage for cost monitoring
+      tokenLogger.log('fetch-player-context', response.usage, { player: playerName });
 
       contexts.push({
         player: playerName,
@@ -1536,7 +1544,7 @@ Consider how this trade affects each team's competitive position and championshi
   console.log(`🤖 Generating analysis for ${participants.join(' vs ')} as ${persona.name}...`);
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: CLAUDE_MODEL,
     max_tokens: 1500,
     temperature: 1.0,
     messages: [{
@@ -1544,6 +1552,9 @@ Consider how this trade affects each team's competitive position and championshi
       content: prompt
     }]
   });
+
+  // Log token usage for cost monitoring
+  tokenLogger.log('generate-analysis', message.usage, { trade: participants.join(' vs '), persona: persona.name });
 
   return message.content[0].text;
 }
@@ -1736,6 +1747,9 @@ async function main() {
       console.error(`❌ Error generating analysis for trade ${tradeData.tradeId}:`, error.message);
     }
   }
+
+  // Print token usage summary
+  tokenLogger.summary();
 
   console.log('\n✨ Trade analysis generation complete!');
   console.log('📁 Analysis saved to: src/data/trade-summaries/');
