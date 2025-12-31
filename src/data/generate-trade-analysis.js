@@ -1211,92 +1211,45 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
       promptText += `   Net Value: ${impact.netValueChange >= 0 ? '+' : ''}${impact.netValueChange.toLocaleString()}\n`;
     }
 
-    // Assets received
+    // Helper to format asset as table row
+    const formatAssetRow = (asset, isDynasty) => {
+      if (asset.position === 'PICK') {
+        return `  | PICK | ${asset.name}${asset.from ? ` (from ${asset.from})` : ''} | - | - | - | - |`;
+      }
+      const value = asset.trajectory?.currentValue?.toLocaleString() || '-';
+      const histPPG = asset.performanceMetrics?.preTradeGames > 0
+        ? asset.performanceMetrics.preTradeAvg.toFixed(1)
+        : '-';
+      const projPPG = asset.projectionContext?.projectedPPG || '-';
+      const alert = asset.projectionContext?.roleAlert ? '⚠️' : '';
+      const trajectory = isDynasty && asset.trajectory ? asset.trajectory.trajectory : '-';
+
+      return `  | ${asset.position} | ${asset.name} (${asset.team}) | ${asset.age || '-'} | ${value} | ${histPPG}→${projPPG} | ${trajectory} | ${alert}`;
+    };
+
+    // Assets received - tabular format
     if (side.receives.length > 0) {
       promptText += `\n📥 RECEIVES:\n`;
+      promptText += `  | Pos | Player | Age | Value | PPG (Hist→Proj) | Trend | Alert |\n`;
+      promptText += `  |-----|--------|-----|-------|-----------------|-------|-------|\n`;
       side.receives.forEach(asset => {
-        if (asset.position === 'PICK') {
-          promptText += `  • ${asset.name}${asset.from ? ` (from ${asset.from})` : ''}\n`;
-        } else {
-          promptText += `  • ${asset.name} (${asset.position}, ${asset.team})\n`;
-          promptText += `    Age: ${asset.age || 'N/A'} | Experience: ${asset.yearsExp || 0} years\n`;
-          promptText += `    Career Stage: ${asset.careerStage} | Position Value: ${asset.positionalValue}\n`;
-
-          // Value trajectory - only show dynasty-specific info for dynasty leagues
-          if (asset.trajectory) {
-            if (LEAGUE_TYPE === 'dynasty') {
-              promptText += `    Value Trajectory: ${asset.trajectory.trajectory.toUpperCase()} - ${asset.trajectory.valueOutlook}\n`;
-              promptText += `    Dynasty Value: ${asset.trajectory.currentValue?.toLocaleString() || 'N/A'} | Years to Decline: ${asset.trajectory.yearsUntilDecline}\n`;
-            } else {
-              // For redraft, just show trade value without dynasty terminology
-              promptText += `    Trade Value: ${asset.trajectory.currentValue?.toLocaleString() || 'N/A'}\n`;
-            }
-          }
-
-          // Draft context
-          if (asset.draftContext) {
-            promptText += `    Draft History: ${asset.draftContext.draftContext}\n`;
-          }
-
-          // Performance metrics
-          if (asset.performanceMetrics?.preTradeGames > 0) {
-            promptText += `    Fantasy Performance: ${asset.performanceMetrics.preTradeAvg.toFixed(1)} PPG historical (${asset.performanceMetrics.preTradeGames} games)\n`;
-          }
-
-          // Projection context - CRITICAL for identifying backup/fill-in situations
-          if (asset.projectionContext) {
-            const proj = asset.projectionContext;
-            promptText += `    Projected ROS: ${proj.projectedPPG} PPG (${proj.rosProjection} points over ${proj.remainingWeeks} weeks remaining)\n`;
-            if (proj.ppgDelta !== 0) {
-              const deltaSign = proj.ppgDelta > 0 ? '+' : '';
-              promptText += `    PPG Delta (Historical vs Projected): ${deltaSign}${proj.ppgDelta}\n`;
-            }
-            if (proj.roleAlert) {
-              promptText += `    ⚠️ ROLE ALERT: ${proj.roleAlert}\n`;
-            }
-          }
+        promptText += formatAssetRow(asset, LEAGUE_TYPE === 'dynasty') + '\n';
+        // Only show role alerts as separate lines (critical info)
+        if (asset.projectionContext?.roleAlert) {
+          promptText += `     ⚠️ ${asset.projectionContext.roleAlert}\n`;
         }
       });
     }
 
-    // Assets given
+    // Assets given - tabular format
     if (side.gives.length > 0) {
       promptText += `\n📤 GIVES UP:\n`;
+      promptText += `  | Pos | Player | Age | Value | PPG (Hist→Proj) | Trend | Alert |\n`;
+      promptText += `  |-----|--------|-----|-------|-----------------|-------|-------|\n`;
       side.gives.forEach(asset => {
-        if (asset.position === 'PICK') {
-          promptText += `  • ${asset.name}\n`;
-        } else {
-          promptText += `  • ${asset.name} (${asset.position}, ${asset.team})\n`;
-          promptText += `    Age: ${asset.age || 'N/A'} | Experience: ${asset.yearsExp || 0} years\n`;
-          promptText += `    Career Stage: ${asset.careerStage} | Position Value: ${asset.positionalValue}\n`;
-
-          // Value trajectory - only show dynasty-specific info for dynasty leagues
-          if (asset.trajectory) {
-            if (LEAGUE_TYPE === 'dynasty') {
-              promptText += `    Value Trajectory: ${asset.trajectory.trajectory.toUpperCase()} - ${asset.trajectory.valueOutlook}\n`;
-              promptText += `    Dynasty Value: ${asset.trajectory.currentValue?.toLocaleString() || 'N/A'}\n`;
-            } else {
-              // For redraft, just show trade value without dynasty terminology
-              promptText += `    Trade Value: ${asset.trajectory.currentValue?.toLocaleString() || 'N/A'}\n`;
-            }
-          }
-
-          if (asset.performanceMetrics?.preTradeGames > 0) {
-            promptText += `    Fantasy Performance: ${asset.performanceMetrics.preTradeAvg.toFixed(1)} PPG historical (${asset.performanceMetrics.preTradeGames} games)\n`;
-          }
-
-          // Projection context - CRITICAL for identifying backup/fill-in situations
-          if (asset.projectionContext) {
-            const proj = asset.projectionContext;
-            promptText += `    Projected ROS: ${proj.projectedPPG} PPG (${proj.rosProjection} points over ${proj.remainingWeeks} weeks remaining)\n`;
-            if (proj.ppgDelta !== 0) {
-              const deltaSign = proj.ppgDelta > 0 ? '+' : '';
-              promptText += `    PPG Delta (Historical vs Projected): ${deltaSign}${proj.ppgDelta}\n`;
-            }
-            if (proj.roleAlert) {
-              promptText += `    ⚠️ ROLE ALERT: ${proj.roleAlert}\n`;
-            }
-          }
+        promptText += formatAssetRow(asset, LEAGUE_TYPE === 'dynasty') + '\n';
+        if (asset.projectionContext?.roleAlert) {
+          promptText += `     ⚠️ ${asset.projectionContext.roleAlert}\n`;
         }
       });
     }
@@ -1367,179 +1320,36 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
   const shuffled = [...varietyInstructions].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, selectedCount);
 
-  // ============ FINAL PROMPT ============
+  // ============ SYSTEM MESSAGE (stable persona/methodology instructions) ============
 
-  const prompt = `You are ${persona.name}, the legendary NFL analyst/reporter. Analyze this fantasy football ${LEAGUE_TYPE} trade in your signature style.
+  const systemMessage = `You are ${persona.name}, the legendary NFL analyst/reporter.
+Style: ${persona.style}
+Specialties: ${persona.emphasis.join(', ')}
+
+LEAGUE TYPE: ${LEAGUE_TYPE.toUpperCase()}
+${LEAGUE_TYPE === 'dynasty'
+    ? `Dynasty league (keep players year-over-year). Value long-term trajectories, age curves (RB~27, WR~26-30, QB~late30s), draft picks as premium assets. Contenders consolidate; rebuilders accumulate picks/youth.`
+    : `Redraft league (rosters reset yearly). Only current season production matters. Ignore age/dynasty value. Playoff schedule (weeks 15-17) is crucial. ROLE ALERTS indicate temporary production.`}
+
+QUICK REFERENCE:
+- Power Score: 0-100 composite (${LEAGUE_TYPE === 'dynasty' ? 'Lineup 50%, Performance 30%, Position 15%, Depth 5%' : 'Performance 45%, Lineup 35%, Position 15%, Depth 5%'})
+- VOR Scarcity (normalized): RB ~150, TE ~120, WR 100, QB 80-140, K/DEF ~20
+- Trade Impact: <2pts = marginal, >5pts = significant roster shift
+- Higher trade VALUE = more valuable asset; compare totals to find winner
+
+OUTPUT: 4-5 entertaining paragraphs in ${persona.name}'s authentic voice. No preamble or meta-commentary.`;
+
+  // ============ USER MESSAGE (dynamic trade data) ============
+
+  const userMessage = `Analyze this Week ${week}, ${season} ${LEAGUE_TYPE} trade:
 
 ${promptText}
 
-=== YOUR ANALYSIS INSTRUCTIONS ===
-
-Write a 4-5 paragraph analysis in ${persona.name}'s authentic voice and style: ${persona.style}
-
-Key elements to emphasize (${persona.name}'s specialties): ${persona.emphasis.join(', ')}
-
-MUST INCLUDE these elements:
+MUST INCLUDE:
 ${selected.map((instruction, i) => `${i + 1}. ${instruction}`).join('\n')}
 
-IMPORTANT GUIDELINES:
-- Use the manager trading history to characterize their approach (aggressive buyer? rebuilder? win-now?)
-- Reference their records and playoff positioning when evaluating the trade's wisdom
-- Consider player value trajectories (rising stars vs declining assets)
-- Factor in the season timing (early season speculation vs late season desperation)
-- Use specific data points from the context provided (power scores, values, records)
-- Make it feel like a real broadcast/article from ${persona.name}
-- Use ${persona.name}'s actual catchphrases and speaking patterns
-- Be entertaining, insightful, and occasionally controversial
-
-CRITICAL - EVALUATING PLAYER VALUE:
-- Use TRADE VALUE as the primary indicator of player worth - higher value = more valuable asset
-- If PROJECTION DATA is provided (Projected ROS PPG, PPG Delta, Role Alerts), factor it into your analysis:
-  * When PROJECTED PPG is significantly LOWER than HISTORICAL PPG, the player may be a backup or have declining role
-  * ROLE ALERTS like "LIKELY BACKUP/FILL-IN" indicate temporary production - weight heavily
-  * Do NOT praise high historical PPG if projections show it will drop
-- If NO PROJECTION DATA is shown for a player, use their TRADE VALUE and HISTORICAL PPG as indicators
-- For REDRAFT leagues: current production sustainability matters - use trade values to gauge market confidence
-- Compare trade values exchanged (e.g., receiving 3289 value vs giving up 409 = clear winner)
-- Factor in team context and timing (playoff push, rebuilding, etc.)
-
-LEAGUE TYPE: ${LEAGUE_TYPE.toUpperCase()}
-${LEAGUE_TYPE === 'dynasty' ? `
-This is a DYNASTY league - players are kept year over year. Key considerations:
-- Long-term value and player trajectories (age, career stage, injury history)
-- Future draft picks are premium assets - 1st rounders especially valuable
-- Building for sustained success over multiple seasons vs "win now" mode
-- Player development windows and "buy low/sell high" opportunities
-- Age curves: RBs decline ~27, WRs peak 26-30, QBs can produce into late 30s
-- Rookie picks are lottery tickets - high variance but league-changing upside
-- Contenders should consolidate talent; rebuilders should accumulate picks/youth
-` : `
-This is a REDRAFT league - rosters reset each year. Key considerations:
-- Current season production and immediate fantasy impact ONLY
-- Remaining schedule strength and playoff matchups
-- This year's championship window - nothing else matters
-- Ignore age/dynasty value - a 32-year-old producing is better than a 23-year-old with "upside"
-- Playoff schedule (weeks 15-17) is crucial for evaluating players
-- Injuries and bye weeks have outsized importance
-
-TRADE-WEEK SPECIFIC CONTEXT:
-${tradeWeekContext ? `
-- This trade occurred in Week ${week} with ${tradeWeekContext.weeksRemainingAtTrade} weeks remaining in the regular season
-- ROS projections are calculated from Week ${week} forward (not current week)
-- VOR scarcity data source: ${tradeWeekContext.vorScarcity?.source || 'fallback'} (${tradeWeekContext.vorScarcity?.accuracy || 'estimated'} accuracy)
-${tradeWeekContext.vorScarcity?.weekDifference ? `- Note: VOR data is from ${tradeWeekContext.vorScarcity.weekDifference} week(s) ${tradeWeekContext.vorScarcity.snapshotWeek > week ? 'later' : 'earlier'}` : ''}
-` : '- Trade-week projections not available - using current values'}
-`}
-
-POWER SCORE METHODOLOGY (for interpreting team strength):
-Power Score (0-100) is a composite metric measuring overall team strength.
-
-${LEAGUE_TYPE === 'dynasty' ? `
-DYNASTY LEAGUE WEIGHTS & VALUES:
-1. LINEUP VALUE (50% weight):
-   - Based on DynastyProcess trade values (dynasty asset valuation)
-   - Factors in age, situation, contract, and long-term outlook
-   - Young studs valued higher than aging veterans
-   - Higher = more valuable dynasty assets
-
-2. PERFORMANCE (30% weight):
-   - Actual on-field results: Win%, All-Play record
-   - All-Play = record if you played every team each week (shows true strength vs luck)
-   - Teams with good All-Play but bad record are "unlucky" - regression candidates
-   - Teams with bad All-Play but good record are "lucky" - regression risks
-
-3. POSITIONAL ADVANTAGE (15% weight):
-   - Compares starters vs league average at each position
-   - Positional scarcity weighted: RB > TE > QB > WR (in standard leagues)
-   - Elite advantage at scarce positions (RB1, TE1) more valuable than WR depth
-
-4. DEPTH (5% weight):
-   - Quality of top backup at each position
-   - Important for injury insurance and bye week coverage
-   - Less critical in dynasty since trades can address needs
-` : `
-REDRAFT LEAGUE WEIGHTS & VALUES:
-1. LINEUP VALUE (35% weight - reduced from dynasty):
-   - Based on FantasyCalc ECR trade values + Sleeper ROS projections
-   - Weighted by DYNAMIC VOR SCARCITY (see below)
-   - Only measures what players are actually producing THIS SEASON
-   - Ignores age, dynasty value, and future potential
-
-2. PERFORMANCE (45% weight - increased from dynasty):
-   - Actual on-field results: Win%, All-Play record
-   - More heavily weighted because current production is everything
-   - All-Play = record if you played every team each week
-   - Best indicator of true team strength in redraft
-
-3. POSITIONAL ADVANTAGE (15% weight):
-   - Compares starters vs league average at each position
-   - Identifies teams with elite positional advantages
-   - Uses VOR-based scarcity for position weighting
-
-4. DEPTH (5% weight):
-   - Quality of top backup at each position
-   - Critical for bye weeks and injuries
-   - Late-season depth matters for playoff runs
-
-VOR (VALUE OVER REPLACEMENT) SCARCITY - DYNAMIC CALCULATION:
-This system calculates positional scarcity WEEKLY using real market data:
-- VOR = Elite Player Value - Replacement Level Value
-- Replacement Level = Player ranked at (starters needed per league)
-- Higher VOR spread = more valuable/scarce position
-- Recalculates each week to reflect injuries, bye weeks, and market shifts
-
-EXAMPLE VOR SCARCITY (normalized, WR=100 baseline):
-- QB: ~80-140 (varies by SuperFlex status)
-- RB: ~90-160 (high when bellcows injured)
-- WR: 100 (deepest position, baseline)
-- TE: ~80-150 (elite TEs create massive advantage)
-- K/DEF: ~20 (highly replaceable)
-
-WHY VOR MATTERS FOR TRADES:
-- A RB1 is worth MORE than a WR1 of equal PPG (scarcity premium)
-- Elite TEs (Kelce, Andrews tier) have outsized value due to position cliff
-- Mid-tier QBs are replaceable in 1QB but premium in SuperFlex
-- VOR helps identify when a trade is "fair by PPG" but "unfair by scarcity"
-`}
-
-INTERPRETING TRADE IMPACT:
-- Power Score CHANGE shows immediate roster impact
-- Positive change = team improved, Negative = team weakened
-- Small changes (< 2 points) are marginal moves
-- Large changes (> 5 points) are significant roster shifts
-- Consider BOTH sides: Zero-sum game means one team's gain is another's loss
-
-${LEAGUE_TYPE === 'dynasty' ? `
-POSITIONAL VALUE TIERS (Dynasty Context):
-- ELITE: Top 3 at position - league-winners, rarely traded
-- STRONG: Top 4-12 - reliable starters, high trade value
-- AVERAGE: Top 13-24 - startable but replaceable
-- DEPTH: 25+ - bench pieces, handcuffs, lottery tickets
-
-VOR SCARCITY BY POSITION (Dynasty - approximate multipliers):
-- RB: 150 (highest scarcity - short careers, bellcow rarity)
-- TE: 120 (elite tier very thin - Kelce/Andrews gap is real)
-- WR: 100 (baseline - deepest position with longest careers)
-- QB: 80-140 (80 in 1QB, 140+ in SuperFlex due to demand)
-- K/DEF: 20-25 (streamable, minimal dynasty value)
-
-DRAFT PICK VALUES (Dynasty Reference):
-- Future 1st Round: Premium asset, especially early picks
-- Future 2nd Round: Solid value, can yield starters
-- Future 3rd+: Dart throws, best for depth
-- Current year picks more valuable as draft approaches
-` : `
-REDRAFT TRADE EVALUATION:
-- Focus ONLY on current season production - ignore age, long-term potential, and future value
-- PROJECTED points matter more than historical - a player's future role determines value
-- Pay attention to ROLE ALERTS - backup QBs filling in for injured starters have temporary value
-- Playoff schedule strength is crucial - target players with favorable Week 15-17 matchups
-- Trade value should reflect what the player will actually produce THIS SEASON, not their name recognition
-`}
-
-Return ONLY the analysis text. No preamble, headers, or meta-commentary.
-Be entertaining and insightful. Use ${persona.name}'s authentic voice, catchphrases, and speaking patterns.
-Consider how this trade affects each team's competitive position and championship odds.`;
+Use manager history, records, and power scores. Reference specific data points. Be entertaining and occasionally controversial.${tradeWeekContext ? `
+Trade context: Week ${week} with ${tradeWeekContext.weeksRemainingAtTrade} weeks remaining.` : ''}`;
 
   console.log(`🤖 Generating analysis for ${participants.join(' vs ')} as ${persona.name}...`);
 
@@ -1547,9 +1357,10 @@ Consider how this trade affects each team's competitive position and championshi
     model: CLAUDE_MODEL,
     max_tokens: 1500,
     temperature: 1.0,
+    system: systemMessage,
     messages: [{
       role: 'user',
-      content: prompt
+      content: userMessage
     }]
   });
 
