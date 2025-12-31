@@ -20,6 +20,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { getWeeklyPersonas, getActiveRegion } from './personas.js';
+import { createTokenLogger } from './token-logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -50,6 +51,9 @@ const anthropic = new Anthropic({
   apiKey: ANTHROPIC_API_KEY,
 
 });
+
+// Initialize token logger for cost tracking
+const tokenLogger = createTokenLogger({ model: 'claude-sonnet-4-5' });
 
 /**
  * Extract top and bottom scoring starters for a team
@@ -547,6 +551,9 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
     }]
   });
 
+  // Log token usage for cost monitoring
+  tokenLogger.log('generate-summary', message.usage, { week, persona: persona.name });
+
   return message.content[0].text;
 }
 
@@ -848,6 +855,9 @@ async function main() {
       console.error(`❌ Error generating summary for week ${weekData.week}:`, error.message);
     }
   }
+
+  // Print token usage summary
+  tokenLogger.summary();
 
   console.log('\n✨ Summary generation complete!');
   console.log('📁 Summaries saved to: src/data/week-summaries/');

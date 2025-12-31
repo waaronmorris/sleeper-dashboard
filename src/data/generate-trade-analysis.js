@@ -20,6 +20,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createHash } from 'crypto';
 import { getTradePersonas, getActiveRegion } from './personas.js';
+import { createTokenLogger } from './token-logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -51,6 +52,9 @@ const PERSONAS = getTradePersonas();
 const anthropic = new Anthropic({
   apiKey: ANTHROPIC_API_KEY,
 });
+
+// Initialize token logger for cost tracking
+const tokenLogger = createTokenLogger({ model: 'claude-sonnet-4-5' });
 
 /**
  * Load data from cache or generate it
@@ -603,6 +607,9 @@ async function fetchPlayerRealWorldContext(playerNames, tradeDate) {
 Focus on facts that affect their FUTURE fantasy production, not just recent stats. Be explicit about starter vs backup status.`
         }]
       });
+
+      // Log token usage for cost monitoring
+      tokenLogger.log('fetch-player-context', response.usage, { player: playerName });
 
       contexts.push({
         player: playerName,
@@ -1545,6 +1552,9 @@ Consider how this trade affects each team's competitive position and championshi
     }]
   });
 
+  // Log token usage for cost monitoring
+  tokenLogger.log('generate-analysis', message.usage, { trade: participants.join(' vs '), persona: persona.name });
+
   return message.content[0].text;
 }
 
@@ -1736,6 +1746,9 @@ async function main() {
       console.error(`❌ Error generating analysis for trade ${tradeData.tradeId}:`, error.message);
     }
   }
+
+  // Print token usage summary
+  tokenLogger.summary();
 
   console.log('\n✨ Trade analysis generation complete!');
   console.log('📁 Analysis saved to: src/data/trade-summaries/');
