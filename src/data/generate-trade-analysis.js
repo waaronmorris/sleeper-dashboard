@@ -1147,7 +1147,20 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
   promptText += `Trade Date: Week ${week}, ${season} Season\n`;
   promptText += `Trade #${leagueContext?.tradeNumberThisSeason || '?'} of ${leagueContext?.totalTradesThisSeason || '?'} this season\n\n`;
 
-  // 2. SEASON CONTEXT
+  // 2. CLEAR TRADE SUMMARY (who sends what to whom)
+  if (sides.length === 2) {
+    const [sideA, sideB] = sides;
+    const formatAssets = (assets) => assets.map(a => a.position === 'PICK' ? a.name : `${a.name} (${a.position})`).join(', ') || 'nothing';
+
+    promptText += `🔄 TRADE SUMMARY:\n`;
+    promptText += `${sideA.userName} SENDS: ${formatAssets(sideA.gives)}\n`;
+    promptText += `${sideA.userName} RECEIVES: ${formatAssets(sideA.receives)}\n`;
+    promptText += `---\n`;
+    promptText += `${sideB.userName} SENDS: ${formatAssets(sideB.gives)}\n`;
+    promptText += `${sideB.userName} RECEIVES: ${formatAssets(sideB.receives)}\n\n`;
+  }
+
+  // 3. SEASON CONTEXT
   if (seasonContext) {
     promptText += `📅 SEASON TIMING:\n`;
     promptText += `  Phase: ${seasonContext.seasonPhase.toUpperCase()}\n`;
@@ -1160,7 +1173,7 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
     promptText += `\n`;
   }
 
-  // 3. HEAD-TO-HEAD RIVALRY (if applicable)
+  // 4. HEAD-TO-HEAD RIVALRY (if applicable)
   if (headToHead && headToHead.totalMatchups > 0) {
     promptText += `🏈 HEAD-TO-HEAD HISTORY:\n`;
     promptText += `  All-Time Record: ${headToHead.team1Wins}-${headToHead.team2Wins}${headToHead.ties > 0 ? `-${headToHead.ties}` : ''}\n`;
@@ -1170,7 +1183,7 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
     promptText += `\n`;
   }
 
-  // 4. EACH TEAM'S DETAILED PROFILE
+  // 5. EACH TEAM'S DETAILED PROFILE
   sides.forEach((side, index) => {
     promptText += `${'═'.repeat(50)}\n`;
     promptText += `TEAM ${index + 1}: ${side.userName}\n`;
@@ -1257,7 +1270,7 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
     promptText += `\n`;
   });
 
-  // 5. REAL-WORLD PLAYER CONTEXT (if available)
+  // 6. REAL-WORLD PLAYER CONTEXT (if available)
   if (realWorldContext && realWorldContext.length > 0) {
     promptText += `${'═'.repeat(50)}\n`;
     promptText += `🌍 REAL-WORLD NFL CONTEXT:\n`;
@@ -1269,7 +1282,7 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
     });
   }
 
-  // 6. LEAGUE CONTEXT
+  // 7. LEAGUE CONTEXT
   if (leagueContext) {
     promptText += `${'═'.repeat(50)}\n`;
     promptText += `🏆 LEAGUE CONTEXT:\n`;
