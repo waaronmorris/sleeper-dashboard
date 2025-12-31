@@ -28,9 +28,11 @@ const __dirname = dirname(__filename);
 // Configuration
 const LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-const FETCH_REAL_WORLD_CONTEXT = process.env.FETCH_REAL_WORLD_CONTEXT === 'true'; // Enable with FETCH_REAL_WORLD_CONTEXT=true
 const LEAGUE_TYPE = process.env.LEAGUE_TYPE || 'dynasty'; // 'dynasty' or 'redraft'
 const CLAUDE_MODEL = 'claude-sonnet-4-5';
+
+// Player news snapshots for point-in-time context
+const PLAYER_NEWS_SNAPSHOTS_FILE = join(__dirname, 'player-news-snapshots-history.json');
 
 if (!LEAGUE_ID) {
   console.error('❌ Error: SLEEPER_LEAGUE_ID environment variable not set');
@@ -585,50 +587,122 @@ function analyzePlayerTrajectory(playerId, player, powerRankings) {
 }
 
 /**
- * Fetch real-world context for players via web search
+ * Load player news snapshots from history file
  */
-async function fetchPlayerRealWorldContext(playerNames, tradeDate) {
+function loadPlayerNewsSnapshots() {
+  if (existsSync(PLAYER_NEWS_SNAPSHOTS_FILE)) {
+    try {
+      const data = JSON.parse(readFileSync(PLAYER_NEWS_SNAPSHOTS_FILE, 'utf-8'));
+      return data.snapshots || [];
+    } catch (error) {
+      console.error(`⚠️ Error reading player news snapshots: ${error.message}`);
+      return [];
+    }
+  }
+  return [];
+}
+
+/**
+ * Find the best matching snapshot for a given week/season
+ */
+function findPlayerNewsSnapshot(snapshots, tradeSeason, tradeWeek) {
+  // Look for exact match first
+  const exactMatch = snapshots.find(s =>
+    s.season === tradeSeason && s.week === tradeWeek
+  );
+
+  if (exactMatch) {
+    return { source: 'exact', snapshot: exactMatch, accuracy: 'high', weekDifference: 0 };
+  }
+
+  // Look for closest week in same season
+  const sameSeasonSnapshots = snapshots
+    .filter(s => s.season === tradeSeason)
+    .sort((a, b) => Math.abs(a.week - tradeWeek) - Math.abs(b.week - tradeWeek));
+
+  if (sameSeasonSnapshots.length > 0) {
+    const closest = sameSeasonSnapshots[0];
+    const weekDiff = Math.abs(closest.week - tradeWeek);
+    return {
+      source: 'closest',
+      snapshot: closest,
+      weekDifference: weekDiff,
+      accuracy: weekDiff <= 1 ? 'high' : weekDiff <= 3 ? 'moderate' : 'low'
+    };
+  }
+
+  return { source: 'none', snapshot: null, accuracy: 'unavailable' };
+}
+
+/**
+ * Get player context from snapshots (point-in-time accurate)
+ */
+function getPlayerContextFromSnapshots(playerIds, players, tradeSeason, tradeWeek) {
+  const snapshots = loadPlayerNewsSnapshots();
+  const snapshotMatch = findPlayerNewsSnapshot(snapshots, tradeSeason, tradeWeek);
+
+  if (!snapshotMatch.snapshot) {
+    console.error(`📭 No player news snapshot available for ${tradeSeason} Week ${tradeWeek}`);
+    return { contexts: [], snapshotInfo: snapshotMatch };
+  }
+
+  const snapshot = snapshotMatch.snapshot;
+  console.error(`📰 Using player news from ${snapshot.season} Week ${snapshot.week} (${snapshotMatch.source} match, ${snapshotMatch.accuracy} accuracy)`);
+
   const contexts = [];
 
-  for (const playerName of playerNames.slice(0, 4)) { // Limit to top 4 players to avoid rate limits
-    try {
-      // Search for recent news about the player
-      const searchQuery = `${playerName} NFL fantasy football news ${new Date(tradeDate).getFullYear()}`;
+  for (const playerId of playerIds.slice(0, 6)) {
+    const playerNews = snapshot.players?.[playerId];
+    const player = players[playerId];
 
-      const response = await anthropic.messages.create({
-        model: CLAUDE_MODEL,
-        max_tokens: 300,
-        messages: [{
-          role: 'user',
-          content: `Based on your knowledge, provide a brief 2-3 sentence summary of ${playerName}'s NFL situation focusing on these key questions:
-1. Are they the PRIMARY STARTER or a BACKUP filling in for an injured player? If backup, who is injured and when are they expected back?
-2. Is their current production level sustainable, or is it temporary due to circumstances (injury to starter, other players out, favorable schedule)?
-3. Any recent performance trends, injuries, or fantasy-relevant news.
+    if (!player) continue;
 
-Focus on facts that affect their FUTURE fantasy production, not just recent stats. Be explicit about starter vs backup status.`
-        }]
-      });
+    const playerName = `${player.first_name} ${player.last_name}`;
 
-      // Log token usage for cost monitoring
-      tokenLogger.log('fetch-player-context', response.usage, { player: playerName });
+    if (playerNews) {
+      // Build context from snapshot data
+      let contextParts = [];
 
-      contexts.push({
-        player: playerName,
-        context: response.content[0].text
-      });
+      // Injury status
+      if (playerNews.injuryStatus) {
+        contextParts.push(`Status: ${playerNews.injuryStatus}${playerNews.injuryBodyPart ? ` (${playerNews.injuryBodyPart})` : ''}`);
+        if (playerNews.injuryNotes) {
+          contextParts.push(playerNews.injuryNotes);
+        }
+      }
 
-      // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 500));
-    } catch (error) {
-      console.error(`Failed to fetch context for ${playerName}:`, error.message);
-      contexts.push({
-        player: playerName,
-        context: 'Context unavailable'
-      });
+      // Depth chart position
+      if (playerNews.depthChartOrder) {
+        const depthDesc = playerNews.depthChartOrder === 1 ? 'Starter' :
+          playerNews.depthChartOrder === 2 ? 'Backup' : `Depth #${playerNews.depthChartOrder}`;
+        contextParts.push(`Depth: ${depthDesc} ${playerNews.depthChartPosition || playerNews.position}`);
+      }
+
+      // Trending
+      if (playerNews.trending !== 'neutral' && playerNews.trendCount > 5) {
+        contextParts.push(`Trending ${playerNews.trending.toUpperCase()} (${playerNews.trendCount} ${playerNews.trending === 'up' ? 'adds' : 'drops'})`);
+      }
+
+      if (contextParts.length > 0) {
+        contexts.push({
+          player: playerName,
+          context: contextParts.join('. '),
+          source: 'snapshot',
+          snapshotWeek: snapshot.week,
+          snapshotSeason: snapshot.season
+        });
+      }
     }
   }
 
-  return contexts;
+  return {
+    contexts,
+    snapshotInfo: {
+      ...snapshotMatch,
+      snapshotWeek: snapshot.week,
+      snapshotSeason: snapshot.season
+    }
+  };
 }
 
 /**
@@ -1110,11 +1184,22 @@ function processTradeData(trade, users, players, rosters, matchupsAllYears, powe
     });
   }
 
-  // Collect all player names for real-world context lookup
+  // Collect all player names and IDs for context lookup
   const allPlayerNames = [];
+  const allPlayerIds = [];
   Object.values(sides).forEach(side => {
-    side.receives.forEach(p => { if (p.position !== 'PICK') allPlayerNames.push(p.name); });
-    side.gives.forEach(p => { if (p.position !== 'PICK') allPlayerNames.push(p.name); });
+    side.receives.forEach(p => {
+      if (p.position !== 'PICK') {
+        allPlayerNames.push(p.name);
+        if (p.playerId) allPlayerIds.push(p.playerId);
+      }
+    });
+    side.gives.forEach(p => {
+      if (p.position !== 'PICK') {
+        allPlayerNames.push(p.name);
+        if (p.playerId) allPlayerIds.push(p.playerId);
+      }
+    });
   });
 
   return {
@@ -1130,7 +1215,8 @@ function processTradeData(trade, users, players, rosters, matchupsAllYears, powe
     seasonContext,
     leagueContext,
     headToHead,
-    allPlayerNames
+    allPlayerNames,
+    allPlayerIds
   };
 }
 
@@ -1270,16 +1356,19 @@ async function generateAnalysis(tradeData, persona, realWorldContext = []) {
     promptText += `\n`;
   });
 
-  // 6. REAL-WORLD PLAYER CONTEXT (if available)
+  // 6. PLAYER NEWS CONTEXT (from point-in-time snapshots)
   if (realWorldContext && realWorldContext.length > 0) {
+    const snapshotWeek = realWorldContext[0]?.snapshotWeek;
+    const snapshotSeason = realWorldContext[0]?.snapshotSeason;
     promptText += `${'═'.repeat(50)}\n`;
-    promptText += `🌍 REAL-WORLD NFL CONTEXT:\n`;
+    promptText += `📰 PLAYER NEWS (Week ${snapshotWeek || week}, ${snapshotSeason || season}):\n`;
     promptText += `${'═'.repeat(50)}\n`;
     realWorldContext.forEach(ctx => {
-      if (ctx.context !== 'Context unavailable') {
-        promptText += `${ctx.player}: ${ctx.context}\n\n`;
+      if (ctx.context && ctx.context !== 'Context unavailable') {
+        promptText += `${ctx.player}: ${ctx.context}\n`;
       }
     });
+    promptText += `\n`;
   }
 
   // 7. LEAGUE CONTEXT
@@ -1490,8 +1579,12 @@ async function main() {
     const snapshotCount = vorSnapshots.snapshots?.length || 0;
     console.log(`✅ Loaded ${snapshotCount} VOR snapshots for historical accuracy`);
   }
-  if (FETCH_REAL_WORLD_CONTEXT) {
-    console.log(`🌍 Real-world context fetching: ENABLED`);
+  // Check for player news snapshots
+  const playerNewsSnapshots = loadPlayerNewsSnapshots();
+  if (playerNewsSnapshots.length > 0) {
+    console.log(`📰 Loaded ${playerNewsSnapshots.length} player news snapshots for point-in-time context`);
+  } else {
+    console.log(`📭 No player news snapshots - run player-news-snapshots.json.js to capture`);
   }
   console.log(`🏈 League Type: ${LEAGUE_TYPE.toUpperCase()}`);
   console.log('');
@@ -1547,14 +1640,21 @@ async function main() {
       // Attach trade-week context to tradeData for analysis generation
       tradeData.tradeWeekContext = tradeWeekContext;
 
-      // Optionally fetch real-world context for players
-      let realWorldContext = [];
-      if (FETCH_REAL_WORLD_CONTEXT && tradeData.allPlayerNames?.length > 0) {
-        console.log(`   🔍 Fetching real-world context for ${tradeData.allPlayerNames.slice(0, 4).join(', ')}...`);
-        realWorldContext = await fetchPlayerRealWorldContext(tradeData.allPlayerNames, tradeData.createdTimestamp);
+      // Get player context from snapshots (point-in-time accurate)
+      let playerContext = { contexts: [], snapshotInfo: null };
+      if (tradeData.allPlayerIds?.length > 0) {
+        playerContext = getPlayerContextFromSnapshots(
+          tradeData.allPlayerIds,
+          players,
+          tradeData.season,
+          tradeData.week
+        );
+        if (playerContext.contexts.length > 0) {
+          console.log(`   📰 Player context: ${playerContext.contexts.length} players from Week ${playerContext.snapshotInfo?.snapshotWeek || '?'} snapshot`);
+        }
       }
 
-      const analysis = await generateAnalysis(tradeData, persona, realWorldContext);
+      const analysis = await generateAnalysis(tradeData, persona, playerContext.contexts);
 
       // Save to file
       saveAnalysis(tradeData, persona, analysis);
