@@ -2,18 +2,28 @@
  * Token Usage Logger
  *
  * Tracks and logs token usage from Anthropic API calls for cost monitoring
- * and prompt optimization.
+ * and prompt optimization. Saves usage data to a file for historical tracking.
  *
  * Usage:
  *   import { createTokenLogger } from './token-logger.js';
- *   const tokenLogger = createTokenLogger();
+ *   const tokenLogger = createTokenLogger({ script: 'generate-summaries' });
  *
  *   // After each API call:
  *   tokenLogger.log('generate-summary', message.usage);
  *
- *   // At script end:
+ *   // At script end (also saves to file):
  *   tokenLogger.summary();
  */
+
+import { existsSync, appendFileSync, mkdirSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Token usage log file path
+const TOKEN_LOG_FILE = join(__dirname, 'token-usage.jsonl');
 
 // Claude Sonnet 4.5 pricing (as of 2024)
 const PRICING = {
@@ -66,16 +76,32 @@ function formatTokens(count) {
 }
 
 /**
+ * Append a session record to the token usage log file
+ */
+function saveToFile(sessionData) {
+  try {
+    const logLine = JSON.stringify(sessionData) + '\n';
+    appendFileSync(TOKEN_LOG_FILE, logLine, 'utf-8');
+    console.log(`💾 Token usage saved to: ${TOKEN_LOG_FILE}`);
+  } catch (error) {
+    console.error(`⚠️  Failed to save token usage to file: ${error.message}`);
+  }
+}
+
+/**
  * Create a token logger instance for tracking usage across a script run
  */
 export function createTokenLogger(options = {}) {
   const model = options.model || DEFAULT_MODEL;
   const silent = options.silent || false;
+  const script = options.script || 'unknown';
+  const saveFile = options.saveFile !== false; // Default to true
 
   // Cumulative tracking
   const calls = [];
   let totalInputTokens = 0;
   let totalOutputTokens = 0;
+  const sessionStart = new Date().toISOString();
 
   return {
     /**
@@ -124,7 +150,7 @@ export function createTokenLogger(options = {}) {
     },
 
     /**
-     * Log and return session summary
+     * Log and return session summary, and save to file
      */
     summary() {
       const cost = calculateCost(totalInputTokens, totalOutputTokens, model);
@@ -144,23 +170,23 @@ export function createTokenLogger(options = {}) {
       console.log('='.repeat(60) + '\n');
 
       // Breakdown by operation
-      if (calls.length > 1) {
-        const byOperation = {};
-        for (const call of calls) {
-          if (!byOperation[call.operation]) {
-            byOperation[call.operation] = {
-              count: 0,
-              inputTokens: 0,
-              outputTokens: 0,
-              cost: 0
-            };
-          }
-          byOperation[call.operation].count++;
-          byOperation[call.operation].inputTokens += call.inputTokens;
-          byOperation[call.operation].outputTokens += call.outputTokens;
-          byOperation[call.operation].cost += call.cost;
+      const byOperation = {};
+      for (const call of calls) {
+        if (!byOperation[call.operation]) {
+          byOperation[call.operation] = {
+            count: 0,
+            inputTokens: 0,
+            outputTokens: 0,
+            cost: 0
+          };
         }
+        byOperation[call.operation].count++;
+        byOperation[call.operation].inputTokens += call.inputTokens;
+        byOperation[call.operation].outputTokens += call.outputTokens;
+        byOperation[call.operation].cost += call.cost;
+      }
 
+      if (calls.length > 1) {
         console.log('📋 BREAKDOWN BY OPERATION:');
         for (const [op, data] of Object.entries(byOperation)) {
           console.log(`   ${op}:`);
@@ -171,15 +197,28 @@ export function createTokenLogger(options = {}) {
         console.log('');
       }
 
-      return {
+      // Build session record for file
+      const sessionData = {
+        timestamp: sessionStart,
+        script,
         model,
         callCount: calls.length,
         totalInputTokens,
         totalOutputTokens,
         totalTokens: totalInputTokens + totalOutputTokens,
-        cost,
+        inputCost: cost.inputCost,
+        outputCost: cost.outputCost,
+        totalCost: cost.totalCost,
+        byOperation,
         calls
       };
+
+      // Save to file
+      if (saveFile && calls.length > 0) {
+        saveToFile(sessionData);
+      }
+
+      return sessionData;
     },
 
     /**

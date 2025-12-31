@@ -54,7 +54,7 @@ const anthropic = new Anthropic({
 });
 
 // Initialize token logger for cost tracking
-const tokenLogger = createTokenLogger({ model: 'claude-sonnet-4-5' });
+const tokenLogger = createTokenLogger({ model: 'claude-sonnet-4-5', script: 'generate-trade-analysis' });
 
 /**
  * Load data from cache or generate it

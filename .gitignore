@@ -4,3 +4,6 @@ src/.observablehq/cache/
 .env
 .DS_Store
 .playwright-mcp/
+
+# Token usage logs (local cost tracking)
+src/data/token-usage.jsonl
