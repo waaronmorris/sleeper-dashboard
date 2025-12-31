@@ -1,0 +1,54 @@
+name: Capture Player News Snapshots
+
+on:
+  # Run every Tuesday at 8 AM UTC (3 AM EST) - captures Monday stats/injuries
+  schedule:
+    - cron: '0 8 * * 2'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture-snapshots:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Capture player news snapshot
+        run: node src/data/player-news-snapshots.json.js > /dev/null
+        env:
+          SLEEPER_LEAGUE_ID: ${{ secrets.SLEEPER_LEAGUE_ID }}
+
+      - name: Check for new snapshots
+        id: check_changes
+        run: |
+          if [ -z "$(git status --porcelain src/data/player-news-snapshots-history.json)" ]; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push new snapshot
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/player-news-snapshots-history.json
+          git commit -m "Capture weekly player news snapshot"
+          git push
