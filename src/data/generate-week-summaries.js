@@ -28,6 +28,7 @@ const __dirname = dirname(__filename);
 // Configuration
 const LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const CLAUDE_MODEL = 'claude-sonnet-4-5';
 
 if (!LEAGUE_ID) {
   console.error('❌ Error: SLEEPER_LEAGUE_ID environment variable not set');
@@ -53,7 +54,7 @@ const anthropic = new Anthropic({
 });
 
 // Initialize token logger for cost tracking
-const tokenLogger = createTokenLogger({ model: 'claude-sonnet-4-5', script: 'generate-week-summaries' });
+const tokenLogger = createTokenLogger({ model: CLAUDE_MODEL, script: 'generate-week-summaries' });
 
 /**
  * Extract top and bottom scoring starters for a team
@@ -541,7 +542,7 @@ Return ONLY the summary text, no preamble or meta-commentary.`;
   console.log(`🤖 Generating summary for Week ${week} as ${persona.name}...`);
 
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: CLAUDE_MODEL,
     max_tokens: 2000,
     // temperature: 1.0,
     top_p: 0.80,  // Add nucleus sampling for more variety
