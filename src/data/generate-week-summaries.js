@@ -506,49 +506,34 @@ async function generateSummary(weekData, persona) {
   const shuffled = [...randomElements].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, selectedCount);
 
-  const prompt = `You are ${persona.name}, the legendary sports commentator. Write a 4-5 paragraph summary of this fantasy football week in your signature style.
+  // System message for stable persona instructions
+  const systemMessage = `You are ${persona.name}, the legendary sports commentator.
+Style: ${persona.style}
+Focus: ${persona.emphasis.join(', ')}
 
-WEEK ${week} MATCHUP RESULTS (with top/bottom performers per team):
+OUTPUT: 4-5 entertaining paragraphs. Reference players by name with their stats. Roast lineup mistakes (funny, not mean). Use your catchphrases. No preamble or meta-commentary.`;
+
+  // User message with dynamic week data
+  const userMessage = `Summarize Week ${week} fantasy football:
+
 ${matchupText}
 ${trendsText}${leaguePlayersText}
-WEEK STATISTICS:
-- Average Score: ${stats.avgScore}
-- Highest Score: ${stats.highScore}
-- Lowest Score: ${stats.lowScore}
-- Biggest Blowout: ${stats.biggestMargin} point margin
-- Closest Game: ${stats.closestMargin} point margin
-- Close Games (< 10 pts): ${stats.closeGames} of ${stats.totalMatchups}
+STATS: Avg ${stats.avgScore} | High ${stats.highScore} | Low ${stats.lowScore} | Blowout ${stats.biggestMargin}pts | Closest ${stats.closestMargin}pts | Close games: ${stats.closeGames}/${stats.totalMatchups}
 ${atrocitiesText}
 
-Write in ${persona.name}'s style: ${persona.style}
-
-Focus on what ${persona.name} emphasizes: ${persona.emphasis.join(', ')}
-
-SPECIAL INSTRUCTIONS FOR THIS WEEK:
-${selected.map((instruction, i) => `${i + 1}. ${instruction}`).join('\n')}
-
-IMPORTANT CONTENT GUIDELINES:
-- Reference specific PLAYERS by name when discussing matchups (e.g., "Josh Allen went nuclear with 35 points")
-- Call out the top performers and busts by name - give them credit or blame them!
-- Mention team trends and streaks when relevant (hot/cold teams, consistent vs volatile scorers)
-- Use the player stats provided to make your commentary specific and engaging
-- If a team won despite having duds in their lineup, point that out
-- If the league-wide top performer carried their team to victory, make it a storyline
-
-Keep it entertaining, highlight the most interesting matchups, notable performances, close games, and blowouts. If there were notable lineup mistakes (atrocities), roast the managers who left big points on the bench - make it funny but not mean-spirited. Use ${persona.name}'s actual catchphrases and speaking style. Make it feel like ${persona.name} is talking directly to fantasy football fans. Be conversational and engaging.
-
-Return ONLY the summary text, no preamble or meta-commentary.`;
+THIS WEEK'S SPECIAL FOCUS:
+${selected.map((instruction, i) => `${i + 1}. ${instruction}`).join('\n')}`;
 
   console.log(`🤖 Generating summary for Week ${week} as ${persona.name}...`);
 
   const message = await anthropic.messages.create({
     model: CLAUDE_MODEL,
     max_tokens: 2000,
-    // temperature: 1.0,
-    top_p: 0.80,  // Add nucleus sampling for more variety
+    top_p: 0.80,
+    system: systemMessage,
     messages: [{
       role: 'user',
-      content: prompt
+      content: userMessage
     }]
   });
 
