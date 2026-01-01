@@ -1,0 +1,107 @@
+{
+  "tradeId": "9b30632d9d10b500",
+  "week": 8,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Shogunation",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76.3,
+        "powerRank": 4,
+        "lineupValueScore": 79,
+        "performanceScore": 77.9,
+        "positionalScore": 62.7,
+        "depthScore": 80.9,
+        "totalTeams": 12,
+        "totalRosterValue": 37890
+      },
+      "tradeImpact": {
+        "valueGained": 444,
+        "valueLost": 0,
+        "netValueChange": 444,
+        "estimatedPowerScoreChange": 0.5,
+        "playersGained": [
+          {
+            "name": "Stefon Diggs",
+            "value": 444
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Stefon Diggs",
+          "position": "WR",
+          "team": "NE",
+          "age": 32,
+          "careerStage": "Declining"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18,
+        "powerRank": 12,
+        "lineupValueScore": 27.3,
+        "performanceScore": 6.1,
+        "positionalScore": 13.9,
+        "depthScore": 7.8,
+        "totalTeams": 12,
+        "totalRosterValue": 13107
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 444,
+        "netValueChange": -444,
+        "estimatedPowerScoreChange": -0.5,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Stefon Diggs",
+            "value": 444
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Stefon Diggs",
+          "position": "WR",
+          "team": "NE",
+          "age": 32,
+          "careerStage": "Declining"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 3,
+      "from": "Shogunation",
+      "to": "Langland"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I've seen a lot of dynasty fire sales in my day, but this one's playing out exactly by the textbook. **The Desperate Liquidator** in Langland is sitting at 0-7 with a power score that belongs in the witness protection program, and they're finally doing what should've happened three weeks ago – turning aging assets into future capital. Meanwhile, **The Opportunist Contender** in Shogunation is at 5-2, ranked fourth in the league, and just sniped a veteran receiver for what amounts to pocket change in 2027. This is the quintessential win-now versus rebuild transaction.\n\nHere's what I love about Shogunation's approach: they're identifying value in a declining asset that still produces. Stefon Diggs at 32 years old is averaging 10.8 points per game – that's WR3/flex territory with upside, and they're acquiring him for a third-round pick *two years from now*. In dynasty terms, that's like trading Monopoly money. The 2027 third-rounder is essentially a lottery ticket that might become a bench piece. Diggs? He can contribute immediately during a playoff push. This is textbook buying low on a veteran when you're competing. The injury concern with a 32-year-old receiver is real, but for a third-round pick? That's risk I'm taking ten times out of ten.\n\nFrom Langland's perspective, this is damage control, not value maximization. They're dead last in the league with a power score of 18 – that's catastrophic roster construction. They've been hemorrhaging points all season, and holding onto a 32-year-old receiver with a declining arrow next to his name makes zero sense. But here's my issue: you're only getting a third-rounder for a guy who's still producing? That feels light. I understand Diggs' age works against you in trade negotiations, but this is a win-now league with multiple contenders. You're telling me you couldn't squeeze a second-rounder out of somebody? This smells like panic-selling rather than strategic asset management.\n\n**Clear winner: Shogunation, and it's not particularly close.** They added 444 points of trade value while giving up essentially nothing, boosted their power score, and addressed depth for a playoff run. The \"rivalry alert\" here makes this even sweeter – nothing like fleecing a division opponent during a championship window. Langland gets a participation trophy for finally committing to the rebuild, but accepting a third-rounder for double-digit weekly production shows why they're 0-7 in the first place. When you're rebuilding, draft capital is king – but you've got to maximize every transaction. This ain't it.",
+  "generatedAt": "2026-01-01T08:10:52.082Z"
+}

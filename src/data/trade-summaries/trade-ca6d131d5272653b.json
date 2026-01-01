@@ -1,0 +1,107 @@
+{
+  "tradeId": "ca6d131d5272653b",
+  "week": 8,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Tishathefish",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76.3,
+        "powerRank": 4,
+        "lineupValueScore": 79,
+        "performanceScore": 77.9,
+        "positionalScore": 62.7,
+        "depthScore": 80.9,
+        "totalTeams": 12,
+        "totalRosterValue": 37890
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 296,
+        "netValueChange": -296,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Theo Johnson",
+            "value": 296
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Theo Johnson",
+          "position": "TE",
+          "team": "NYG",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 49.7,
+        "powerRank": 7,
+        "lineupValueScore": 60.7,
+        "performanceScore": 35.4,
+        "positionalScore": 47.1,
+        "depthScore": 33.9,
+        "totalTeams": 12,
+        "totalRosterValue": 29125
+      },
+      "tradeImpact": {
+        "valueGained": 296,
+        "valueLost": 0,
+        "netValueChange": 296,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Theo Johnson",
+            "value": 296
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Theo Johnson",
+          "position": "TE",
+          "team": "NYG",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I've been doing this for FOUR DECADES, and let me tell you something about selling low on young tight ends - it NEVER works out! This is the fantasy equivalent of the Texans trading DeAndre Hopkins for a bag of footballs, except Shogunation somehow made Bill O'Brien look like a genius!\n\nHere's what you need to understand about Theo Johnson - I had this kid as a FOOTBALL PLAYER coming out of Penn State. Twenty-four years old, 6'6\", athletic tight end with ELITE upside still sitting on my dynasty board. The tape doesn't lie, folks! And Shogunation - \"The Draft Capital Dumper\" based on that 9-to-5 pick trading deficit - just sold him for a 2028 third-rounder? A 2028 THIRD? That's THREE YEARS from now for a position that takes notoriously long to develop! This is a playoff lock team at 5-2 with a 76.3 power score PUNTING on a rising asset for a dart throw in the Obama administration... I mean, 2028! You don't mortgage developmental talent when you're contending unless you're getting immediate championship pieces back!\n\nMeanwhile, Tishathefish - let's call him \"The Bargain Bin Hunter\" - is sitting at 3-4, bubble team with a 49.7 power score, and he just acquired a 24-year-old tight end with upside for NOTHING. This is textbook dynasty asset accumulation! The kid's averaging 4.6 PPG as a rookie in what's basically his developmental year, and you're buying at the absolute floor. The age curve on tight ends runs through their late twenties - Johnson has FIVE MORE YEARS of prime ahead of him! On my board, you don't trade rising tight end assets for third-rounders that statistically hit at maybe 15% rates!\n\nThe winner here? It's Tishathefish by a LANDSLIDE, and that +296 net value tells the whole story! Shogunation gave up a young, ascending tight end with legitimate TE1 upside for a lottery ticket three years out. This is the kind of move that comes back to haunt you when Johnson is putting up TE6 numbers in 2026-2027 and that third-rounder becomes a backup running back. The tape, the age, the position scarcity - it ALL favors the team getting the player, not the distant pick!",
+  "generatedAt": "2026-01-01T08:11:10.755Z"
+}
