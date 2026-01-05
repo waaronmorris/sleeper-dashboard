@@ -185,7 +185,7 @@ display(html`
           <th rowspan="2" style="padding: 12px 8px; text-align: center; font-weight: 600; border-bottom: 2px solid var(--theme-accent); width: 50px;">Net</th>
         </tr>
         <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
-          ${displayRounds.map((round, rIdx) => futureSeasons.map((season, sIdx) => html`
+          ${displayRounds.flatMap((round, rIdx) => futureSeasons.map((season, sIdx) => html`
             <th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 42px;">${season}</th>
           `))}
         </tr>
@@ -198,7 +198,7 @@ display(html`
               <td style="padding: 10px 8px; font-weight: 600; position: sticky; left: 0; background: ${idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)'}; z-index: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px;">
                 ${owner.team}
               </td>
-              ${displayRounds.map((round, rIdx) => futureSeasons.map((season, sIdx) => {
+              ${displayRounds.flatMap((round, rIdx) => futureSeasons.map((season, sIdx) => {
                 const data = picksByRoundSeason[round][season];
                 const total = data.own + data.acquired;
                 const hasAcquired = data.acquired > 0;
