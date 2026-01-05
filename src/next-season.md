@@ -172,66 +172,67 @@ function getPicksPerRoundAndSeason(owner) {
 // Only show first 3 rounds for cleaner display
 const displayRounds = rounds.slice(0, 3);
 
-display(html`
+// Build table HTML as a raw string to avoid Observable's span wrapping issue
+const roundHeaders = displayRounds.map(round =>
+  `<th colspan="${futureSeasons.length}" style="padding: 8px 4px; text-align: center; font-weight: 600; border-left: 2px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.1);">RD ${round}</th>`
+).join('');
+
+const yearHeaders = displayRounds.flatMap(round =>
+  futureSeasons.map((season, sIdx) =>
+    `<th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 50px; min-width: 50px;">${season}</th>`
+  )
+).join('');
+
+const tableRows = futurePicksByOwner.map((owner, idx) => {
+  const picksByRoundSeason = getPicksPerRoundAndSeason(owner);
+  const dataCells = displayRounds.flatMap(round =>
+    futureSeasons.map((season, sIdx) => {
+      const data = picksByRoundSeason[round][season];
+      const total = data.own + data.acquired;
+      const hasAcquired = data.acquired > 0;
+      const bgColor = total === 0 ? 'rgba(239, 68, 68, 0.2)' : hasAcquired ? 'rgba(245, 158, 11, 0.2)' : 'rgba(34, 197, 94, 0.2)';
+      const textColor = total === 0 ? '#ef4444' : hasAcquired ? '#f59e0b' : '#22c55e';
+      const title = `${season} Round ${round}: ${data.own} own + ${data.acquired} acquired${data.traded > 0 ? ` (${data.traded} traded away)` : ''}`;
+      return `<td style="padding: 6px 2px; text-align: center; width: 50px; min-width: 50px; ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''}">
+        <span style="display: inline-block; min-width: 26px; padding: 4px 6px; border-radius: 4px; font-size: 13px; font-weight: 600; background: ${bgColor}; color: ${textColor};" title="${title}">${total}</span>
+      </td>`;
+    })
+  ).join('');
+
+  const rowBg = idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)';
+  const stickyBg = idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)';
+  const netColor = owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)';
+
+  return `<tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: ${rowBg};">
+    <td style="padding: 10px 8px; font-weight: 600; position: sticky; left: 0; background: ${stickyBg}; z-index: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px;">${owner.team}</td>
+    ${dataCells}
+    <td style="padding: 10px 4px; text-align: center; font-weight: 600; font-size: 15px; color: var(--theme-accent); border-left: 2px solid rgba(255,255,255,0.2);">${owner.total_picks}</td>
+    <td style="padding: 10px 4px; text-align: center; font-weight: 600; font-size: 15px; color: ${netColor};">${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}</td>
+  </tr>`;
+}).join('');
+
+const tableHtml = `
   <div style="overflow-x: auto;">
     <table style="min-width: 800px; width: max-content; border-collapse: collapse; font-size: 14px;">
       <thead>
         <tr style="background: var(--theme-background-alt);">
           <th rowspan="2" style="padding: 12px; text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--theme-background-alt); z-index: 2; border-bottom: 2px solid var(--theme-accent); width: 120px;">TEAM</th>
-          ${displayRounds.map(round => html`
-            <th colspan="${futureSeasons.length}" style="padding: 8px 4px; text-align: center; font-weight: 600; border-left: 2px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.1);">RD ${round}</th>
-          `)}
+          ${roundHeaders}
           <th rowspan="2" style="padding: 12px 8px; text-align: center; font-weight: 600; border-left: 2px solid rgba(255,255,255,0.2); border-bottom: 2px solid var(--theme-accent); width: 55px;">Total</th>
           <th rowspan="2" style="padding: 12px 8px; text-align: center; font-weight: 600; border-bottom: 2px solid var(--theme-accent); width: 50px;">Net</th>
         </tr>
         <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
-          ${displayRounds.map(round => futureSeasons.map((season, sIdx) => html`
-            <th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 50px; min-width: 50px;">${season}</th>
-          `)).flat()}
+          ${yearHeaders}
         </tr>
       </thead>
       <tbody>
-        ${futurePicksByOwner.map((owner, idx) => {
-          const picksByRoundSeason = getPicksPerRoundAndSeason(owner);
-          return html`
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: ${idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)'};">
-              <td style="padding: 10px 8px; font-weight: 600; position: sticky; left: 0; background: ${idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)'}; z-index: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px;">
-                ${owner.team}
-              </td>
-              ${displayRounds.map(round => futureSeasons.map((season, sIdx) => {
-                const data = picksByRoundSeason[round][season];
-                const total = data.own + data.acquired;
-                const hasAcquired = data.acquired > 0;
-                return html`
-                  <td style="padding: 6px 2px; text-align: center; width: 50px; min-width: 50px; ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''}">
-                    <span style="
-                      display: inline-block;
-                      min-width: 26px;
-                      padding: 4px 6px;
-                      border-radius: 4px;
-                      font-size: 13px;
-                      font-weight: 600;
-                      background: ${total === 0 ? 'rgba(239, 68, 68, 0.2)' : hasAcquired ? 'rgba(245, 158, 11, 0.2)' : 'rgba(34, 197, 94, 0.2)'};
-                      color: ${total === 0 ? '#ef4444' : hasAcquired ? '#f59e0b' : '#22c55e'};
-                    " title="${season} Round ${round}: ${data.own} own + ${data.acquired} acquired${data.traded > 0 ? ` (${data.traded} traded away)` : ''}">
-                      ${total}
-                    </span>
-                  </td>
-                `;
-              })).flat()}
-              <td style="padding: 10px 4px; text-align: center; font-weight: 600; font-size: 15px; color: var(--theme-accent); border-left: 2px solid rgba(255,255,255,0.2);">
-                ${owner.total_picks}
-              </td>
-              <td style="padding: 10px 4px; text-align: center; font-weight: 600; font-size: 15px; color: ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
-                ${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}
-              </td>
-            </tr>
-          `;
-        })}
+        ${tableRows}
       </tbody>
     </table>
   </div>
-`);
+`;
+
+display(html([tableHtml]));
 ```
 
 ## Draft Capital Summary
