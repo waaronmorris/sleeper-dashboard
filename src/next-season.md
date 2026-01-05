@@ -48,7 +48,7 @@ display(html`
   <div style="margin: 30px 0; padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid var(--theme-accent);">
     <h4 style="margin-top: 0; color: var(--theme-accent);">Draft Order Rules</h4>
     <ul style="line-height: 1.8; margin-bottom: 0;">
-      <li><strong>Picks 1-${draftOrderData.total_teams - draftOrderData.playoff_teams}:</strong> Non-playoff teams, ordered by <em>lowest maximum weekly score</em> (prevents tanking by rewarding consistent effort)</li>
+      <li><strong>Picks 1-${draftOrderData.total_teams - draftOrderData.playoff_teams}:</strong> Non-playoff teams, ordered by <em>lowest Max PF</em> (total season points)</li>
       <li><strong>Picks ${draftOrderData.total_teams - draftOrderData.playoff_teams + 1}-${draftOrderData.total_teams}:</strong> Playoff teams, in reverse order of playoff finish (champion picks last)</li>
       <li><strong style="color: #f59e0b;">Traded Picks:</strong> Shown with current owner - picks may have changed hands via trades</li>
     </ul>
@@ -85,14 +85,14 @@ display(html`
             <div style="font-size: 13px; color: var(--theme-foreground-alt); margin-top: 4px;">
               ${pick.category === 'playoff'
                 ? `Playoff Finish: ${pick.playoff_finish === 1 ? '🏆 Champion' : pick.playoff_finish === 2 ? '🥈 Runner-up' : `#${pick.playoff_finish}`}`
-                : `Max Weekly Score: ${pick.max_points.toFixed(2)}`
+                : `Max PF: ${pick.max_pf.toFixed(2)}`
               }
               ${pick.is_traded ? ' • Traded' : ''}
             </div>
           </div>
           <div style="text-align: right;">
             <div style="font-size: 14px; color: var(--theme-foreground-alt);">${pick.wins}-${pick.losses}</div>
-            <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 2px;">${pick.total_points.toFixed(1)} pts</div>
+            <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 2px;">${pick.max_pf.toFixed(1)} pts</div>
           </div>
         </div>
       `)}
@@ -106,24 +106,36 @@ display(html`
 ```js
 const futureSeasons = draftOrderData.future_seasons;
 const futurePicksByOwner = draftOrderData.future_picks_by_owner;
+const rounds = [1, 2, 3, 4, 5];
 
-// Helper to format picks for a season
-function formatPicksForSeason(picks, season) {
-  const own = picks.picks_by_season[season]?.own || [];
-  const acquired = picks.picks_by_season[season]?.acquired || [];
-  const tradedAway = picks.picks_by_season[season]?.traded_away || [];
+// Calculate picks per round for each team (across all future seasons)
+function getPicksPerRound(owner) {
+  const picksByRound = {};
+  for (const round of rounds) {
+    picksByRound[round] = { own: 0, acquired: 0, traded: 0 };
+  }
 
-  const allPicks = [
-    ...own.map(p => ({ round: p.round, type: 'own', label: `Rd ${p.round}` })),
-    ...acquired.map(p => ({ round: p.round, type: 'acquired', label: `Rd ${p.round} (${p.from_team})`, from: p.from_team }))
-  ].sort((a, b) => a.round - b.round);
+  for (const season of futureSeasons) {
+    const seasonPicks = owner.picks_by_season[season];
+    if (seasonPicks) {
+      for (const pick of seasonPicks.own || []) {
+        picksByRound[pick.round].own++;
+      }
+      for (const pick of seasonPicks.acquired || []) {
+        picksByRound[pick.round].acquired++;
+      }
+      for (const pick of seasonPicks.traded_away || []) {
+        picksByRound[pick.round].traded++;
+      }
+    }
+  }
 
-  return { allPicks, tradedAway };
+  return picksByRound;
 }
 
 display(html`
   <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Complete overview of each team's draft capital for the next ${futureSeasons.length} seasons. Use this to quickly identify trade partners.
+    Overview of each team's draft capital by round for the next ${futureSeasons.length} seasons (${futureSeasons.join(', ')}). Numbers show total picks owned per round.
   </p>
 `);
 ```
@@ -135,55 +147,52 @@ display(html`
       <thead>
         <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
           <th style="padding: 12px; text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--theme-background-alt); z-index: 1;">Team</th>
-          ${futureSeasons.map(season => html`
-            <th style="padding: 12px; text-align: center; font-weight: 600; min-width: 200px;">${season}</th>
+          ${rounds.map(round => html`
+            <th style="padding: 12px; text-align: center; font-weight: 600; min-width: 80px;">Rd ${round}</th>
           `)}
           <th style="padding: 12px; text-align: center; font-weight: 600;">Total</th>
           <th style="padding: 12px; text-align: center; font-weight: 600;">Net</th>
         </tr>
       </thead>
       <tbody>
-        ${futurePicksByOwner.map((owner, idx) => html`
-          <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: ${idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)'};">
-            <td style="padding: 12px; font-weight: 600; position: sticky; left: 0; background: ${idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)'}; z-index: 1;">
-              ${owner.team}
-            </td>
-            ${futureSeasons.map(season => {
-              const { allPicks, tradedAway } = formatPicksForSeason(owner, season);
-              return html`
-                <td style="padding: 12px; text-align: left;">
-                  <div style="display: flex; flex-wrap: wrap; gap: 4px;">
-                    ${allPicks.length > 0 ? allPicks.map(pick => html`
-                      <span style="
-                        display: inline-block;
-                        padding: 2px 8px;
-                        border-radius: 4px;
-                        font-size: 12px;
-                        font-weight: 500;
-                        background: ${pick.type === 'acquired' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(34, 197, 94, 0.2)'};
-                        color: ${pick.type === 'acquired' ? '#f59e0b' : '#22c55e'};
-                        border: 1px solid ${pick.type === 'acquired' ? 'rgba(245, 158, 11, 0.3)' : 'rgba(34, 197, 94, 0.3)'};
-                      " title="${pick.type === 'acquired' ? `Acquired from ${pick.from}` : 'Own pick'}">
-                        ${pick.label}
-                      </span>
-                    `) : html`<span style="color: var(--theme-foreground-muted);">—</span>`}
-                  </div>
-                  ${tradedAway.length > 0 ? html`
-                    <div style="margin-top: 4px; font-size: 11px; color: #ef4444;">
-                      Traded: ${tradedAway.map(p => `Rd ${p.round} → ${p.to_team}`).join(', ')}
-                    </div>
-                  ` : ''}
-                </td>
-              `;
-            })}
-            <td style="padding: 12px; text-align: center; font-weight: 600; font-size: 16px; color: var(--theme-accent);">
-              ${owner.total_picks}
-            </td>
-            <td style="padding: 12px; text-align: center; font-weight: 600; font-size: 16px; color: ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
-              ${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}
-            </td>
-          </tr>
-        `)}
+        ${futurePicksByOwner.map((owner, idx) => {
+          const picksByRound = getPicksPerRound(owner);
+          return html`
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: ${idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)'};">
+              <td style="padding: 12px; font-weight: 600; position: sticky; left: 0; background: ${idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)'}; z-index: 1;">
+                ${owner.team}
+              </td>
+              ${rounds.map(round => {
+                const roundData = picksByRound[round];
+                const total = roundData.own + roundData.acquired;
+                const hasAcquired = roundData.acquired > 0;
+                const hasTraded = roundData.traded > 0;
+                return html`
+                  <td style="padding: 12px; text-align: center;">
+                    <span style="
+                      display: inline-block;
+                      min-width: 28px;
+                      padding: 4px 8px;
+                      border-radius: 4px;
+                      font-size: 14px;
+                      font-weight: 600;
+                      background: ${total === 0 ? 'rgba(239, 68, 68, 0.2)' : hasAcquired ? 'rgba(245, 158, 11, 0.2)' : 'rgba(34, 197, 94, 0.2)'};
+                      color: ${total === 0 ? '#ef4444' : hasAcquired ? '#f59e0b' : '#22c55e'};
+                    " title="${roundData.own} own + ${roundData.acquired} acquired${hasTraded ? ` (${roundData.traded} traded away)` : ''}">
+                      ${total}
+                    </span>
+                  </td>
+                `;
+              })}
+              <td style="padding: 12px; text-align: center; font-weight: 600; font-size: 16px; color: var(--theme-accent);">
+                ${owner.total_picks}
+              </td>
+              <td style="padding: 12px; text-align: center; font-weight: 600; font-size: 16px; color: ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
+                ${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}
+              </td>
+            </tr>
+          `;
+        })}
       </tbody>
     </table>
   </div>
@@ -284,31 +293,31 @@ const playoffTeams = draftOrder.filter(t => t.category === 'playoff');
 ```js
 display(html`
   <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Teams that missed the playoffs, ordered by lowest maximum weekly score. This system rewards teams that competed all season rather than those who tanked.
+    Teams that missed the playoffs, ordered by lowest Max PF (total season points).
   </p>
 `);
 
 display(Inputs.table(nonPlayoffTeams, {
-  columns: ["draft_position", "current_owner", "original_team", "is_traded", "max_points", "wins", "losses"],
+  columns: ["draft_position", "current_owner", "original_team", "is_traded", "max_pf", "wins", "losses"],
   header: {
     draft_position: "Pick",
     current_owner: "Owner",
     original_team: "Original",
     is_traded: "Traded?",
-    max_points: "Max Weekly",
+    max_pf: "Max PF",
     wins: "W",
     losses: "L"
   },
   format: {
     is_traded: x => x ? "Yes" : "No",
-    max_points: x => x.toFixed(2)
+    max_pf: x => x.toFixed(2)
   },
   width: {
     draft_position: 60,
     current_owner: 140,
     original_team: 140,
     is_traded: 70,
-    max_points: 100,
+    max_pf: 100,
     wins: 50,
     losses: 50
   }
@@ -351,16 +360,16 @@ display(Inputs.table(playoffTeams, {
 }));
 ```
 
-## Max Weekly Score Distribution
+## Max PF Distribution
 
 ```js
-display(html`<h3 style="margin-top: 40px;">Max Weekly Score Comparison</h3>`);
+display(html`<h3 style="margin-top: 40px;">Max PF Comparison (Total Season Points)</h3>`);
 
 display(Plot.plot({
   marginLeft: 150,
   height: Math.max(400, draftOrder.length * 35),
   x: {
-    label: "Max Weekly Score",
+    label: "Max PF (Total Season Points)",
     grid: true
   },
   y: {
@@ -368,13 +377,13 @@ display(Plot.plot({
   },
   marks: [
     Plot.barX(draftOrder, {
-      x: "max_points",
+      x: "max_pf",
       y: "original_team",
       fill: d => d.category === 'playoff' ? "#22c55e" : "#ef4444",
       sort: { y: "-x" }
     }),
     Plot.text(draftOrder, {
-      x: "max_points",
+      x: "max_pf",
       y: "original_team",
       text: d => `#${d.draft_position}`,
       dx: -25,

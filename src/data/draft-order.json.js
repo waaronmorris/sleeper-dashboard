@@ -1,7 +1,7 @@
 // Data loader for next season draft order and future picks
 // Draft order logic:
 // - Positions 1-6: Determined by playoff finish (champion picks last, etc.)
-// - Positions 7+: Non-playoff teams ordered by reverse max points for (lowest max picks earliest)
+// - Positions 7+: Non-playoff teams ordered by lowest Max PF (total season points) - lowest picks earliest
 // - Traded picks are tracked and shown with current owner
 
 const LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
@@ -220,24 +220,16 @@ function determinePlayoffFinishes(bracket, playoffTeams) {
   return finishes;
 }
 
-// Calculate max weekly score for each team
-function calculateMaxWeeklyScores(matchups, rosters) {
-  const maxScores = {};
+// Calculate Max PF (total season points) for each team
+function calculateMaxPF(rosters) {
+  const maxPF = {};
 
   for (const roster of rosters) {
-    maxScores[roster.roster_id] = 0;
+    // Use fpts (full points) + fpts_decimal for accurate total
+    maxPF[roster.roster_id] = (roster.settings.fpts || 0) + ((roster.settings.fpts_decimal || 0) / 100);
   }
 
-  for (const weekData of matchups) {
-    for (const matchup of weekData.matchups) {
-      const points = matchup.points || 0;
-      if (points > maxScores[matchup.roster_id]) {
-        maxScores[matchup.roster_id] = points;
-      }
-    }
-  }
-
-  return maxScores;
+  return maxPF;
 }
 
 // Get team name helper
@@ -287,25 +279,24 @@ async function calculateDraftOrder() {
   // Get all playoff roster IDs
   const playoffRosterIds = new Set(Object.keys(playoffFinishes).map(Number));
 
-  // Calculate max weekly scores
-  const maxScores = calculateMaxWeeklyScores(matchups, rosters);
+  // Calculate Max PF (total season points) for each team
+  const maxPF = calculateMaxPF(rosters);
 
   // Build draft order
   const draftOrder = [];
 
   // Non-playoff teams first (picks 1 to totalTeams - playoffTeamCount)
-  // Ordered by reverse max points (lowest max picks first)
+  // Ordered by lowest Max PF (total season points) - lowest picks first
   const nonPlayoffTeams = rosters
     .filter(r => !playoffRosterIds.has(r.roster_id))
     .map(r => ({
       roster_id: r.roster_id,
       team: getTeamName(r.roster_id, rosters, users),
-      max_points: maxScores[r.roster_id] || 0,
-      total_points: r.settings.fpts + (r.settings.fpts_decimal || 0) / 100,
+      max_pf: maxPF[r.roster_id] || 0,
       wins: r.settings.wins,
       losses: r.settings.losses
     }))
-    .sort((a, b) => a.max_points - b.max_points); // Ascending - lowest max picks first
+    .sort((a, b) => a.max_pf - b.max_pf); // Ascending - lowest Max PF picks first
 
   let draftPosition = 1;
   for (const team of nonPlayoffTeams) {
@@ -321,8 +312,7 @@ async function calculateDraftOrder() {
       current_owner_id: currentOwner,
       current_owner: getTeamName(currentOwner, rosters, users),
       is_traded: isTraded,
-      max_points: team.max_points,
-      total_points: team.total_points,
+      max_pf: team.max_pf,
       wins: team.wins,
       losses: team.losses,
       playoff_finish: null,
@@ -337,8 +327,7 @@ async function calculateDraftOrder() {
     .map(r => ({
       roster_id: r.roster_id,
       team: getTeamName(r.roster_id, rosters, users),
-      max_points: maxScores[r.roster_id] || 0,
-      total_points: r.settings.fpts + (r.settings.fpts_decimal || 0) / 100,
+      max_pf: maxPF[r.roster_id] || 0,
       wins: r.settings.wins,
       losses: r.settings.losses,
       playoff_finish: playoffFinishes[r.roster_id] || 999
@@ -358,8 +347,7 @@ async function calculateDraftOrder() {
       current_owner_id: currentOwner,
       current_owner: getTeamName(currentOwner, rosters, users),
       is_traded: isTraded,
-      max_points: team.max_points,
-      total_points: team.total_points,
+      max_pf: team.max_pf,
       wins: team.wins,
       losses: team.losses,
       playoff_finish: team.playoff_finish,
