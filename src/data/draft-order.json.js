@@ -1,4 +1,4 @@
-// Data loader for next season draft order
+// Data loader for next season draft order and future picks
 // Draft order logic:
 // - Positions 1-6: Determined by playoff finish (champion picks last, etc.)
 // - Positions 7+: Non-playoff teams ordered by reverse max points for (lowest max picks earliest)
@@ -56,13 +56,12 @@ async function fetchTransactions(leagueId, week) {
   return await response.json();
 }
 
-// Fetch all trades from the current season to find traded picks
-async function fetchTradedPicksFromTransactions(league) {
+// Fetch all trades from current and previous seasons to find all traded picks
+async function fetchAllTradedPicks(league) {
   const currentWeek = league.settings.leg || 18;
-  const nextSeason = parseInt(league.season) + 1;
-  const tradedPicks = [];
+  const allTradedPicks = [];
 
-  // Fetch transactions for all weeks
+  // Fetch from current season
   for (let week = 1; week <= currentWeek; week++) {
     try {
       const transactions = await fetchTransactions(league.league_id, week);
@@ -70,11 +69,7 @@ async function fetchTradedPicksFromTransactions(league) {
 
       for (const trade of trades) {
         if (trade.draft_picks && trade.draft_picks.length > 0) {
-          // Filter for next season's picks
-          const nextSeasonPicks = trade.draft_picks.filter(pick =>
-            pick.season === String(nextSeason) || pick.season === nextSeason
-          );
-          tradedPicks.push(...nextSeasonPicks);
+          allTradedPicks.push(...trade.draft_picks);
         }
       }
     } catch (error) {
@@ -82,29 +77,68 @@ async function fetchTradedPicksFromTransactions(league) {
     }
   }
 
-  return tradedPicks;
+  // Also fetch from previous league if exists (picks may have been traded in prior seasons)
+  if (league.previous_league_id) {
+    try {
+      const prevLeagueResponse = await fetch(`https://api.sleeper.app/v1/league/${league.previous_league_id}`);
+      if (prevLeagueResponse.ok) {
+        const prevLeague = await prevLeagueResponse.json();
+        const prevWeek = prevLeague.settings?.leg || 18;
+
+        for (let week = 1; week <= prevWeek; week++) {
+          try {
+            const transactions = await fetchTransactions(prevLeague.league_id, week);
+            const trades = transactions.filter(t => t.type === 'trade');
+
+            for (const trade of trades) {
+              if (trade.draft_picks && trade.draft_picks.length > 0) {
+                allTradedPicks.push(...trade.draft_picks);
+              }
+            }
+          } catch (error) {
+            // Continue on error
+          }
+        }
+      }
+    } catch (error) {
+      // Continue on error
+    }
+  }
+
+  return allTradedPicks;
 }
 
-// Build a map of pick ownership after all trades
-// Key: "originalRosterId-round", Value: currentOwnerId
-function buildPickOwnershipMap(tradedPicks, rosters) {
+// Build a map of pick ownership after all trades for all future seasons
+// Key: "season-originalRosterId-round", Value: currentOwnerId
+function buildAllPicksOwnershipMap(tradedPicks, rosters, currentSeason, futureYears = 3) {
   const ownershipMap = {};
+  const seasons = [];
 
-  // Initialize with original owners
-  for (const roster of rosters) {
-    // Assuming up to 5 rounds
-    for (let round = 1; round <= 5; round++) {
-      ownershipMap[`${roster.roster_id}-${round}`] = roster.roster_id;
+  // Track picks for next N years
+  for (let i = 1; i <= futureYears; i++) {
+    seasons.push(currentSeason + i);
+  }
+
+  // Initialize with original owners for all seasons and rounds
+  for (const season of seasons) {
+    for (const roster of rosters) {
+      // Assuming up to 5 rounds
+      for (let round = 1; round <= 5; round++) {
+        ownershipMap[`${season}-${roster.roster_id}-${round}`] = roster.roster_id;
+      }
     }
   }
 
   // Apply trades in order (trades are already chronological from the API)
   for (const pick of tradedPicks) {
-    const key = `${pick.roster_id}-${pick.round}`;
-    ownershipMap[key] = pick.owner_id;
+    const pickSeason = parseInt(pick.season);
+    if (seasons.includes(pickSeason)) {
+      const key = `${pickSeason}-${pick.roster_id}-${pick.round}`;
+      ownershipMap[key] = pick.owner_id;
+    }
   }
 
-  return ownershipMap;
+  return { ownershipMap, seasons };
 }
 
 // Determine playoff finish positions from bracket
@@ -217,20 +251,35 @@ function getTeamName(rosterId, rosters, users) {
 async function calculateDraftOrder() {
   const league = await fetchLeague();
 
-  const [rosters, users, bracket, matchups, tradedPicks] = await Promise.all([
+  const [rosters, users, bracket, matchups, allTradedPicks] = await Promise.all([
     fetchRosters(),
     fetchUsers(),
     fetchWinnersBracket(),
     fetchMatchups(league),
-    fetchTradedPicksFromTransactions(league)
+    fetchAllTradedPicks(league)
   ]);
 
   const playoffTeamCount = league.settings.playoff_teams || 6;
   const totalTeams = rosters.length;
-  const nextSeason = parseInt(league.season) + 1;
+  const currentSeason = parseInt(league.season);
+  const nextSeason = currentSeason + 1;
 
-  // Build pick ownership map
-  const pickOwnershipMap = buildPickOwnershipMap(tradedPicks, rosters);
+  // Build pick ownership map for all future seasons
+  const { ownershipMap, seasons: futureSeasons } = buildAllPicksOwnershipMap(
+    allTradedPicks,
+    rosters,
+    currentSeason,
+    3 // Track 3 years into the future
+  );
+
+  // Build next season pick ownership map (for draft order)
+  const nextSeasonPickMap = {};
+  for (const roster of rosters) {
+    for (let round = 1; round <= 5; round++) {
+      const key = `${nextSeason}-${roster.roster_id}-${round}`;
+      nextSeasonPickMap[`${roster.roster_id}-${round}`] = ownershipMap[key];
+    }
+  }
 
   // Determine playoff finishes
   const playoffFinishes = determinePlayoffFinishes(bracket, playoffTeamCount);
@@ -262,7 +311,7 @@ async function calculateDraftOrder() {
   for (const team of nonPlayoffTeams) {
     // Check who owns this pick (round 1)
     const originalOwner = team.roster_id;
-    const currentOwner = pickOwnershipMap[`${originalOwner}-1`] || originalOwner;
+    const currentOwner = nextSeasonPickMap[`${originalOwner}-1`] || originalOwner;
     const isTraded = currentOwner !== originalOwner;
 
     draftOrder.push({
@@ -299,7 +348,7 @@ async function calculateDraftOrder() {
   for (const team of playoffTeamsData) {
     // Check who owns this pick (round 1)
     const originalOwner = team.roster_id;
-    const currentOwner = pickOwnershipMap[`${originalOwner}-1`] || originalOwner;
+    const currentOwner = nextSeasonPickMap[`${originalOwner}-1`] || originalOwner;
     const isTraded = currentOwner !== originalOwner;
 
     draftOrder.push({
@@ -318,7 +367,7 @@ async function calculateDraftOrder() {
     });
   }
 
-  // Build picks by owner (for the summary view)
+  // Build picks by owner for next season (for the summary view)
   const picksByOwner = {};
   for (const roster of rosters) {
     const ownerName = getTeamName(roster.roster_id, rosters, users);
@@ -344,17 +393,89 @@ async function calculateDraftOrder() {
     }
   }
 
-  // Count traded picks
+  // Build future picks by owner (all seasons, all rounds)
+  const futurePicksByOwner = rosters.map(roster => {
+    const ownerName = getTeamName(roster.roster_id, rosters, users);
+    const picksBySeason = {};
+
+    for (const season of futureSeasons) {
+      picksBySeason[season] = {
+        own: [],
+        acquired: [],
+        traded_away: []
+      };
+
+      for (let round = 1; round <= 5; round++) {
+        const key = `${season}-${roster.roster_id}-${round}`;
+        const currentOwner = ownershipMap[key];
+
+        if (currentOwner === roster.roster_id) {
+          // Still owns their own pick
+          picksBySeason[season].own.push({ round });
+        } else {
+          // Traded away
+          picksBySeason[season].traded_away.push({
+            round,
+            to_team: getTeamName(currentOwner, rosters, users),
+            to_roster_id: currentOwner
+          });
+        }
+      }
+
+      // Find acquired picks (picks from other teams that this owner now has)
+      for (const otherRoster of rosters) {
+        if (otherRoster.roster_id === roster.roster_id) continue;
+
+        for (let round = 1; round <= 5; round++) {
+          const key = `${season}-${otherRoster.roster_id}-${round}`;
+          const currentOwner = ownershipMap[key];
+
+          if (currentOwner === roster.roster_id) {
+            picksBySeason[season].acquired.push({
+              round,
+              from_team: getTeamName(otherRoster.roster_id, rosters, users),
+              from_roster_id: otherRoster.roster_id
+            });
+          }
+        }
+      }
+    }
+
+    // Calculate totals
+    let totalPicks = 0;
+    let totalTraded = 0;
+    let totalAcquired = 0;
+
+    for (const season of futureSeasons) {
+      totalPicks += picksBySeason[season].own.length + picksBySeason[season].acquired.length;
+      totalTraded += picksBySeason[season].traded_away.length;
+      totalAcquired += picksBySeason[season].acquired.length;
+    }
+
+    return {
+      team: ownerName,
+      roster_id: roster.roster_id,
+      picks_by_season: picksBySeason,
+      total_picks: totalPicks,
+      total_traded_away: totalTraded,
+      total_acquired: totalAcquired,
+      net_picks: totalAcquired - totalTraded
+    };
+  }).sort((a, b) => b.total_picks - a.total_picks);
+
+  // Count traded picks for next season
   const tradedPickCount = draftOrder.filter(p => p.is_traded).length;
 
   return {
     season: league.season,
     next_season: nextSeason,
+    future_seasons: futureSeasons,
     total_teams: totalTeams,
     playoff_teams: playoffTeamCount,
     traded_pick_count: tradedPickCount,
     draft_order: draftOrder,
     picks_by_owner: Object.values(picksByOwner),
+    future_picks_by_owner: futurePicksByOwner,
     league_name: league.name
   };
 }

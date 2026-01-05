@@ -101,7 +101,129 @@ display(html`
 `);
 ```
 
-## Picks by Owner
+## Future Draft Picks by Owner
+
+```js
+const futureSeasons = draftOrderData.future_seasons;
+const futurePicksByOwner = draftOrderData.future_picks_by_owner;
+
+// Helper to format picks for a season
+function formatPicksForSeason(picks, season) {
+  const own = picks.picks_by_season[season]?.own || [];
+  const acquired = picks.picks_by_season[season]?.acquired || [];
+  const tradedAway = picks.picks_by_season[season]?.traded_away || [];
+
+  const allPicks = [
+    ...own.map(p => ({ round: p.round, type: 'own', label: `Rd ${p.round}` })),
+    ...acquired.map(p => ({ round: p.round, type: 'acquired', label: `Rd ${p.round} (${p.from_team})`, from: p.from_team }))
+  ].sort((a, b) => a.round - b.round);
+
+  return { allPicks, tradedAway };
+}
+
+display(html`
+  <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
+    Complete overview of each team's draft capital for the next ${futureSeasons.length} seasons. Use this to quickly identify trade partners.
+  </p>
+`);
+```
+
+```js
+display(html`
+  <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <thead>
+        <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
+          <th style="padding: 12px; text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--theme-background-alt); z-index: 1;">Team</th>
+          ${futureSeasons.map(season => html`
+            <th style="padding: 12px; text-align: center; font-weight: 600; min-width: 200px;">${season}</th>
+          `)}
+          <th style="padding: 12px; text-align: center; font-weight: 600;">Total</th>
+          <th style="padding: 12px; text-align: center; font-weight: 600;">Net</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${futurePicksByOwner.map((owner, idx) => html`
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: ${idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)'};">
+            <td style="padding: 12px; font-weight: 600; position: sticky; left: 0; background: ${idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)'}; z-index: 1;">
+              ${owner.team}
+            </td>
+            ${futureSeasons.map(season => {
+              const { allPicks, tradedAway } = formatPicksForSeason(owner, season);
+              return html`
+                <td style="padding: 12px; text-align: left;">
+                  <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                    ${allPicks.length > 0 ? allPicks.map(pick => html`
+                      <span style="
+                        display: inline-block;
+                        padding: 2px 8px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        background: ${pick.type === 'acquired' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(34, 197, 94, 0.2)'};
+                        color: ${pick.type === 'acquired' ? '#f59e0b' : '#22c55e'};
+                        border: 1px solid ${pick.type === 'acquired' ? 'rgba(245, 158, 11, 0.3)' : 'rgba(34, 197, 94, 0.3)'};
+                      " title="${pick.type === 'acquired' ? `Acquired from ${pick.from}` : 'Own pick'}">
+                        ${pick.label}
+                      </span>
+                    `) : html`<span style="color: var(--theme-foreground-muted);">—</span>`}
+                  </div>
+                  ${tradedAway.length > 0 ? html`
+                    <div style="margin-top: 4px; font-size: 11px; color: #ef4444;">
+                      Traded: ${tradedAway.map(p => `Rd ${p.round} → ${p.to_team}`).join(', ')}
+                    </div>
+                  ` : ''}
+                </td>
+              `;
+            })}
+            <td style="padding: 12px; text-align: center; font-weight: 600; font-size: 16px; color: var(--theme-accent);">
+              ${owner.total_picks}
+            </td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; font-size: 16px; color: ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
+              ${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}
+            </td>
+          </tr>
+        `)}
+      </tbody>
+    </table>
+  </div>
+`);
+```
+
+## Draft Capital Summary
+
+```js
+display(html`
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 30px 0;">
+    ${futurePicksByOwner.slice(0, 6).map(owner => html`
+      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-accent)'};">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="font-size: 16px; font-weight: 600;">${owner.team}</div>
+          <div style="font-size: 24px; font-weight: bold; color: var(--theme-accent);">${owner.total_picks}</div>
+        </div>
+        <div style="display: flex; gap: 16px; font-size: 13px;">
+          <div>
+            <span style="color: var(--theme-foreground-muted);">Acquired:</span>
+            <span style="color: #f59e0b; font-weight: 600;"> ${owner.total_acquired}</span>
+          </div>
+          <div>
+            <span style="color: var(--theme-foreground-muted);">Traded:</span>
+            <span style="color: #ef4444; font-weight: 600;"> ${owner.total_traded_away}</span>
+          </div>
+          <div>
+            <span style="color: var(--theme-foreground-muted);">Net:</span>
+            <span style="color: ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'}; font-weight: 600;">
+              ${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}
+            </span>
+          </div>
+        </div>
+      </div>
+    `)}
+  </div>
+`);
+```
+
+## Picks by Owner (${draftOrderData.next_season} Round 1)
 
 ```js
 const picksByOwner = draftOrderData.picks_by_owner
@@ -114,7 +236,7 @@ const picksByOwner = draftOrderData.picks_by_owner
 
 display(html`
   <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Summary of first-round pick ownership after trades.
+    Summary of first-round pick ownership for the upcoming ${draftOrderData.next_season} draft.
   </p>
 `);
 
@@ -267,11 +389,19 @@ display(Plot.plot({
 ---
 
 <div style="margin-top: 40px; padding: 20px; background: var(--theme-background-alt); border-radius: 8px;">
-  <h3 style="margin-top: 0;">Draft Order Summary</h3>
-  <ul style="line-height: 1.8;">
-    <li><strong>Anti-Tanking Measure:</strong> Using max weekly score instead of total points prevents teams from intentionally losing</li>
-    <li><strong>Playoff Advantage:</strong> Making the playoffs means picking later, rewarding competitive success</li>
-    <li><strong>Champion Penalty:</strong> The championship winner picks last, maintaining league parity</li>
-    <li><strong style="color: #f59e0b;">Traded Picks:</strong> ${draftOrderData.traded_pick_count} pick(s) have changed hands - shown with current owner</li>
-  </ul>
+  <h3 style="margin-top: 0;">Draft Capital Legend</h3>
+  <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 12px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="display: inline-block; width: 16px; height: 16px; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px;"></span>
+      <span>Own Pick</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="display: inline-block; width: 16px; height: 16px; background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 4px;"></span>
+      <span>Acquired via Trade</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="color: #ef4444;">Traded Away</span>
+      <span>- Pick sent to another team</span>
+    </div>
+  </div>
 </div>
