@@ -174,7 +174,7 @@ const displayRounds = rounds.slice(0, 3);
 
 display(html`
   <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+    <table style="min-width: 700px; border-collapse: collapse; font-size: 14px; table-layout: fixed;">
       <thead>
         <tr style="background: var(--theme-background-alt);">
           <th rowspan="2" style="padding: 12px; text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--theme-background-alt); z-index: 2; border-bottom: 2px solid var(--theme-accent); width: 120px;">TEAM</th>
