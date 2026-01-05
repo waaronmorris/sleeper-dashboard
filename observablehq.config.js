@@ -18,7 +18,8 @@ export default {
     {name: "Trade Analysis", path: "/trade-analysis"},
     {name: "Trade Finder", path: "/trade-finder"},
     {name: "Ring of Honor", path: "/ring-of-honor"},
-    {name: "Atrocity", path: "/atrocity"}
+    {name: "Atrocity", path: "/atrocity"},
+    {name: "Next Season", path: "/next-season"}
   ],
   theme: "dark",
   style: "observablehq.css",
@@ -376,6 +377,7 @@ export default {
           <a href="./trade-finder" class="nav-link">Trade Finder</a>
           <a href="./ring-of-honor" class="nav-link">Ring of Honor</a>
           <a href="./atrocity" class="nav-link">Atrocity</a>
+          <a href="./next-season" class="nav-link">Next Season</a>
         \`;
 
         // Create overlay
