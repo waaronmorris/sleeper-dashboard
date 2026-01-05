@@ -186,7 +186,7 @@ display(html`
         </tr>
         <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
           ${displayRounds.map((round, rIdx) => futureSeasons.map((season, sIdx) => html`
-            <th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 11px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 38px;">${String(season).slice(-2)}</th>
+            <th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 42px;">${season}</th>
           `))}
         </tr>
       </thead>
