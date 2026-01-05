@@ -174,7 +174,7 @@ const displayRounds = rounds.slice(0, 3);
 
 display(html`
   <div style="overflow-x: auto;">
-    <table style="min-width: 700px; border-collapse: collapse; font-size: 14px; table-layout: fixed;">
+    <table style="min-width: 800px; width: max-content; border-collapse: collapse; font-size: 14px;">
       <thead>
         <tr style="background: var(--theme-background-alt);">
           <th rowspan="2" style="padding: 12px; text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--theme-background-alt); z-index: 2; border-bottom: 2px solid var(--theme-accent); width: 120px;">TEAM</th>
@@ -186,7 +186,7 @@ display(html`
         </tr>
         <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
           ${displayRounds.map(round => futureSeasons.map((season, sIdx) => html`
-            <th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 42px;">${season}</th>
+            <th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 50px; min-width: 50px;">${season}</th>
           `)).flat()}
         </tr>
       </thead>
@@ -203,7 +203,7 @@ display(html`
                 const total = data.own + data.acquired;
                 const hasAcquired = data.acquired > 0;
                 return html`
-                  <td style="padding: 6px 2px; text-align: center; ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''}">
+                  <td style="padding: 6px 2px; text-align: center; width: 50px; min-width: 50px; ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''}">
                     <span style="
                       display: inline-block;
                       min-width: 26px;
