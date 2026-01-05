@@ -2,6 +2,7 @@
 // Draft order logic:
 // - Positions 1-6: Determined by playoff finish (champion picks last, etc.)
 // - Positions 7+: Non-playoff teams ordered by reverse max points for (lowest max picks earliest)
+// - Traded picks are tracked and shown with current owner
 
 const LEAGUE_ID = process.env.SLEEPER_LEAGUE_ID;
 
@@ -47,9 +48,72 @@ async function fetchMatchups(league) {
   return allMatchups;
 }
 
+async function fetchTransactions(leagueId, week) {
+  const response = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/transactions/${week}`);
+  if (!response.ok) {
+    return [];
+  }
+  return await response.json();
+}
+
+// Fetch all trades from the current season to find traded picks
+async function fetchTradedPicksFromTransactions(league) {
+  const currentWeek = league.settings.leg || 18;
+  const nextSeason = parseInt(league.season) + 1;
+  const tradedPicks = [];
+
+  // Fetch transactions for all weeks
+  for (let week = 1; week <= currentWeek; week++) {
+    try {
+      const transactions = await fetchTransactions(league.league_id, week);
+      const trades = transactions.filter(t => t.type === 'trade');
+
+      for (const trade of trades) {
+        if (trade.draft_picks && trade.draft_picks.length > 0) {
+          // Filter for next season's picks
+          const nextSeasonPicks = trade.draft_picks.filter(pick =>
+            pick.season === String(nextSeason) || pick.season === nextSeason
+          );
+          tradedPicks.push(...nextSeasonPicks);
+        }
+      }
+    } catch (error) {
+      // Continue on error
+    }
+  }
+
+  return tradedPicks;
+}
+
+// Build a map of pick ownership after all trades
+// Key: "originalRosterId-round", Value: currentOwnerId
+function buildPickOwnershipMap(tradedPicks, rosters) {
+  const ownershipMap = {};
+
+  // Initialize with original owners
+  for (const roster of rosters) {
+    // Assuming up to 5 rounds
+    for (let round = 1; round <= 5; round++) {
+      ownershipMap[`${roster.roster_id}-${round}`] = roster.roster_id;
+    }
+  }
+
+  // Apply trades in order (trades are already chronological from the API)
+  for (const pick of tradedPicks) {
+    const key = `${pick.roster_id}-${pick.round}`;
+    ownershipMap[key] = pick.owner_id;
+  }
+
+  return ownershipMap;
+}
+
 // Determine playoff finish positions from bracket
 function determinePlayoffFinishes(bracket, playoffTeams) {
   const finishes = {};
+
+  if (!bracket || bracket.length === 0) {
+    return finishes;
+  }
 
   // Find the championship game (highest round)
   const maxRound = Math.max(...bracket.map(m => m.r));
@@ -151,19 +215,25 @@ function getTeamName(rosterId, rosters, users) {
 }
 
 async function calculateDraftOrder() {
-  const [league, rosters, users, bracket, matchups] = await Promise.all([
-    fetchLeague(),
+  const league = await fetchLeague();
+
+  const [rosters, users, bracket, matchups, tradedPicks] = await Promise.all([
     fetchRosters(),
     fetchUsers(),
     fetchWinnersBracket(),
-    fetchLeague().then(l => fetchMatchups(l))
+    fetchMatchups(league),
+    fetchTradedPicksFromTransactions(league)
   ]);
 
-  const playoffTeams = league.settings.playoff_teams || 6;
+  const playoffTeamCount = league.settings.playoff_teams || 6;
   const totalTeams = rosters.length;
+  const nextSeason = parseInt(league.season) + 1;
+
+  // Build pick ownership map
+  const pickOwnershipMap = buildPickOwnershipMap(tradedPicks, rosters);
 
   // Determine playoff finishes
-  const playoffFinishes = determinePlayoffFinishes(bracket, playoffTeams);
+  const playoffFinishes = determinePlayoffFinishes(bracket, playoffTeamCount);
 
   // Get all playoff roster IDs
   const playoffRosterIds = new Set(Object.keys(playoffFinishes).map(Number));
@@ -174,7 +244,7 @@ async function calculateDraftOrder() {
   // Build draft order
   const draftOrder = [];
 
-  // Non-playoff teams first (picks 1 to totalTeams - playoffTeams)
+  // Non-playoff teams first (picks 1 to totalTeams - playoffTeamCount)
   // Ordered by reverse max points (lowest max picks first)
   const nonPlayoffTeams = rosters
     .filter(r => !playoffRosterIds.has(r.roster_id))
@@ -190,10 +260,18 @@ async function calculateDraftOrder() {
 
   let draftPosition = 1;
   for (const team of nonPlayoffTeams) {
+    // Check who owns this pick (round 1)
+    const originalOwner = team.roster_id;
+    const currentOwner = pickOwnershipMap[`${originalOwner}-1`] || originalOwner;
+    const isTraded = currentOwner !== originalOwner;
+
     draftOrder.push({
       draft_position: draftPosition++,
-      roster_id: team.roster_id,
-      team: team.team,
+      original_roster_id: originalOwner,
+      original_team: team.team,
+      current_owner_id: currentOwner,
+      current_owner: getTeamName(currentOwner, rosters, users),
+      is_traded: isTraded,
       max_points: team.max_points,
       total_points: team.total_points,
       wins: team.wins,
@@ -203,7 +281,7 @@ async function calculateDraftOrder() {
     });
   }
 
-  // Playoff teams (picks from totalTeams - playoffTeams + 1 to totalTeams)
+  // Playoff teams (picks from totalTeams - playoffTeamCount + 1 to totalTeams)
   // Ordered by playoff finish (worst finish picks first among playoff teams)
   const playoffTeamsData = rosters
     .filter(r => playoffRosterIds.has(r.roster_id))
@@ -219,10 +297,18 @@ async function calculateDraftOrder() {
     .sort((a, b) => b.playoff_finish - a.playoff_finish); // Descending - worst finish picks first
 
   for (const team of playoffTeamsData) {
+    // Check who owns this pick (round 1)
+    const originalOwner = team.roster_id;
+    const currentOwner = pickOwnershipMap[`${originalOwner}-1`] || originalOwner;
+    const isTraded = currentOwner !== originalOwner;
+
     draftOrder.push({
       draft_position: draftPosition++,
-      roster_id: team.roster_id,
-      team: team.team,
+      original_roster_id: originalOwner,
+      original_team: team.team,
+      current_owner_id: currentOwner,
+      current_owner: getTeamName(currentOwner, rosters, users),
+      is_traded: isTraded,
       max_points: team.max_points,
       total_points: team.total_points,
       wins: team.wins,
@@ -232,12 +318,43 @@ async function calculateDraftOrder() {
     });
   }
 
+  // Build picks by owner (for the summary view)
+  const picksByOwner = {};
+  for (const roster of rosters) {
+    const ownerName = getTeamName(roster.roster_id, rosters, users);
+    picksByOwner[roster.roster_id] = {
+      team: ownerName,
+      roster_id: roster.roster_id,
+      own_picks: [],
+      acquired_picks: []
+    };
+  }
+
+  for (const pick of draftOrder) {
+    if (pick.is_traded) {
+      // This pick was traded away from original owner
+      picksByOwner[pick.current_owner_id].acquired_picks.push({
+        draft_position: pick.draft_position,
+        from_team: pick.original_team
+      });
+    } else {
+      picksByOwner[pick.original_roster_id].own_picks.push({
+        draft_position: pick.draft_position
+      });
+    }
+  }
+
+  // Count traded picks
+  const tradedPickCount = draftOrder.filter(p => p.is_traded).length;
+
   return {
     season: league.season,
-    next_season: parseInt(league.season) + 1,
+    next_season: nextSeason,
     total_teams: totalTeams,
-    playoff_teams: playoffTeams,
+    playoff_teams: playoffTeamCount,
+    traded_pick_count: tradedPickCount,
     draft_order: draftOrder,
+    picks_by_owner: Object.values(picksByOwner),
     league_name: league.name
   };
 }
