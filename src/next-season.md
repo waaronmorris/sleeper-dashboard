@@ -232,7 +232,10 @@ const tableHtml = `
   </div>
 `;
 
-display(html([tableHtml]));
+// Create a container and set innerHTML to render the raw HTML string
+const tableContainer = document.createElement('div');
+tableContainer.innerHTML = tableHtml;
+display(tableContainer);
 ```
 
 ## Draft Capital Summary
