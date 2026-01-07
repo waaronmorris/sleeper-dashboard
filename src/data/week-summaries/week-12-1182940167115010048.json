@@ -1,0 +1,46 @@
+{
+  "week": 12,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "persona": "Dan Patrick",
+  "summary": "Week 12 delivered more zeroes than a high school math test, and about as much joy for the teams involved. Let's start with the carnage: Tua Tagovailoa, Jordan Addison, Dalton Kincaid, Aaron Rodgers, Terrance Ferguson, Isaiah Williams, Trevor Etienne, and Jameson Williams all posted matching goose eggs. You can't stop them, you can only hope to contain them... at zero points, apparently. Meanwhile, Jahmyr Gibbs went absolutely *en fuego* with 49.9 points, which was more than Langland's entire team managed. When one running back outscores six starting roster spots, that's not a matchup—that's a public service announcement about roster construction.\n\nSpeaking of Langland, that 26.42-point disaster against drobs deserves its own exhibit at the Fantasy Football Hall of Shame. Chimere Dike led the team with 12.9 points, which is like being the tallest building in Topeka—technically impressive until you realize where you are. Josh Allen chipped in 8.1 points, proving that even elite quarterbacks occasionally remember they're mortal. The #12-ranked team scoring 26 points isn't trending down, folks—that's free-falling with style.\n\nBut the real fireworks came from mastab24's 184.62-point thermonuclear explosion against Tishathefish. Jalen Hurts dropped 30.9, Emanuel Wilson added 25.5, and here's the kicker: their \"duds\" were DK Metcalf's 11.9 and Quinshon Judkins' 16.7. When your worst performances would be season highlights for half the league, you're not just winning—you're making a statement. Tishathefish countered with Jaxon Smith-Njigba's 33.1 and Amon-Ra St. Brown's 25.4, which would've been *en fuego* in literally any other matchup. Instead, they lost by 97.24 points. That's not a bad beat; that's getting lapped.\n\nThe power rankings tell the story: cosmohouck sits at #1 with a 94.2 rating while Langland languishes at #12 with 17.4, which is less a power ranking and more a cry for help. Shogunation's riding a hot streak, tr4sh and Seananigans are colder than a quarterback sneak in January, and somewhere, someone started Tyrod Taylor at quarterback and actually felt good about his 12.8 points. Week 12: where zeroes multiplied faster than excuses, and the only thing more inflated than mastab24's score was everyone else's sense of regret.",
+  "generatedAt": "2026-01-07T10:12:01.158Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 74.54,
+      "team2": "Langland",
+      "team2Score": 26.42
+    },
+    {
+      "team1": "mastab24",
+      "team1Score": 184.62,
+      "team2": "Tishathefish",
+      "team2Score": 87.38
+    },
+    {
+      "team1": "mjgrana",
+      "team1Score": 104.76,
+      "team2": "TophTT",
+      "team2Score": 71.28
+    },
+    {
+      "team1": "powerperson",
+      "team1Score": 86.74,
+      "team2": "cosmohouck",
+      "team2Score": 108.68
+    },
+    {
+      "team1": "PrinceofPizza",
+      "team1Score": 97.4,
+      "team2": "Seananigans",
+      "team2Score": 82.34
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 158.92,
+      "team2": "tr4sh",
+      "team2Score": 76.18
+    }
+  ]
+}

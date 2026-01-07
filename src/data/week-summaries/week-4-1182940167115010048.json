@@ -1,0 +1,46 @@
+{
+  "week": 4,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "persona": "Rich Eisen",
+  "summary": "Week 4 was like watching \"The Empire Strikes Back\" - the favorites got absolutely SMOKED while the underdogs rose up with vengeance! Mastab24 just delivered the most devastating beatdown since Thanos snapped his fingers, dropping a thermonuclear 149.68 on poor Langland's 73.6. That's a 76-point margin, folks! Josh Jacobs went full Terminator mode with 29.7 points while DK Metcalf added 21.1, and honestly, Langland showing up with Dont'e Thornton and Ben Sinnott combining for a crisp ZERO points was like bringing a knife to a lightsaber fight. Spencer Rattler with 13.9? That's your second-best player? This wasn't a fantasy matchup - it was a public service announcement about the importance of roster depth!\n\nMeanwhile, TophTT pulled off the heist of the century with a 112.26-108.64 squeaker over tr4sh in what I'm calling \"Ocean's 3.62\" - the slimmest margin of victory this week! Jordan Love's 26.3 and Omarion Hampton's 25.0 barely edged out Justin Fields' 27.1 for tr4sh, but here's the plot twist: James Conner laid a complete GOOSE EGG for tr4sh. Zero points! That's like showing up to the Death Star trench run and forgetting your proton torpedoes. Parker Washington going NEGATIVE for TophTT with -0.1 points almost cost them the game - that's actually impressive in its own terrible way!\n\nLet's talk about \"The Prince\" - PrinceofPizza dethroning the #1-ranked cosmohouck 139.68 to 120.68! Ashton Jeanty's 32.5 points was the week's high score, and when you pair that with Bucky Irving's 23.0, you've got yourself a running back tandem that would make Butch Cassidy and the Sundance Kid jealous. Cosmohouck's Malik Nabers managing just 3.0 points was the kind of disappearing act David Copperfield would envy, and when your #1-ranked team drops two straight, that's not a cold streak - that's the Titanic hitting the iceberg!\n\nI'm giving Shogunation the nickname \"The Derrick Henry Disaster\" after King Henry managed just 6.8 points in a LOSS to mjgrana, who rode George Pickens' 29.4 and Christian McCaffrey's 23.1 to victory. When Derrick Henry is your dud and you're ranked #3 in the league, that's like Batman forgetting to bring his utility belt. And can we talk about the bench management catastrophes? Mastab24 left 25.1 points chilling on the bench while A.J. Brown delivered a pathetic 1.7 - that's like having Thor's hammer in your locker room and bringing a plastic toy instead! Shogunation benched someone worth 19.2 more points than whoever they started, which in a 25.86-point loss is the fantasy football equivalent of leaving the winning lottery ticket in your other pants!",
+  "generatedAt": "2026-01-07T10:09:09.706Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 108.44,
+      "team2": "Tishathefish",
+      "team2Score": 93.3
+    },
+    {
+      "team1": "mastab24",
+      "team1Score": 149.68,
+      "team2": "Langland",
+      "team2Score": 73.6
+    },
+    {
+      "team1": "powerperson",
+      "team1Score": 93.12,
+      "team2": "Seananigans",
+      "team2Score": 122.96
+    },
+    {
+      "team1": "PrinceofPizza",
+      "team1Score": 139.68,
+      "team2": "cosmohouck",
+      "team2Score": 120.68
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 106.2,
+      "team2": "mjgrana",
+      "team2Score": 132.06
+    },
+    {
+      "team1": "tr4sh",
+      "team1Score": 108.64,
+      "team2": "TophTT",
+      "team2Score": 112.26
+    }
+  ]
+}

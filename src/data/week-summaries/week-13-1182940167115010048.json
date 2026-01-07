@@ -1,0 +1,46 @@
+{
+  "week": 13,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "persona": "Dan Patrick",
+  "summary": "Well, well, well. Week 13 brought us the kind of carnage that makes you wonder if some managers are actually trying to lose. Let me start with the blowouts—and folks, these weren't just victories, they were public service announcements. Drobs hung 130.38 on powerperson's 56.44, winning by nearly 74 points. Patrick Mahomes was en fuego with 29.4 points, and Jameson Williams added 23.4 for good measure. Meanwhile, powerperson trotted out Trevor Etienne's 0.9 points and Khalil Shakir's 1.0. You can't stop drobs, you can only hope to contain him... and powerperson didn't even try. But the real massacre? Cosmohouck's 129.8 demolition of Langland's 42.02—an 87.78-point beatdown that was less \"competitive football\" and more \"remember the Alamo.\" Bijan Robinson dropped 27.8 while Langland countered with Chimere Dike's *negative* 0.6 points. That's right, negative. Dike didn't just fail to show up, he actively cost you points. That's like ordering a pizza and having them steal your wallet.\n\nSpeaking of questionable decisions, let's talk about \"The Bench Warmer,\" also known as Tishathefish, who apparently thinks fantasy football is a game where you keep your best players safely on the sidelines. Amon-Ra St. Brown put up a goose egg, Pat Freiermuth matched it, and somehow Tishathefish still managed to leave points on the bench in multiple lineup slots. Lost to tr4sh 47.28 to 66.66—and yes, that's tr4sh with Tyrod Taylor at quarterback scoring 21.3 points. Tyrod Taylor! The man's been in the league since the Paleolithic Era, and he's still bailing out fantasy managers. Meanwhile, Justin Jefferson—you know, the guy you probably drafted in the first round—rewarded tr4sh with 1.4 points. That's the kind of performance that makes you question everything you know about football, fantasy, and whether the simulation is glitching.\n\nThe battle of the heavyweights gave us mastab24 edging Shogunation 157.74 to 133.26, which sounds close until you realize both teams scored enough to win literally any other matchup this week. A.J. Brown was absolutely en fuego with 30.2 points, and Rashee Rice added 25.4—that's 55.6 points from two receivers, which is more than Langland's entire team managed. Shogunation wasn't exactly slacking with Dak Prescott's 20.6 and D'Andre Swift's 20.3, but when you're facing a buzzsaw, sometimes you just become sawdust. This was like watching two heavyweight boxers throw haymakers for twelve rounds, except one guy's haymakers were slightly haymaker-ier. And PrinceofPizza—let's call him \"The Cardiac Kid\"—squeaked past mjgrana 132.78 to 118, riding Bryce Young's 22.5 points. Yes, Bryce Young. The same Bryce Young who's been written off more times than a tax deduction. He outscored Joe Burrow, which is either a sign of the apocalypse or just Week 13 in fantasy football.\n\nHere's the thing about this week: we've got cosmohouck sitting at #1 in the power rankings like a final boss, while Langland at #12 is basically the NPC who gives you a tutorial quest. The league average was 98.78 points, and six teams failed to crack that number—six teams on cold streaks, sliding into the playoffs like they're auditioning for a blooper reel. Mastab24 and Shogunation are heating up at exactly the right time, both on two-week hot streaks, while tr4sh, Seananigans, and Langland are colder than a Green Bay December. You can't stop entropy in fantasy football, you can only hope to contain it... and most of you aren't even doing that. See you next week, when we find out which managers remember they have rosters to set.",
+  "generatedAt": "2026-01-07T10:12:31.473Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 130.38,
+      "team2": "powerperson",
+      "team2Score": 56.44
+    },
+    {
+      "team1": "Langland",
+      "team1Score": 42.02,
+      "team2": "cosmohouck",
+      "team2Score": 129.8
+    },
+    {
+      "team1": "PrinceofPizza",
+      "team1Score": 132.78,
+      "team2": "mjgrana",
+      "team2Score": 118
+    },
+    {
+      "team1": "Seananigans",
+      "team1Score": 92.78,
+      "team2": "TophTT",
+      "team2Score": 78.2
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 133.26,
+      "team2": "mastab24",
+      "team2Score": 157.74
+    },
+    {
+      "team1": "tr4sh",
+      "team1Score": 66.66,
+      "team2": "Tishathefish",
+      "team2Score": 47.28
+    }
+  ]
+}

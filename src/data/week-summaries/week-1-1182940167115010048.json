@@ -1,0 +1,46 @@
+{
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "persona": "Scott Van Pelt",
+  "summary": "Look, I've seen some rough beats in my day, but tr4sh winning by 1.28 points while being ranked #10 against Shogunation's #3? That's the kind of thing that makes you want to throw your remote through the television. Shogunation put up 119.94 points—Derrick Henry rumbling for 28.7, Justin Herbert slinging it for 27.9—and still lost. That's not just a Bad Beat, folks. That's a *catastrophic* Bad Beat. Emeka Egbuka dropping 21.6 and Jayden Daniels adding 20.1 for tr4sh? Sometimes the fantasy gods just want to watch you suffer.\n\nAnd speaking of suffering, can we talk about \"The Flacco Faithful\" over there? Powerperson rolling out Joe Flacco for 12.2 points as their QB1 and Khalil Shakir as their leading receiver with 9.4? That's a lineup that screams \"I forgot to check my team before Sunday.\" They got absolutely demolished by cosmohouck, 111.2 to 43.28—a 67.92-point beatdown that should come with a wellness check. Meanwhile, cosmohouck is sitting pretty at #1 in the power rankings with Bijan Robinson and Chuba Hubbard combining for nearly 38 points. When your \"duds\" are Brian Thomas with 8.5 and Trey McBride with 9.1, you're not having duds—you're having a parade.\n\nThen there's \"The Goose Egg King\" mastab24, who somehow won despite starting Cade Otton and Xavier Worthy, who combined for a cool zero points. ZERO. Jalen Hurts and James Cook bailed them out with 43 combined points, but leaving 10.5 points on the bench with one lineup decision? That's the kind of thing that comes back to haunt you in Week 14 when you miss the playoffs by a game. Tishathefish didn't help themselves either—Isaac Guerendo and Rhamondre Stevenson combining for 3.7 points is basically waving the white flag before kickoff.\n\nBut my favorite storyline? Langland trotting out Roman Wilson and Terrance Ferguson, who combined for the same amount of points as my golf handicap: zero. Josh Allen threw up 38.8 points—an absolute monster performance—and it still wasn't enough because drobs had the Mahomes-Mayfield combo dealing for 48.6. Mark Andrews with 1.0 point? That's a tight end or a gas station rating, and honestly, I'm not sure which.\n\nHere's your Week 1 lesson, folks: It doesn't matter if you're ranked #2 in the power rankings like mjgrana when Ja'Marr Chase and Terry McLaurin combine for 7.3 points. The fantasy football gods are cruel, capricious, and they absolutely *love* a good Bad Beat. Welcome to the season—it only gets weirder from here.",
+  "generatedAt": "2026-01-07T10:08:01.846Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 79.1,
+      "team2": "Langland",
+      "team2Score": 67.62
+    },
+    {
+      "team1": "mastab24",
+      "team1Score": 94.08,
+      "team2": "Tishathefish",
+      "team2Score": 63.28
+    },
+    {
+      "team1": "mjgrana",
+      "team1Score": 97.32,
+      "team2": "TophTT",
+      "team2Score": 103.88
+    },
+    {
+      "team1": "powerperson",
+      "team1Score": 43.28,
+      "team2": "cosmohouck",
+      "team2Score": 111.2
+    },
+    {
+      "team1": "PrinceofPizza",
+      "team1Score": 115.98,
+      "team2": "Seananigans",
+      "team2Score": 81.62
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 119.94,
+      "team2": "tr4sh",
+      "team2Score": 121.22
+    }
+  ]
+}

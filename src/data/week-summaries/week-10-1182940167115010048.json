@@ -1,0 +1,46 @@
+{
+  "week": 10,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "persona": "Scott Van Pelt",
+  "summary": "Well, well, well. Week 10 gave us everything we love about fantasy football: absolute domination, catastrophic lineup decisions, and enough goose eggs to open a breakfast diner. Let's start with cosmohouck, who I'm officially dubbing \"The Executioner\" after putting up a league-record 171.9 points and beating mastab24 by nearly 97 points. That's not a Bad Beat—that's a public flogging. Jonathan Taylor went full video game mode with 48.1 points, and Matthew Stafford added 26.9 because apparently cosmohouck made a deal with the fantasy gods. Meanwhile, mastab24 watched A.J. Brown limp to 2.3 points and Courtland Sutton post 3.9. You know it's bad when your best player is Cade Otton and you're facing the fantasy equivalent of the '85 Bears.\n\nSpeaking of beatdowns, can we talk about mjgrana dropping 109.5 on Langland's 50.44? Langland—who I'm calling \"The Benchmaster\" for reasons we'll get to—started Josh Allen and still couldn't crack 51 points. Ray Davis and AJ Barner combined for 0.6 points, which is basically statistical proof that sometimes the football gods just hate you. Meanwhile, mjgrana trotted out Jaxson Dart and Baker Mayfield at quarterback like he's running a two-QB league in his mind, and they combined for 49.2 points. The cherry on top? DJ Moore and Garrett Wilson both goose-egged, and mjgrana STILL won by 59 points. That's the fantasy equivalent of winning with one hand tied behind your back.\n\nBut here's where it gets spicy—the lineup decisions. Powerperson left 19 points on the bench while losing by 9.8 to Tishathefish. That's a Bad Beat if I've ever seen one. Mastab24 benched 20.4 points in a week where he got steamrolled by nearly 100. And Langland? The Benchmaster left 17.3 points sitting there, collecting dust while his starters combined to look like a JV squad. You can't make this stuff up, folks. These are the decisions that haunt you at 2 AM when you're refreshing the waiver wire for the 47th time.\n\nThe week's other highlight: Seananigans riding Mac Jones and Jacoby Brissett—yes, THOSE quarterbacks—to 138.18 points and a 43-point victory. That's the kind of chaos that makes fantasy football beautiful. Meanwhile, tr4sh is now on a five-week cold streak despite having Justin Jefferson, who posted 5.7 points like he forgot he's supposed to be elite. PrinceofPizza got a vintage performance from De'Von Achane (37.5) but still lost because Bryce Young gave him 1.6 points at quarterback. Starting Bryce Young in Week 10 is the fantasy equivalent of bringing a spork to a steakhouse—technically you can try, but why would you?",
+  "generatedAt": "2026-01-07T10:11:22.075Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 80.02,
+      "team2": "TophTT",
+      "team2Score": 68.68
+    },
+    {
+      "team1": "Langland",
+      "team1Score": 50.44,
+      "team2": "mjgrana",
+      "team2Score": 109.5
+    },
+    {
+      "team1": "mastab24",
+      "team1Score": 75.24,
+      "team2": "cosmohouck",
+      "team2Score": 171.9
+    },
+    {
+      "team1": "powerperson",
+      "team1Score": 69.7,
+      "team2": "Tishathefish",
+      "team2Score": 79.5
+    },
+    {
+      "team1": "Seananigans",
+      "team1Score": 138.18,
+      "team2": "tr4sh",
+      "team2Score": 95.26
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 155.3,
+      "team2": "PrinceofPizza",
+      "team2Score": 127.56
+    }
+  ]
+}
