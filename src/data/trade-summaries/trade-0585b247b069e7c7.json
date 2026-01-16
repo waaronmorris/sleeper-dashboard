@@ -1,0 +1,131 @@
+{
+  "tradeId": "0585b247b069e7c7",
+  "week": 7,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "cosmohouck",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 17.9,
+        "powerRank": 12,
+        "lineupValueScore": 27.4,
+        "performanceScore": 6.1,
+        "positionalScore": 14.1,
+        "depthScore": 5.7,
+        "totalTeams": 12,
+        "totalRosterValue": 13219
+      },
+      "tradeImpact": {
+        "valueGained": 38,
+        "valueLost": 532,
+        "netValueChange": -494,
+        "estimatedPowerScoreChange": -0.5,
+        "playersGained": [
+          {
+            "name": "Isaiah Davis",
+            "value": 38
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Rico Dowdle",
+            "value": 532
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Isaiah Davis",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rico Dowdle",
+          "position": "RB",
+          "team": "CAR",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 93.2,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 48266
+      },
+      "tradeImpact": {
+        "valueGained": 532,
+        "valueLost": 38,
+        "netValueChange": 494,
+        "estimatedPowerScoreChange": 0.5,
+        "playersGained": [
+          {
+            "name": "Rico Dowdle",
+            "value": 532
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Isaiah Davis",
+            "value": 38
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Rico Dowdle",
+          "position": "RB",
+          "team": "CAR",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Isaiah Davis",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "Langland"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is one of the most lopsided dynasty trades I've charted this season, and honestly, it looks like a mercy killing for Langland's doomed 2025 campaign.\n\nLet's start with the winner here – **cosmohouck, \"The Championship Vulture.\"** This guy is sitting at 4-2 with the league's best power score at 94/100, and he just identified a basement dweller with tradeable assets and went to work. He's sending out Isaiah Davis, who's currently on IR with a concussion as the third-string back in New York, plus a 2027 second-rounder for Rico Dowdle, a 27-year-old running back averaging 8.2 points per game in his peak years. The value differential here is staggering – 532 to 38. That's not a trade, that's a heist. This is exactly how the 2018 Cowboys improved their playoff push by acquiring Amari Cooper from Oakland mid-season – you identify a seller, you strike decisively, and you upgrade your roster while the window is open. Cosmohouck's historical pattern of being a balanced trader just went out the window because when you're the best team in the league, you consolidate talent, and that 2027 pick means absolutely nothing to his championship aspirations *right now*.\n\nNow for **Langland, \"The Liquidation Specialist\"** – and look, I get it. You're 0-6, dead in the water, power score of 17.9 out of 100. The season's cooked. But from a dynasty asset management perspective, this return is catastrophic. You're moving a producing running back in his prime years for an IR'd third-stringer who's trending down 369 spots and a second-round pick *two years* from now? The scarcity metrics at running back in dynasty leagues hover around 150 VOR, meaning guys who actually produce have significant value. Dowdle isn't a league-winner, but he's a starting-caliber back putting up RB3 numbers. Isaiah Davis has a 5.4 PPG historical average and zero path to meaningful touches in New York's backfield. This feels like Langland panicked, saw \"young player plus pick\" and hit accept without evaluating the actual production metrics or the timeline. His trading history shows a win-now mentality that's already traded away 13 draft picks versus acquiring only 6 – now he's *adding* picks while sitting at 0-6? The strategy doesn't compute.\n\nThe rivalry element makes this even spicier – these teams are dead even at 3-3 all-time, and now cosmohouck just stripped talent from a competitive rival while they're down. That's cold-blooded roster management. The -494 net value swing for Langland is the kind of trade that sets a dynasty rebuild back 18 months instead of accelerating it. You want youth and picks? Fine. But Davis isn't the youth play – he's organizational depth on a bad offense. A 2027 second could be anything... including the 2.12 pick that becomes a career backup. Meanwhile, Dowdle slots right into cosmohouck's championship chase with proven weekly production.\n\nThis trade basically confirms the 2025 pecking order: cosmohouck is going all-in on a title, and Langland is waving the white flag while somehow *losing* the surrender negotiation. The Vulture strikes again.",
+  "generatedAt": "2026-01-16T08:10:51.322Z"
+}
