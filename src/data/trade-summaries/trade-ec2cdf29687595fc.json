@@ -1,0 +1,153 @@
+{
+  "tradeId": "ec2cdf29687595fc",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "drobs",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 50.2,
+        "powerRank": 6,
+        "lineupValueScore": 52.5,
+        "performanceScore": 55.1,
+        "positionalScore": 37.5,
+        "depthScore": 35.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25432
+      },
+      "tradeImpact": {
+        "valueGained": 346,
+        "valueLost": 601,
+        "netValueChange": -255,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [
+          {
+            "name": "Isaiah Likely",
+            "value": 249
+          },
+          {
+            "name": "Tank Dell",
+            "value": 97
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jayden Reed",
+            "value": 601
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "team": "BAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Tank Dell",
+          "position": "WR",
+          "team": "HOU",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jayden Reed",
+          "position": "WR",
+          "team": "GB",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94.3,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 94.7,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 48441
+      },
+      "tradeImpact": {
+        "valueGained": 601,
+        "valueLost": 346,
+        "netValueChange": 255,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Jayden Reed",
+            "value": 601
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Isaiah Likely",
+            "value": 249
+          },
+          {
+            "name": "Tank Dell",
+            "value": 97
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jayden Reed",
+          "position": "WR",
+          "team": "GB",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "team": "BAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Tank Dell",
+          "position": "WR",
+          "team": "HOU",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "drobs",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is this trade went down in Week 1 of 2023, and sources indicate cosmohouck just pulled off a masterclass in buying low on young talent. The league leader – sitting pretty at 94.3 power score – just convinced drobs to ship out Jayden Reed, who's valued at 601 in our system, along with a 2024 third-rounder, for essentially spare parts. Isaiah Likely and Tank Dell combined bring back just 346 in value. That's a 255-point value deficit for drobs, and folks, in dynasty that's not just a loss – that's getting fleeced at the Week 1 farmer's market.\n\nWhat makes this particularly interesting is the timing and the managers involved. Both are active traders with balanced approaches historically, but cosmohouck is operating from a position of absolute strength as the top-ranked team in the league. They're essentially saying \"I can afford to consolidate depth into a legitimate WR2/flex piece with upside,\" and they're not wrong. Reed averaged 5.6 PPG historically and was entering his age-25 prime window. Meanwhile, drobs – sitting at 50.2 power score, firmly middle-of-the-pack – just moved backward acquiring two players with question marks. Likely's a backup tight end in Baltimore fighting for targets, and Tank Dell, while intriguing, was coming off just 4.9 PPG and entering that age-26 \"prove it now\" phase.\n\nThe rivalry angle here adds some spice – these teams are dead even at 4-4 all-time – but this doesn't feel like drobs playing 4D chess. Sources around the league tell me drobs may have panicked on positional need, thinking they were getting TE depth and WR lottery tickets. But here's the reality: in dynasty, you don't trade premier young assets for maybes unless you're in full rebuild mode, and a team ranked 6th of 12 shouldn't be waving the white flag in Week 1. This reeks of overreacting to preseason hype or training camp buzz on Likely and Dell while undervaluing what Reed represented – a young receiver in an ascending Packers offense with Jordan Love's development ahead.\n\nKeep an eye on how this one ages, because I'm making a bold call here: by the end of 2024, this trade will be exhibit A in \"worst dynasty moves of the 2023 season.\" Reed's going to establish himself as a legit WR2 with WR1 weekly upside in Green Bay, while Likely remains stuck behind Mark Andrews and Dell battles injury concerns and target competition in Houston. Cosmohouck added that third-round pick as the cherry on top, and my understanding is they're already shopping those acquired pieces for their next consolidation move. Winner: cosmohouck, and it's not particularly close. Sometimes in this league, the rich really do get richer.",
+  "generatedAt": "2026-02-05T08:22:52.009Z"
+}

@@ -1,0 +1,145 @@
+{
+  "tradeId": "1ae99ba0b9a89af5",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "mjgrana",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 50.2,
+        "powerRank": 6,
+        "lineupValueScore": 52.5,
+        "performanceScore": 55.1,
+        "positionalScore": 37.5,
+        "depthScore": 35.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25432
+      },
+      "tradeImpact": {
+        "valueGained": 4559,
+        "valueLost": 5176,
+        "netValueChange": -617,
+        "estimatedPowerScoreChange": -0.6,
+        "playersGained": [
+          {
+            "name": "Breece Hall",
+            "value": 4559
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Garrett Wilson",
+            "value": 5176
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Breece Hall",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 89,
+        "powerRank": 2,
+        "lineupValueScore": 97,
+        "performanceScore": 78.5,
+        "positionalScore": 82.5,
+        "depthScore": 91.5,
+        "totalTeams": 12,
+        "totalRosterValue": 46999
+      },
+      "tradeImpact": {
+        "valueGained": 5176,
+        "valueLost": 4559,
+        "netValueChange": 617,
+        "estimatedPowerScoreChange": 0.6,
+        "playersGained": [
+          {
+            "name": "Garrett Wilson",
+            "value": 5176
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Breece Hall",
+            "value": 4559
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Breece Hall",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 3,
+      "from": "drobs",
+      "to": "mjgrana"
+    },
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "mjgrana",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, this is a fascinating gamble on positional scarcity versus pure talent, and I've got to say—mjgrana absolutely nailed this one. Getting Garrett Wilson AND moving up a round in the draft? That's the kind of value play that wins dynasty leagues.\n\nHere's the reality check nobody wants to hear: Breece Hall was coming off a devastating ACL tear in October 2022, and we're talking Week 1 of 2023—he hadn't played a single snap yet. Meanwhile, Garrett Wilson just won Offensive Rookie of the Year! The Jets' offense was a dumpster fire in 2022, and Wilson still put up elite numbers catching passes from Zach Wilson, Joe Flacco, and Mike White. Now you're telling me drobs is giving up that proven 25-year-old WR plus dropping a round in draft capital to bet on an ACL recovery? That's not roster construction—that's panic at the position.\n\nNow, I understand the logic from drobs' perspective. The power score shows they're middle-of-the-pack at 50.2, ranked sixth, while mjgrana is a juggernaut at 89.0. Maybe drobs thought they needed the RB scarcity boost—and let's be honest, that VOR of ~150 for running backs is real. But you don't reach for positional need when you're trading a generational Jets receiver who's already weathered the worst quarterback situation imaginable. This reminds me of the Tyreek Hill trade, except in reverse—the Dolphins gave up capital to get the proven superstar, and it paid off immediately. Mjgrana just pulled the same move, acquiring the best young receiver in this deal while drobs gambled on injury recovery.\n\nHere's my bold prediction: two years from now, this trade looks like highway robbery for mjgrana. Wilson becomes a consistent top-12 fantasy receiver once Aaron Rodgers arrives, while Hall—talented as he is—battles the inevitable wear and tear that comes with the running back position. Dynasty is about collecting elite young talent at positions with longevity, and mjgrana just got exactly that while moving UP in draft position. For a contender already ranked second in the league, this is the kind of consolidation move that extends championship windows. Drobs gave up the best player in this deal, and that almost never works out in dynasty leagues.",
+  "generatedAt": "2026-02-05T08:23:26.885Z"
+}

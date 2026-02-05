@@ -1,0 +1,97 @@
+{
+  "tradeId": "d2ce3d55f8a5a750",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "cosmohouck",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76,
+        "powerRank": 4,
+        "lineupValueScore": 78.3,
+        "performanceScore": 77.9,
+        "positionalScore": 65.4,
+        "depthScore": 73.5,
+        "totalTeams": 12,
+        "totalRosterValue": 37916
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "LAR",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94.3,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 94.7,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 48441
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "LAR",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is fascinating because we're seeing two managers with completely different philosophical approaches collide over a 34-year-old journeyman quarterback. Cosmohouck is sitting at #1 in the power rankings with a dominant 94.3 score—this team has championship DNA right now—and they're surrendering a second-round pick for Jimmy Garoppolo. Meanwhile, Shogunation at #4 with a respectable 76 power score is cashing out on a backup QB for draft capital. What strikes me here is cosmohouck's trading history: 11 picks acquired versus only 5 traded away, and suddenly they're burning premium draft capital on a QB who's averaging 9.5 points per game historically. That's not the move of a team that's been stockpiling picks with a long-term vision—this screams short-term desperation at the quarterback position.\n\nHere's where the Russell Wilson to Denver parallel becomes really instructive. Seattle got a haul of picks for a declining veteran QB, and Denver convinced themselves they were one quarterback away from contention. Cosmohouck might be making the same mistake—believing that Garoppolo, who's been injury-prone and inconsistent throughout his career, is somehow the missing piece for a championship run. The production metrics don't support it. You're getting a guy who profiles as a low-end QB2 at best, and you're paying second-round capital when that pick could turn into a young running back or receiver with years of dynasty value ahead. From an age curve perspective, quarterback might be the one position where you can extend into the late thirties, but Garoppolo's athletic profile and injury history suggest he's on the wrong side of that curve.\n\nShogunation is playing this perfectly within their pattern—they've been balanced in their approach, and this is exactly the kind of move a rebuilding or retooling team should make. You're extracting value from a depreciating asset before it hits zero. The fact that they've only made three trades all-time tells me they're selective, not impulsive, and this fits that methodical approach. They're recognizing that a 34-year-old backup quarterback has minimal dynasty value and converting him into a lottery ticket that could become a productive player for the next 4-5 years.\n\nHere's my bold prediction: This trade looks catastrophic for cosmohouck by midseason, and it becomes a cautionary tale about championship teams making panic moves. Garoppolo either gets hurt, gets benched, or produces at such a mediocre level that they're scrambling for quarterback help by Week 8. Meanwhile, that second-rounder turns into a contributor for Shogunation that outlasts Garoppolo's entire remaining career. The #1 power ranking team just made a #12 power ranking decision, and in dynasty football, those mistakes compound over years. This is the kind of trade that keeps you competitive this season but costs you championships in 2024 and beyond.",
+  "generatedAt": "2026-02-05T08:24:11.888Z"
+}

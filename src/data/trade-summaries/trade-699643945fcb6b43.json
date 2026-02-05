@@ -1,0 +1,121 @@
+{
+  "tradeId": "699643945fcb6b43",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Langland",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18,
+        "powerRank": 12,
+        "lineupValueScore": 27.3,
+        "performanceScore": 6.1,
+        "positionalScore": 14.3,
+        "depthScore": 6.6,
+        "totalTeams": 12,
+        "totalRosterValue": 13225
+      },
+      "tradeImpact": {
+        "valueGained": 137,
+        "valueLost": 0,
+        "netValueChange": 137,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "James Conner",
+            "value": 137
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "James Conner",
+          "position": "RB",
+          "team": "ARI",
+          "age": 30,
+          "careerStage": "Declining"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Allen Lazard",
+          "position": "WR",
+          "team": "FA",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 23.6,
+        "powerRank": 11,
+        "lineupValueScore": 26,
+        "performanceScore": 21.2,
+        "positionalScore": 22.8,
+        "depthScore": 15.6,
+        "totalTeams": 12,
+        "totalRosterValue": 12603
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 137,
+        "netValueChange": -137,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "James Conner",
+            "value": 137
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Allen Lazard",
+          "position": "WR",
+          "team": "FA",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "James Conner",
+          "position": "RB",
+          "team": "ARI",
+          "age": 30,
+          "careerStage": "Declining"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "Langland",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I've got James Conner as a DECLINING ASSET on my board, and at 30 years old, this running back is staring down Father Time like every other back in this league. The tape from 2022 shows a guy who can still produce when healthy – that 9.8 PPG is solid RB2 territory – but here's what keeps me up at night: the age curve doesn't lie, folks. Running backs at 30? You're playing with fire. That said, Langland – let's call him \"The Mortgage Broker\" because he's leveraging his future like it's 2006 – is making a win-now move by shipping out Allen Lazard and a 2026 second-rounder. But here's my problem: you're sitting at 18/100 power score, DEAD LAST in this league, and you're trading FUTURE ASSETS for a 30-year-old back? This isn't adding a piece to a contender, this is rearranging deck chairs on the Titanic!\n\nNow powerperson – I'm calling this guy \"The Rebuilder General\" – is making the smart dynasty play here. He's looking at that same Conner tape and saying \"you know what? I'll take the 30-year-old receiver instead and pocket that second-round pick.\" Smart! The value chart shows he's giving up 137 points of value and getting nothing back on paper, but in dynasty, those picks ARE the currency, people! A 2026 second-rounder gives you control, gives you flexibility, gives you a shot at a 22-year-old stud coming out of college. Lazard at 30 isn't lighting the world on fire at 7.9 PPG, but in a rebuild situation with a 23.6 power score, you're not competing anyway – you're ACCUMULATING.\n\nThe timing here? Week 1 of 2023? It's TOO EARLY to be making panic moves! You don't have enough tape on these guys yet! Langland is acting like his season is slipping away when it HASN'T EVEN STARTED. You wait until Week 4 or 5, you see who's healthy, you see who's getting volume, THEN you make your move. This reeks of desperation from a manager who looked at his roster and thought \"oh no, I need help NOW\" without considering that he's already ranked 12th out of 12 teams. You can't fix that with one aging running back!\n\nHere's my final evaluation: powerperson wins this trade by a LANDSLIDE. The Rebuilder General is playing chess while The Mortgage Broker is playing checkers with monopoly money. In dynasty, you don't trade picks for 30-year-old backs unless you're a LEGITIMATE contender – and that 18 power score tells me everything I need to know. Conner might give Langland 10-12 decent weeks if the injury bug doesn't bite, but then what? You've got nothing in 2026 and an older roster. Meanwhile, powerperson is sitting on that second-rounder like it's gold, and in three years, he could be drafting the next Bijan Robinson while Langland is wondering where his team went. The tape doesn't lie, and neither does the dynasty strategy book!",
+  "generatedAt": "2026-02-05T08:21:17.939Z"
+}

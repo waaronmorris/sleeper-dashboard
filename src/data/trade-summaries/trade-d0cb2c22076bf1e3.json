@@ -1,0 +1,131 @@
+{
+  "tradeId": "d0cb2c22076bf1e3",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Shogunation",
+    "mastab24"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76,
+        "powerRank": 4,
+        "lineupValueScore": 78.3,
+        "performanceScore": 77.9,
+        "positionalScore": 65.4,
+        "depthScore": 73.5,
+        "totalTeams": 12,
+        "totalRosterValue": 37916
+      },
+      "tradeImpact": {
+        "valueGained": 5960,
+        "valueLost": 98,
+        "netValueChange": 5862,
+        "estimatedPowerScoreChange": 6.1,
+        "playersGained": [
+          {
+            "name": "Drake London",
+            "value": 5960
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Rachaad White",
+            "value": 98
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "team": "ATL",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rachaad White",
+          "position": "RB",
+          "team": "TB",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "mastab24",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 61.1,
+        "powerRank": 5,
+        "lineupValueScore": 64.4,
+        "performanceScore": 68,
+        "positionalScore": 49.6,
+        "depthScore": 21.9,
+        "totalTeams": 12,
+        "totalRosterValue": 31202
+      },
+      "tradeImpact": {
+        "valueGained": 98,
+        "valueLost": 5960,
+        "netValueChange": -5862,
+        "estimatedPowerScoreChange": -6.1,
+        "playersGained": [
+          {
+            "name": "Rachaad White",
+            "value": 98
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Drake London",
+            "value": 5960
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Rachaad White",
+          "position": "RB",
+          "team": "TB",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "team": "ATL",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "mastab24"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is we've got a developing situation here in Week 1, and folks, this one has some serious long-term implications. Shogunation—let's call him \"The Youth Movement\"—just pulled off what sources indicate could be the steal of the 2023 season, landing Drake London for essentially pennies on the dollar. We're talking about a 24-year-old ascending receiver with WR1 upside going for a 27-year-old running back who's already hitting that dreaded RB age cliff and a second-round pick. The value differential here is MASSIVE—nearly 6,000 points in Shogunation's favor. This reminds me of the Russell Wilson trade, except in this case, The Youth Movement is playing the role of Seattle, getting out at exactly the right time while acquiring premium young talent. Keep an eye on this manager—already made four moves all-time and just vaulted to a 76 power score sitting at #4 in the league.\n\nNow let's talk about mastab24—we'll dub him \"The Contender Gambler\"—because my sources tell me this is the kind of move you make when you think you're one piece away from a championship RIGHT NOW. The problem? We're in Week 1, the sample size is microscopic, and he just traded away a rising 24-year-old stud for a back-end RB2 at age 27 and a dart-throw second-rounder. His power score drops over 6 points to 61.1, sitting at #5 in a 12-team league. In dynasty, this is what we call \"mortgaging the future,\" and unlike the Broncos who at least got a proven elite quarterback in that Wilson deal, The Contender Gambler is betting on Rachaad White maintaining production in Tampa's crowded backfield. Sources indicate the depth chart situation there is murky at best.\n\nHere's the developing story on championship odds: Shogunation just dramatically improved their window for the next 3-5 years. London's trajectory is pointing UP—he's entering year two with improved quarterback play in Atlanta, and receivers historically peak at 26-30. The Youth Movement now has a foundational piece who could anchor their roster through multiple championship runs. Meanwhile, mastab24 is in win-now mode with a power score that suggests they're competitive but not dominant. My understanding is they needed RB help, but giving up THIS much value for a temporary fix? That's how contenders become pretenders fast. White's got maybe 1-2 peak years left before that inevitable RB decline hits like a freight train.\n\nKeep an eye on this rivalry too—these teams are 3-2 head-to-head all-time, and this trade just shifted the balance of power significantly. Sources around the league are buzzing about whether The Contender Gambler panicked too early or if he knows something we don't about his championship window closing. The Youth Movement, meanwhile, is building something sustainable at #4 overall with premium young talent. This is the kind of move that defines dynasty leagues—one team playing chess while the other is playing checkers. My money's on London outproducing White's remaining career value by a WIDE margin.",
+  "generatedAt": "2026-02-05T08:23:51.679Z"
+}

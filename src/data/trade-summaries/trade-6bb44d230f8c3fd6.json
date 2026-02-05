@@ -1,0 +1,97 @@
+{
+  "tradeId": "6bb44d230f8c3fd6",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Tishathefish",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76,
+        "powerRank": 4,
+        "lineupValueScore": 78.3,
+        "performanceScore": 77.9,
+        "positionalScore": 65.4,
+        "depthScore": 73.5,
+        "totalTeams": 12,
+        "totalRosterValue": 37916
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Keaontay Ingram",
+          "position": "RB",
+          "team": "KC",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 47.4,
+        "powerRank": 7,
+        "lineupValueScore": 57.4,
+        "performanceScore": 35.4,
+        "positionalScore": 44.1,
+        "depthScore": 29.5,
+        "totalTeams": 12,
+        "totalRosterValue": 27791
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Keaontay Ingram",
+          "position": "RB",
+          "team": "KC",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Louis Riddick",
+  "analysis": "From a front office standpoint, this is the kind of roster-fringes transaction that happens in every NFL war room during final cutdowns—except Tishathefish just traded away actual draft capital for the organizational equivalent of bubble wrap. Look, Keaontay Ingram averaged 0.8 fantasy points per game historically and was buried on Kansas City's depth chart behind a nuclear warhead committee. This is a guy who might get activated for three snaps if there's a COVID outbreak at the facility. Meanwhile, Shogunation—who I'm calling \"The Asset Liquidator\" based on that pattern of dumping picks like they're going out of style—just flipped a practice squad body into a 2025 third-rounder. That's textbook value extraction when you're competing now at a 76 power score.\n\nNow Tishathefish, bless their heart, I'm dubbing them \"The Wishful Thinker\" because this move screams desperation masquerading as upside hunting. At 47.4 power score and ranked seventh in a twelve-team league, they're clearly in rebuild mode, but here's the problem: you don't rebuild by trading *future* picks for aging depth pieces. The organizational philosophy is completely backwards. Ingram is 26 years old—past the RB cliff in dynasty terms—with zero path to volume in Andy Reid's offense. This is burning draft capital to roster a lottery ticket that's already been scratched.\n\nThe timing makes this even more inexplicable. Week one, small sample size, nobody's panicking yet about injuries or bye weeks. There's zero urgency for Tishathefish to make this move. If you're going to bet on a dart throw running back, at least wait until someone gets hurt and you can assess actual opportunity cost. Instead, they've committed future resources before seeing a single snap of 2023 football. The Asset Liquidator over there with Shogunation must've been grinning ear to ear watching this offer come through.\n\nThis isn't even close, folks. Shogunation wins this trade by the length of Arrowhead Stadium. They turned roster deadweight into draft capital while sitting comfortably as a top-four power score team. That's smart championship-window management—consolidate your competitive roster while extracting value from pieces you'll never use. Tishathefish? They just learned an expensive lesson about asset management. In dynasty, you accumulate picks when you're rebuilding, you don't hemorrhage them for guys who won't see your starting lineup before they're out of the league.",
+  "generatedAt": "2026-02-05T08:20:00.162Z"
+}

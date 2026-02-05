@@ -1,0 +1,121 @@
+{
+  "tradeId": "971eebdcd45bb267",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Shogunation",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76,
+        "powerRank": 4,
+        "lineupValueScore": 78.3,
+        "performanceScore": 77.9,
+        "positionalScore": 65.4,
+        "depthScore": 73.5,
+        "totalTeams": 12,
+        "totalRosterValue": 37916
+      },
+      "tradeImpact": {
+        "valueGained": 138,
+        "valueLost": 0,
+        "netValueChange": 138,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Travis Kelce",
+            "value": 138
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Travis Kelce",
+          "position": "TE",
+          "team": "KC",
+          "age": 36,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chig Okonkwo",
+          "position": "TE",
+          "team": "TEN",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 23.6,
+        "powerRank": 11,
+        "lineupValueScore": 26,
+        "performanceScore": 21.2,
+        "positionalScore": 22.8,
+        "depthScore": 15.6,
+        "totalTeams": 12,
+        "totalRosterValue": 12603
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 138,
+        "netValueChange": -138,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Travis Kelce",
+            "value": 138
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Chig Okonkwo",
+          "position": "TE",
+          "team": "TEN",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Travis Kelce",
+          "position": "TE",
+          "team": "KC",
+          "age": 36,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Per league sources, Shogunation has acquired Travis Kelce from powerperson in a classic dynasty win-now move, parting with Chig Okonkwo and a 2024 second-rounder. I'm told this deal, executed in Week 1 before a single snap was played, represents a stark philosophical divide. Shogunation—sitting at a robust 76 power score, ranked fourth in this league—is going all-in on championship equity with a 36-year-old tight end coming off a 13.8 PPG season. The timing here is fascinating: both teams are 0-0, but Shogunation is betting their championship window is *right now*. Meanwhile, powerperson, languishing at a 23.6 power score and 11th overall, is waving the white flag before the season even starts. League sources say this is a full-blown tank job dressed up as asset accumulation.\n\nHere's what I'm hearing from multiple sources around the league: Shogunation—let's call them \"The Impatient Contender\"—is gambling that Kelce has one more elite season left in the tank, and they're willing to mortgage a future second-rounder to find out. With a 78.3 lineup rating and the fourth-best roster in the league, they clearly believe they're a Kelce away from a title run. The risk? Kelce is 36, tight ends fall off cliffs faster than running backs, and they just surrendered a premium pick for what could be 12-16 weeks of production. But according to sources, Shogunation has been an active mover all season—this is their fourth trade already—and they're pushing chips to the middle.\n\nOn the flip side, powerperson—\"The Preseason Capitulator\"—is selling before depreciation hits. I'm told they looked at their 23.6 power score, saw 11 teams ahead of them, and decided Kelce's age-36 season wasn't going to save their rebuild. The return? A 26-year-old Chig Okonkwo with upside in Tennessee's offense and a second-round pick in a dynasty format where draft capital is gold. Sources say powerperson is playing the long game, banking on Okonkwo's ascension and that 2024 pick yielding someone who'll matter in 2025 and beyond. The depth chart shows they desperately need young talent at a 15.6 depth rating—this is textbook asset conversion for a basement dweller.\n\nFrom a pure value standpoint, league insiders tell me Shogunation \"won\" this trade by 138 points in immediate value, but here's the reality: they're supposed to win it. They're a contender buying production; powerperson is a rebuilder selling it. The real question is whether Kelce delivers enough in 2023 to justify the cost, because per sources, that second-rounder could be gold in a weak team's hands. I'm told both sides feel good about this deal—Shogunation thinks they just grabbed the final piece, powerperson thinks they fleeced a contender before Kelce's cliff. Breaking it down, Shogunation wins if they hoist a trophy this year. If Kelce falls apart by Week 10 and that pick becomes a stud? Powerperson looks like a genius, and The Impatient Contender just mortgaged their future for nothing.",
+  "generatedAt": "2026-02-05T08:22:29.643Z"
+}

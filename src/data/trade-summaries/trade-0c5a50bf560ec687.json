@@ -1,0 +1,97 @@
+{
+  "tradeId": "0c5a50bf560ec687",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "tr4sh",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "tr4sh",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 39.9,
+        "powerRank": 9,
+        "lineupValueScore": 50.2,
+        "performanceScore": 32.3,
+        "positionalScore": 31.9,
+        "depthScore": 7.9,
+        "totalTeams": 12,
+        "totalRosterValue": 24307
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "LAR",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94.3,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 94.7,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 48441
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "LAR",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "tr4sh",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm gonna be honest with you here - this trade has me scratching my head, and I've been doing this for over forty years. You've got tr4sh, sitting at 39.9 power score, ranked NINTH in a twelve-team league, and they're trading away a 2024 second-round pick for Jimmy Garoppolo? Jimmy Garoppolo?! Now, I love Jimmy G as much as the next guy - he's a winner, he's been to Super Bowls - but let's look at the TAPE here. We're talking about a 34-year-old quarterback who averaged 9.5 points per game, and tr4sh is giving up draft capital that could land them a young stud with upside? This isn't the Khalil Mack trade where the Bears mortgaged their future for a generational defensive talent in his prime - this is more like trading a lottery ticket for a reliable Honda Civic when you need a Ferrari to compete!\n\nAnd the TIMING of this deal? Week 1 of 2023? You haven't even seen your roster play a single game yet! The urgency level is LOW - thirteen weeks until the playoffs! You don't mortgage the future before you know what you have. This is a win-now move by a team that has NO BUSINESS being in win-now mode. I've got tr4sh's manager profile right here: this is only their SECOND trade all-time, they're clearly inexperienced, and they're showing classic rookie mistake behavior - panicking about their quarterback situation before the season even kicks off. Meanwhile, cosmohouck, sitting pretty at 94.3 power score, FIRST in the league, is playing chess while everyone else is playing checkers.\n\nHere's what really gets me fired up about this one: cosmohouck is an ACTIVE TRADER - 14 career trades, they know what they're doing - and they're flipping a 34-year-old backup quarterback for draft capital. That's TEXTBOOK dynasty strategy! In dynasty, you BUILD through the draft, you accumulate picks, especially when you're already the top-ranked team. They don't need Jimmy G clogging up their roster, and now they've got ammunition to move up next year or grab another young asset. This is how champions stay champions - constant roster churn, always looking ahead to the next wave of talent.\n\nFrom a championship perspective, this trade does NOTHING for tr4sh's title odds - absolutely nothing! You're ninth in power rankings, you need an overhaul, not a band-aid at quarterback. And cosmohouck? They were already the odds-on favorite at 94.3, and now they've got MORE draft capital to either consolidate their dynasty or replenish when their older guys age out. The competitive history between these teams is 3-3, dead even, but after this deal? I'm putting cosmohouck up by two games in future matchups. The tape doesn't lie, folks - this is a masterclass in dynasty management versus a panic move that'll haunt tr4sh come next year's draft when they're watching from the sidelines while cosmohouck adds another building block to their empire!",
+  "generatedAt": "2026-02-05T08:19:41.081Z"
+}

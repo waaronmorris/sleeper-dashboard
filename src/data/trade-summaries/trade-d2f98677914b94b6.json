@@ -1,0 +1,131 @@
+{
+  "tradeId": "d2f98677914b94b6",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Shogunation",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 76,
+        "powerRank": 4,
+        "lineupValueScore": 78.3,
+        "performanceScore": 77.9,
+        "positionalScore": 65.4,
+        "depthScore": 73.5,
+        "totalTeams": 12,
+        "totalRosterValue": 37916
+      },
+      "tradeImpact": {
+        "valueGained": 876,
+        "valueLost": 594,
+        "netValueChange": 282,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Davante Adams",
+            "value": 876
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Chris Godwin",
+            "value": 594
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Davante Adams",
+          "position": "WR",
+          "team": "LAR",
+          "age": 33,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chris Godwin",
+          "position": "WR",
+          "team": "TB",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 23.6,
+        "powerRank": 11,
+        "lineupValueScore": 26,
+        "performanceScore": 21.2,
+        "positionalScore": 22.8,
+        "depthScore": 15.6,
+        "totalTeams": 12,
+        "totalRosterValue": 12603
+      },
+      "tradeImpact": {
+        "valueGained": 594,
+        "valueLost": 876,
+        "netValueChange": -282,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [
+          {
+            "name": "Chris Godwin",
+            "value": 594
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Davante Adams",
+            "value": 876
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Chris Godwin",
+          "position": "WR",
+          "team": "TB",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Davante Adams",
+          "position": "WR",
+          "team": "LAR",
+          "age": 33,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a classic win-now versus rebuild pivot disguised as a simple receiver swap. Shogunation—let's call him \"The Contender Consolidator\"—is sitting at a robust 76 power score, ranked fourth in the league, and he's doing what every playoff-caliber team should do in Week 1: betting on proven production over potential. Davante Adams at 33 years old still posted 15.5 PPG historically, and while that late-career tag should concern some folks, we're talking about a guy who's been a target monster his entire career. The Consolidator is sacrificing a 29-year-old Godwin (9.4 PPG) plus a future second-rounder to upgrade his starting lineup immediately. That +282 net value tells you everything—he's paying a premium in draft capital to acquire a superior asset right now. With championship equity on the line and a proven history of aggressive moves (seven trades, mostly dealing away depth), this manager understands his window.\n\nMeanwhile, powerperson—we'll call him \"The Asset Farmer\"—is operating from a completely different strategic framework, and frankly, from a dynasty talent evaluation perspective, this might be the smarter long-term play. Sitting at a dismal 23.6 power score ranked 11th of 12, this roster isn't sniffing a championship in 2023. The Asset Farmer is correctly identifying that Adams' age-33 season represents peak trade value before the inevitable athletic decline curve hits running backs and receivers hard. He's acquiring Godwin, who's still in his peak years window at 29, plus banking a 2025 second-rounder—that's the kind of draft capital accumulation rebuilding teams need to manufacture. Yes, he's taking a -282 value hit on paper, but dynasty value isn't linear when you're two years away from competing.\n\nThe risk-reward profiles here couldn't be more divergent, and that's what makes this fascinating from a scheme-fit perspective for each roster construction philosophy. The Contender Consolidator is risking that Adams doesn't hit the age cliff mid-season—we've seen elite receivers maintain production into their mid-30s, but the fall-off can be sudden and brutal. One hamstring injury, one step lost in route running, and suddenly that 15.5 PPG becomes 11 PPG, and you've mortgaged future assets for a marginal upgrade. But if Adams delivers even 85% of his historical production, Shogunation's playoff odds spike dramatically given their already-strong power score foundation. The Asset Farmer's risk is opportunity cost—if Godwin gets hurt or underperforms, that second-rounder better hit, because you just traded away your best fantasy asset while your roster burns.\n\nHere's my bold prediction: by 2025, when that second-round pick is finally on someone's roster, we'll look back at this trade and say the Asset Farmer absolutely fleeced the Consolidator. Adams will have one more decent season, maybe 13 PPG in 2023, before falling off a cliff in 2024. Godwin will stabilize around 12 PPG for three more years, and that 2025 second-rounder will turn into a starting-caliber player that extends powerperson's competitive window. The championship implications for 2023? Shogunation probably improves his odds by maybe 8-10%, pushing him from fringe playoff team to legitimate threat. But in dynasty, you're playing the long game, and The Asset Farmer just bought himself two years of runway while The Contender Consolidator is betting everything on this season's production metrics. From a pure talent evaluation standpoint, I respect both moves—they're playing different games entirely.",
+  "generatedAt": "2026-02-05T08:22:05.896Z"
+}
