@@ -1,0 +1,107 @@
+{
+  "tradeId": "1458f2fbb9fb9b30",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "PrinceofPizza",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 81.5,
+        "powerRank": 3,
+        "lineupValueScore": 91.1,
+        "performanceScore": 64.7,
+        "positionalScore": 86.5,
+        "depthScore": 72.3,
+        "totalTeams": 12,
+        "totalRosterValue": 43579
+      },
+      "tradeImpact": {
+        "valueGained": 2557,
+        "valueLost": 0,
+        "netValueChange": 2557,
+        "estimatedPowerScoreChange": 2.7,
+        "playersGained": [
+          {
+            "name": "Sam Darnold",
+            "value": 2557
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Sam Darnold",
+          "position": "QB",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 92.6,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 47861
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 2557,
+        "netValueChange": -2557,
+        "estimatedPowerScoreChange": -2.7,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Sam Darnold",
+            "value": 2557
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Sam Darnold",
+          "position": "QB",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "PrinceofPizza",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: PrinceofPizza has acquired quarterback Sam Darnold from league-leading cosmohouck in exchange for a 2025 third-round pick, per sources. I'm told this move caught some league insiders off guard – the #1-ranked team in the league just shipped out a backup QB for what amounts to a future lottery ticket, and multiple sources say cosmohouck feels this is addition by subtraction.\n\nHere's what I'm hearing: PrinceofPizza, sitting at a solid 81.5 power score and ranked third in the league, is essentially betting a late-round flier on roster insurance. According to league sources, they're acquiring a 28-year-old journeyman QB at 2,557 in dynasty value – that's depth, not difference-making talent. The projection here gains them 2.7 power points, which is marginal at best. I'm told the Prince is operating in full \"Pizza Delivery Mode\" – quick, cheap, gets the job done when you need it. But let's be real: you're not winning championships with Sam Darnold as your QB1, and if he's your QB2, you just overpaid with draft capital. League sources say this smells like panic insurance after zero games played.\n\nOn the flip side, cosmohouck – \"The Stockpile Sultan\" – continues their methodical asset accumulation strategy. The #1 power-ranked team (94.0!) with perfect lineup and depth scores just turned a backup into future flexibility. I'm told this is vintage cosmohouck: 18 career trades, consistently moving veterans for picks. They're now sitting on their 17th acquired pick versus just 10 traded away, according to my sources. Here's the kicker – they lost 2.7 power points in this deal and don't care one bit. When you're already the league's dominant force, banking another third-rounder is the ultimate rich-get-richer move.\n\nLeague sources indicate this rivalry trade – these teams are dead even at 5-5 all-time – tilts heavily toward cosmohouck's championship window. According to multiple people familiar with the matter, you don't trade picks for aging backup QBs when you're trying to catch the #1 team; you become the #1 team by doing exactly what cosmohouck just did. The Sultan wins this going away. PrinceofPizza better hope Darnold channels his inner 2018 or that third-rounder doesn't turn into their next franchise cornerstone, because right now, I'm told they just paid premium delivery fees for lukewarm pizza.",
+  "generatedAt": "2026-02-12T08:21:05.415Z"
+}

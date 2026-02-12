@@ -1,0 +1,197 @@
+{
+  "tradeId": "aa4deef66d07ec5a",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Shogunation",
+    "Tishathefish"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 77.6,
+        "powerRank": 4,
+        "lineupValueScore": 80.1,
+        "performanceScore": 77.9,
+        "positionalScore": 65,
+        "depthScore": 89.4,
+        "totalTeams": 12,
+        "totalRosterValue": 38326
+      },
+      "tradeImpact": {
+        "valueGained": 1042,
+        "valueLost": 4830,
+        "netValueChange": -3788,
+        "estimatedPowerScoreChange": -4,
+        "playersGained": [
+          {
+            "name": "Tyreek Hill",
+            "value": 997
+          },
+          {
+            "name": "Najee Harris",
+            "value": 45
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jakobi Meyers",
+            "value": 1134
+          },
+          {
+            "name": "Tee Higgins",
+            "value": 3488
+          },
+          {
+            "name": "Tyjae Spears",
+            "value": 208
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "team": "MIA",
+          "age": 31,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "Najee Harris",
+          "position": "RB",
+          "team": "LAC",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jakobi Meyers",
+          "position": "WR",
+          "team": "JAX",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tee Higgins",
+          "position": "WR",
+          "team": "CIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "team": "TEN",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 48.6,
+        "powerRank": 7,
+        "lineupValueScore": 58.9,
+        "performanceScore": 35.4,
+        "positionalScore": 45,
+        "depthScore": 36.9,
+        "totalTeams": 12,
+        "totalRosterValue": 28169
+      },
+      "tradeImpact": {
+        "valueGained": 4830,
+        "valueLost": 1042,
+        "netValueChange": 3788,
+        "estimatedPowerScoreChange": 4,
+        "playersGained": [
+          {
+            "name": "Jakobi Meyers",
+            "value": 1134
+          },
+          {
+            "name": "Tee Higgins",
+            "value": 3488
+          },
+          {
+            "name": "Tyjae Spears",
+            "value": 208
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Tyreek Hill",
+            "value": 997
+          },
+          {
+            "name": "Najee Harris",
+            "value": 45
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jakobi Meyers",
+          "position": "WR",
+          "team": "JAX",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tee Higgins",
+          "position": "WR",
+          "team": "CIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "team": "TEN",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "team": "MIA",
+          "age": 31,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "Najee Harris",
+          "position": "RB",
+          "team": "LAC",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "Tishathefish"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Per multiple league sources, Shogunation just made a massive all-in move that screams \"win-now or bust,\" sending a king's ransom of assets to Tishathefish for Tyreek Hill and Najee Harris. I'm told this deal—valued at nearly a 4,000-point differential in favor of Tishathefish—represents one of the most lopsided asset swaps we've seen in dynasty circles this season. Shogunation shipped out Tee Higgins (value: 3,488), Jakobi Meyers (1,134), Tyjae Spears, AND a 2025 first-rounder to acquire a 31-year-old Hill and the declining Harris. League sources say this is classic \"mortgage the future\" behavior from a team ranked #4 overall with an 80.1 lineup rating—they're betting Hill's elite production (16.9 PPG historically) can carry them to a championship before the cliff arrives.\n\nHere's the thing about this trade, and I cannot stress this enough: it mirrors the actual Tyreek Hill blockbuster from Kansas City to Miami, except Shogunation is playing the Dolphins' role without Miami's draft capital to recover. According to sources familiar with the deal, Shogunation—let's call them \"The Mortgage Broker\"—just took on significant age-curve risk with Hill entering his age-31 season when WR decline typically accelerates. Meanwhile, Tishathefish—a.k.a. \"The Repo Man\"—sitting at #7 in power rankings with a measly 36.9 depth score, just executed a textbook dynasty rebuild by flipping two aging vets for a 27-year-old WR1 in Higgins, a promising young back in Spears, plus Meyers and that precious 2025 first. I'm told The Repo Man's +4 power score swing could be conservative given the long-term trajectory here.\n\nLeague insiders are buzzing about the risk profile for The Mortgage Broker, who's now won this rivalry 4-2 head-to-head but might've just handed future ammunition to their rival. Sources say Harris at 27 is already past the RB apex, and his 10.3 PPG doesn't move the needle enough to justify giving up Higgins, who's squarely in his prime WR years. The historical data tells us The Mortgage Broker has been an aggressive mover (11 career deals, net -3 players and -1 draft pick), but this might be their boldest gamble yet. Per sources, if Hill experiences even a modest decline or injury, this becomes a franchise-altering disaster.\n\nBottom line, according to multiple league sources: Tishathefish absolutely fleeced this deal from a dynasty value standpoint—it's not even close. The Repo Man gets younger, deeper, and adds a first-round pick while dumping aging assets at peak perceived value. The Mortgage Broker? They're betting everything on a 2024-2025 championship window with a 31-year-old speedster whose game relies on explosiveness. I'm told both sides feel they got what they needed, but the dynasty community is already calling this a masterclass in value extraction by The Repo Man. This is the kind of trade that defines championship windows—or destroys them.",
+  "generatedAt": "2026-02-12T08:20:45.542Z"
+}

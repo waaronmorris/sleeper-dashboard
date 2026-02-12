@@ -1,0 +1,121 @@
+{
+  "tradeId": "69a798d2819e8739",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "drobs",
+    "mjgrana"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 51.2,
+        "powerRank": 6,
+        "lineupValueScore": 53.9,
+        "performanceScore": 55.1,
+        "positionalScore": 37.1,
+        "depthScore": 43.3,
+        "totalTeams": 12,
+        "totalRosterValue": 25782
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 19,
+        "netValueChange": -19,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "MarShawn Lloyd",
+            "value": 19
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Sam Howell",
+          "position": "QB",
+          "team": "PHI",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "MarShawn Lloyd",
+          "position": "RB",
+          "team": "GB",
+          "age": 25,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 88.8,
+        "powerRank": 2,
+        "lineupValueScore": 97.6,
+        "performanceScore": 78.5,
+        "positionalScore": 80.1,
+        "depthScore": 89.4,
+        "totalTeams": 12,
+        "totalRosterValue": 46702
+      },
+      "tradeImpact": {
+        "valueGained": 19,
+        "valueLost": 0,
+        "netValueChange": 19,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [
+          {
+            "name": "MarShawn Lloyd",
+            "value": 19
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "MarShawn Lloyd",
+          "position": "RB",
+          "team": "GB",
+          "age": 25,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Sam Howell",
+          "position": "QB",
+          "team": "PHI",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "mjgrana",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm going to tell you something right now - this trade SCREAMS desperation move from drobs, and the tape tells me EXACTLY what's happening here. You've got mjgrana sitting pretty at #2 in the power rankings with an 88.8 score, loaded across the board, and he's selling off a backup QB and a LATE third-round pick for a running back with legitimate upside. Meanwhile, drobs is sitting at 51.2, middle of the pack at #6, and he's PANIC-SELLING a rookie RB for absolutely NOTHING!\n\nLet me break down MarShawn Lloyd for you - this is a USC product who landed in GREEN BAY, folks. Green Bay! You know what that offense does for running backs? And drobs is moving him for Sam Howell, who couldn't even hold the starting job in Washington and is now a BACKUP in Philadelphia, plus a third-rounder that historically produces what, a 15% hit rate on fantasy relevance? The value discrepancy here is GLARING - we're looking at a -19 net value for drobs. That's not marginal, that's getting absolutely FLEECED! Now drobs has been active - 17 trades all-time, two already this season - but this aggressive approach is costing him. You can't just make moves to make moves!\n\nHere's what mjgrana understands that drobs doesn't: in dynasty, you accumulate RUNNING BACK TALENT at age 25. Lloyd is in his peak window right now, and mjgrana already has elite depth (89.4 depth score!). He's adding a lottery ticket that could become a weekly starter, and he gave up NOTHING. A third-round pick and a clipboard holder! This is textbook dynasty team-building for a contender - you consolidate depth into upside plays when you're already dominant.\n\nThe timing here is TERRIBLE for drobs. Week 1, you haven't even seen what you have yet! Lloyd hasn't played a snap, and you're bailing before you see his role develop? That's not analysis, that's anxiety! And here's my bold prediction: by Week 8, when Lloyd is getting 12-15 touches in Green Bay's offense and Sam Howell is inactive on game days, drobs is going to be KICKING himself. This trade will be exhibit A in how NOT to manage a dynasty rebuild. mjgrana wins this going away - it's not even CLOSE!",
+  "generatedAt": "2026-02-12T08:20:21.104Z"
+}

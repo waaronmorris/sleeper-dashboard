@@ -1,0 +1,181 @@
+{
+  "tradeId": "381307aad2bb2c42",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "powerperson",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 24.5,
+        "powerRank": 11,
+        "lineupValueScore": 27.5,
+        "performanceScore": 21.2,
+        "positionalScore": 24.3,
+        "depthScore": 14.1,
+        "totalTeams": 12,
+        "totalRosterValue": 13184
+      },
+      "tradeImpact": {
+        "valueGained": 866,
+        "valueLost": 4443,
+        "netValueChange": -3577,
+        "estimatedPowerScoreChange": -3.7,
+        "playersGained": [
+          {
+            "name": "Jake Ferguson",
+            "value": 818
+          },
+          {
+            "name": "DeMario Douglas",
+            "value": 48
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Trey McBride",
+            "value": 4443
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jake Ferguson",
+          "position": "TE",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "DeMario Douglas",
+          "position": "WR",
+          "team": "NE",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Trey McBride",
+          "position": "TE",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 92.6,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 47861
+      },
+      "tradeImpact": {
+        "valueGained": 4443,
+        "valueLost": 866,
+        "netValueChange": 3577,
+        "estimatedPowerScoreChange": 3.7,
+        "playersGained": [
+          {
+            "name": "Trey McBride",
+            "value": 4443
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jake Ferguson",
+            "value": 818
+          },
+          {
+            "name": "DeMario Douglas",
+            "value": 48
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Trey McBride",
+          "position": "TE",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jake Ferguson",
+          "position": "TE",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "DeMario Douglas",
+          "position": "WR",
+          "team": "NE",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "powerperson",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is the classic case of a dynasty manager confusing volume with upside, and cosmohouck—let's call him \"The Consolidator\"—just made powerperson, aka \"The Bargain Bin Shopper,\" pay the ultimate premium for it. Look, I get the appeal of quantity over quality when you're sitting at 24.5 power score and ranked 11th out of 12, but trading Trey McBride, who just put up a 5.1 PPG baseline with the athletic profile and target trajectory of a top-three dynasty tight end, for Jake Ferguson and spare parts? That's not roster construction—that's roster destruction. McBride is 26 years old, entering his absolute prime window, and just secured a massive role in Kyler Murray's offense. Ferguson is a year older, posted better per-game numbers last year (7.4 PPG), but here's the thing: that production came with optimal circumstances, and we know Dak spreads it around. The athletic profile doesn't scream ceiling, and the target distribution in Dallas is far less predictable than what McBride commands in Arizona.\n\nThe value differential here is staggering—4,443 versus 866—and when you're getting crushed that badly on raw valuation, you better be getting premium draft capital or a stud at a different position. Instead, The Bargain Bin Shopper picked up DeMario Douglas, a 25-year-old slot receiver on the Patriots who's already approaching peak age with a 4.7 PPG baseline and zero path to WR1 upside in that offense. You're essentially buying a Kendrick Bourne clone and calling it an asset. The two 2025 second-rounders are nice—picking a year closer is smart rebuild strategy—but you're still trading a 2026 second, so the net gain is one additional second-rounder. The production metrics and scheme fit overwhelmingly favor McBride, who operates as a true alpha tight end in an offense that will feed him 100-plus targets annually. Ferguson? He's fighting CeeDee Lamb, Brandy Cooks when healthy, and an evolving backfield for looks.\n\nThe Consolidator, meanwhile, just pulled off what looks like highway robbery for a team already sitting at 94 power score and ranked first in the league. This is the Davante Adams move in reverse—instead of reuniting talent with a quarterback, you're consolidating elite positional scarcity at tight end where the VOR sits around 120 compared to just 20 for streaming options. Cosmohouck doesn't need depth or second-rounders in 2025; he needs to protect his championship window and lock down positional advantages. Getting McBride while shipping out Ferguson, a dart-throw receiver, and future picks when you're already stacked? That's championship roster management. The risk profile for The Consolidator is virtually nonexistent—even if McBride regresses slightly, the gap between him and Ferguson in dynasty formats is massive. For powerperson, you're hoping Ferguson somehow becomes Travis Kelce 2.0, Douglas breaks out in year three on the Patriots—historically a terrible bet for receivers—and those second-rounders hit on day-two prospects.\n\nHere's my bold prediction: in two years, we'll look back at this trade the same way we remember the Trent Richardson deal—The Bargain Bin Shopper thought he was getting value and flexibility, but what he actually did was gift-wrap a foundational dynasty piece to a contender for a handful of magic beans that never sprouted. McBride will be a top-three fantasy tight end for the next three seasons, Ferguson will be a TE8-12 streamer, Douglas will be out of the league or buried on a depth chart, and those second-rounders will become replacement-level talents. The Consolidator just widened the gap between first and eleventh place, and sometimes in dynasty, the best trades are the ones where you simply don't overthink positional scarcity. This wasn't close.",
+  "generatedAt": "2026-02-12T08:21:35.958Z"
+}
