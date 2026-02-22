@@ -1,0 +1,135 @@
+{
+  "tradeId": "e763c04d241163a8",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Tishathefish",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94.1,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 93.5,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 47557
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 379,
+        "netValueChange": -379,
+        "estimatedPowerScoreChange": -0.4,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Jalen Coker",
+            "value": 379
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jalen Coker",
+          "position": "WR",
+          "team": "CAR",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 47.5,
+        "powerRank": 7,
+        "lineupValueScore": 57.1,
+        "performanceScore": 35.4,
+        "positionalScore": 44.7,
+        "depthScore": 32,
+        "totalTeams": 12,
+        "totalRosterValue": 27160
+      },
+      "tradeImpact": {
+        "valueGained": 379,
+        "valueLost": 0,
+        "netValueChange": 379,
+        "estimatedPowerScoreChange": 0.4,
+        "playersGained": [
+          {
+            "name": "Jalen Coker",
+            "value": 379
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jalen Coker",
+          "position": "WR",
+          "team": "CAR",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "Tishathefish",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "Tishathefish"
+    },
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "Tishathefish"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm going to tell you something right now - cosmohouck just made a PANIC MOVE that's going to haunt him come draft season, and I'll defend that evaluation all day long. This guy's sitting at #1 in the power rankings with a 94.1 score, he's got the best roster in this league, and he just gave away Jalen Coker PLUS two picks to move up ONE ROUND in the 2025 draft? The tape doesn't lie, folks - this is a contender making a rebuilder's mistake!\n\nLet's talk about Jalen Coker for a second, because I had this kid circled coming out of Holy Cross. Twenty-four years old, rising arrow, 3.5 PPG in limited action - this is a FOOTBALL PLAYER with legitimate upside in Carolina's offense. You're getting a young receiver with an age curve that peaks at 26-30, and cosmohouck - \"The Impatient Contender\" - is dumping him with draft capital attached like he's some aging veteran clogging the roster? Meanwhile, Tishathefish - let's call him \"The Asset Accumulator\" - is sitting at 47.5 power score, clearly rebuilding, and just fleeced the league's top team for a prospect AND two picks. That's a 379-point value swing, and in dynasty, those assets compound!\n\nHere's my BOLD PREDICTION: By Week 8, Coker's going to be a WR3/flex option putting up 8-10 points per game, and cosmohouck is going to be kicking himself because whatever he drafts in Round 2 won't have Coker's ceiling. This is classic draft capital mismanagement from a win-now team that should be ADDING young pieces, not subtracting them. The 2026 second-rounder? That's premium currency in dynasty, and he just threw it in like a throw-in player!\n\nThe risk-reward here is completely lopsided. Tishathefish risks absolutely NOTHING - he's getting a lottery ticket receiver at 24 years old, moves back one round this year, and banks a future second. That's textbook rebuilding. Cosmohouck? He's risking his depth for marginal draft position improvement, and when you're already the best team in the league, you don't need to make desperate moves in Week 1! This trade gets an F for the contender and an A for the rebuilder. Book it!",
+  "generatedAt": "2026-02-22T08:14:10.106Z"
+}

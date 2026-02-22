@@ -1,0 +1,195 @@
+{
+  "tradeId": "9600f029097171dc",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "drobs",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 52.6,
+        "powerRank": 6,
+        "lineupValueScore": 56.4,
+        "performanceScore": 55.1,
+        "positionalScore": 38.7,
+        "depthScore": 41.1,
+        "totalTeams": 12,
+        "totalRosterValue": 26808
+      },
+      "tradeImpact": {
+        "valueGained": 2418,
+        "valueLost": 133,
+        "netValueChange": 2285,
+        "estimatedPowerScoreChange": 2.4,
+        "playersGained": [
+          {
+            "name": "Mark Andrews",
+            "value": 274
+          },
+          {
+            "name": "Kenneth Walker",
+            "value": 2144
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Elijah Arroyo",
+            "value": 133
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Mark Andrews",
+          "position": "TE",
+          "team": "BAL",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "team": "SEA",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Elijah Arroyo",
+          "position": "TE",
+          "team": "SEA",
+          "age": 22,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 17.6,
+        "powerRank": 12,
+        "lineupValueScore": 26.9,
+        "performanceScore": 6.1,
+        "positionalScore": 13.4,
+        "depthScore": 5.6,
+        "totalTeams": 12,
+        "totalRosterValue": 12812
+      },
+      "tradeImpact": {
+        "valueGained": 133,
+        "valueLost": 2418,
+        "netValueChange": -2285,
+        "estimatedPowerScoreChange": -2.4,
+        "playersGained": [
+          {
+            "name": "Elijah Arroyo",
+            "value": 133
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Mark Andrews",
+            "value": 274
+          },
+          {
+            "name": "Kenneth Walker",
+            "value": 2144
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Elijah Arroyo",
+          "position": "TE",
+          "team": "SEA",
+          "age": 22,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Mark Andrews",
+          "position": "TE",
+          "team": "BAL",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "team": "SEA",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "drobs",
+      "to": "Langland"
+    },
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "drobs",
+      "to": "Langland"
+    },
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "drobs",
+      "to": "Langland"
+    },
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "Langland",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: League sources tell me drobs just executed what I'm calling the \"All-In Special\" — mortgaging three premium draft picks including a 2027 first-rounder to acquire Kenneth Walker and Mark Andrews, per multiple sources. I'm told Langland, who's sitting at the absolute bottom of the power rankings at 17.6, has officially waved the white flag and entered full-on \"Tank Commander\" mode. This is a seismic shift in draft capital — drobs, historically a balanced trader with 10 picks acquired in his career, just flipped the script and dumped three future picks for immediate production.\n\nHere's what I'm hearing around the league: drobs sees Walker at 25 as a prime dynasty RB asset — still in that sweet spot before the age-27 cliff — and Andrews, despite turning 30, as an elite TE upgrade over the injured Elijah Arroyo, who's currently on IR with a knee issue. The value disparity is staggering, folks — 2,418 going out versus just 133 coming back, according to trade calculators. But here's the thing: drobs is ranked 6th with a 52.6 power score, and this move projects to bump them up 2.4 points. They're clearly saying \"the window is now.\"\n\nThis has serious Russell Wilson-to-Denver vibes written all over it, I'm told. Remember when the Broncos sent multiple first-rounders and premium picks for Russ, thinking they were one piece away? Langland is banking on drobs' 2027 first becoming a top-tier pick if this gamble backfires. League sources say Langland — who's already traded away 12 picks in their career versus acquiring only 2 — is going scorched-earth rebuild mode. They're essentially betting Walker hits the RB wall early and Andrews' TE production falls off the aging cliff.\n\nMy bold prediction, per sources familiar with how these blockbusters typically age: In two years, we'll look back at this trade and Langland will have flipped that 2027 first into a stud RB prospect while drobs is left holding an aging Andrews and watching Walker's efficiency crater behind Seattle's offensive line instability. I'm told this is the exact type of trade that wins championships *or* destroys rosters — and right now, drobs is betting everything they can survive the 2027 draft-pick hangover. The rebuild versus win-now dichotomy couldn't be more stark, folks.",
+  "generatedAt": "2026-02-22T08:13:07.233Z"
+}

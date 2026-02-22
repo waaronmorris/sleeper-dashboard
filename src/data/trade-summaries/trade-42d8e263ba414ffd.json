@@ -1,0 +1,131 @@
+{
+  "tradeId": "42d8e263ba414ffd",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "powerperson",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 25,
+        "powerRank": 11,
+        "lineupValueScore": 28.4,
+        "performanceScore": 21.2,
+        "positionalScore": 24.8,
+        "depthScore": 13.7,
+        "totalTeams": 12,
+        "totalRosterValue": 13489
+      },
+      "tradeImpact": {
+        "valueGained": 3359,
+        "valueLost": 145,
+        "netValueChange": 3214,
+        "estimatedPowerScoreChange": 3.4,
+        "playersGained": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3359
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Keon Coleman",
+            "value": 145
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Keon Coleman",
+          "position": "WR",
+          "team": "BUF",
+          "age": 22,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94.1,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 93.5,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 47557
+      },
+      "tradeImpact": {
+        "valueGained": 145,
+        "valueLost": 3359,
+        "netValueChange": -3214,
+        "estimatedPowerScoreChange": -3.4,
+        "playersGained": [
+          {
+            "name": "Keon Coleman",
+            "value": 145
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3359
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Keon Coleman",
+          "position": "WR",
+          "team": "BUF",
+          "age": 22,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "powerperson",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is this trade tells two very different stories, and sources indicate powerperson just pulled off a classic rebuild-to-contend acceleration move while cosmohouck – sitting pretty at #1 overall with a 94.1 power score – is making a fascinating pivot toward youth. What's striking here is the value disparity: powerperson receives $3,359 in value for just $145 given up, a net swing of over 3,000 points. That's not a trade, folks – that's a heist.\n\nLet's talk about what powerperson is getting. DeVonta Smith at 27 years old is squarely in his prime WR window, averaging 10.6 PPG historically with Jalen Hurts slinging it in one of the league's most explosive offenses. For a team ranked dead last at #11 with a 25 power score, this is an instant roster upgrade that addresses their glaring weakness. Keep an eye on this – powerperson has been stockpiling picks all along (17 acquired versus 7 traded in their career), and now they're cashing in those assets to add proven production. This fits their future-focused pattern perfectly, and the +3.4 power score bump suggests this could be the first domino in a legitimate playoff push. They gave up Keon Coleman, a 22-year-old with upside but just 6.3 PPG, plus a second-rounder. That's spare change for a proven WR1.\n\nNow here's where it gets interesting with cosmohouck. Sources tell me they're already the league's powerhouse – ranked #1, perfect lineup score of 100, elite depth. So why trade away your 27-year-old WR in his prime for a project player and a second? My understanding is this screams dynasty asset management. They're so stacked they can afford to take a swing on Coleman's youth trajectory and banking that 2025 second-rounder. But here's my issue: when you're this dominant, you don't rebuild – you reload for championships NOW. This reminds me of the Russell Wilson trade where Seattle got young assets but gave up their championship window. Cosmohouck just lost 3.4 power score points, and while Coleman has rising potential in Buffalo's offense, he's nowhere near Smith's consistency.\n\nThe developing situation here is clear – powerperson wins this trade decisively. They turned a dart throw and mid-round capital into a bona fide WR1 during peak years, exactly what a team climbing from the cellar needs. Cosmohouck? They're banking on Coleman's ceiling, but you don't mortgage proven production when you're the #1 seed. Keep an eye on whether this becomes cosmohouck's \"too cute by half\" moment – sometimes the best teams overthink their dominance and create problems that didn't exist. Winner: powerperson, and it's not particularly close.",
+  "generatedAt": "2026-02-22T08:14:30.008Z"
+}

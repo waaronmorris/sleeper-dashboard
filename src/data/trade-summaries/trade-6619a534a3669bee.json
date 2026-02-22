@@ -1,0 +1,157 @@
+{
+  "tradeId": "6619a534a3669bee",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "Shogunation",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 78.7,
+        "powerRank": 4,
+        "lineupValueScore": 81.9,
+        "performanceScore": 77.9,
+        "positionalScore": 67,
+        "depthScore": 85.8,
+        "totalTeams": 12,
+        "totalRosterValue": 38962
+      },
+      "tradeImpact": {
+        "valueGained": 1278,
+        "valueLost": 0,
+        "netValueChange": 1278,
+        "estimatedPowerScoreChange": 1.3,
+        "playersGained": [
+          {
+            "name": "Derrick Henry",
+            "value": 1121
+          },
+          {
+            "name": "Alvin Kamara",
+            "value": 157
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "team": "BAL",
+          "age": 32,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "Alvin Kamara",
+          "position": "RB",
+          "team": "NO",
+          "age": 30,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 17.6,
+        "powerRank": 12,
+        "lineupValueScore": 26.9,
+        "performanceScore": 6.1,
+        "positionalScore": 13.4,
+        "depthScore": 5.6,
+        "totalTeams": 12,
+        "totalRosterValue": 12812
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1278,
+        "netValueChange": -1278,
+        "estimatedPowerScoreChange": -1.3,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Derrick Henry",
+            "value": 1121
+          },
+          {
+            "name": "Alvin Kamara",
+            "value": 157
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "team": "BAL",
+          "age": 32,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "Alvin Kamara",
+          "position": "RB",
+          "team": "NO",
+          "age": 30,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "Langland"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "Langland"
+    },
+    {
+      "season": "2027",
+      "round": 3,
+      "from": "Langland",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I've been doing this for over four decades, and when I see a dynasty trade like this, the tape doesn't lie – this is a CLASSIC case of a contender mortgaging the future and a rebuilder doing EXACTLY what they should be doing. Let me tell you, Shogunation – and I'm calling them \"The Impatient Contender\" because that's what they are – just went all-in on a 32-year-old running back and a 30-year-old with a QUESTIONABLE KNEE. Meanwhile, Langland – \"The Patient Rebuilder\" sitting at dead last with a 17.6 power score – just pulled off the dynasty equivalent of the Jamal Adams trade! They shipped out aging vets for premium draft capital, and folks, when you're 12th out of 12 teams, you BETTER be accumulating first-round picks!\n\nNow, let me break down what Shogunation is getting here. Derrick Henry at 32 years old – I don't care if he's on my board or not, the REALITY is that running backs age like milk in this league, not wine! History tells us RBs fall off a cliff around 27, and this guy is FIVE YEARS past that expiration date. Yeah, he put up 15.5 points per game historically, but we're talking about a player in the twilight of his career. And Alvin Kamara? He's 30 with an MCL sprain in Week 1! The medical concerns alone should have Shogunation's front office second-guessing this move. You're giving up TWO first-round picks – the most valuable assets in dynasty football – for guys whose floors are the BASEMENT and whose ceilings are cracking from age!\n\nLangland, on the other hand, just executed a TEXTBOOK rebuild. When you're sitting at 17.6 power score with abysmal lineup and depth metrics, you don't try to patch holes with veteran band-aids – you tear it down and build through the draft! Two first-rounders in 2026 and 2027 are GOLD in dynasty, especially when you're likely picking high. This is asset accumulation 101. The historical pattern shows Langland has traded away 11 picks over their career, but now they're course-correcting, and I LOVE IT. You know what those picks could become? A generational RB prospect, an elite young receiver – players with 8-10 year windows, not 8-10 GAME windows!\n\nHere's my bold prediction, and you can hold me to it: In two years, when we look back at this trade in 2027, Derrick Henry will be retired or a backup, Kamara will be a committee back averaging 7 points per game, and Shogunation will be kicking themselves for giving up what could've been two top-3 picks to a team that was clearly in the cellar. Meanwhile, Langland will have rebuilt their entire roster foundation and vaulted into playoff contention with young studs they drafted with this haul. This trade will be a cautionary tale about the dangers of win-now desperation in dynasty leagues. The value disparity here is STAGGERING – 1,278 points of value versus zero? Langland wins this trade both now AND later, and that's not something I say lightly!",
+  "generatedAt": "2026-02-22T08:13:29.996Z"
+}

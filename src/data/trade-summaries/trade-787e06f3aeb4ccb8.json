@@ -1,0 +1,167 @@
+{
+  "tradeId": "787e06f3aeb4ccb8",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "cosmohouck",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 52.6,
+        "powerRank": 6,
+        "lineupValueScore": 56.4,
+        "performanceScore": 55.1,
+        "positionalScore": 38.7,
+        "depthScore": 41.1,
+        "totalTeams": 12,
+        "totalRosterValue": 26808
+      },
+      "tradeImpact": {
+        "valueGained": 3039,
+        "valueLost": 4915,
+        "netValueChange": -1876,
+        "estimatedPowerScoreChange": -2,
+        "playersGained": [
+          {
+            "name": "Jameson Williams",
+            "value": 2897
+          },
+          {
+            "name": "Tory Horton",
+            "value": 142
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jonathan Taylor",
+            "value": 4915
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Tory Horton",
+          "position": "WR",
+          "team": "SEA",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "team": "IND",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 94.1,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 83.5,
+        "positionalScore": 93.5,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 47557
+      },
+      "tradeImpact": {
+        "valueGained": 4915,
+        "valueLost": 3039,
+        "netValueChange": 1876,
+        "estimatedPowerScoreChange": 2,
+        "playersGained": [
+          {
+            "name": "Jonathan Taylor",
+            "value": 4915
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jameson Williams",
+            "value": 2897
+          },
+          {
+            "name": "Tory Horton",
+            "value": 142
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "team": "IND",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Tory Horton",
+          "position": "WR",
+          "team": "SEA",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "drobs",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a classic win-now versus rebuild transaction, and cosmohouck just absolutely fleeced drobs in Week 1. We're talking about a nearly 2,000-point value disparity here, and that number tells you everything you need to know about the athletic profiles and production metrics involved.\n\nJonathan Taylor at 27 is entering that critical RB age curve window, but let me be clear—he's a legitimate RB1 with elite production metrics when healthy. The guy averaged 9.0 fantasy points per game historically, and he's the centerpiece of Indianapolis's offense. Meanwhile, drobs is getting back Jameson Williams, who's shown flashes but carries a 5.0 PPG average with consistency concerns, and Tory Horton, who's literally on IR with a shin injury and buried as the fourth receiver in Seattle's depth chart. That's essentially two lottery tickets and a pick swap for a proven workhorse. This reminds me of the DeAndre Hopkins trade when Houston sent prime Hopkins to Arizona for practically nothing—sometimes you get so enamored with youth and upside that you forget about established production.\n\nHere's what's fascinating about the roster construction: cosmohouck is already sitting at a 94.1 power score, ranked #1 in the league, and just added more firepower to a contending roster. That's how you build a dynasty juggernaut—you consolidate talent when you're already strong. Meanwhile, drobs at 52.6 power score should be accumulating picks and prospects, but instead traded away a 2026 third-rounder for a 2028 third-rounder, essentially pushing future value even further down the road while getting worse in the short term. The timing here is baffling for drobs—if you're moving Taylor in a rebuild, you need to extract maximum value, not settle for a package that includes an injured dart throw.\n\nMy bold prediction? In two years, when Taylor has aged out but Jameson Williams still hasn't put together a consistent WR2 season, drobs will look back at this as the moment that set the rebuild back by three years. cosmohouck is going to ride Taylor to a championship run this season while drobs tries to convince himself that Tory Horton's athletic profile was worth it. The scheme fit for Taylor in Indianapolis is ideal, the volume metrics are elite, and you just don't give that up for unproven pieces when the value gap is this massive. This is a heist.",
+  "generatedAt": "2026-02-22T08:12:28.212Z"
+}
