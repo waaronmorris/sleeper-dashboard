@@ -1,0 +1,121 @@
+{
+  "tradeId": "9aa8da18c270d827",
+  "week": 9,
+  "season": "2023",
+  "leagueId": "1182940167115010048",
+  "participants": [
+    "drobs",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 52.5,
+        "powerRank": 6,
+        "lineupValueScore": 56.2,
+        "performanceScore": 55.1,
+        "positionalScore": 38.8,
+        "depthScore": 41.3,
+        "totalTeams": 12,
+        "totalRosterValue": 26744
+      },
+      "tradeImpact": {
+        "valueGained": 559,
+        "valueLost": 0,
+        "netValueChange": 559,
+        "estimatedPowerScoreChange": 0.6,
+        "playersGained": [
+          {
+            "name": "Chris Godwin",
+            "value": 559
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Chris Godwin",
+          "position": "WR",
+          "team": "TB",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kadarius Toney",
+          "position": "WR",
+          "team": "FA",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 25,
+        "powerRank": 11,
+        "lineupValueScore": 28.4,
+        "performanceScore": 21.2,
+        "positionalScore": 24.9,
+        "depthScore": 13.4,
+        "totalTeams": 12,
+        "totalRosterValue": 13512
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 559,
+        "netValueChange": -559,
+        "estimatedPowerScoreChange": -0.6,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Chris Godwin",
+            "value": 559
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kadarius Toney",
+          "position": "WR",
+          "team": "FA",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chris Godwin",
+          "position": "WR",
+          "team": "TB",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "drobs",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, this is exactly the kind of move you want to see from a rebuilding team – powerperson is completely cooked at 1-7, sitting at 25 power score, and they're smartly pivoting to accumulate assets for the future. They're selling Chris Godwin, a 30-year-old receiver who's putting up solid 9.1 PPG production, to get a 2026 second-rounder and take a flyer on Kadarius Toney. Now, Toney's essentially a lottery ticket at this point – he's on his couch as a free agent averaging under 3 PPG – but when you're the second-worst team in a 12-team league, you're not worried about 2023. You're playing the long game, and that 2026 pick gives you draft capital to rebuild this roster from the foundation up.\n\nFor drobs, this is a classic win-now consolidation move, and frankly, it's exactly what a 5-3 playoff contender at 52.5 power score should be doing. They're giving up absolutely nothing of current value – Toney's been a colossal bust and that 2026 pick is three years away – to get immediate production from a proven NFL receiver. Godwin's not a league-winner, but he's steady, he's available, and he upgrades your starting lineup right now when you're making a playoff push. The +0.6 power score bump might seem modest, but that's real value when you're five weeks from the postseason and every point matters in head-to-head matchups.\n\nWhat I love about this trade is the clarity of vision from both sides. Powerperson has been active with six trades this season, and this fits the pattern perfectly – they're asset hunting while the ship is sinking. Meanwhile, drobs is making their fifth move of the year, and they've now acquired 18 players historically with this aggressive, balanced approach. They're not sitting on their hands hoping their roster magically improves; they're identifying value and pouncing on it. When you can turn a washout prospect and a distant future pick into a guy averaging 9+ PPG, you take that deal every single time in dynasty.\n\nThe value disparity here is staggering – drobs gets 559 points of value while giving up essentially zero – but context is everything. In a vacuum, powerperson \"lost\" this trade badly. But in reality, they're executing a proper tank-and-rebuild strategy. My only concern for powerperson is whether they got enough back. A single second-rounder in 2026 for a serviceable WR2? That feels light. I would've wanted a 2025 pick or maybe squeezed this into a first-rounder, because Godwin still has value to multiple contenders in this league. But if you're committed to the rebuild, you take your assets and move forward. Clear winner: drobs in 2023, but powerperson is playing chess while everyone else is playing checkers – we'll see if it pays off in 2026.",
+  "generatedAt": "2026-03-01T08:12:15.277Z"
+}
