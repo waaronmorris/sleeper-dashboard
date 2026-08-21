@@ -1,23 +1,36 @@
-<div style="margin: 0 0 2rem 0;">
-  <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
-    Trade Retro
-  </div>
-  <h1 style="margin: 0 0 1rem 0; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, #f8fafc 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-    Historical Trade Analysis & Long-Term Impact
-  </h1>
-  <p style="font-size: 1.125rem; color: #cbd5e1; margin: 0; max-width: 800px; line-height: 1.6;">
-    Track trade performance year-over-year. See which deals paid off in the long run and which trades haunted managers for seasons to come.
-  </p>
-</div>
+<style>
+  .stat--text { overflow-wrap: anywhere; font-size: var(--text-xl); }
+  .trade-asset { padding: var(--space-3); border-left: 2px solid var(--hair-2); background: var(--ground-2); border-radius: var(--radius); margin-bottom: var(--space-2); }
+  .trade-asset__name { font-weight: 600; font-size: var(--text-sm); color: var(--ink); }
+  .trade-asset__meta { font-size: var(--text-xs); color: var(--ink-3); margin-top: var(--space-1); }
+  .trade-asset__pts { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; margin-top: var(--space-2); }
+  .trade-asset__years { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--ink-3); margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px solid var(--hair); }
+  .trade-asset__years > div { display: flex; justify-content: space-between; gap: var(--space-3); }
+  .trade-side--win { border-left: 3px solid var(--brass); }
+  .trade-card__verdict { margin-bottom: var(--space-3); }
+  .trade-side__totals { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .trade-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-4); }
+  .trade-matchup { display: grid; grid-template-columns: 1fr; gap: var(--space-4); align-items: start; }
+  @media (min-width: 760px) { .trade-matchup { grid-template-columns: 1fr auto 1fr; } }
+  .trade-matchup .matchup-divider { align-self: center; text-align: center; font-size: var(--text-lg); }
+</style>
+
+```js
+import {mountSeasonPicker} from "./components/season.js";
+const seasonsData = await FileAttachment("data/seasons.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
+```
+
+```js
+const S = seasonsData.by_season[season];
+const rosters = S.rosters;
+const users = S.users;
+```
 
 ```js
 // Load data
 const trades = await FileAttachment("data/trades.json").json();
-const rosters = await FileAttachment("data/rosters.json").json();
-const users = await FileAttachment("data/users.json").json();
 const players = await FileAttachment("data/players.json").json();
-const league = await FileAttachment("data/league.json").json();
-const matchupsData = await FileAttachment("data/matchups.json").json();
 const matchupsAllYears = await FileAttachment("data/matchups-all-years.json").json();
 const draftData = await FileAttachment("data/draft-picks.json").json();
 
@@ -25,6 +38,17 @@ const draftData = await FileAttachment("data/draft-picks.json").json();
 console.log('Trades loaded:', trades.length, 'trades');
 console.log('Matchups years:', Object.keys(matchupsAllYears));
 console.log('Draft data seasons:', Object.keys(draftData));
+```
+
+```js
+display(html`
+  <header class="page-head">
+    <p class="eyebrow">${season} season · ${S.is_current ? "in season" : "final"}</p>
+    <h1>Which trades <em>aged</em> well?</h1>
+    <p class="lede">Every trade scored by the career fantasy points each side received versus gave up, across all seasons since the deal.</p>
+    <p class="meta">${trades.length} trades on record · ${Object.keys(matchupsAllYears).length} seasons of scoring</p>
+  </header>
+`);
 ```
 
 ```js
@@ -229,15 +253,15 @@ const availableTeams = [...allTeamsInTrades].sort();
 const selectedSeason = view(Inputs.select(
   ["All Seasons", ...availableSeasons],
   {
-    label: "Filter by Season",
-    value: "All Seasons"
+    label: "Season",
+    value: (season !== seasonsData.current && availableSeasons.includes(season)) ? season : "All Seasons"
   }
 ));
 
 const selectedTeam = view(Inputs.select(
   ["All Teams", ...availableTeams],
   {
-    label: "Filter by Team",
+    label: "Team",
     value: "All Teams"
   }
 ));
@@ -382,6 +406,8 @@ const processedTrades = trades.map(trade => {
 console.log('Processed trades:', processedTrades.length);
 ```
 
+## Trade statistics
+
 ```js
 // Calculate summary stats
 const totalTrades = processedTrades.length;
@@ -443,139 +469,161 @@ const biggestImpactTrade = processedTrades.reduce((biggest, trade) => {
   return (trade.pointsDiff > (biggest?.pointsDiff || 0)) ? trade : biggest;
 }, null);
 
+
 const tradeStatsContent = html`
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px;">
-    <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid var(--theme-accent);">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">
-        ${selectedSeason === "All Seasons" ? "Historical Trades" : `${selectedSeason} Trades`}
-      </div>
-      <div style="font-size: 32px; font-weight: bold; color: var(--theme-accent);">${totalTrades}</div>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat__k">${selectedSeason === "All Seasons" ? "Trades on record" : `${selectedSeason} trades`}</div>
+      <div class="stat__v">${totalTrades}</div>
     </div>
-    <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #8b5cf6;">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Players Tracked</div>
-      <div style="font-size: 32px; font-weight: bold; color: #8b5cf6;">${totalPlayersTradedAcrossYears}</div>
+    <div class="stat">
+      <div class="stat__k">Players tracked</div>
+      <div class="stat__v">${totalPlayersTradedAcrossYears}</div>
     </div>
-    <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #f59e0b;">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Most Active Trader</div>
-      <div style="font-size: 16px; font-weight: bold; color: #f59e0b;">${mostActiveTrader}</div>
-      <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-        ${sortedTradeCounts[0] ? sortedTradeCounts[0][1] : 0} trades
-      </div>
+    <div class="stat">
+      <div class="stat__k">Most active trader</div>
+      <div class="stat__v stat--text">${mostActiveTrader}</div>
+      <div class="stat__l">${sortedTradeCounts[0] ? sortedTradeCounts[0][1] : 0} trades</div>
     </div>
-    ${bestTradeRecord ? html`
-      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #10b981;">
-        <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Best Trade Record</div>
-        <div style="font-size: 16px; font-weight: bold; color: #10b981;">${bestTradeRecord.team}</div>
-        <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-top: 4px; font-weight: 600;">
-          ${bestTradeRecord.record}
-        </div>
-        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
-          ${bestTradeRecord.winPercentage.toFixed(1)}% win rate
-        </div>
-      </div>
-    ` : ''}
-    ${biggestImpactTrade ? html`
-      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid #ef4444;">
-        <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 5px;">Biggest Impact</div>
-        <div style="font-size: 16px; font-weight: bold; color: #ef4444;">
-          ${biggestImpactTrade.winner === 'Even Trade' ? 'Even Trade' : biggestImpactTrade.winner}
-        </div>
-        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-          ${biggestImpactTrade.pointsDiff.toFixed(1)} pt differential
-        </div>
-      </div>
-    ` : ''}
+    ${bestTradeRecord ? html`<div class="stat"><div class="stat__k">Best trade record</div><div class="stat__v stat--text">${bestTradeRecord.team}</div><div class="stat__l"><span class="mono">${bestTradeRecord.record}</span> · ${bestTradeRecord.winPercentage.toFixed(1)}% won</div></div>` : ''}
+    ${biggestImpactTrade ? html`<div class="stat"><div class="stat__k">Biggest swing</div><div class="stat__v stat--text">${biggestImpactTrade.winner === 'Even Trade' ? 'Even trade' : biggestImpactTrade.winner}</div><div class="stat__l">${biggestImpactTrade.pointsDiff.toFixed(1)} pt differential</div></div>` : ''}
   </div>
 `;
 
-display(html`<details open class="section-collapse">
-  <summary class="section-summary">Year-Over-Year Trade Statistics</summary>
-  <div class="section-content">
-    ${tradeStatsContent}
-  </div>
-</details>`);
+display(tradeStatsContent);
 ```
+
+## Team trade records <span class="section-meta">win / loss / draw</span>
 
 ```js
 // Display team trade records table
 if (sortedTradeRecords.length > 0) {
+  const n = sortedTradeRecords.length;
   const teamRecordsTable = html`
-    <div style="background: var(--theme-background-alt); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-      <h3 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 700; color: var(--theme-accent);">
-        Team Trade Records
-      </h3>
-      <div style="padding: 12px 16px; background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; border-radius: 6px; margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
-        <strong style="color: #3b82f6; font-size: 14px;">📊 Note:</strong> These records are current and will change as traded draft picks are used and those players perform in future seasons.
-      </div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-        <colgroup>
-          <col style="width: 50px;">
-          <col>
-          <col style="width: 100px;">
-          <col style="width: 55px;">
-          <col style="width: 60px;">
-          <col style="width: 55px;">
-          <col style="width: 55px;">
-          <col style="width: 60px;">
-        </colgroup>
-          <thead>
-            <tr style="border-bottom: 2px solid rgba(255, 255, 255, 0.1);">
-              <th style="padding: 12px 8px; text-align: left; color: var(--theme-foreground-alt); font-weight: 600;">Rank</th>
-              <th style="padding: 12px 8px; text-align: left; color: var(--theme-foreground-alt); font-weight: 600;">Team</th>
-              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Record</th>
-              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Wins</th>
-              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Losses</th>
-              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Draws</th>
-              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Total</th>
-              <th style="padding: 12px 8px; text-align: center; color: var(--theme-foreground-alt); font-weight: 600;">Win %</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${sortedTradeRecords.map((teamRecord, index) => {
-              const isTop3 = index < 3;
-              const rankColor = index === 0 ? '#fbbf24' : index === 1 ? '#d1d5db' : index === 2 ? '#cd7f32' : 'var(--theme-foreground-alt)';
-              const rowBg = index % 2 === 0 ? 'rgba(255, 255, 255, 0.02)' : 'transparent';
-              const rank = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1;
-              const winColor = teamRecord.winPercentage >= 50 ? '#22c55e' : teamRecord.winPercentage >= 33 ? '#f59e0b' : '#ef4444';
-
-              return html`<tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: ${rowBg};">
-                <td style="padding: 12px 8px; color: ${rankColor}; font-weight: ${isTop3 ? '700' : '500'}; white-space: nowrap; text-align: left;">${rank}</td>
-                <td style="padding: 12px 8px; font-weight: ${isTop3 ? '600' : '400'}; color: ${isTop3 ? 'var(--theme-accent)' : 'var(--theme-foreground)'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left;">${teamRecord.team}</td>
-                <td style="padding: 12px 8px; text-align: center; font-weight: 600; font-family: monospace; color: var(--theme-accent); white-space: nowrap;">${teamRecord.record}</td>
-                <td style="padding: 12px 8px; text-align: center; color: #22c55e; font-weight: 600;">${teamRecord.wins}</td>
-                <td style="padding: 12px 8px; text-align: center; color: #ef4444; font-weight: 600;">${teamRecord.losses}</td>
-                <td style="padding: 12px 8px; text-align: center; color: #94a3b8; font-weight: 600;">${teamRecord.draws}</td>
-                <td style="padding: 12px 8px; text-align: center; font-weight: 500;">${teamRecord.totalTrades}</td>
-                <td style="padding: 12px 8px; text-align: center; font-weight: 600; color: ${winColor}; white-space: nowrap;">${teamRecord.winPercentage.toFixed(1)}%</td>
-              </tr>`;
-            })}
-          </tbody>
+    <aside class="note note--slate">
+      <b>Records move.</b> Traded draft picks keep scoring as the drafted players play, so these win/loss counts update every season.
+    </aside>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th class="num">Record</th>
+            <th class="num">Wins</th>
+            <th class="num">Losses</th>
+            <th class="num">Draws</th>
+            <th class="num">Total</th>
+            <th class="num">Win %</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${sortedTradeRecords.map((teamRecord, index) => {
+            const isTop = index < 3;
+            const isBottom = n > 6 && index >= n - 3;
+            return html`<tr class="${isTop ? 'is-top' : isBottom ? 'is-bottom' : ''}">
+              <td><span class="rank ${isTop ? 'rank--top' : isBottom ? 'rank--bottom' : ''}">${index + 1}</span></td>
+              <td>${teamRecord.team}</td>
+              <td class="num mono">${teamRecord.record}</td>
+              <td class="num">${teamRecord.wins}</td>
+              <td class="num">${teamRecord.losses}</td>
+              <td class="num muted">${teamRecord.draws}</td>
+              <td class="num">${teamRecord.totalTrades}</td>
+              <td class="num">${teamRecord.winPercentage.toFixed(1)}%</td>
+            </tr>`;
+          })}
+        </tbody>
       </table>
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 12px; color: var(--theme-foreground-alt); line-height: 1.6;">
-        <strong>How it works:</strong> A team "wins" a trade if they gain 20+ more career fantasy points than they gave up.
-        Trades with smaller differentials (&lt;20 pts) are considered "draws" (even trades). Rankings are based on win percentage.
-      </div>
     </div>
+    <p class="muted text-xs">A team wins a trade when it gains 20 or more career fantasy points than it gave up. Smaller gaps count as draws. Ranked by win percentage, then wins.</p>
   `;
 
-  display(html`<details open class="section-collapse">
-    <summary class="section-summary">Team Trade Records - Win/Loss/Draw</summary>
-    <div class="section-content">
-      ${teamRecordsTable}
-    </div>
-  </details>`);
+  display(teamRecordsTable);
 }
 ```
+
+```js
+// Render helpers for the per-trade cards.
+const fmtPts = v => `${v.toFixed(1)} pts`;
+
+function yearlyRows(stats, emptyText) {
+  const years = Object.entries(stats.yearlyBreakdown);
+  if (years.length === 0) return html`<div class="trade-asset__meta">${emptyText}</div>`;
+  return html`<div class="trade-asset__years">
+    ${years.map(([year, data]) => html`<div><span>${year}</span><span>${fmtPts(data.points)} (${data.games} games)</span></div>`)}
+  </div>`;
+}
+
+function playerCard(player) {
+  return html`<div class="trade-asset">
+    <div class="trade-asset__name">${player.name}</div>
+    <div class="trade-asset__meta"><span class="badge badge--pos-${player.position.toLowerCase()}">${player.position}</span> · ${player.stats.gamesPlayed} career games</div>
+    <div class="trade-asset__pts">${fmtPts(player.stats.totalPoints)} total</div>
+    ${yearlyRows(player.stats, 'No production since trade')}
+  </div>`;
+}
+
+function pickCard(pick) {
+  const player = pick.draftedPlayer;
+  return html`<div class="trade-asset">
+    <div class="trade-asset__name mono">${pick.season} round ${pick.round}${player ? ` · pick ${player.pickNumber}` : ' pick'}</div>
+    ${player ? html`
+      <div class="trade-asset__name">${player.name}</div>
+      <div class="trade-asset__meta"><span class="badge badge--pos-${player.position.toLowerCase()}">${player.position}</span> · ${player.stats.gamesPlayed} career games</div>
+      <div class="trade-asset__pts">${fmtPts(player.stats.totalPoints)} total</div>
+      ${yearlyRows(player.stats, 'No production since draft')}
+    ` : html`<div class="trade-asset__meta">Not drafted yet — the player appears after the ${pick.season} draft.</div>`}
+  </div>`;
+}
+
+function sideCard(side, trade) {
+  if (!side) {
+    return html`<div class="card trade-side"><div class="card__title">Unknown</div></div>`;
+  }
+  const isWinner = side.username === trade.winner && trade.winner !== 'Even Trade';
+  const net = side.netPoints;
+  return html`<div class="card trade-side ${isWinner ? 'trade-side--win' : ''}">
+    <div class="card__title">${side.username}</div>
+
+    ${(side.givenUp.length > 0 || side.picksGivenUp.length > 0) ? html`
+      <div class="stack">
+        <h4>Gave up</h4>
+        ${side.givenUp.map(p => playerCard(p))}
+        ${side.picksGivenUp.map(p => pickCard(p))}
+      </div>
+    ` : ''}
+
+    ${(side.acquired.length > 0 || side.picksReceived.length > 0) ? html`
+      <div class="stack">
+        <h4>Received</h4>
+        ${side.acquired.map(p => playerCard(p))}
+        ${side.picksReceived.map(p => pickCard(p))}
+      </div>
+    ` : ''}
+
+    <div class="card__foot">
+      <div class="trade-side__totals">
+        <div><div class="card__k">Career points received</div><div class="card__v">${fmtPts(side.acquiredTotalPoints)}</div></div>
+        <div><div class="card__k">Career points given up</div><div class="card__v">${fmtPts(side.givenUpTotalPoints)}</div></div>
+      </div>
+      <div class="card__k">Net</div>
+      <div class="card__v ${isWinner ? 'brass' : ''}">${net > 0 ? '+' : ''}${fmtPts(net)}</div>
+    </div>
+  </div>`;
+}
+```
+
+## Trade by trade
 
 ```js
 // Display each trade with year-over-year performance analysis
 if (processedTrades.length === 0) {
   display(html`
-    <div style="padding: 40px; text-align: center; background: var(--theme-background-alt); border-radius: 8px; margin: 20px 0;">
-      <div style="font-size: 48px; margin-bottom: 10px;">📊</div>
-      <h3 style="margin: 0 0 10px 0;">No Trades Found</h3>
-      <p style="color: var(--theme-foreground-alt); margin: 0;">Historical trades will appear here once available.</p>
-    </div>
+    <aside class="note">
+      <b>No trades match.</b> ${trades.length === 0
+        ? 'Trades appear here once the league makes its first deal.'
+        : 'Try a different season or team filter.'}
+    </aside>
   `);
 } else {
   processedTrades.forEach((trade, index) => {
@@ -583,364 +631,28 @@ if (processedTrades.length === 0) {
     const tradeYear = parseInt(trade.season);
     const allYears = Object.keys(matchupsAllYears).map(y => parseInt(y)).sort();
     const yearsOfData = allYears.filter(y => y >= tradeYear).length;
+    const isEven = trade.winner === 'Even Trade';
 
     const tradeContent = html`
-      <div style="margin-bottom: 30px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <div>
-            <div style="font-size: 12px; color: var(--theme-foreground-alt); text-transform: uppercase; letter-spacing: 0.05em;">
-              ${trade.season} • Week ${trade.week} • ${trade.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • ${yearsOfData} season${yearsOfData !== 1 ? 's' : ''} of data
-            </div>
-            <div style="font-size: 18px; font-weight: bold; margin-top: 5px; color: ${trade.winner === 'Even Trade' ? 'var(--theme-accent)' : '#f59e0b'};">
-              ${trade.winner === 'Even Trade' ? '⚖️ Even Long-Term Value' : `🏆 Long-Term Winner: ${trade.winner}`}
-            </div>
-            ${trade.pointsDiff > 0 ? html`
-              <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-top: 5px;">
-                Career point differential: ${trade.pointsDiff.toFixed(1)} pts
-              </div>
-            ` : ''}
-          </div>
+      <div class="trade-head">
+        <div>
+          <p class="eyebrow">${trade.season} · week ${trade.week} · ${trade.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · ${yearsOfData} season${yearsOfData !== 1 ? 's' : ''} of data</p>
+          <div class="trade-card__verdict">${isEven ? html`<span class="badge">Even long-term value</span>` : html`<span class="badge badge--brass">Long-term winner · ${trade.winner}</span>`}</div>
         </div>
+        ${trade.pointsDiff > 0 ? html`<div class="mono text-sm muted">Career point differential ${trade.pointsDiff.toFixed(1)} pts</div>` : ''}
+      </div>
 
-        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: start;">
-          <!-- Side 1 -->
-          <div style="background: var(--theme-background-alt); padding: 20px; border-radius: 8px; ${trade.sides[0].username === trade.winner && trade.winner !== 'Even Trade' ? 'border: 2px solid #f59e0b;' : ''}">
-            <div style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: var(--theme-accent);">
-              ${trade.sides[0].username}
-            </div>
-
-            ${(trade.sides[0].givenUp.length > 0 || trade.sides[0].picksGivenUp.length > 0) ? html`
-              <div style="margin-bottom: 15px;">
-                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
-                  Gave Up:
-                </div>
-                ${trade.sides[0].givenUp.map(player => html`
-                  <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 8px; border-radius: 4px;">
-                    <div style="font-weight: 600; font-size: 14px;">${player.name}</div>
-                    <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                      ${player.position} • ${player.stats.gamesPlayed} career games
-                    </div>
-                    <div style="font-size: 13px; color: #ef4444; font-weight: 600; margin-top: 6px;">
-                      ${player.stats.totalPoints.toFixed(1)} total pts
-                    </div>
-                    ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                        ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                          <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                            <span>${year}:</span>
-                            <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                          </div>
-                        `)}
-                      </div>
-                    ` : html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                        No production since trade
-                      </div>
-                    `}
-                  </div>
-                `)}
-                ${trade.sides[0].picksGivenUp.map(pick => {
-                  const player = pick.draftedPlayer;
-                  return html`
-                    <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 8px; border-radius: 4px;">
-                      <div style="font-weight: 600; font-size: 14px;">
-                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
-                      </div>
-                      ${player ? html`
-                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
-                          ${player.position} • ${player.stats.gamesPlayed} career games
-                        </div>
-                        <div style="font-size: 13px; color: #ef4444; font-weight: 600; margin-top: 6px;">
-                          ${player.stats.totalPoints.toFixed(1)} total pts
-                        </div>
-                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                                <span>${year}:</span>
-                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                              </div>
-                            `)}
-                          </div>
-                        ` : html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                            No production since draft
-                          </div>
-                        `}
-                      ` : html`
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                          Draft not yet occurred
-                        </div>
-                      `}
-                    </div>
-                  `;
-                })}
-              </div>
-            ` : ''}
-
-            ${(trade.sides[0].acquired.length > 0 || trade.sides[0].picksReceived.length > 0) ? html`
-              <div>
-                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
-                  Received:
-                </div>
-                ${trade.sides[0].acquired.map(player => html`
-                  <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 8px; border-radius: 4px;">
-                    <div style="font-weight: 600; font-size: 14px;">${player.name}</div>
-                    <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                      ${player.position} • ${player.stats.gamesPlayed} career games
-                    </div>
-                    <div style="font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 6px;">
-                      ${player.stats.totalPoints.toFixed(1)} total pts
-                    </div>
-                    ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                        ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                          <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                            <span>${year}:</span>
-                            <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                          </div>
-                        `)}
-                      </div>
-                    ` : html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                        No production since trade
-                      </div>
-                    `}
-                  </div>
-                `)}
-                ${trade.sides[0].picksReceived.map(pick => {
-                  const player = pick.draftedPlayer;
-                  return html`
-                    <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 8px; border-radius: 4px;">
-                      <div style="font-weight: 600; font-size: 14px;">
-                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
-                      </div>
-                      ${player ? html`
-                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
-                          ${player.position} • ${player.stats.gamesPlayed} career games
-                        </div>
-                        <div style="font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 6px;">
-                          ${player.stats.totalPoints.toFixed(1)} total pts
-                        </div>
-                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                                <span>${year}:</span>
-                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                              </div>
-                            `)}
-                          </div>
-                        ` : html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                            No production since draft
-                          </div>
-                        `}
-                      ` : html`
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                          Draft not yet occurred
-                        </div>
-                      `}
-                    </div>
-                  `;
-                })}
-              </div>
-            ` : ''}
-
-            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;">
-                <div>
-                  <div style="color: var(--theme-foreground-alt);">Career Total Acquired:</div>
-                  <div style="font-weight: bold; color: #22c55e;">${trade.sides[0].acquiredTotalPoints.toFixed(1)} pts</div>
-                </div>
-                <div>
-                  <div style="color: var(--theme-foreground-alt);">Career Total Given Up:</div>
-                  <div style="font-weight: bold; color: #ef4444;">${trade.sides[0].givenUpTotalPoints.toFixed(1)} pts</div>
-                </div>
-              </div>
-              <div style="font-size: 16px; font-weight: bold; margin-top: 10px; color: ${trade.sides[0].netPoints > 0 ? '#22c55e' : trade.sides[0].netPoints < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
-                Career Net Gain: ${trade.sides[0].netPoints > 0 ? '+' : ''}${trade.sides[0].netPoints.toFixed(1)} pts
-              </div>
-            </div>
-          </div>
-
-          <!-- Arrow -->
-          <div style="display: flex; align-items: center; justify-content: center; padding: 20px 0;">
-            <div style="font-size: 32px; color: var(--theme-foreground-alt);">⇄</div>
-          </div>
-
-          <!-- Side 2 -->
-          <div style="background: var(--theme-background-alt); padding: 20px; border-radius: 8px; ${trade.sides[1]?.username === trade.winner && trade.winner !== 'Even Trade' ? 'border: 2px solid #f59e0b;' : ''}">
-            <div style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: var(--theme-accent);">
-              ${trade.sides[1]?.username || 'Unknown'}
-            </div>
-
-            ${((trade.sides[1]?.givenUp.length > 0) || (trade.sides[1]?.picksGivenUp.length > 0)) ? html`
-              <div style="margin-bottom: 15px;">
-                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
-                  Gave Up:
-                </div>
-                ${trade.sides[1].givenUp.map(player => html`
-                  <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 8px; border-radius: 4px;">
-                    <div style="font-weight: 600; font-size: 14px;">${player.name}</div>
-                    <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                      ${player.position} • ${player.stats.gamesPlayed} career games
-                    </div>
-                    <div style="font-size: 13px; color: #ef4444; font-weight: 600; margin-top: 6px;">
-                      ${player.stats.totalPoints.toFixed(1)} total pts
-                    </div>
-                    ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                        ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                          <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                            <span>${year}:</span>
-                            <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                          </div>
-                        `)}
-                      </div>
-                    ` : html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                        No production since trade
-                      </div>
-                    `}
-                  </div>
-                `)}
-                ${(trade.sides[1]?.picksGivenUp || []).map(pick => {
-                  const player = pick.draftedPlayer;
-                  return html`
-                    <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 2px solid #ef4444; margin-bottom: 8px; border-radius: 4px;">
-                      <div style="font-weight: 600; font-size: 14px;">
-                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
-                      </div>
-                      ${player ? html`
-                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
-                          ${player.position} • ${player.stats.gamesPlayed} career games
-                        </div>
-                        <div style="font-size: 13px; color: #ef4444; font-weight: 600; margin-top: 6px;">
-                          ${player.stats.totalPoints.toFixed(1)} total pts
-                        </div>
-                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                                <span>${year}:</span>
-                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                              </div>
-                            `)}
-                          </div>
-                        ` : html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                            No production since draft
-                          </div>
-                        `}
-                      ` : html`
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                          Draft not yet occurred
-                        </div>
-                      `}
-                    </div>
-                  `;
-                })}
-              </div>
-            ` : ''}
-
-            ${((trade.sides[1]?.acquired.length > 0) || (trade.sides[1]?.picksReceived.length > 0)) ? html`
-              <div>
-                <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
-                  Received:
-                </div>
-                ${trade.sides[1].acquired.map(player => html`
-                  <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 8px; border-radius: 4px;">
-                    <div style="font-weight: 600; font-size: 14px;">${player.name}</div>
-                    <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                      ${player.position} • ${player.stats.gamesPlayed} career games
-                    </div>
-                    <div style="font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 6px;">
-                      ${player.stats.totalPoints.toFixed(1)} total pts
-                    </div>
-                    ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                        ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                          <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                            <span>${year}:</span>
-                            <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                          </div>
-                        `)}
-                      </div>
-                    ` : html`
-                      <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                        No production since trade
-                      </div>
-                    `}
-                  </div>
-                `)}
-                ${(trade.sides[1]?.picksReceived || []).map(pick => {
-                  const player = pick.draftedPlayer;
-                  return html`
-                    <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 2px solid #22c55e; margin-bottom: 8px; border-radius: 4px;">
-                      <div style="font-weight: 600; font-size: 14px;">
-                        📋 ${pick.season} Round ${pick.round} ${player ? `Pick #${player.pickNumber}` : 'Pick'}
-                      </div>
-                      ${player ? html`
-                        <div style="font-weight: 600; font-size: 14px; margin-top: 4px;">${player.name}</div>
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 2px;">
-                          ${player.position} • ${player.stats.gamesPlayed} career games
-                        </div>
-                        <div style="font-size: 13px; color: #22c55e; font-weight: 600; margin-top: 6px;">
-                          ${player.stats.totalPoints.toFixed(1)} total pts
-                        </div>
-                        ${Object.keys(player.stats.yearlyBreakdown).length > 0 ? html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                            ${Object.entries(player.stats.yearlyBreakdown).map(([year, data]) => html`
-                              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
-                                <span>${year}:</span>
-                                <span>${data.points.toFixed(1)} pts (${data.games} games)</span>
-                              </div>
-                            `)}
-                          </div>
-                        ` : html`
-                          <div style="font-size: 11px; color: var(--theme-foreground-muted); margin-top: 4px;">
-                            No production since draft
-                          </div>
-                        `}
-                      ` : html`
-                        <div style="font-size: 12px; color: var(--theme-foreground-alt); margin-top: 4px;">
-                          Draft not yet occurred
-                        </div>
-                      `}
-                    </div>
-                  `;
-                })}
-              </div>
-            ` : ''}
-
-            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;">
-                <div>
-                  <div style="color: var(--theme-foreground-alt);">Career Total Acquired:</div>
-                  <div style="font-weight: bold; color: #22c55e;">${trade.sides[1]?.acquiredTotalPoints.toFixed(1) || '0.0'} pts</div>
-                </div>
-                <div>
-                  <div style="color: var(--theme-foreground-alt);">Career Total Given Up:</div>
-                  <div style="font-weight: bold; color: #ef4444;">${trade.sides[1]?.givenUpTotalPoints.toFixed(1) || '0.0'} pts</div>
-                </div>
-              </div>
-              <div style="font-size: 16px; font-weight: bold; margin-top: 10px; color: ${trade.sides[1]?.netPoints > 0 ? '#22c55e' : trade.sides[1]?.netPoints < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'};">
-                Career Net Gain: ${trade.sides[1]?.netPoints > 0 ? '+' : ''}${trade.sides[1]?.netPoints.toFixed(1) || '0.0'} pts
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="trade-matchup">
+        ${sideCard(trade.sides[0], trade)}
+        <div class="matchup-divider">FOR</div>
+        ${sideCard(trade.sides[1], trade)}
       </div>
     `;
 
     display(html`<details class="section-collapse">
       <summary class="section-summary">
-        Trade #${processedTrades.length - index} • ${trade.season} Week ${trade.week}
-        ${trade.winner !== 'Even Trade' ? html`<span style="color: #f59e0b; margin-left: 0.5rem;">🏆 ${trade.winner}</span>` : ''}
+        Trade ${processedTrades.length - index} · ${trade.season} week ${trade.week}
+        ${!isEven ? html`<small class="brass">${trade.winner}</small>` : html`<small>even</small>`}
       </summary>
       <div class="section-content">
         ${tradeContent}
@@ -950,15 +662,12 @@ if (processedTrades.length === 0) {
 }
 ```
 
----
-
-<div style="margin-top: 40px; padding: 20px; background: var(--theme-background-alt); border-radius: 8px;">
-  <h3 style="margin-top: 0;">💡 Trade Retro Guide</h3>
-  <ul style="line-height: 1.8;">
-    <li><strong>Year-Over-Year Tracking:</strong> Shows total fantasy points scored by each player across ALL seasons since the trade</li>
-    <li><strong>Career Impact:</strong> Reveals which trades had lasting impact beyond just the trade season</li>
-    <li><strong>Yearly Breakdown:</strong> Drill down to see season-by-season performance for each traded player</li>
-    <li><strong>Long-Term Winner:</strong> Determined by career point differential (>20 points) from actual performance</li>
-    <li><strong>Context Matters:</strong> Injuries, breakouts, and career trajectories can't be predicted—this is hindsight analysis</li>
+<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Career points.</strong> Each player's fantasy points in every season since the trade, summed. Draft picks count the points of the player eventually drafted with them.</li>
+    <li><strong>Winner.</strong> The side that netted at least 20 more career points than it gave up; anything closer is a draw.</li>
+    <li><strong>Yearly rows.</strong> Season-by-season production for each traded asset, so you can see when a deal turned.</li>
+    <li><strong>Hindsight.</strong> Injuries, breakouts, and busts are scored after the fact; this is how the trade aged, not how it looked on the day.</li>
   </ul>
-</div>
+</section>

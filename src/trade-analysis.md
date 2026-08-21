@@ -1,10 +1,30 @@
+<style>
+  .trade { margin-bottom: var(--space-5); }
+  .trade__head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--hair); }
+  .trade__parties { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); line-height: 1.2; }
+  .trade__sides { margin: var(--space-4) 0; }
+  .trade__side { padding: var(--space-4); border: 1px solid var(--hair); border-radius: var(--radius); }
+  .trade__side.trade-side--win { border-left: 3px solid var(--brass); }
+  .trade__side-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); }
+  .trade__team { font-weight: 600; color: var(--ink); }
+  .trade__list { font-size: var(--text-sm); color: var(--ink-2); }
+  .trade__take { white-space: pre-wrap; line-height: 1.7; color: var(--ink-2); margin-top: var(--space-2); }
+  .trade__foot { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--hair); }
+  .filters { margin: var(--space-5) 0; }
+  .pager { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .empty { text-align: center; padding: var(--space-6); }
+  .empty code { display: inline-block; margin-top: var(--space-3); }
+</style>
+
 ```js
+import {mountSeasonPicker} from "./components/season.js";
+
 // Load data first
+const seasonsData = await FileAttachment("data/seasons.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
 const tradeAnalyses = await FileAttachment("data/trade-analysis.json").json();
 const trades = await FileAttachment("data/trades.json").json();
 const players = await FileAttachment("data/players.json").json();
-const rosters = await FileAttachment("data/rosters.json").json();
-const users = await FileAttachment("data/users.json").json();
 
 // Load power rankings data for trade impact
 let powerData = null;
@@ -21,15 +41,15 @@ const scarcityMultipliers = valueSource.scarcityMultipliers || null;
 const isDynasty = leagueInfo.leagueType === 'dynasty' || !leagueInfo.leagueType;
 const isRedraft = leagueInfo.leagueType === 'redraft';
 
-// Position colors for display
-const posColors = {
-  QB: '#3b82f6',
-  RB: '#22c55e',
-  WR: '#f59e0b',
-  TE: '#8b5cf6',
-  K: '#94a3b8',
-  DEF: '#94a3b8',
-  PICK: '#6366f1'
+// Position badge classes for display
+const posBadge = {
+  QB: 'badge--pos-qb',
+  RB: 'badge--pos-rb',
+  WR: 'badge--pos-wr',
+  TE: 'badge--pos-te',
+  K: 'badge--pos-k',
+  DEF: 'badge--pos-def',
+  PICK: 'badge--slate'
 };
 
 // Default scarcity multipliers
@@ -43,36 +63,69 @@ const defaultScarcity = {
 };
 const displayScarcity = scarcityMultipliers || defaultScarcity;
 
-// League type badge styling
-const leagueTypeBadge = isDynasty
-  ? { label: '🏆 Dynasty', bg: 'rgba(34, 197, 94, 0.15)', border: 'rgba(34, 197, 94, 0.3)', color: '#22c55e' }
-  : { label: '📅 Redraft', bg: 'rgba(249, 115, 22, 0.15)', border: 'rgba(249, 115, 22, 0.3)', color: '#f97316' };
+const leagueTypeLabel = isDynasty ? 'Dynasty' : 'Redraft';
 ```
 
 ```js
-// Render dynamic header with league type badge
+// Season bundle from the global picker: team names and rosters follow the chosen season
+const S = seasonsData.by_season[season];
+const rosters = S.rosters || [];
+const users = S.users || [];
+```
+
+```js
 display(html`
-<div style="margin: 0 0 2rem 0;">
-  <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: #22c55e; text-transform: uppercase; letter-spacing: 0.05em;">
-      Trade Analysis
-    </div>
-    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: ${leagueTypeBadge.bg}; border: 1px solid ${leagueTypeBadge.border}; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: ${leagueTypeBadge.color}; text-transform: uppercase; letter-spacing: 0.05em;">
-      ${leagueTypeBadge.label}
-    </div>
-  </div>
-  <h1 style="margin: 0 0 1rem 0; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, #f8fafc 0%, #22c55e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-    AI-Powered Trade Commentary
-  </h1>
-  <p style="font-size: 1.125rem; color: #cbd5e1; margin: 0; max-width: 800px; line-height: 1.6;">
-    Expert analysis of every trade in your league history, featuring commentary from legendary NFL analysts.
-    ${isDynasty
-      ? 'Trades evaluated using dynasty asset values and long-term outlook.'
-      : 'Trades evaluated using VOR-weighted current season production.'}
-  </p>
-</div>
+  <header class="page-head">
+    <p class="eyebrow">${season} season · trade commentary</p>
+    <h1>Every trade, <em>graded</em> after the fact</h1>
+    <p class="lede">Each deal in league history, valued at the time it was made and narrated by a rotating panel of analyst personas.</p>
+    <p class="meta">${leagueTypeLabel} values · ${isDynasty ? 'dynasty asset prices and long-term outlook' : 'VOR-weighted current-season production'}</p>
+  </header>
 `);
 ```
+
+<div class="row filters">
+
+```js
+const searchInput = view(Inputs.text({
+  label: "Search",
+  placeholder: "Player, manager, or keyword",
+  width: 280,
+  value: ""
+}));
+```
+
+```js
+// Default follows the global picker; "All Seasons" only when the picker is on the current season
+const seasonDefault = (season !== seasonsData.current && allSeasons.includes(season)) ? season : "All Seasons";
+const selectedSeason = view(Inputs.select(
+  ["All Seasons", ...allSeasons],
+  { label: "Season", value: seasonDefault }
+));
+```
+
+```js
+const selectedPersona = view(Inputs.select(
+  ["All Analysts", ...allPersonas],
+  { label: "Analyst", value: "All Analysts" }
+));
+```
+
+```js
+const selectedManager = view(Inputs.select(
+  ["All Managers", ...allManagers],
+  { label: "Manager", value: "All Managers" }
+));
+```
+
+```js
+const sortOption = view(Inputs.select(
+  ["Newest First", "Oldest First", "Biggest Wins", "Biggest Losses", "Most Lopsided", "Highest Value"],
+  { label: "Sort by", value: "Newest First" }
+));
+```
+
+</div>
 
 ```js
 // Helper to get player name
@@ -191,120 +244,14 @@ const totalWins = enrichedAnalyses.reduce((sum, a) => {
 }, 0);
 ```
 
-<!-- Summary Stats Cards -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-  <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 0.75rem; padding: 1.25rem; text-align: center;">
-    <div style="font-size: 2rem; font-weight: 800; color: #22c55e;">${totalTrades}</div>
-    <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Total Trades</div>
-  </div>
-  <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 0.75rem; padding: 1.25rem; text-align: center;">
-    <div style="font-size: 2rem; font-weight: 800; color: #3b82f6;">${allSeasons.length}</div>
-    <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Seasons</div>
-  </div>
-  <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 0.75rem; padding: 1.25rem; text-align: center;">
-    <div style="font-size: 2rem; font-weight: 800; color: #a855f7;">${allPersonas.length}</div>
-    <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Analysts</div>
-  </div>
-  <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 0.75rem; padding: 1.25rem; text-align: center;">
-    <div style="font-size: 2rem; font-weight: 800; color: #f59e0b;">${allManagers.length}</div>
-    <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Managers</div>
-  </div>
+<div class="stat-grid">
+  <div class="stat"><div class="stat__k">Trades analyzed</div><div class="stat__v">${totalTrades}</div></div>
+  <div class="stat"><div class="stat__k">Seasons</div><div class="stat__v">${allSeasons.length}</div></div>
+  <div class="stat"><div class="stat__k">Analysts</div><div class="stat__v">${allPersonas.length}</div></div>
+  <div class="stat"><div class="stat__k">Managers involved</div><div class="stat__v">${allManagers.length}</div></div>
 </div>
 
-<!-- VOR Position Scarcity (Redraft Mode) -->
-```js
-if (isRedraft && displayScarcity) {
-  display(html`
-    <div style="margin-bottom: 2rem; padding: 1.25rem; background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 0.75rem;">
-      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-        <span style="font-size: 1.25rem;">📊</span>
-        <h3 style="margin: 0; font-size: 1rem; font-weight: 700; color: #f97316;">VOR Position Scarcity</h3>
-        <span style="font-size: 0.6875rem; padding: 0.25rem 0.5rem; background: rgba(249, 115, 22, 0.2); border-radius: 0.25rem; color: #fb923c;">Dynamic</span>
-      </div>
-      <p style="font-size: 0.8125rem; color: #94a3b8; margin: 0 0 1rem 0; line-height: 1.5;">
-        Trade values adjusted using <strong>Value Over Replacement (VOR)</strong> - the gap between elite players and replacement level at each position. Higher = more scarce.
-      </p>
-      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-        ${['QB', 'RB', 'WR', 'TE', 'K', 'DEF'].map(pos => {
-          const scarcity = displayScarcity[pos] || 100;
-          const color = posColors[pos] || '#94a3b8';
-          const intensity = Math.min(1, Math.max(0.3, scarcity / 150));
-          return html`
-            <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(${color === '#3b82f6' ? '59, 130, 246' : color === '#22c55e' ? '34, 197, 94' : color === '#f59e0b' ? '245, 158, 11' : color === '#8b5cf6' ? '139, 92, 246' : '148, 163, 184'}, ${intensity * 0.2}); border: 1px solid rgba(${color === '#3b82f6' ? '59, 130, 246' : color === '#22c55e' ? '34, 197, 94' : color === '#f59e0b' ? '245, 158, 11' : color === '#8b5cf6' ? '139, 92, 246' : '148, 163, 184'}, 0.3); border-radius: 0.5rem;">
-              <span style="font-weight: 700; color: ${color}; font-size: 0.875rem;">${pos}</span>
-              <span style="font-size: 0.75rem; color: #cbd5e1;">${scarcity}</span>
-            </div>
-          `;
-        })}
-      </div>
-      <p style="font-size: 0.6875rem; color: #64748b; margin: 0.75rem 0 0 0;">
-        WR = 100 baseline. ${leagueInfo.isSuperFlex ? 'Superflex QB premium applied.' : ''} Updated from FantasyCalc ECR data.
-      </p>
-    </div>
-  `);
-}
-```
-
-<!-- Dynasty Value Context -->
-```js
-if (isDynasty) {
-  display(html`
-    <div style="margin-bottom: 2rem; padding: 1.25rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 0.75rem;">
-      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-        <span style="font-size: 1.25rem;">🏆</span>
-        <h3 style="margin: 0; font-size: 1rem; font-weight: 700; color: #22c55e;">Dynasty Asset Values</h3>
-      </div>
-      <p style="font-size: 0.8125rem; color: #94a3b8; margin: 0; line-height: 1.5;">
-        Trade values are based on <strong>DynastyProcess</strong> crowdsourced dynasty values, reflecting long-term asset worth including age curves, talent, and situation. These values consider multi-year outlooks rather than single-season production.
-      </p>
-    </div>
-  `);
-}
-```
-
-<!-- Filter Bar -->
-<div style="background: #1a1f29; border: 1px solid rgba(148, 163, 184, 0.1); border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem;">
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: end;">
-
-```js
-const searchInput = view(Inputs.text({
-  label: "Search",
-  placeholder: "Player, manager, or keyword...",
-  width: 280,
-  value: ""
-}));
-```
-
-```js
-const selectedSeason = view(Inputs.select(
-  ["All Seasons", ...allSeasons],
-  { label: "Season", value: "All Seasons" }
-));
-```
-
-```js
-const selectedPersona = view(Inputs.select(
-  ["All Analysts", ...allPersonas],
-  { label: "Analyst", value: "All Analysts" }
-));
-```
-
-```js
-const selectedManager = view(Inputs.select(
-  ["All Managers", ...allManagers],
-  { label: "Manager", value: "All Managers" }
-));
-```
-
-```js
-const sortOption = view(Inputs.select(
-  ["Newest First", "Oldest First", "Biggest Wins", "Biggest Losses", "Most Lopsided", "Highest Value"],
-  { label: "Sort By", value: "Newest First" }
-));
-```
-
-  </div>
-</div>
+## Trades
 
 ```js
 // Apply filters
@@ -400,6 +347,7 @@ const totalPages = Math.max(1, Math.ceil(filteredAnalyses.length / PAGE_SIZE));
 
 ```js
 const currentPage = view(Inputs.range([1, totalPages], {
+  label: "Page",
   step: 1,
   value: 1,
   width: 150
@@ -412,38 +360,28 @@ const endIndex = Math.min(startIndex + PAGE_SIZE, filteredAnalyses.length);
 const paginatedAnalyses = filteredAnalyses.slice(startIndex, endIndex);
 ```
 
-<!-- Pagination Info -->
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding: 0.75rem 1rem; background: rgba(148, 163, 184, 0.05); border-radius: 0.5rem;">
-  <div style="color: #94a3b8; font-size: 0.875rem;">
-    Showing <span style="color: #f8fafc; font-weight: 600;">${startIndex + 1}-${endIndex}</span> of <span style="color: #f8fafc; font-weight: 600;">${filteredAnalyses.length}</span> trades
-  </div>
-  <div style="display: flex; align-items: center; gap: 0.75rem;">
-    <span style="color: #64748b; font-size: 0.875rem;">Page ${currentPage} of ${totalPages}</span>
-  </div>
-</div>
-
 ```js
 // Display analyses
 if (tradeAnalyses.length === 0) {
   display(html`
-    <div style="padding: 3rem; text-align: center; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 0.75rem; margin: 2rem 0;">
-      <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-      <h3 style="margin: 0 0 0.5rem 0; color: #22c55e;">No Trade Analyses Yet</h3>
-      <p style="color: #cbd5e1; margin: 0 0 1.5rem 0;">Generate AI-powered trade commentary to see expert analysis here.</p>
-      <div style="background: #1a1f29; padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.875rem; text-align: left; max-width: 500px; margin: 0 auto;">
-        <code style="color: #22c55e;">node src/data/generate-trade-analysis.js</code>
-      </div>
-    </div>
+    <aside class="note empty">
+      <p><b>No trade commentary yet.</b> Analyses appear once they are generated from the league's trade log.</p>
+      <code class="mono">node src/data/generate-trade-analysis.js</code>
+    </aside>
   `);
 } else if (filteredAnalyses.length === 0) {
   display(html`
-    <div style="padding: 3rem; text-align: center; background: rgba(148, 163, 184, 0.05); border: 1px solid rgba(148, 163, 184, 0.1); border-radius: 0.75rem;">
-      <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
-      <h3 style="margin: 0 0 0.5rem 0; color: #f8fafc;">No Matches Found</h3>
-      <p style="color: #94a3b8; margin: 0;">Try adjusting your search or filters</p>
-    </div>
+    <aside class="note empty">
+      <p><b>No trades match.</b> Clear the search or widen the season, analyst, or manager filters.</p>
+    </aside>
   `);
 } else {
+  display(html`
+    <div class="pager">
+      <div class="muted text-sm">Showing <span class="ink-2 num">${startIndex + 1}–${endIndex}</span> of <span class="ink-2 num">${filteredAnalyses.length}</span> trades</div>
+      <div class="eyebrow mb-0">Page ${currentPage} of ${totalPages}</div>
+    </div>
+  `);
   paginatedAnalyses.forEach((analysis) => {
     // Determine winner/loser for styling
     let hasWinner = false;
@@ -454,168 +392,120 @@ if (tradeAnalyses.length === 0) {
     }
 
     display(html`
-      <div style="margin-bottom: 1.5rem; background: #1a1f29; border: 1px solid rgba(34, 197, 94, 0.15); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
-
-        <!-- Trade Header -->
-        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%); padding: 1rem 1.5rem; border-bottom: 1px solid rgba(34, 197, 94, 0.15);">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-            <div>
-              <div style="font-size: 0.6875rem; text-transform: uppercase; color: #64748b; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
-                ${analysis.season} Season • Week ${analysis.week}
-              </div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">
-                ${analysis.participants.join(' ⇄ ')}
-              </div>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
-              ${hasWinner && hasLoser ? html`
-                <span style="padding: 0.25rem 0.75rem; background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 1rem; font-size: 0.6875rem; font-weight: 600; color: #f59e0b; text-transform: uppercase;">
-                  Lopsided
-                </span>
-              ` : ''}
-              <span style="padding: 0.25rem 0.75rem; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 1rem; font-size: 0.6875rem; font-weight: 600; color: #22c55e;">
-                ${analysis.persona}
-              </span>
-            </div>
+      <article class="card trade">
+        <div class="trade__head">
+          <div>
+            <div class="eyebrow">${analysis.season} season · Week ${analysis.week}</div>
+            <div class="trade__parties">${analysis.participants.join(' ⇄ ')}</div>
+          </div>
+          <div class="row">
+            ${hasWinner && hasLoser ? html`<span class="badge badge--brass">Lopsided</span>` : ''}
+            <span class="badge">${analysis.persona}</span>
           </div>
         </div>
 
-        <!-- Trade Details -->
         ${analysis.sides ? html`
-          <div style="padding: 1rem 1.5rem; background: rgba(0, 0, 0, 0.15);">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-              ${analysis.sides.map(side => {
-                const impact = side.tradeImpact;
-                const isWinner = impact?.netValueChange > 500;
-                const isLoser = impact?.netValueChange < -500;
+          <div class="grid grid-2 trade__sides">
+            ${analysis.sides.map(side => {
+              const impact = side.tradeImpact;
+              const isWinner = impact?.netValueChange > 500;
+              const isLoser = impact?.netValueChange < -500;
+              const netClass = impact ? (impact.netValueChange > 0 ? 'up' : impact.netValueChange < 0 ? 'down' : 'muted') : '';
 
-                return html`
-                  <div style="
-                    padding: 1rem;
-                    background: ${isWinner ? 'rgba(34, 197, 94, 0.1)' : isLoser ? 'rgba(239, 68, 68, 0.1)' : 'rgba(148, 163, 184, 0.05)'};
-                    border: 1px solid ${isWinner ? 'rgba(34, 197, 94, 0.3)' : isLoser ? 'rgba(239, 68, 68, 0.3)' : 'rgba(148, 163, 184, 0.1)'};
-                    border-radius: 0.5rem;
-                  ">
-                    <!-- Team Name & Status -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                      <div style="font-weight: 700; color: ${isWinner ? '#22c55e' : isLoser ? '#ef4444' : '#f8fafc'};">
-                        ${side.teamName}
-                      </div>
-                      ${impact ? html`
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                          <span style="font-size: 0.75rem; font-weight: 700; color: ${impact.netValueChange > 0 ? '#22c55e' : impact.netValueChange < 0 ? '#ef4444' : '#94a3b8'};">
-                            ${impact.netValueChange > 0 ? '+' : ''}${impact.netValueChange.toLocaleString()}
-                          </span>
-                          ${isWinner ? html`<span style="background: #22c55e; color: #000; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.625rem; font-weight: 800;">WIN</span>` : ''}
-                          ${isLoser ? html`<span style="background: #ef4444; color: #fff; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.625rem; font-weight: 800;">LOSS</span>` : ''}
-                        </div>
-                      ` : ''}
-                    </div>
-
-                    <!-- Power Score & Context -->
-                    ${side.powerScore ? html`
-                      <div style="font-size: 0.6875rem; color: #64748b; margin-bottom: 0.75rem;">
-                        Power Rank #${side.powerScore.powerRank} (${side.powerScore.powerScore}) • ${side.teamContext || ''}
-                      </div>
-                    ` : ''}
-
-                    <!-- Receives -->
-                    ${side.receives?.length > 0 ? html`
-                      <div style="margin-bottom: 0.5rem;">
-                        <div style="font-size: 0.6875rem; color: #22c55e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Receives</div>
-                        <div style="font-size: 0.8125rem; color: #cbd5e1;">
-                          ${side.receives.map(a => a.position === 'PICK' ? a.name : `${a.name} (${a.position})`).join(', ')}
-                        </div>
-                        ${impact ? html`<div style="font-size: 0.6875rem; color: #22c55e; margin-top: 0.25rem;">+${impact.valueGained.toLocaleString()} value</div>` : ''}
-                      </div>
-                    ` : ''}
-
-                    <!-- Gives -->
-                    ${side.gives?.length > 0 ? html`
-                      <div>
-                        <div style="font-size: 0.6875rem; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Gives</div>
-                        <div style="font-size: 0.8125rem; color: #cbd5e1;">
-                          ${side.gives.map(a => a.position === 'PICK' ? a.name : `${a.name} (${a.position})`).join(', ')}
-                        </div>
-                        ${impact ? html`<div style="font-size: 0.6875rem; color: #ef4444; margin-top: 0.25rem;">-${impact.valueLost.toLocaleString()} value</div>` : ''}
+              return html`
+                <div class="trade__side ${isWinner ? 'trade-side--win' : ''}">
+                  <div class="trade__side-head">
+                    <div class="trade__team ${isWinner ? 'brass' : ''}">${side.teamName}</div>
+                    ${impact ? html`
+                      <div class="row">
+                        <span class="num text-sm ${netClass}">${impact.netValueChange > 0 ? '+' : ''}${impact.netValueChange.toLocaleString()}</span>
+                        ${isWinner ? html`<span class="badge badge--brass">Won</span>` : ''}
                       </div>
                     ` : ''}
                   </div>
-                `;
-              })}
-            </div>
+
+                  ${side.powerScore ? html`
+                    <div class="muted text-xs mono">Power rank #${side.powerScore.powerRank} (${side.powerScore.powerScore}) · ${side.teamContext || ''}</div>
+                  ` : ''}
+
+                  ${side.receives?.length > 0 ? html`
+                    <div>
+                      <h4 class="up">Receives</h4>
+                      <div class="trade__list">${side.receives.map(a => a.position === 'PICK' ? a.name : `${a.name} (${a.position})`).join(', ')}</div>
+                      ${impact ? html`<div class="text-xs num up">+${impact.valueGained.toLocaleString()} value</div>` : ''}
+                    </div>
+                  ` : ''}
+
+                  ${side.gives?.length > 0 ? html`
+                    <div>
+                      <h4 class="down">Gives</h4>
+                      <div class="trade__list">${side.gives.map(a => a.position === 'PICK' ? a.name : `${a.name} (${a.position})`).join(', ')}</div>
+                      ${impact ? html`<div class="text-xs num down">-${impact.valueLost.toLocaleString()} value</div>` : ''}
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            })}
           </div>
         ` : ''}
 
-        <!-- Analysis -->
-        <div style="padding: 1.5rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-            <span style="font-size: 1.5rem;">🎙️</span>
-            <span style="font-weight: 700; color: #22c55e;">${analysis.persona}'s Take</span>
-          </div>
-          <div style="color: #e2e8f0; line-height: 1.75; white-space: pre-wrap; font-size: 0.9375rem;">
-${analysis.analysis}
-          </div>
+        <div>
+          <h4>${analysis.persona}'s take</h4>
+          <div class="trade__take">${analysis.analysis}</div>
         </div>
 
-        <!-- Footer -->
-        <div style="padding: 0.75rem 1.5rem; background: rgba(0, 0, 0, 0.2); border-top: 1px solid rgba(148, 163, 184, 0.1);">
-          <div style="font-size: 0.6875rem; color: #64748b;">
-            Generated ${new Date(analysis.generatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-          </div>
+        <div class="trade__foot muted text-xs mono">
+          Generated ${new Date(analysis.generatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
         </div>
-      </div>
+      </article>
     `);
   });
 }
 ```
 
----
+## The analysts
 
-## Meet the Analysts
+<div class="grid grid-3">
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-
-<div style="padding: 1.25rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 0.75rem;">
-  <h4 style="margin: 0 0 0.5rem 0; color: #22c55e; font-size: 1rem;">Mel Kiper Jr.</h4>
-  <p style="margin: 0; font-size: 0.8125rem; color: #94a3b8; line-height: 1.5;">
-    Draft expert with detailed player evaluations. Focuses on talent assessment, rankings, and player upside.
-  </p>
+<div class="card card--tight">
+  <div class="card__title">Mel Kiper Jr.</div>
+  <p class="text-sm muted mb-0">Draft expert with detailed player evaluations. Focuses on talent assessment, rankings, and player upside.</p>
 </div>
 
-<div style="padding: 1.25rem; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 0.75rem;">
-  <h4 style="margin: 0 0 0.5rem 0; color: #3b82f6; font-size: 1rem;">Adam Schefter</h4>
-  <p style="margin: 0; font-size: 0.8125rem; color: #94a3b8; line-height: 1.5;">
-    NFL insider with breaking news style. Provides context, league implications, and behind-the-scenes perspective.
-  </p>
+<div class="card card--tight">
+  <div class="card__title">Adam Schefter</div>
+  <p class="text-sm muted mb-0">NFL insider with a breaking-news style. Provides context, league implications, and behind-the-scenes perspective.</p>
 </div>
 
-<div style="padding: 1.25rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 0.75rem;">
-  <h4 style="margin: 0 0 0.5rem 0; color: #a855f7; font-size: 1rem;">Daniel Jeremiah</h4>
-  <p style="margin: 0; font-size: 0.8125rem; color: #94a3b8; line-height: 1.5;">
-    Former scout with analytical perspective. Evaluates through talent metrics, scheme fit, and production.
-  </p>
+<div class="card card--tight">
+  <div class="card__title">Daniel Jeremiah</div>
+  <p class="text-sm muted mb-0">Former scout with an analytical lens. Evaluates through talent metrics, scheme fit, and production.</p>
 </div>
 
-<div style="padding: 1.25rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 0.75rem;">
-  <h4 style="margin: 0 0 0.5rem 0; color: #f59e0b; font-size: 1rem;">Todd McShay</h4>
-  <p style="margin: 0; font-size: 0.8125rem; color: #94a3b8; line-height: 1.5;">
-    Draft analyst focused on value and team needs. Evaluates roster construction and team-building strategy.
-  </p>
+<div class="card card--tight">
+  <div class="card__title">Todd McShay</div>
+  <p class="text-sm muted mb-0">Draft analyst focused on value and team needs. Evaluates roster construction and team-building strategy.</p>
 </div>
 
-<div style="padding: 1.25rem; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 0.75rem;">
-  <h4 style="margin: 0 0 0.5rem 0; color: #ef4444; font-size: 1rem;">Louis Riddick</h4>
-  <p style="margin: 0; font-size: 0.8125rem; color: #94a3b8; line-height: 1.5;">
-    Former GM with executive perspective. Analyzes asset management and championship windows.
-  </p>
+<div class="card card--tight">
+  <div class="card__title">Louis Riddick</div>
+  <p class="text-sm muted mb-0">Former GM with an executive perspective. Analyzes asset management and championship windows.</p>
 </div>
 
-<div style="padding: 1.25rem; background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(20, 184, 166, 0.05) 100%); border: 1px solid rgba(20, 184, 166, 0.2); border-radius: 0.75rem;">
-  <h4 style="margin: 0 0 0.5rem 0; color: #14b8a6; font-size: 1rem;">Ian Rapoport</h4>
-  <p style="margin: 0; font-size: 0.8125rem; color: #94a3b8; line-height: 1.5;">
-    NFL insider with quick, punchy analysis. Provides insider context and future implications.
-  </p>
+<div class="card card--tight">
+  <div class="card__title">Ian Rapoport</div>
+  <p class="text-sm muted mb-0">NFL insider with quick, punchy analysis. Provides insider context and future implications.</p>
 </div>
 
 </div>
+
+<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Values.</strong> Each asset is priced at the time of the deal using ${isDynasty ? 'DynastyProcess dynasty values, which weigh age, talent, and situation over a multi-year outlook' : 'VOR-weighted current-season production with position scarcity applied'}. The signed number on each side is value received minus value given.</li>
+    <li><strong>Who won.</strong> A side with a net gain over 500 gets the brass rule and the "Won" badge. No mark on the other side means the deal was within noise.</li>
+    <li><strong>Lopsided.</strong> A trade where one side cleared +500 and the other fell below -500.</li>
+    <li><strong>Team names.</strong> Names follow the season picker in the header, so an owner who renamed their team shows under the name they used that season.</li>
+    <li><strong>The takes.</strong> Commentary is generated by analyst personas from the trade details; it is color, not a valuation model.</li>
+  </ul>
+</section>

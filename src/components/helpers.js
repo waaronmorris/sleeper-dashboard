@@ -36,15 +36,17 @@ export function calculatePPG(totalPoints, games) {
  * Get position color
  */
 export function getPositionColor(position) {
+  // Ledger position palette — keep in sync with components/theme.js and observablehq.css
   const colors = {
-    QB: '#3b82f6',
-    RB: '#22c55e',
-    WR: '#f59e0b',
-    TE: '#8b5cf6',
-    K: '#ef4444',
-    DEF: '#64748b'
+    QB: '#7f93ad',
+    RB: '#86b37a',
+    WR: '#c9a43a',
+    TE: '#b08ea8',
+    K: '#8d939d',
+    DEF: '#5d646f',
+    DST: '#5d646f'
   };
-  return colors[position] || '#6b7280';
+  return colors[position] || '#8d939d';
 }
 
 /**

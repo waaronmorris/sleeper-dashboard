@@ -1,26 +1,21 @@
-# Player Analytics
-
-<div style="margin: 0 0 2rem 0;">
-  <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
-    Roster Analysis
-  </div>
-  <h1 style="margin: 0 0 1rem 0; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, #f8fafc 0%, #4ade80 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-    Player Analytics
-  </h1>
-  <p style="font-size: 1.125rem; color: #cbd5e1; margin: 0; max-width: 800px; line-height: 1.6;">
-    Deep dive into roster composition, player demographics, and team depth analysis. Identify strengths, weaknesses, and roster construction strategies across your league.
-  </p>
-</div>
-
 ```js
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
+import {T, plotTheme, positionColor} from "./components/theme.js";
+import {mountSeasonPicker} from "./components/season.js";
 
-// Load data
-const rosters = await FileAttachment("data/rosters.json").json();
-const users = await FileAttachment("data/users.json").json();
+// Load data — every season in the league chain, plus the Sleeper player file
+const seasonsData = await FileAttachment("data/seasons.json").json();
 const players = await FileAttachment("data/players.json").json();
-const matchups = await FileAttachment("data/matchups.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
+```
+
+```js
+const S = seasonsData.by_season[season];
+const league = S.league;
+const rosters = S.rosters;
+const users = S.users;
+const matchups = S.matchups;
 ```
 
 ```js
@@ -46,27 +41,78 @@ const allRosteredPlayers = rosters.flatMap(roster => {
 }).filter(p => p.position !== 'DEF'); // Filter out team defenses for now
 
 // Get unique positions
-const positions = [...new Set(allRosteredPlayers.map(p => p.position))].sort();
+// Known positions only: unknown player IDs resolve to 'N/A' and are excluded from the dropdown and chart
+const knownPlayers = allRosteredPlayers.filter(p => p.position !== 'N/A');
+const positions = [...new Set(knownPlayers.map(p => p.position))].sort();
+const injuredPlayers = allRosteredPlayers.filter(p => p.injury_status);
+const playersWithAge = allRosteredPlayers.filter(p => p.age > 0);
+const avgAge = d3.mean(playersWithAge, p => p.age);
+const rookieCount = allRosteredPlayers.filter(p => p.years_exp === 0).length;
 ```
 
-## Roster Composition
+```js
+display(html`
+  <header class="page-head">
+    <p class="eyebrow">${season} season · ${S.is_current ? String(S.status || "").replace(/_/g, " ") : "final"}</p>
+    <h1>How each team is <em>built</em></h1>
+    <p class="lede">Position mix, age, experience, and health across every roster in the league.</p>
+    <p class="meta">${S.is_current ? "Updated from Sleeper" : `Final ${season} rosters from Sleeper`} · ${rosters.length} teams · ${knownPlayers.length} rostered players (defenses and unknown IDs excluded)</p>
+  </header>
+`);
+```
 
-<div class="card">
+<div class="row">
 
 ```js
-const positionInput = Inputs.select(positions, {
-  label: "Filter by Position",
+const positionInput = Inputs.select(["all", ...positions], {
+  label: "Position",
   value: "all",
-  format: x => x === "all" ? "All Positions" : x
+  format: x => x === "all" ? "All positions" : x
 });
 const selectedPosition = Generators.input(positionInput);
 display(positionInput);
 ```
 
 ```js
+// Players matching the position filter, paged
+const filteredPlayers = selectedPosition === "all"
+  ? allRosteredPlayers
+  : allRosteredPlayers.filter(p => p.position === selectedPosition);
+
+const validPlayers = filteredPlayers.filter(p => p.name && p.position !== 'N/A');
+
+const PLAYER_PAGE_SIZE = 20;
+const playerTotalPages = Math.max(1, Math.ceil(validPlayers.length / PLAYER_PAGE_SIZE));
+
+const playerPageInput = Inputs.range([1, playerTotalPages], {
+  step: 1,
+  value: 1,
+  label: "Page",
+  width: 150
+});
+const playerPage = Generators.input(playerPageInput);
+display(html`<div>${validPlayers.length > 0 ? playerPageInput : ""}</div>`);
+```
+
+</div>
+
+```js
+display(html`
+  <div class="stat-grid">
+    <div class="stat"><div class="stat__k">Rostered players</div><div class="stat__v">${allRosteredPlayers.length}</div></div>
+    <div class="stat"><div class="stat__k">Average age</div><div class="stat__v ${avgAge ? "" : "stat--muted"}">${avgAge ? avgAge.toFixed(1) : "—"}</div></div>
+    <div class="stat"><div class="stat__k">Rookies</div><div class="stat__v">${rookieCount}</div></div>
+    <div class="stat"><div class="stat__k">Injured</div><div class="stat__v">${injuredPlayers.length}</div></div>
+  </div>
+`);
+```
+
+## Roster composition
+
+```js
 // Calculate position distribution across teams
 const positionCounts = d3.rollup(
-  allRosteredPlayers,
+  knownPlayers,
   v => v.length,
   d => d.team_owner,
   d => d.position
@@ -81,89 +127,90 @@ const positionData = Array.from(positionCounts, ([owner, positions]) => {
 });
 ```
 
-<div class="chart-container">
-  <h3 class="chart-title">Position Distribution by Team</h3>
-
 ```js
 // Display position distribution
-display(Plot.plot({
-  marginLeft: 150,
-  marginBottom: 50,
-  height: Math.min(500, Math.max(300, allRosteredPlayers.length * 2)),
-  x: {
-    label: "Number of Players →",
-    labelAnchor: "center",
-    grid: true
-  },
-  y: {
-    label: null
-  },
-  color: {
-    legend: true,
-    scheme: "Tableau10"
-  },
-  marks: [
-    Plot.barX(allRosteredPlayers,
-      Plot.groupY(
-        {x: "count"},
-        {
-          y: "team_owner",
-          fill: "position",
-          sort: {y: "-x"}
-        }
-      )
-    ),
-    Plot.ruleX([0])
-  ]
-}));
+if (knownPlayers.length === 0) {
+  display(html`<aside class="note"><b>No rostered players.</b> Rosters fill in after the draft.</aside>`);
+} else display(html`<figure class="chart">
+  <div class="chart__title">Position mix by team</div>
+  <p class="chart__sub">Players per roster, stacked by position. Longest bars carry the most bodies.</p>
+  ${Plot.plot(plotTheme({
+    width: Math.min(width, 800),
+    marginLeft: width < 640 ? 110 : 150,
+    marginBottom: 50,
+    height: Math.min(500, Math.max(300, allRosteredPlayers.length * 2)),
+    x: {
+      label: "Players",
+      grid: true
+    },
+    y: {
+      label: null
+    },
+    color: {
+      legend: true,
+      domain: positions,
+      range: positions.map(positionColor)
+    },
+    marks: [
+      Plot.barX(knownPlayers,
+        Plot.groupY(
+          {x: "count"},
+          {
+            y: "team_owner",
+            fill: "position",
+            sort: {y: "-x"}
+          }
+        )
+      ),
+      Plot.ruleX([0], {stroke: T.hair2})
+    ]
+  }))}
+</figure>`);
 ```
 
-</div>
-</div>
-
-## Player Demographics
+## Age and experience
 
 <div class="grid grid-2">
-  <div class="card">
-    <h3 style="margin-top: 0; color: var(--color-text-primary);">Age Distribution</h3>
-    <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">Distribution of player ages across all rosters</p>
+<div>
 
 ```js
-display(Plot.plot({
-  marginLeft: 60,
-  marginBottom: 50,
-  height: 300,
-  x: {
-    label: "Age →",
-    labelAnchor: "center",
-    domain: [20, 38]
-  },
-  y: {
-    label: "Number of Players",
-    grid: true
-  },
-  marks: [
-    Plot.rectY(
-      allRosteredPlayers.filter(p => p.age > 0),
-      Plot.binX(
-        {y: "count"},
-        {
-          x: "age",
-          fill: "var(--theme-accent)",
-          thresholds: 20
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ]
-}));
+if (playersWithAge.length === 0) {
+  display(html`<aside class="note"><b>No ages available.</b> Player ages appear once Sleeper's player file includes them.</aside>`);
+} else display(html`<figure class="chart">
+  <div class="chart__title">Age distribution</div>
+  <p class="chart__sub">Ages of every rostered player, binned by year.</p>
+  ${Plot.plot(plotTheme({
+    marginLeft: 60,
+    marginBottom: 50,
+    height: 300,
+    x: {
+      label: "Age",
+      domain: [20, Math.max(38, (d3.max(playersWithAge, p => p.age) ?? 37) + 1)]
+    },
+    y: {
+      label: "Players",
+      grid: true
+    },
+    marks: [
+      Plot.rectY(
+        playersWithAge,
+        Plot.binX(
+          {y: "count"},
+          {
+            x: "age",
+            fill: T.brass,
+            thresholds: 20
+          }
+        )
+      ),
+      Plot.ruleY([0], {stroke: T.hair2})
+    ]
+  }))}
+</figure>`);
 ```
 
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top: 0; color: var(--color-text-primary);">Experience Levels</h3>
-    <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">Breakdown of players by years of NFL experience</p>
+</div>
+<div>
 
 ```js
 // Group players by experience
@@ -172,9 +219,9 @@ const experienceGroups = d3.rollup(
   v => v.length,
   d => {
     if (d.years_exp === 0) return "Rookie";
-    if (d.years_exp <= 2) return "1-2 Years";
-    if (d.years_exp <= 4) return "3-4 Years";
-    if (d.years_exp <= 7) return "5-7 Years";
+    if (d.years_exp <= 2) return "1-2 years";
+    if (d.years_exp <= 4) return "3-4 years";
+    if (d.years_exp <= 7) return "5-7 years";
     return "Veteran (8+)";
   }
 );
@@ -184,73 +231,49 @@ const experienceData = Array.from(experienceGroups, ([group, count]) => ({
   count: count
 }));
 
-display(Plot.plot({
-  marginLeft: 120,
-  marginBottom: 50,
-  height: 250,
-  x: {
-    label: "Number of Players →",
-    labelAnchor: "center",
-    grid: true
-  },
-  y: {
-    label: null
-  },
-  marks: [
-    Plot.barX(experienceData, {
-      x: "count",
-      y: "experience",
-      fill: "var(--theme-accent)",
-      sort: {
-        y: {
-          value: "x",
-          order: "descending"
+if (experienceData.length === 0) {
+  display(html`<aside class="note"><b>No rostered players.</b> Experience groups appear once rosters fill.</aside>`);
+} else display(html`<figure class="chart">
+  <div class="chart__title">Experience</div>
+  <p class="chart__sub">Rostered players grouped by years in the NFL.</p>
+  ${Plot.plot(plotTheme({
+    marginLeft: 120,
+    marginBottom: 50,
+    height: 250,
+    x: {
+      label: "Players",
+      domain: [0, Math.max(1, d3.max(experienceData, d => d.count) ?? 0) * 1.1],
+      grid: true
+    },
+    y: {
+      label: null
+    },
+    marks: [
+      Plot.barX(experienceData, {
+        x: "count",
+        y: "experience",
+        fill: T.ink4,
+        sort: {
+          y: {
+            value: "x",
+            order: "descending"
+          }
         }
-      }
-    }),
-    Plot.text(experienceData, {
-      x: "count",
-      y: "experience",
-      text: d => d.count,
-      dx: 15,
-      fill: "var(--color-text-primary)"
-    })
-  ]
-}));
+      }),
+      Plot.text(experienceData, {
+        x: "count",
+        y: "experience",
+        text: d => d.count,
+        dx: 15,
+        fill: T.ink
+      })
+    ]
+  }))}
+</figure>`);
 ```
 
-  </div>
 </div>
-
-## Roster Details
-
-<div class="card">
-  <h3 style="margin-top: 0; color: var(--color-text-primary);">Players by Team</h3>
-  <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
-    Browse rostered players{selectedPosition !== "all" ? ` at ${selectedPosition}` : ""} across all fantasy teams
-  </p>
-
-```js
-// Get top players by position based on roster priority (earlier in roster = higher value)
-const filteredPlayers = selectedPosition === "all"
-  ? allRosteredPlayers
-  : allRosteredPlayers.filter(p => p.position === selectedPosition);
-
-const validPlayers = filteredPlayers.filter(p => p.name && p.position !== 'N/A');
-
-// Pagination for players
-const PLAYER_PAGE_SIZE = 20;
-const playerTotalPages = Math.max(1, Math.ceil(validPlayers.length / PLAYER_PAGE_SIZE));
-```
-
-```js
-const playerPage = view(Inputs.range([1, playerTotalPages], {
-  step: 1,
-  value: 1,
-  label: "Page",
-  width: 150
-}));
-```
+</div>
 
 ```js
 const playerStart = (playerPage - 1) * PLAYER_PAGE_SIZE;
@@ -258,89 +281,64 @@ const playerEnd = Math.min(playerStart + PLAYER_PAGE_SIZE, validPlayers.length);
 const displayPlayers = validPlayers.slice(playerStart, playerEnd);
 ```
 
-<div class="pagination-container" style="margin-bottom: 1rem;">
-  <div class="pagination-info">
-    Showing ${playerStart + 1}-${playerEnd} of ${validPlayers.length} players
+<h2>Rosters <span class="section-meta">${selectedPosition === "all" ? "all positions" : selectedPosition} · ${validPlayers.length} players</span></h2>
+
+```js
+if (validPlayers.length === 0) {
+  display(html`<aside class="note"><b>No players match.</b> Pick another position, or wait for rosters to fill after the draft.</aside>`);
+} else display(html`
+  <div class="pagination-container">
+    <div class="pagination-info">Showing ${playerStart + 1}–${playerEnd} of ${validPlayers.length} players</div>
+    <div class="pagination-controls"><span class="mono text-xs muted">Page ${playerPage} of ${playerTotalPages}</span></div>
   </div>
-  <div class="pagination-controls">
-    <span style="color: var(--color-text-muted); font-size: 0.875rem;">Page ${playerPage} of ${playerTotalPages}</span>
-  </div>
-</div>
-
-```js
-display(Inputs.table(displayPlayers, {
-  columns: ["name", "position", "team", "age", "years_exp", "team_owner", "status"],
-  header: {
-    name: "Player",
-    position: "Pos",
-    team: "NFL Team",
-    age: "Age",
-    years_exp: "Exp",
-    team_owner: "Fantasy Team",
-    status: "Status"
-  },
-  width: {
-    name: 160,
-    position: 50,
-    team: 70,
-    age: 50,
-    years_exp: 50,
-    team_owner: 140,
-    status: 80
-  }
-}));
-```
-
-</div>
-
-## Injury Report
-
-```js
-const injuredPlayers = allRosteredPlayers.filter(p => p.injury_status);
-```
-
-<div class="card" style="${injuredPlayers.length > 0 ? 'border-left: 4px solid var(--color-warning)' : 'border-left: 4px solid var(--color-success)'}">
-  <h3 style="margin-top: 0; color: ${injuredPlayers.length > 0 ? 'var(--color-warning)' : 'var(--color-success)'};">
-    ${injuredPlayers.length > 0 ? `⚠️ Injury Report (${injuredPlayers.length} players)` : '✓ Injury Report'}
-  </h3>
-
-```js
-if (injuredPlayers.length > 0) {
-  display(Inputs.table(injuredPlayers, {
-    columns: ["name", "position", "team", "injury_status", "team_owner"],
+  <div class="table-wrap">${Inputs.table(displayPlayers, {
+    columns: ["name", "position", "team", "age", "years_exp", "team_owner", "status"],
     header: {
       name: "Player",
       position: "Pos",
-      team: "NFL Team",
-      injury_status: "Status",
-      team_owner: "Fantasy Team"
+      team: "NFL team",
+      age: "Age",
+      years_exp: "Exp",
+      team_owner: "Fantasy team",
+      status: "Status"
     },
     width: {
       name: 160,
       position: 50,
       team: 70,
-      injury_status: 100,
-      team_owner: 140
+      age: 50,
+      years_exp: 50,
+      team_owner: 140,
+      status: 80
     }
-  }));
-} else {
-  display(html`
-    <p style="margin: 0; color: var(--color-success); font-weight: 600;">
-      ✓ All rostered players are currently healthy
-    </p>
-  `);
-}
+  })}</div>`);
 ```
 
-</div>
+<h2>Injury report <span class="section-meta">${injuredPlayers.length} ${injuredPlayers.length === 1 ? "player" : "players"}</span></h2>
 
-## Team Roster Depth
+```js
+if (injuredPlayers.length === 0) {
+  display(html`<aside class="note"><b>Every rostered player is healthy.</b> Designations appear here when Sleeper reports them.</aside>`);
+} else display(html`<div class="table-wrap">${Inputs.table(injuredPlayers, {
+  columns: ["name", "position", "team", "injury_status", "team_owner"],
+  header: {
+    name: "Player",
+    position: "Pos",
+    team: "NFL team",
+    injury_status: "Status",
+    team_owner: "Fantasy team"
+  },
+  width: {
+    name: 160,
+    position: 50,
+    team: 70,
+    injury_status: 100,
+    team_owner: 140
+  }
+})}</div>`);
+```
 
-<div class="card">
-  <h3 style="margin-top: 0; color: var(--color-text-primary);">Position Depth by Team</h3>
-  <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
-    Compare roster construction strategies across all teams
-  </p>
+## Depth by position
 
 ```js
 // Analyze depth by position for each team
@@ -365,7 +363,8 @@ const depthAnalysis = users.map(user => {
   };
 });
 
-display(Inputs.table(depthAnalysis, {
+display(html`<p class="muted text-sm">How many players each team carries at every position.</p>
+<div class="table-wrap">${Inputs.table(depthAnalysis, {
   columns: ["team", "qb", "rb", "wr", "te", "k", "total"],
   header: {
     team: "Team",
@@ -386,39 +385,16 @@ display(Inputs.table(depthAnalysis, {
     total: 80
   },
   sort: "team"
-}));
+})}</div>`);
 ```
 
-</div>
-
----
-
-<div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 1rem;">
-  <h3 style="margin-top: 0; color: #3b82f6;">📊 Key Insights</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-    <div>
-      <div style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem;">Roster Balance</div>
-      <div style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">
-        Compare position distribution to identify team strengths and weaknesses
-      </div>
-    </div>
-    <div>
-      <div style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem;">Age Analysis</div>
-      <div style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">
-        Younger players offer upside, veterans provide stability and consistency
-      </div>
-    </div>
-    <div>
-      <div style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem;">Experience Matters</div>
-      <div style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">
-        Track rookie vs veteran balance for championship window planning
-      </div>
-    </div>
-    <div>
-      <div style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.5rem;">Injury Management</div>
-      <div style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">
-        Monitor injury status to make informed lineup and waiver decisions
-      </div>
-    </div>
-  </div>
-</div>
+<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Position mix</strong> shows where each team is deep and where it is thin.</li>
+    <li><strong>Age</strong> separates upside from stability: younger rosters grow, older ones hold.</li>
+    <li><strong>Experience</strong> tracks the rookie-to-veteran balance behind each team's window.</li>
+    <li><strong>Injuries</strong> flag who needs a lineup or waiver decision this week.</li>
+    <li><strong>Past seasons</strong> show the final rosters; ages and injury designations come from today's Sleeper player file, not the season shown.</li>
+  </ul>
+</section>

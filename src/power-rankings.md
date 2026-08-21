@@ -1,8 +1,23 @@
-# Power Rankings
+<style>
+  /* Page-local layout that has no design-system class: the two-sided trade board. */
+  .trade-board { display: grid; grid-template-columns: 1fr; gap: var(--space-4); align-items: start; margin: var(--space-4) 0; }
+  @media (min-width: 900px) { .trade-board { grid-template-columns: 1fr auto 1fr; } }
+  .trade-board__swap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--space-6) var(--space-3); color: var(--brass); font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1; }
+  .trade-board__swap small { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-top: var(--space-2); }
+  .trade-board__head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-3); }
+  .trade-board__pick { max-height: 300px; overflow-y: auto; margin-top: var(--space-3); padding: var(--space-2); border: 1px solid var(--hair); border-radius: var(--radius); }
+  .trade-board__pick select { width: 100%; }
+</style>
 
 ```js
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
+import {T, plotTheme} from "./components/theme.js";
+import {mountSeasonPicker} from "./components/season.js";
+
+// Season picker (this page is current-season-only; the picker only drives the note below)
+const seasonsData = await FileAttachment("data/seasons.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
 
 // Load data
 const powerData = await FileAttachment("data/power-rankings.json").json();
@@ -20,61 +35,57 @@ const isRedraft = leagueInfo.leagueType === 'redraft';
 const isDynasty = leagueInfo.leagueType === 'dynasty' || !leagueInfo.leagueType;
 ```
 
-<div style="margin: 0 0 3rem 0;">
-  <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.05em;">
-      Roster-Based Team Strength
-    </div>
-    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: ${isDynasty ? 'rgba(34, 197, 94, 0.15)' : 'rgba(249, 115, 22, 0.15)'}; border: 1px solid ${isDynasty ? 'rgba(34, 197, 94, 0.3)' : 'rgba(249, 115, 22, 0.3)'}; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: ${isDynasty ? '#22c55e' : '#f97316'}; text-transform: uppercase; letter-spacing: 0.05em;">
-      ${isDynasty ? '🏆 Dynasty' : '📅 Redraft'}
-    </div>
-  </div>
-  <h1 style="margin: 0 0 1rem 0;">Power Rankings</h1>
-  <p style="font-size: 1.125rem; color: #cbd5e1; margin: 0; max-width: 900px; line-height: 1.6;">
-    Team strength rankings based on <strong>optimal starting lineup value</strong>, actual performance, and positional advantages.
+```js
+const S = seasonsData.by_season[season];
+const currentSeason = seasonsData.current;
+const currentStatus = (seasonsData.by_season[currentSeason]?.status || "in season").replace(/_/g, " ");
+const basedOn = String(Number(currentSeason) - 1);
+```
+
+<header class="page-head">
+  <p class="eyebrow">${currentSeason} season · ${currentStatus}</p>
+  <h1>Who is actually <em>strong</em>?</h1>
+  <p class="lede">
+    Team strength from optimal starting-lineup value, results to date, and positional advantages.
     ${isDynasty
-      ? 'Dynasty values reflect long-term asset worth including age, situation, and future potential.'
-      : 'Redraft values reflect current season production weighted by <strong>VOR scarcity</strong>.'}
+      ? 'Dynasty values weigh long-term asset worth: age, situation, and future potential.'
+      : 'Redraft values weigh current-season production, scaled by VOR scarcity.'}
   </p>
-</div>
+  <p class="meta">Based on ${basedOn} results · ${isDynasty ? 'dynasty' : 'redraft'} values · ${leagueInfo.totalTeams} teams</p>
+</header>
 
-## How Power Rankings Work
+```js
+display(html`<div>${S.is_current ? "" : html`<aside class="note note--brass"><b>Showing the ${seasonsData.current} season.</b> This page is only available for the season in progress.</aside>`}</div>`);
+```
 
-<div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(109, 40, 217, 0.05) 100%); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
-  <div style="display: flex; align-items: start; gap: 1.5rem;">
-    <div style="font-size: 3rem; line-height: 1;">⚡</div>
-    <div>
-      <h3 style="margin-top: 0; color: #8b5cf6;">The Power Score Formula ${isDynasty ? '(Dynasty)' : '(Redraft)'}</h3>
-      <p style="color: #cbd5e1; line-height: 1.7; margin: 0 0 1rem 0;">
-        Power Score combines what your roster <strong>could do</strong> with what it <strong>has done</strong>:
-      </p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-        <div style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #8b5cf6;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #8b5cf6;">${Math.round((weights?.lineup || 0.5) * 100)}%</div>
-          <div style="font-weight: 600; color: #f8fafc;">Optimal Lineup Value</div>
-          <div style="font-size: 0.875rem; color: #94a3b8;">${isDynasty ? 'Best starters using dynasty trade values' : 'Best starters using ECR + VOR scarcity'}</div>
-        </div>
-        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #22c55e;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">${Math.round((weights?.performance || 0.3) * 100)}%</div>
-          <div style="font-weight: 600; color: #f8fafc;">Actual Performance</div>
-          <div style="font-size: 0.875rem; color: #94a3b8;">Win %, All-Play record, points scored</div>
-        </div>
-        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #3b82f6;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6;">${Math.round((weights?.positional || 0.15) * 100)}%</div>
-          <div style="font-weight: 600; color: #f8fafc;">Positional Edge</div>
-          <div style="font-size: 0.875rem; color: #94a3b8;">Elite players at scarce positions (RB, TE)</div>
-        </div>
-        <div style="background: rgba(249, 115, 22, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #f97316;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #f97316;">${Math.round((weights?.depth || 0.05) * 100)}%</div>
-          <div style="font-weight: 600; color: #f8fafc;">Usable Depth</div>
-          <div style="font-size: 0.875rem; color: #94a3b8;">Meaningful backups only (top backup per position)</div>
-        </div>
-      </div>
-    </div>
+## How the power score works
+
+<p class="muted">Power score combines what a roster <strong>could do</strong> with what it <strong>has done</strong>. Weights for this ${isDynasty ? 'dynasty' : 'redraft'} league:</p>
+
+<div class="stat-grid">
+  <div class="stat stat--brass">
+    <div class="stat__k">Optimal lineup value</div>
+    <div class="stat__v">${Math.round((weights?.lineup || 0.5) * 100)}<small>%</small></div>
+    <div class="stat__l">${isDynasty ? 'Best starters by dynasty trade value' : 'Best starters by ECR plus VOR scarcity'}</div>
+  </div>
+  <div class="stat">
+    <div class="stat__k">Actual performance</div>
+    <div class="stat__v">${Math.round((weights?.performance || 0.3) * 100)}<small>%</small></div>
+    <div class="stat__l">Win %, all-play record, points scored</div>
+  </div>
+  <div class="stat">
+    <div class="stat__k">Positional edge</div>
+    <div class="stat__v">${Math.round((weights?.positional || 0.15) * 100)}<small>%</small></div>
+    <div class="stat__l">Elite players at scarce positions (RB, TE)</div>
+  </div>
+  <div class="stat stat--muted">
+    <div class="stat__k">Usable depth</div>
+    <div class="stat__v">${Math.round((weights?.depth || 0.05) * 100)}<small>%</small></div>
+    <div class="stat__l">Top backup per position only</div>
   </div>
 </div>
 
-## VOR Position Scarcity
+## Position scarcity
 
 ```js
 // VOR Scarcity data for display
@@ -88,28 +99,18 @@ const defaultScarcity = {
 };
 
 const displayScarcity = scarcityMultipliers || defaultScarcity;
-const scarcitySource = scarcityMultipliers ? 'Dynamic (VOR)' : 'Static Defaults';
+const scarcitySource = scarcityMultipliers ? 'Dynamic (VOR)' : 'Static defaults';
 
-// Position colors
-const posColors = {
-  QB: '#3b82f6',
-  RB: '#22c55e',
-  WR: '#f59e0b',
-  TE: '#8b5cf6',
-  K: '#94a3b8',
-  DEF: '#94a3b8'
-};
-
-// Generate VOR scarcity cards
+// Generate VOR scarcity stats
 const vorCards = Object.entries(displayScarcity)
   .filter(([pos]) => ['QB', 'RB', 'WR', 'TE'].includes(pos))
   .map(([pos, value]) => {
-    const label = value > 120 ? '🔥 Scarce' : value > 90 ? '⚡ Normal' : value < 50 ? '📦 Deep' : '⚖️ Baseline';
+    const label = value > 120 ? 'Scarce' : value > 90 ? 'Normal' : value < 50 ? 'Deep' : 'Baseline';
     return html`
-      <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 0.5rem; border: 1px solid ${posColors[pos]}40;">
-        <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">${pos}</div>
-        <div style="font-size: 1.75rem; font-weight: 700; color: ${posColors[pos]};">${value}</div>
-        <div style="font-size: 0.625rem; color: #64748b; margin-top: 0.25rem;">${label}</div>
+      <div class="stat">
+        <div class="stat__k"><span class="badge badge--pos-${pos.toLowerCase()}">${pos}</span></div>
+        <div class="stat__v">${value}</div>
+        <div class="stat__l">${label}</div>
       </div>
     `;
   });
@@ -119,30 +120,17 @@ const vorFooter = isRedraft ? 'Recalculated weekly from FantasyCalc ECR data.' :
 
 ```js
 display(html`
-<div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
-  <div style="display: flex; align-items: start; gap: 1.5rem;">
-    <div style="font-size: 3rem; line-height: 1;">📊</div>
-    <div style="flex: 1;">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-        <h3 style="margin: 0; color: #3b82f6;">Position Scarcity (VOR)</h3>
-        <div style="padding: 0.25rem 0.75rem; background: rgba(59, 130, 246, 0.2); border-radius: 1rem; font-size: 0.75rem; color: #3b82f6; font-weight: 600;">
-          ${scarcitySource}
-        </div>
-      </div>
-      <p style="color: #cbd5e1; line-height: 1.7; margin: 0.75rem 0 1.5rem 0; font-size: 0.9375rem;">
-        <strong>VOR (Value Over Replacement)</strong> measures how much better elite players are than replacement level at each position.
-        Higher values = scarcer position = more valuable stars. WR = 100 baseline.
-      </p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem;">
-        ${vorCards}
-      </div>
-      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(59, 130, 246, 0.2); font-size: 0.8125rem; color: #94a3b8;">
-        <strong>What this means:</strong> A RB with 100 VOR scarcity is worth <em>more</em> than a WR with the same PPG because elite RBs are harder to replace.
-        ${vorFooter}
-      </div>
-    </div>
+  <p class="muted text-sm">
+    <strong>Value over replacement</strong> (VOR) measures how much better elite players are than replacement level at each position.
+    Higher values mean a scarcer position and more valuable stars. WR is the 100 baseline. <span class="mono text-xs">${scarcitySource}</span>
+  </p>
+  <div class="stat-grid">
+    ${vorCards}
   </div>
-</div>
+  <p class="muted text-sm">
+    A RB with 100 VOR scarcity is worth <em>more</em> than a WR with the same PPG because elite RBs are harder to replace.
+    ${vorFooter}
+  </p>
 `);
 ```
 
@@ -160,173 +148,145 @@ const displayRankings = rankings.map(team => {
   const expectedRank = Math.round((lineupRank * 0.6) + (perfRank * 0.4));
   const trendValue = expectedRank - team.powerRank;
 
-  let trend, trendColor;
+  let trend, trendClass;
   if (trendValue > 1) {
     trend = "▲";
-    trendColor = "#22c55e";
+    trendClass = "up";
   } else if (trendValue < -1) {
     trend = "▼";
-    trendColor = "#ef4444";
+    trendClass = "down";
   } else {
     trend = "—";
-    trendColor = "#94a3b8";
+    trendClass = "muted";
   }
 
   return {
     ...team,
     trend,
-    trendColor,
+    trendClass,
     trendValue
   };
 });
 ```
 
-## Current Power Rankings
+## Current rankings
 
-<div class="grid grid-3" style="margin: 2rem 0 3rem 0;">
-  <div class="kpi-card">
-    <div class="kpi-label">Top Power Team</div>
-    <div style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0.5rem 0;">
-      ${rankings[0].teamName}
-    </div>
-    <div style="font-size: 0.875rem; color: #8b5cf6;">
-      Power Score: ${rankings[0].powerScore}
-    </div>
+<div class="stat-grid">
+  <div class="stat stat--brass">
+    <div class="stat__k">Top team</div>
+    <div class="stat__v stat--text">${rankings[0].teamName}</div>
+    <div class="stat__l">Power score ${rankings[0].powerScore}</div>
   </div>
-
-  <div class="kpi-card">
-    <div class="kpi-label">League Format</div>
-    <div class="kpi-value" style="font-size: 1.75rem;">${leagueInfo.isSuperFlex ? 'Superflex' : '1QB'}</div>
-    <div style="font-size: 0.875rem; color: #94a3b8;">
-      ${leagueInfo.totalTeams} teams
-    </div>
+  <div class="stat">
+    <div class="stat__k">League format</div>
+    <div class="stat__v stat--text">${leagueInfo.isSuperFlex ? 'Superflex' : '1QB'}</div>
+    <div class="stat__l">${leagueInfo.totalTeams} teams</div>
   </div>
-
-  <div class="kpi-card">
-    <div class="kpi-label">Power Gap</div>
-    <div class="kpi-value" style="font-size: 2rem;">${(rankings[0].powerScore - rankings[rankings.length - 1].powerScore).toFixed(1)}</div>
-    <div style="font-size: 0.875rem; color: #94a3b8;">
-      #1 vs #${rankings.length} difference
-    </div>
+  <div class="stat">
+    <div class="stat__k">Power gap</div>
+    <div class="stat__v">${(rankings[0].powerScore - rankings[rankings.length - 1].powerScore).toFixed(1)}</div>
+    <div class="stat__l">#1 vs #${rankings.length}</div>
   </div>
 </div>
 
 ```js
-// Build rankings rows as flat array of cells for proper grid layout
-const rankingsRows = displayRankings.flatMap((team, i) => {
-  const bg = i % 2 === 0 ? 'background: rgba(139, 92, 246, 0.03);' : '';
-  const border = 'border-bottom: 1px solid rgba(255,255,255,0.05);';
-  return [
-    html`<div style="padding: 0.75rem 0.5rem; text-align: left; font-weight: 700; color: #f8fafc; ${border} ${bg}">${team.powerRank}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: center; font-weight: 700; color: ${team.trendColor}; font-size: 1rem; ${border} ${bg}">${team.trend}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: left; color: #f8fafc; font-weight: 500; ${border} ${bg}">${team.teamName}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: right; font-weight: 700; color: #8b5cf6; ${border} ${bg}">${team.powerScore.toFixed(1)}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: right; color: #cbd5e1; ${border} ${bg}">${team.lineupValueScore.toFixed(1)}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: right; color: #cbd5e1; ${border} ${bg}">${team.performanceScore.toFixed(1)}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: right; color: #cbd5e1; ${border} ${bg}">${team.positionalScore.toFixed(1)}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: right; color: #cbd5e1; ${border} ${bg}">${team.depthScore.toFixed(1)}</div>`,
-    html`<div style="padding: 0.75rem 0.5rem; text-align: center; color: #94a3b8; white-space: nowrap; ${border} ${bg}">${team.wins}-${team.losses}</div>`
-  ];
+// Build rankings rows
+const rankingsRows = displayRankings.map((team, i) => {
+  const rowClass = i < 3 ? "is-top" : i >= displayRankings.length - 3 ? "is-bottom" : "";
+  const rankClass = i < 3 ? "rank rank--top" : i >= displayRankings.length - 3 ? "rank rank--bottom" : "rank";
+  return html`<tr class="${rowClass}">
+    <td><span class="${rankClass}">${team.powerRank}</span></td>
+    <td class="text-center ${team.trendClass}">${team.trend}</td>
+    <td>${team.teamName}</td>
+    <td class="num brass">${team.powerScore.toFixed(1)}</td>
+    <td class="num">${team.lineupValueScore.toFixed(1)}</td>
+    <td class="num">${team.performanceScore.toFixed(1)}</td>
+    <td class="num">${team.positionalScore.toFixed(1)}</td>
+    <td class="num">${team.depthScore.toFixed(1)}</td>
+    <td class="num muted">${team.wins}-${team.losses}</td>
+  </tr>`;
 });
 
 const rankingsTableContent = html`
-  <div class="card">
-    <h3 style="margin-top: 0;">Team Power Rankings</h3>
-    <p style="color: #cbd5e1; margin-bottom: 1.5rem;">
-      Teams ranked by composite Power Score. <strong>▲</strong> = roster suggests higher rank, <strong>▼</strong> = roster suggests lower rank.
-    </p>
-    <div class="rankings-grid" style="display: grid; grid-template-columns: 40px 40px 1fr 70px 60px 60px 60px 60px 60px; gap: 0; font-size: 0.875rem;">
-      <div style="padding: 0.75rem 0.5rem; text-align: left; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">#</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: center; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Trend</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: left; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Team</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: right; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Power</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: right; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Lineup</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: right; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Perf</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: right; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Pos</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: right; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Depth</div>
-      <div style="padding: 0.75rem 0.5rem; text-align: center; color: #94a3b8; font-weight: 600; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Record</div>
-      ${rankingsRows}
-    </div>
+  <p class="muted text-sm">
+    Teams ranked by composite power score. <span class="up">▲</span> roster suggests a higher rank; <span class="down">▼</span> roster suggests a lower rank.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th class="text-center">Trend</th>
+          <th>Team</th>
+          <th class="num">Power</th>
+          <th class="num">Lineup</th>
+          <th class="num">Perf</th>
+          <th class="num">Pos</th>
+          <th class="num">Depth</th>
+          <th class="num">Record</th>
+        </tr>
+      </thead>
+      <tbody>${rankingsRows}</tbody>
+    </table>
   </div>
 `;
 
-display(html`<details open class="section-collapse">
-  <summary class="section-summary">Power Rankings Table</summary>
-  <div class="section-content">
-    ${rankingsTableContent}
-  </div>
-</details>`);
+display(rankingsTableContent);
 ```
 
 ```js
+const rankedTeams = [...rankings].sort((a, b) => b.powerScore - a.powerScore);
+const rankFill = d => {
+  const i = rankedTeams.indexOf(d);
+  return i < 3 ? T.brass : i >= rankedTeams.length - 3 ? T.down : T.ink4;
+};
+
 const powerChartContent = html`
-  <div class="chart-container">
-    <h3 class="chart-title">Power Score Distribution</h3>
-    ${Plot.plot({
+  <figure class="chart">
+    <div class="chart__title">Power score by team</div>
+    <p class="chart__sub">Top three in brass, bottom three in ember.</p>
+    ${Plot.plot(plotTheme({
       marginLeft: 140,
-      marginBottom: 60,
-      height: rankings.length * 50,
+      marginBottom: 40,
+      height: rankings.length * 36 + 60,
       x: {
-        label: "Power Score →",
-        grid: true,
-        labelAnchor: "center",
+        label: "Power score",
         domain: [0, 100]
       },
       y: {
         label: null
       },
-      color: {
-        type: "linear",
-        domain: [40, 80],
-        range: ["#ef4444", "#8b5cf6"],
-        legend: true,
-        label: "Power Score"
-      },
       marks: [
-        Plot.barX(rankings, {
+        Plot.barX(rankedTeams, {
           x: "powerScore",
           y: "teamName",
-          fill: "powerScore",
-          sort: {y: "-x"},
-          rx: 6
+          fill: rankFill,
+          sort: {y: "-x"}
         }),
-        Plot.text(rankings, {
+        Plot.text(rankedTeams, {
           x: "powerScore",
           y: "teamName",
-          text: d => `#${d.powerRank} • ${d.powerScore.toFixed(1)}`,
-          dx: -10,
-          fill: "#f8fafc",
+          text: d => `#${d.powerRank} · ${d.powerScore.toFixed(1)}`,
+          dx: -8,
+          fill: T.ground,
           textAnchor: "end",
           fontSize: 11,
-          fontWeight: 600
+          fontWeight: 500
         }),
-        Plot.ruleX([0])
+        Plot.ruleX([0], {stroke: T.hair2})
       ]
-    })}
-  </div>
+    }))}
+  </figure>
 `;
 
-display(html`<details open class="section-collapse">
-  <summary class="section-summary">Power Score Visualization</summary>
-  <div class="section-content">
-    ${powerChartContent}
-  </div>
-</details>`);
+display(powerChartContent);
 ```
 
-## Trade Impact Simulator
+## Trade impact
 
-<div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(234, 88, 12, 0.05) 100%); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1rem 0 2rem 0;">
-  <div style="display: flex; align-items: center; gap: 1rem;">
-    <div style="font-size: 2rem;">💡</div>
-    <div>
-      <h4 style="margin: 0; color: #f97316;">See the Real Impact</h4>
-      <p style="margin: 0.5rem 0 0 0; color: #cbd5e1; font-size: 0.9375rem; line-height: 1.6;">
-        Select two teams and pick players from each side to see how the trade affects <strong>starting lineup strength</strong>, not just total value.
-      </p>
-    </div>
-  </div>
-</div>
+<aside class="note note--brass">
+  <p><b>See the real impact.</b> Pick two teams and the players each side gives up to see how the trade moves <strong>starting lineup strength</strong>, not just total value.</p>
+</aside>
 
 ```js
 // Team selectors for trade simulator
@@ -372,7 +332,7 @@ const teamBPlayersSorted = [...teamBPlayers].sort((a, b) => (posOrder[a.position
 const teamAGivingSelector = Inputs.select(
   teamAPlayersSorted,
   {
-    label: "Select players:",
+    label: "Players to send",
     format: p => `[${p.position}] ${p.name} — ${p.value.toLocaleString()}`,
     multiple: true,
     size: 10
@@ -383,7 +343,7 @@ const teamAGiving = Generators.input(teamAGivingSelector);
 const teamBGivingSelector = Inputs.select(
   teamBPlayersSorted,
   {
-    label: "Select players:",
+    label: "Players to send",
     format: p => `[${p.position}] ${p.name} — ${p.value.toLocaleString()}`,
     multiple: true,
     size: 10
@@ -392,57 +352,53 @@ const teamBGivingSelector = Inputs.select(
 const teamBGiving = Generators.input(teamBGivingSelector);
 ```
 
-<div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; margin: 1rem 0; align-items: start;">
-  <div class="card" style="border: 2px solid rgba(139, 92, 246, 0.3);">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+<div class="trade-board">
+  <div class="card card--accent">
+    <div class="trade-board__head">
       <div>
-        <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Team 1</div>
-        <h4 style="margin: 0; color: #8b5cf6;">${teamARoster?.teamName || 'Team A'}</h4>
+        <div class="card__k">Team 1</div>
+        <div class="card__title">${teamARoster?.teamName || 'Team A'}</div>
       </div>
-      <div style="text-align: right;">
-        <div style="font-size: 0.75rem; color: #94a3b8;">Power Rank</div>
-        <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">#${teamAInfo?.powerRank || '?'}</div>
+      <div class="text-right">
+        <div class="card__k">Power rank</div>
+        <div class="card__v">#${teamAInfo?.powerRank || '?'}</div>
       </div>
     </div>
     ${teamASelector}
-    <div style="max-height: 300px; overflow-y: auto; margin-top: 1rem; padding: 0.5rem; background: rgba(0,0,0,0.2); border-radius: 0.5rem;">
+    <div class="trade-board__pick">
       ${teamAGivingSelector}
     </div>
-    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 0.5rem;">
-      <div style="font-size: 0.75rem; color: #ef4444; text-transform: uppercase; font-weight: 600;">Trading Away</div>
-      <div style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin-top: 0.25rem;">
-        ${teamAGiving.reduce((sum, p) => sum + p.value, 0).toLocaleString()}
-      </div>
-      <div style="font-size: 0.875rem; color: #94a3b8;">${teamAGiving.length} player${teamAGiving.length !== 1 ? 's' : ''}</div>
+    <div class="card__foot">
+      <div class="card__k">Sending</div>
+      <div class="card__v down">${teamAGiving.reduce((sum, p) => sum + p.value, 0).toLocaleString()}</div>
+      <div class="muted text-sm">${teamAGiving.length} player${teamAGiving.length !== 1 ? 's' : ''}</div>
     </div>
   </div>
 
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem;">
-    <div style="font-size: 2.5rem; color: #8b5cf6;">⇄</div>
-    <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; margin-top: 0.5rem;">Trade</div>
+  <div class="trade-board__swap">
+    <div>⇄</div>
+    <small>Trade</small>
   </div>
 
-  <div class="card" style="border: 2px solid rgba(139, 92, 246, 0.3);">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+  <div class="card card--accent">
+    <div class="trade-board__head">
       <div>
-        <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Team 2</div>
-        <h4 style="margin: 0; color: #8b5cf6;">${teamBRoster?.teamName || 'Team B'}</h4>
+        <div class="card__k">Team 2</div>
+        <div class="card__title">${teamBRoster?.teamName || 'Team B'}</div>
       </div>
-      <div style="text-align: right;">
-        <div style="font-size: 0.75rem; color: #94a3b8;">Power Rank</div>
-        <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">#${teamBInfo?.powerRank || '?'}</div>
+      <div class="text-right">
+        <div class="card__k">Power rank</div>
+        <div class="card__v">#${teamBInfo?.powerRank || '?'}</div>
       </div>
     </div>
     ${teamBSelector}
-    <div style="max-height: 300px; overflow-y: auto; margin-top: 1rem; padding: 0.5rem; background: rgba(0,0,0,0.2); border-radius: 0.5rem;">
+    <div class="trade-board__pick">
       ${teamBGivingSelector}
     </div>
-    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 0.5rem;">
-      <div style="font-size: 0.75rem; color: #ef4444; text-transform: uppercase; font-weight: 600;">Trading Away</div>
-      <div style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin-top: 0.25rem;">
-        ${teamBGiving.reduce((sum, p) => sum + p.value, 0).toLocaleString()}
-      </div>
-      <div style="font-size: 0.875rem; color: #94a3b8;">${teamBGiving.length} player${teamBGiving.length !== 1 ? 's' : ''}</div>
+    <div class="card__foot">
+      <div class="card__k">Sending</div>
+      <div class="card__v down">${teamBGiving.reduce((sum, p) => sum + p.value, 0).toLocaleString()}</div>
+      <div class="muted text-sm">${teamBGiving.length} player${teamBGiving.length !== 1 ? 's' : ''}</div>
     </div>
   </div>
 </div>
@@ -527,79 +483,46 @@ if (tradeImpact) {
   const valueDiff = tradeImpact.totalValueB - tradeImpact.totalValueA;
   const isBalanced = Math.abs(valueDiff) < 1000;
 
+  const sideCard = side => html`
+    <div class="card">
+      <div class="card__title">${side.name}</div>
+      <div class="stat-grid">
+        <div class="stat"><div class="stat__k">Current rank</div><div class="stat__v">#${side.before.powerRank}</div></div>
+        <div class="stat"><div class="stat__k">Power score</div><div class="stat__v">${side.before.powerScore}</div></div>
+        <div class="stat ${side.powerChange >= 0 ? 'stat--up' : 'stat--down'}">
+          <div class="stat__k">After trade</div>
+          <div class="stat__v">${side.newPowerScore}</div>
+          <div class="stat__d ${side.powerChange >= 0 ? 'up' : 'down'}">${side.powerChange >= 0 ? '+' : ''}${side.powerChange.toFixed(1)}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
   display(html`
-    <div style="background: #1a1f29; border: 2px solid rgba(139, 92, 246, 0.4); border-radius: 1rem; padding: 2rem; margin: 2rem 0;">
-      <h3 style="margin: 0 0 1.5rem 0; color: #8b5cf6; text-align: center;">Trade Impact Analysis</h3>
-
-      <!-- Value comparison -->
-      <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Total Value Given</div>
-          <div style="font-size: 1.5rem; font-weight: 700; color: #f8fafc;">${tradeImpact.totalValueA.toLocaleString()}</div>
-          <div style="font-size: 0.875rem; color: #94a3b8;">${tradeImpact.teamA.name}</div>
+    <div class="stack">
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat__k">Value sent</div>
+          <div class="stat__v">${tradeImpact.totalValueA.toLocaleString()}</div>
+          <div class="stat__l">${tradeImpact.teamA.name}</div>
         </div>
-        <div style="font-size: 2rem; color: #94a3b8;">⇄</div>
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Total Value Given</div>
-          <div style="font-size: 1.5rem; font-weight: 700; color: #f8fafc;">${tradeImpact.totalValueB.toLocaleString()}</div>
-          <div style="font-size: 0.875rem; color: #94a3b8;">${tradeImpact.teamB.name}</div>
+        <div class="stat">
+          <div class="stat__k">Value sent</div>
+          <div class="stat__v">${tradeImpact.totalValueB.toLocaleString()}</div>
+          <div class="stat__l">${tradeImpact.teamB.name}</div>
         </div>
-      </div>
-
-      <!-- Power score changes -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-        <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid rgba(139, 92, 246, 0.2);">
-          <h4 style="margin: 0 0 1rem 0; color: #8b5cf6;">${tradeImpact.teamA.name}</h4>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <div>
-              <div style="font-size: 0.75rem; color: #94a3b8;">Current Rank</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">#${tradeImpact.teamA.before.powerRank}</div>
-            </div>
-            <div>
-              <div style="font-size: 0.75rem; color: #94a3b8;">Power Score</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">${tradeImpact.teamA.before.powerScore}</div>
-            </div>
-          </div>
-          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
-            <div style="font-size: 0.75rem; color: #94a3b8;">After Trade</div>
-            <div style="display: flex; align-items: baseline; gap: 0.5rem;">
-              <span style="font-size: 1.5rem; font-weight: 700; color: ${tradeImpact.teamA.powerChange >= 0 ? '#22c55e' : '#ef4444'};">
-                ${tradeImpact.teamA.newPowerScore}
-              </span>
-              <span style="font-size: 1rem; color: ${tradeImpact.teamA.powerChange >= 0 ? '#22c55e' : '#ef4444'};">
-                (${tradeImpact.teamA.powerChange >= 0 ? '+' : ''}${tradeImpact.teamA.powerChange.toFixed(1)})
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid rgba(139, 92, 246, 0.2);">
-          <h4 style="margin: 0 0 1rem 0; color: #8b5cf6;">${tradeImpact.teamB.name}</h4>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <div>
-              <div style="font-size: 0.75rem; color: #94a3b8;">Current Rank</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">#${tradeImpact.teamB.before.powerRank}</div>
-            </div>
-            <div>
-              <div style="font-size: 0.75rem; color: #94a3b8;">Power Score</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: #f8fafc;">${tradeImpact.teamB.before.powerScore}</div>
-            </div>
-          </div>
-          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
-            <div style="font-size: 0.75rem; color: #94a3b8;">After Trade</div>
-            <div style="display: flex; align-items: baseline; gap: 0.5rem;">
-              <span style="font-size: 1.5rem; font-weight: 700; color: ${tradeImpact.teamB.powerChange >= 0 ? '#22c55e' : '#ef4444'};">
-                ${tradeImpact.teamB.newPowerScore}
-              </span>
-              <span style="font-size: 1rem; color: ${tradeImpact.teamB.powerChange >= 0 ? '#22c55e' : '#ef4444'};">
-                (${tradeImpact.teamB.powerChange >= 0 ? '+' : ''}${tradeImpact.teamB.powerChange.toFixed(1)})
-              </span>
-            </div>
-          </div>
+        <div class="stat ${isBalanced ? 'stat--muted' : 'stat--brass'}">
+          <div class="stat__k">Value gap</div>
+          <div class="stat__v">${Math.abs(valueDiff).toLocaleString()}</div>
+          <div class="stat__l">${isBalanced ? 'roughly even' : valueDiff > 0 ? `favors ${tradeImpact.teamA.name}` : `favors ${tradeImpact.teamB.name}`}</div>
         </div>
       </div>
 
-      <!-- Warning/Analysis -->
+      <div class="grid grid-2">
+        ${sideCard(tradeImpact.teamA)}
+        ${sideCard(tradeImpact.teamB)}
+      </div>
+
       ${(() => {
         const warnings = [];
 
@@ -609,7 +532,7 @@ if (tradeImpact) {
           const loser = tradeImpact.teamA.powerChange > tradeImpact.teamB.powerChange ? tradeImpact.teamB.name : tradeImpact.teamA.name;
           warnings.push({
             type: 'warning',
-            message: `${winner} gains significantly more Power Score than ${loser}. This trade may be unbalanced.`
+            message: `${winner} gains much more power score than ${loser}. This trade may be unbalanced.`
           });
         }
 
@@ -619,7 +542,7 @@ if (tradeImpact) {
         if (teamAStars.length > 0 && teamBBench.length >= 2 && tradeImpact.teamA.powerChange < 0) {
           warnings.push({
             type: 'danger',
-            message: `${tradeImpact.teamA.name} is trading star player(s) for bench depth. This hurts their starting lineup!`
+            message: `${tradeImpact.teamA.name} is trading a star for bench depth. This weakens their starting lineup.`
           });
         }
 
@@ -628,26 +551,21 @@ if (tradeImpact) {
         if (teamBStars.length > 0 && teamABench.length >= 2 && tradeImpact.teamB.powerChange < 0) {
           warnings.push({
             type: 'danger',
-            message: `${tradeImpact.teamB.name} is trading star player(s) for bench depth. This hurts their starting lineup!`
+            message: `${tradeImpact.teamB.name} is trading a star for bench depth. This weakens their starting lineup.`
           });
         }
 
         if (warnings.length === 0 && Math.abs(tradeImpact.teamA.powerChange - tradeImpact.teamB.powerChange) < 2) {
           warnings.push({
             type: 'success',
-            message: 'This trade appears relatively balanced in terms of Power Score impact.'
+            message: 'This trade is roughly balanced in power score impact.'
           });
         }
 
+        const noteClass = { danger: 'note--down', warning: 'note--brass', success: 'note--up' };
         return html`
-          <div style="margin-top: 1.5rem;">
-            ${warnings.map(w => html`
-              <div style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.5rem; background: ${w.type === 'danger' ? 'rgba(239, 68, 68, 0.1)' : w.type === 'warning' ? 'rgba(249, 115, 22, 0.1)' : 'rgba(34, 197, 94, 0.1)'}; border: 1px solid ${w.type === 'danger' ? 'rgba(239, 68, 68, 0.3)' : w.type === 'warning' ? 'rgba(249, 115, 22, 0.3)' : 'rgba(34, 197, 94, 0.3)'};">
-                <span style="color: ${w.type === 'danger' ? '#ef4444' : w.type === 'warning' ? '#f97316' : '#22c55e'}; font-weight: 600;">
-                  ${w.type === 'danger' ? '⚠️' : w.type === 'warning' ? '⚡' : '✓'} ${w.message}
-                </span>
-              </div>
-            `)}
+          <div class="stack">
+            ${warnings.map(w => html`<aside class="note ${noteClass[w.type]}">${w.message}</aside>`)}
           </div>
         `;
       })()}
@@ -655,44 +573,40 @@ if (tradeImpact) {
   `);
 } else {
   display(html`
-    <div style="padding: 2rem; text-align: center; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 0.75rem; margin: 2rem 0;">
-      <div style="font-size: 2rem; margin-bottom: 0.5rem;">👆</div>
-      <p style="color: #cbd5e1; margin: 0;">Select players from each team above to simulate a trade</p>
-    </div>
+    <aside class="note">
+      <b>No trade selected.</b> Pick at least one player from either team above to see the before-and-after power scores.
+    </aside>
   `);
 }
 ```
 
-## Component Breakdown
+## Score components
 
 ```js
 const componentData = rankings.flatMap(team => [
-  { team: team.teamName, component: "Lineup Value (50%)", score: team.lineupValueScore * 0.5, raw: team.lineupValueScore },
+  { team: team.teamName, component: "Lineup value (50%)", score: team.lineupValueScore * 0.5, raw: team.lineupValueScore },
   { team: team.teamName, component: "Performance (30%)", score: team.performanceScore * 0.3, raw: team.performanceScore },
   { team: team.teamName, component: "Positional (15%)", score: team.positionalScore * 0.15, raw: team.positionalScore },
   { team: team.teamName, component: "Depth (5%)", score: team.depthScore * 0.05, raw: team.depthScore }
 ]);
 
 const componentColors = {
-  "Lineup Value (50%)": "#8b5cf6",
-  "Performance (30%)": "#22c55e",
-  "Positional (15%)": "#3b82f6",
-  "Depth (5%)": "#f97316"
+  "Lineup value (50%)": T.brass,
+  "Performance (30%)": T.slate,
+  "Positional (15%)": T.ink4,
+  "Depth (5%)": T.mauve
 };
 
 const stackedChartContent = html`
-  <div class="chart-container">
-    <h3 class="chart-title">Power Score Components by Team</h3>
-    <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1rem;">
-      See how each team's Power Score breaks down across the four components.
-    </p>
-    ${Plot.plot({
+  <figure class="chart">
+    <div class="chart__title">Power score components by team</div>
+    <p class="chart__sub">Each bar stacks the four weighted components that make up the power score.</p>
+    ${Plot.plot(plotTheme({
       marginLeft: 140,
-      marginBottom: 80,
-      height: rankings.length * 45,
+      marginBottom: 40,
+      height: rankings.length * 32 + 60,
       x: {
-        label: "Contribution to Power Score →",
-        grid: true,
+        label: "Contribution to power score",
         domain: [0, 100]
       },
       y: {
@@ -709,107 +623,77 @@ const stackedChartContent = html`
           y: "team",
           fill: "component",
           sort: {y: "-x", reduce: "sum"},
-          rx: 4
+          tip: true,
+          title: d => `${d.team}\n${d.component}: ${d.raw.toFixed(1)} raw → ${d.score.toFixed(1)}`
         })),
-        Plot.ruleX([0])
+        Plot.ruleX([0], {stroke: T.hair2})
       ]
-    })}
-  </div>
+    }))}
+  </figure>
 `;
 
-display(html`<details open class="section-collapse">
-  <summary class="section-summary">Component Breakdown</summary>
-  <div class="section-content">
-    ${stackedChartContent}
-  </div>
-</details>`);
+display(stackedChartContent);
 ```
 
-## Team Deep Dive
+## Team detail
 
 ```js
 const teamSelector = Inputs.select(
   rankings.map(t => t.teamName),
   {
-    label: "Select Team",
+    label: "Team",
     value: rankings[0].teamName
   }
 );
 const selectedTeamName = Generators.input(teamSelector);
+display(html`<div class="row">${teamSelector}</div>`);
 ```
 
 ```js
 const selectedTeam = rankings.find(t => t.teamName === selectedTeamName);
+const hasGames = (selectedTeam.wins + selectedTeam.losses) > 0;
 
 const teamDeepDiveContent = html`
-  <div>
-    ${teamSelector}
-  </div>
-
-  <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(109, 40, 217, 0.05) 100%); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 1rem; padding: 2rem; margin: 1.5rem 0;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-      <div>
-        <h3 style="margin-top: 0; color: #8b5cf6;">Power Score: ${selectedTeam.powerScore}</h3>
-        <div style="display: grid; gap: 1rem;">
-          <div>
-            <div style="font-size: 0.875rem; color: #94a3b8;">Power Rank</div>
-            <div style="font-size: 1.75rem; font-weight: 700; color: #f8fafc;">#${selectedTeam.powerRank} of ${rankings.length}</div>
-          </div>
-          <div>
-            <div style="font-size: 0.875rem; color: #94a3b8;">Total Roster Value</div>
-            <div style="font-size: 1.75rem; font-weight: 700; color: #f8fafc;">${selectedTeam.totalRosterValue.toLocaleString()}</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h3 style="margin-top: 0; color: #22c55e;">Performance</h3>
-        <div style="display: grid; gap: 1rem;">
-          <div>
-            <div style="font-size: 0.875rem; color: #94a3b8;">Record</div>
-            <div style="font-size: 1.75rem; font-weight: 700; color: #f8fafc;">${selectedTeam.wins}-${selectedTeam.losses}</div>
-          </div>
-          <div>
-            <div style="font-size: 0.875rem; color: #94a3b8;">All-Play Record</div>
-            <div style="font-size: 1.75rem; font-weight: 700; color: #f8fafc;">${selectedTeam.allPlayWins}-${selectedTeam.allPlayLosses} (${selectedTeam.allPlayWinPct}%)</div>
-          </div>
-        </div>
-      </div>
+  <div class="stat-grid">
+    <div class="stat stat--hero stat--brass">
+      <div class="stat__k">Power score</div>
+      <div class="stat__v">${selectedTeam.powerScore}</div>
+      <div class="stat__l">#${selectedTeam.powerRank} of ${rankings.length}</div>
     </div>
-
-    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
-      <h4 style="margin-top: 0; color: #8b5cf6;">Component Scores</h4>
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem;">
-        <div style="text-align: center; padding: 1rem; background: rgba(139, 92, 246, 0.1); border-radius: 0.5rem;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #8b5cf6;">${selectedTeam.lineupValueScore}</div>
-          <div style="font-size: 0.75rem; color: #94a3b8;">Lineup Value</div>
-        </div>
-        <div style="text-align: center; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">${selectedTeam.performanceScore}</div>
-          <div style="font-size: 0.75rem; color: #94a3b8;">Performance</div>
-        </div>
-        <div style="text-align: center; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6;">${selectedTeam.positionalScore}</div>
-          <div style="font-size: 0.75rem; color: #94a3b8;">Positional Edge</div>
-        </div>
-        <div style="text-align: center; padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: #f97316;">${selectedTeam.depthScore}</div>
-          <div style="font-size: 0.75rem; color: #94a3b8;">Depth</div>
-        </div>
-      </div>
+    <div class="stat">
+      <div class="stat__k">Total roster value</div>
+      <div class="stat__v">${selectedTeam.totalRosterValue.toLocaleString()}</div>
+    </div>
+    <div class="stat">
+      <div class="stat__k">Record</div>
+      <div class="stat__v">${selectedTeam.wins}-${selectedTeam.losses}</div>
+      ${hasGames ? "" : html`<div class="stat__l">No games yet</div>`}
+    </div>
+    <div class="stat">
+      <div class="stat__k">All-play record</div>
+      <div class="stat__v">${selectedTeam.allPlayWins}-${selectedTeam.allPlayLosses}</div>
+      <div class="stat__l">${selectedTeam.allPlayWinPct}% · appears after week 1</div>
     </div>
   </div>
 
-  <div class="card" style="margin-top: 1.5rem;">
-    <h4 style="margin-top: 0;">Optimal Starting Lineup</h4>
-    <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1rem;">
-      The best possible lineup based on dynasty trade values. This is what drives the Lineup Value score.
+  <h4>Component scores</h4>
+  <div class="stat-grid">
+    <div class="stat stat--brass"><div class="stat__k">Lineup value</div><div class="stat__v">${selectedTeam.lineupValueScore}</div></div>
+    <div class="stat"><div class="stat__k">Performance</div><div class="stat__v">${selectedTeam.performanceScore}</div></div>
+    <div class="stat"><div class="stat__k">Positional edge</div><div class="stat__v">${selectedTeam.positionalScore}</div></div>
+    <div class="stat stat--muted"><div class="stat__k">Depth</div><div class="stat__v">${selectedTeam.depthScore}</div></div>
+  </div>
+
+  <h4>Optimal starting lineup</h4>
+    <p class="muted text-sm">
+      The best possible lineup by ${isDynasty ? 'dynasty trade value' : 'current-season value'}. This drives the lineup value score.
     </p>
     ${Inputs.table(selectedTeam.starters.sort((a, b) => b.value - a.value), {
       columns: ["slot", "name", "value"],
       header: {
-        slot: "Position",
+        slot: "Slot",
         name: "Player",
-        value: "Trade Value"
+        value: "Trade value"
       },
       format: {
         value: x => x.toLocaleString()
@@ -820,37 +704,21 @@ const teamDeepDiveContent = html`
         value: 100
       }
     })}
-  </div>
 `;
 
-display(html`<details open class="section-collapse">
-  <summary class="section-summary">Team Deep Dive</summary>
-  <div class="section-content">
-    ${teamDeepDiveContent}
-  </div>
-</details>`);
+display(teamDeepDiveContent);
 ```
 
----
-
-<div style="margin-top: 4rem; padding: 2rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(109, 40, 217, 0.05) 100%); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 1rem;">
-  <div style="text-align: center;">
-    <div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
-    <h3 style="margin-top: 0; color: #8b5cf6;">About Power Rankings</h3>
-    <p style="color: #cbd5e1; max-width: 800px; margin: 0 auto; line-height: 1.7;">
-      Power Rankings help identify true team strength beyond win-loss records. They're especially useful for evaluating trades —
-      <strong>trading a star player for multiple mediocre players might look fair on paper, but hurts your Power Score</strong>
-      because you can only start so many players. The Optimal Lineup Value component specifically captures this.
-    </p>
-    <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 0.875rem; color: #94a3b8;">
-      ${isDynasty ? `
-        <div><strong>Value Source:</strong> <a href="https://github.com/dynastyprocess/data" target="_blank" style="color: #8b5cf6;">DynastyProcess.com</a></div>
-      ` : `
-        <div><strong>ECR Source:</strong> <a href="https://www.fantasycalc.com" target="_blank" style="color: #8b5cf6;">FantasyCalc.com</a></div>
-        <div><strong>Projections:</strong> Sleeper ROS</div>
-      `}
-      <div><strong>Scarcity:</strong> VOR (Value Over Replacement)</div>
-      <div><strong>Updated:</strong> ${new Date(powerData.lastUpdated || Date.now()).toLocaleDateString()}</div>
-    </div>
-  </div>
-</div>
+<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Beyond the record.</strong> Power rankings measure roster strength, not just wins and losses, so a lucky start does not mask a thin lineup.</li>
+    <li><strong>Trades.</strong> Trading a star for several average players can look fair on paper but lowers your power score, because you can only start so many players. The lineup value component captures this.</li>
+    <li><strong>Sources.</strong>
+      ${isDynasty
+        ? html`Values from <a href="https://github.com/dynastyprocess/data" target="_blank">DynastyProcess</a>.`
+        : html`ECR from <a href="https://www.fantasycalc.com" target="_blank">FantasyCalc</a>; projections from Sleeper ROS.`}
+      Scarcity by VOR (value over replacement). Updated ${new Date(powerData.lastUpdated || Date.now()).toLocaleDateString()}.
+    </li>
+  </ul>
+</section>

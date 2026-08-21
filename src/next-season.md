@@ -1,107 +1,102 @@
-# Next Season
+<style>
+  /* Page-local layout that has no component: the pick ledger rows and the pick-count chips. */
+  .pick-list { display: flex; flex-direction: column; }
+  .row--between { justify-content: space-between; }
+  .card__meta { margin-top: var(--space-3); }
+  .pick-row { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--hair); border-left: 2px solid var(--hair-2); }
+  .pick-row:first-child { border-top: 1px solid var(--hair-2); }
+  .pick-row--playoff { border-left-color: var(--ink-4); }
+  .pick-row--traded { border-left-color: var(--brass); }
+  .pick-row__team { font-weight: 600; color: var(--ink); }
+  .pick-row__sub { font-size: var(--text-sm); color: var(--ink-3); margin-top: var(--space-1); }
+  .pick-chip { display: inline-block; min-width: 1.75rem; padding: 0.2em 0.45em; border-radius: var(--radius); font-family: var(--font-mono); font-size: var(--text-xs); text-align: center; border: 1px solid var(--hair-2); color: var(--ink-2); }
+  .pick-chip--none { color: var(--down); border-color: var(--down); }
+  .pick-chip--acquired { color: var(--brass); border-color: var(--brass); background: var(--brass-soft); }
+  .picks-table { width: max-content; min-width: 100%; }
+  .picks-table .sticky-col { white-space: nowrap; }
+  .picks-table thead th.sticky-col { z-index: 2; }
+  .picks-table .rd-start { border-left: 1px solid var(--hair-2); }
+  .picks-table .center { text-align: center; }
+  .picks-table .year { color: var(--ink-4); font-weight: 400; }
+  .legend-swatch { display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: var(--radius); border: 1px solid var(--hair-2); vertical-align: middle; }
+  .legend-swatch--acquired { background: var(--brass-soft); border-color: var(--brass); }
+  .legend-swatch--none { border-color: var(--down); }
+</style>
 
 ```js
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
+import {T, plotTheme} from "./components/theme.js";
+import {mountSeasonPicker} from "./components/season.js";
 
 // Load data
 const draftOrderData = await FileAttachment("data/draft-order.json").json();
+const seasonsData = await FileAttachment("data/seasons.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
 ```
 
-## ${draftOrderData.next_season} Draft Order
+```js
+// This page only exists for the season in progress; the picker still mounts so the choice follows the reader.
+const S = seasonsData.by_season[season];
+```
 
 ```js
 display(html`
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin: 30px 0;">
-    <div style="padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-top: 4px solid var(--theme-accent);">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 8px;">Season</div>
-      <div style="font-size: 22px; font-weight: bold;">${draftOrderData.next_season}</div>
-    </div>
-
-    <div style="padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-top: 4px solid var(--theme-accent);">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 8px;">Total Teams</div>
-      <div style="font-size: 22px; font-weight: bold;">${draftOrderData.total_teams}</div>
-    </div>
-
-    <div style="padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-top: 4px solid var(--theme-accent);">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 8px;">Playoff Teams</div>
-      <div style="font-size: 22px; font-weight: bold;">${draftOrderData.playoff_teams}</div>
-    </div>
-
-    <div style="padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-top: 4px solid var(--theme-accent);">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 8px;">Non-Playoff Teams</div>
-      <div style="font-size: 22px; font-weight: bold;">${draftOrderData.total_teams - draftOrderData.playoff_teams}</div>
-    </div>
-
-    <div style="padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-top: 4px solid #f59e0b;">
-      <div style="font-size: 14px; color: var(--theme-foreground-alt); margin-bottom: 8px;">Traded Picks</div>
-      <div style="font-size: 22px; font-weight: bold; color: #f59e0b;">${draftOrderData.traded_pick_count}</div>
-    </div>
+  <header class="page-head">
+    <p class="eyebrow">${draftOrderData.next_season} season · pre-season</p>
+    <h1>Who picks <em>first</em> next year?</h1>
+    <p class="lede">The ${draftOrderData.next_season} first-round order, who owns which picks, and how much draft capital each team holds for the next ${draftOrderData.future_seasons.length} seasons.</p>
+    <p class="meta">Based on ${draftOrderData.season} results</p>
+  </header>
+  ${S.is_current ? '' : html`<aside class="note note--brass"><b>Showing the ${seasonsData.current} season.</b> This page is only available for the season in progress.</aside>`}
+  <div class="stat-grid">
+    <div class="stat"><div class="stat__k">Season</div><div class="stat__v">${draftOrderData.next_season}</div></div>
+    <div class="stat"><div class="stat__k">Teams</div><div class="stat__v">${draftOrderData.total_teams}</div></div>
+    <div class="stat"><div class="stat__k">Playoff teams</div><div class="stat__v">${draftOrderData.playoff_teams}</div></div>
+    <div class="stat"><div class="stat__k">Non-playoff teams</div><div class="stat__v">${draftOrderData.total_teams - draftOrderData.playoff_teams}</div></div>
+    <div class="stat"><div class="stat__k">Traded picks</div><div class="stat__v">${draftOrderData.traded_pick_count}</div></div>
   </div>
 `);
 ```
 
-### How Draft Order is Determined
-
-```js
-display(html`
-  <div style="margin: 30px 0; padding: 25px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid var(--theme-accent);">
-    <h4 style="margin-top: 0; color: var(--theme-accent);">Draft Order Rules</h4>
-    <ul style="line-height: 1.8; margin-bottom: 0;">
-      <li><strong>Picks 1-${draftOrderData.total_teams - draftOrderData.playoff_teams}:</strong> Non-playoff teams, ordered by <em>lowest Max PF</em> (total season points)</li>
-      <li><strong>Picks ${draftOrderData.total_teams - draftOrderData.playoff_teams + 1}-${draftOrderData.total_teams}:</strong> Playoff teams, in reverse order of playoff finish (champion picks last)</li>
-      <li><strong style="color: #f59e0b;">Traded Picks:</strong> Shown with current owner - picks may have changed hands via trades</li>
-    </ul>
-  </div>
-`);
-```
-
-## Complete Draft Order (Round 1)
+## Round 1 draft order
 
 ```js
 const draftOrder = draftOrderData.draft_order;
 
-display(html`
-  <div style="margin: 30px 0;">
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-      ${draftOrder.map((pick, i) => html`
-        <div style="
-          display: grid;
-          grid-template-columns: 60px 1fr auto;
-          align-items: center;
-          padding: 16px 20px;
-          background: ${pick.is_traded ? 'rgba(245, 158, 11, 0.1)' : pick.category === 'playoff' ? 'rgba(34, 197, 94, 0.1)' : 'var(--theme-background-alt)'};
-          border-radius: 8px;
-          border-left: 4px solid ${pick.is_traded ? '#f59e0b' : pick.category === 'playoff' ? '#22c55e' : '#ef4444'};
-        ">
-          <div style="font-size: 28px; font-weight: 800; color: ${pick.is_traded ? '#f59e0b' : 'var(--theme-accent)'};">${pick.draft_position}</div>
-          <div>
-            <div style="font-size: 18px; font-weight: 600;">
-              ${pick.is_traded
-                ? html`<span style="color: #f59e0b;">${pick.current_owner}</span> <span style="color: var(--theme-foreground-muted); font-size: 14px;">(via ${pick.original_team})</span>`
-                : pick.original_team
-              }
-            </div>
-            <div style="font-size: 13px; color: var(--theme-foreground-alt); margin-top: 4px;">
-              ${pick.category === 'playoff'
-                ? `Playoff Finish: ${pick.playoff_finish === 1 ? '🏆 Champion' : pick.playoff_finish === 2 ? '🥈 Runner-up' : `#${pick.playoff_finish}`}`
-                : `Max PF: ${pick.max_pf.toFixed(2)}`
-              }
-              ${pick.is_traded ? ' • Traded' : ''}
-            </div>
+display(draftOrder.length === 0
+  ? html`<aside class="note">No draft order yet. It appears once the ${draftOrderData.season} season has a final standings and playoff result.</aside>`
+  : html`
+  <div class="pick-list">
+    ${draftOrder.map((pick, i) => html`
+      <div class="pick-row ${pick.is_traded ? 'pick-row--traded' : pick.category === 'playoff' ? 'pick-row--playoff' : ''}">
+        <div class="hero-num ${pick.is_traded ? 'hero-num--brass' : ''}">${pick.draft_position}</div>
+        <div>
+          <div class="pick-row__team">
+            ${pick.is_traded
+              ? html`<span class="brass">${pick.current_owner}</span> <span class="muted text-sm">(via ${pick.original_team})</span>`
+              : pick.original_team
+            }
           </div>
-          <div style="text-align: right;">
-            <div style="font-size: 14px; color: var(--theme-foreground-alt);">${pick.wins}-${pick.losses}</div>
-            <div style="font-size: 12px; color: var(--theme-foreground-muted); margin-top: 2px;">${pick.max_pf.toFixed(1)} pts</div>
+          <div class="pick-row__sub">
+            ${pick.category === 'playoff'
+              ? `Playoff finish: ${pick.playoff_finish === 1 ? 'Champion' : pick.playoff_finish === 2 ? 'Runner-up' : `#${pick.playoff_finish}`}`
+              : `Max PF: ${pick.max_pf.toFixed(2)}`
+            }
+            ${pick.is_traded ? html` <span class="badge badge--brass">Traded</span>` : ''}
           </div>
         </div>
-      `)}
-    </div>
+        <div class="text-right">
+          <div class="mono text-sm ink-2">${pick.wins}-${pick.losses}</div>
+          <div class="mono text-xs muted">${pick.max_pf.toFixed(1)} pts</div>
+        </div>
+      </div>
+    `)}
   </div>
 `);
 ```
 
-## Future Draft Picks by Owner
+## Future draft picks by owner
 
 ```js
 const futureSeasons = draftOrderData.future_seasons;
@@ -134,8 +129,8 @@ function getPicksPerRound(owner) {
 }
 
 display(html`
-  <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Overview of each team's draft capital by round for the next ${futureSeasons.length} seasons (${futureSeasons.join(', ')}). Numbers show total picks owned per round.
+  <p class="muted text-sm">
+    Each team's draft capital by round for the next ${futureSeasons.length} seasons (${futureSeasons.join(', ')}). Numbers are total picks owned in that round. Brass means at least one pick came in by trade; ember means the team holds none.
   </p>
 `);
 ```
@@ -174,12 +169,12 @@ const displayRounds = rounds.slice(0, 3);
 
 // Build table HTML as a raw string to avoid Observable's span wrapping issue
 const roundHeaders = displayRounds.map(round =>
-  `<th colspan="${futureSeasons.length}" style="padding: 8px 4px; text-align: center; font-weight: 600; border-left: 2px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.1);">RD ${round}</th>`
+  `<th colspan="${futureSeasons.length}" class="center rd-start">Rd ${round}</th>`
 ).join('');
 
 const yearHeaders = displayRounds.flatMap(round =>
   futureSeasons.map((season, sIdx) =>
-    `<th style="padding: 6px 2px; text-align: center; font-weight: 500; font-size: 10px; color: var(--theme-foreground-alt); ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''} width: 50px; min-width: 50px;">${season}</th>`
+    `<th class="center year${sIdx === 0 ? ' rd-start' : ''}">${season}</th>`
   )
 ).join('');
 
@@ -190,38 +185,35 @@ const tableRows = futurePicksByOwner.map((owner, idx) => {
       const data = picksByRoundSeason[round][season];
       const total = data.own + data.acquired;
       const hasAcquired = data.acquired > 0;
-      const bgColor = total === 0 ? 'rgba(239, 68, 68, 0.2)' : hasAcquired ? 'rgba(245, 158, 11, 0.2)' : 'rgba(34, 197, 94, 0.2)';
-      const textColor = total === 0 ? '#ef4444' : hasAcquired ? '#f59e0b' : '#22c55e';
+      const chipClass = total === 0 ? 'pick-chip--none' : hasAcquired ? 'pick-chip--acquired' : '';
       const title = `${season} Round ${round}: ${data.own} own + ${data.acquired} acquired${data.traded > 0 ? ` (${data.traded} traded away)` : ''}`;
-      return `<td style="padding: 6px 2px; text-align: center; width: 50px; min-width: 50px; ${sIdx === 0 ? 'border-left: 2px solid rgba(255,255,255,0.2);' : ''}">
-        <span style="display: inline-block; min-width: 26px; padding: 4px 6px; border-radius: 4px; font-size: 13px; font-weight: 600; background: ${bgColor}; color: ${textColor};" title="${title}">${total}</span>
+      return `<td class="center${sIdx === 0 ? ' rd-start' : ''}">
+        <span class="pick-chip ${chipClass}" title="${title}">${total}</span>
       </td>`;
     })
   ).join('');
 
-  const rowBg = idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)';
-  const stickyBg = idx % 2 === 0 ? 'var(--theme-background)' : 'rgba(26, 31, 41, 0.98)';
-  const netColor = owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)';
+  const netClass = owner.net_picks > 0 ? 'up' : owner.net_picks < 0 ? 'down' : 'muted';
 
-  return `<tr style="border-bottom: 1px solid rgba(255,255,255,0.1); background: ${rowBg};">
-    <td style="padding: 10px 8px; font-weight: 600; position: sticky; left: 0; background: ${stickyBg}; z-index: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px;">${owner.team}</td>
+  return `<tr>
+    <td class="sticky-col">${owner.team}</td>
     ${dataCells}
-    <td style="padding: 10px 4px; text-align: center; font-weight: 600; font-size: 15px; color: var(--theme-accent); border-left: 2px solid rgba(255,255,255,0.2);">${owner.total_picks}</td>
-    <td style="padding: 10px 4px; text-align: center; font-weight: 600; font-size: 15px; color: ${netColor};">${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}</td>
+    <td class="num rd-start">${owner.total_picks}</td>
+    <td class="num ${netClass}">${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}</td>
   </tr>`;
 }).join('');
 
 const tableHtml = `
-  <div style="overflow-x: auto;">
-    <table style="min-width: 800px; width: max-content; border-collapse: collapse; font-size: 14px;">
+  <div class="table-wrap">
+    <table class="picks-table">
       <thead>
-        <tr style="background: var(--theme-background-alt);">
-          <th rowspan="2" style="padding: 12px; text-align: left; font-weight: 600; position: sticky; left: 0; background: var(--theme-background-alt); z-index: 2; border-bottom: 2px solid var(--theme-accent); width: 120px;">TEAM</th>
+        <tr>
+          <th rowspan="2" class="sticky-col">Team</th>
           ${roundHeaders}
-          <th rowspan="2" style="padding: 12px 8px; text-align: center; font-weight: 600; border-left: 2px solid rgba(255,255,255,0.2); border-bottom: 2px solid var(--theme-accent); width: 55px;">Total</th>
-          <th rowspan="2" style="padding: 12px 8px; text-align: center; font-weight: 600; border-bottom: 2px solid var(--theme-accent); width: 50px;">Net</th>
+          <th rowspan="2" class="num rd-start">Total</th>
+          <th rowspan="2" class="num">Net</th>
         </tr>
-        <tr style="background: var(--theme-background-alt); border-bottom: 2px solid var(--theme-accent);">
+        <tr>
           ${yearHeaders}
         </tr>
       </thead>
@@ -238,32 +230,21 @@ tableContainer.innerHTML = tableHtml;
 display(tableContainer);
 ```
 
-## Draft Capital Summary
+## Draft capital summary
 
 ```js
 display(html`
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 30px 0;">
+  <div class="grid grid-3">
     ${futurePicksByOwner.slice(0, 6).map(owner => html`
-      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-accent)'};">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <div style="font-size: 16px; font-weight: 600;">${owner.team}</div>
-          <div style="font-size: 24px; font-weight: bold; color: var(--theme-accent);">${owner.total_picks}</div>
+      <div class="card card--tight">
+        <div class="row row--between">
+          <div class="card__title mb-0">${owner.team}</div>
+          <div class="card__v">${owner.total_picks}</div>
         </div>
-        <div style="display: flex; gap: 16px; font-size: 13px;">
-          <div>
-            <span style="color: var(--theme-foreground-muted);">Acquired:</span>
-            <span style="color: #f59e0b; font-weight: 600;"> ${owner.total_acquired}</span>
-          </div>
-          <div>
-            <span style="color: var(--theme-foreground-muted);">Traded:</span>
-            <span style="color: #ef4444; font-weight: 600;"> ${owner.total_traded_away}</span>
-          </div>
-          <div>
-            <span style="color: var(--theme-foreground-muted);">Net:</span>
-            <span style="color: ${owner.net_picks > 0 ? '#22c55e' : owner.net_picks < 0 ? '#ef4444' : 'var(--theme-foreground-alt)'}; font-weight: 600;">
-              ${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}
-            </span>
-          </div>
+        <div class="row text-sm card__meta">
+          <div><span class="muted">Acquired</span> <span class="mono">${owner.total_acquired}</span></div>
+          <div><span class="muted">Traded</span> <span class="mono">${owner.total_traded_away}</span></div>
+          <div><span class="muted">Net</span> ${owner.net_picks === 0 ? html`<span class="mono muted">0</span>` : html`<span class="delta ${owner.net_picks > 0 ? 'up' : 'down'}">${owner.net_picks > 0 ? '+' : ''}${owner.net_picks}</span>`}</div>
         </div>
       </div>
     `)}
@@ -271,7 +252,7 @@ display(html`
 `);
 ```
 
-## Picks by Owner (${draftOrderData.next_season} Round 1)
+## Round 1 picks by owner <span class="section-meta">${draftOrderData.next_season}</span>
 
 ```js
 const picksByOwner = draftOrderData.picks_by_owner
@@ -283,35 +264,30 @@ const picksByOwner = draftOrderData.picks_by_owner
   .sort((a, b) => b.total_picks - a.total_picks);
 
 display(html`
-  <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Summary of first-round pick ownership for the upcoming ${draftOrderData.next_season} draft.
+  <p class="muted text-sm">
+    Who holds each first-round pick in the ${draftOrderData.next_season} draft.
   </p>
 `);
 
 display(html`
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0;">
+  <div class="grid grid-3">
     ${picksByOwner.map(owner => html`
-      <div style="padding: 20px; background: var(--theme-background-alt); border-radius: 8px; border-left: 4px solid ${owner.total_picks > 1 ? '#22c55e' : owner.total_picks === 0 ? '#ef4444' : 'var(--theme-accent)'};">
-        <div style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">${owner.team}</div>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <div class="card card--tight">
+        <div class="card__title">${owner.team}</div>
+        <div class="row">
           <div>
-            <div style="font-size: 24px; font-weight: bold; color: var(--theme-accent);">${owner.total_picks}</div>
-            <div style="font-size: 12px; color: var(--theme-foreground-alt);">Total Picks</div>
+            <div class="card__v">${owner.total_picks}</div>
+            <div class="card__k">Total picks</div>
+            ${owner.total_picks !== 1 ? html`<span class="delta ${owner.total_picks > 1 ? 'up' : 'down'}">${owner.total_picks > 1 ? '+' : ''}${owner.total_picks - 1}</span>` : ''}
           </div>
           ${owner.own_picks.length > 0 ? html`
-            <div>
-              <div style="font-size: 14px; color: var(--theme-foreground-alt);">Own: ${owner.own_picks.map(p => `#${p.draft_position}`).join(', ')}</div>
-            </div>
+            <div class="text-sm ink-2">Own: ${owner.own_picks.map(p => `#${p.draft_position}`).join(', ')}</div>
           ` : ''}
           ${owner.acquired_picks.length > 0 ? html`
-            <div>
-              <div style="font-size: 14px; color: #f59e0b;">Acquired: ${owner.acquired_picks.map(p => `#${p.draft_position} (${p.from_team})`).join(', ')}</div>
-            </div>
+            <div class="text-sm brass">Acquired: ${owner.acquired_picks.map(p => `#${p.draft_position} (${p.from_team})`).join(', ')}</div>
           ` : ''}
           ${owner.picks_traded_away > 0 ? html`
-            <div>
-              <div style="font-size: 14px; color: #ef4444;">Traded Away: ${owner.picks_traded_away}</div>
-            </div>
+            <div class="text-sm ink-2">Traded away: ${owner.picks_traded_away}</div>
           ` : ''}
         </div>
       </div>
@@ -320,19 +296,19 @@ display(html`
 `);
 ```
 
-## Draft Order by Category
+## Draft order by category
 
 ```js
 const nonPlayoffTeams = draftOrder.filter(t => t.category === 'non-playoff');
 const playoffTeams = draftOrder.filter(t => t.category === 'playoff');
 ```
 
-### Non-Playoff Teams (Lottery)
+### Non-playoff teams
 
 ```js
 display(html`
-  <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Teams that missed the playoffs, ordered by lowest Max PF (total season points).
+  <p class="muted text-sm">
+    Teams that missed the playoffs, ordered by lowest max PF (total season points).
   </p>
 `);
 
@@ -363,12 +339,12 @@ display(Inputs.table(nonPlayoffTeams, {
 }));
 ```
 
-### Playoff Teams
+### Playoff teams
 
 ```js
 display(html`
-  <p style="color: var(--theme-foreground-alt); margin-bottom: 20px;">
-    Teams that made the playoffs, picking in reverse order of their playoff finish. The champion picks last.
+  <p class="muted text-sm">
+    Teams that made the playoffs, picking in reverse order of playoff finish. The champion picks last.
   </p>
 `);
 
@@ -379,7 +355,7 @@ display(Inputs.table(playoffTeams, {
     current_owner: "Owner",
     original_team: "Original",
     is_traded: "Traded?",
-    playoff_finish: "Playoff Finish",
+    playoff_finish: "Playoff finish",
     wins: "W",
     losses: "L"
   },
@@ -399,57 +375,57 @@ display(Inputs.table(playoffTeams, {
 }));
 ```
 
-## Max PF Distribution
+## Maximum points distribution
 
 ```js
-display(html`<h3 style="margin-top: 40px;">Max PF Comparison (Total Season Points)</h3>`);
+const maxPfMax = d3.max(draftOrder, d => d.max_pf) || 0;
 
-display(Plot.plot({
-  marginLeft: 150,
-  height: Math.max(400, draftOrder.length * 35),
-  x: {
-    label: "Max PF (Total Season Points)",
-    grid: true
-  },
-  y: {
-    label: null
-  },
-  marks: [
-    Plot.barX(draftOrder, {
-      x: "max_pf",
-      y: "original_team",
-      fill: d => d.category === 'playoff' ? "#22c55e" : "#ef4444",
-      sort: { y: "-x" }
-    }),
-    Plot.text(draftOrder, {
-      x: "max_pf",
-      y: "original_team",
-      text: d => `#${d.draft_position}`,
-      dx: -25,
-      fill: "white",
-      fontWeight: "bold"
-    }),
-    Plot.ruleX([0])
-  ]
-}));
+display(maxPfMax === 0
+  ? html`<aside class="note">No season points yet. This chart fills in once the ${draftOrderData.season} season has scored games.</aside>`
+  : html`<figure class="chart">
+      <div class="chart__title">Maximum points by team, highest to lowest</div>
+      <p class="chart__sub">Playoff teams in ink, non-playoff teams in ember. The label on each bar is the team's ${draftOrderData.next_season} pick.</p>
+      ${Plot.plot(plotTheme({
+        marginLeft: 150,
+        height: Math.max(400, draftOrder.length * 35),
+        x: {
+          label: "Maximum points (total season points)",
+          domain: [0, Math.max(1, maxPfMax)]
+        },
+        y: {
+          label: null
+        },
+        marks: [
+          Plot.barX(draftOrder, {
+            x: "max_pf",
+            y: "original_team",
+            fill: d => d.category === 'playoff' ? T.ink4 : T.down,
+            sort: { y: "-x" }
+          }),
+          Plot.text(draftOrder, {
+            x: "max_pf",
+            y: "original_team",
+            text: d => `#${d.draft_position}`,
+            dx: -16,
+            fill: T.ink,
+            fontWeight: "500"
+          }),
+          Plot.ruleX([0], {stroke: T.hair2})
+        ]
+      }))}
+    </figure>`);
 ```
 
----
-
-<div style="margin-top: 40px; padding: 20px; background: var(--theme-background-alt); border-radius: 8px;">
-  <h3 style="margin-top: 0;">Draft Capital Legend</h3>
-  <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 12px;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="display: inline-block; width: 16px; height: 16px; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px;"></span>
-      <span>Own Pick</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="display: inline-block; width: 16px; height: 16px; background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 4px;"></span>
-      <span>Acquired via Trade</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="color: #ef4444;">Traded Away</span>
-      <span>- Pick sent to another team</span>
-    </div>
-  </div>
-</div>
+```js
+display(html`<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Picks 1–${draftOrderData.total_teams - draftOrderData.playoff_teams}:</strong> non-playoff teams, ordered by <em>lowest max PF</em> (total season points).</li>
+    <li><strong>Picks ${draftOrderData.total_teams - draftOrderData.playoff_teams + 1}–${draftOrderData.total_teams}:</strong> playoff teams, in reverse order of playoff finish. The champion picks last.</li>
+    <li><strong>Traded picks</strong> show the current owner. Picks may have changed hands since the season ended.</li>
+    <li><span class="legend-swatch"></span> <strong>Own picks.</strong> The team still holds its native pick in that round.</li>
+    <li><span class="legend-swatch legend-swatch--acquired"></span> <strong>Acquired by trade.</strong> At least one pick in that round came from another team.</li>
+    <li><span class="legend-swatch legend-swatch--none"></span> <strong>None.</strong> The team holds no pick in that round; its own pick was sent to another team.</li>
+  </ul>
+</section>`);
+```

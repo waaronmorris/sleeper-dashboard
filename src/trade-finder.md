@@ -1,8 +1,28 @@
-# Trade Finder
+<style>
+  .trade-side { display: flex; flex-direction: column; gap: var(--space-3); }
+  .trade-list { display: flex; flex-direction: column; gap: var(--space-2); }
+  .trade-player { display: flex; justify-content: space-between; gap: var(--space-3); padding-left: var(--space-3); }
+  .trade-upgrades { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--hair); }
+  .need-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); }
+  .need-score { margin-bottom: var(--space-2); }
+  .trade-stack > * + * { margin-top: var(--space-4); }
+  .row--between { justify-content: space-between; }
+</style>
 
 ```js
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
+import {T, plotTheme, diverging} from "./components/theme.js";
+import {mountSeasonPicker} from "./components/season.js";
+```
+
+```js
+const seasonsData = await FileAttachment("data/seasons.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
+```
+
+```js
+const S = seasonsData.by_season[season];
 ```
 
 ```js
@@ -11,13 +31,6 @@ const recommendations = tradeData.recommendations;
 const teams = tradeData.teams;
 const league = tradeData.league;
 ```
-
-<div style="padding: 2rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(59, 130, 246, 0.15)); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 1rem; margin-bottom: 2rem;">
-  <h1 style="margin: 0 0 0.5rem 0; font-size: 2rem; color: var(--color-text-primary);">Trade Finder</h1>
-  <p style="margin: 0; color: var(--color-text-secondary); font-size: 1.1rem;">
-    Discover mutually beneficial trades that improve both teams using Power Score analysis
-  </p>
-</div>
 
 ```js
 // Stats
@@ -28,34 +41,33 @@ const teamsWithNeeds = teams.filter(t =>
 ).length;
 ```
 
-<div class="grid grid-3" style="margin-bottom: 2rem;">
-  <div class="card" style="background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3);">
-    <h3 style="color: var(--color-text-muted); margin: 0; font-size: 0.85rem; text-transform: uppercase;">Win-Win Trades</h3>
-    <div style="font-size: 2.5rem; font-weight: bold; color: #22c55e;">${winWinTrades}</div>
-    <div style="color: var(--color-text-secondary); font-size: 0.9rem;">Both teams get starter upgrades</div>
+```js
+display(html`
+  <header class="page-head">
+    <p class="eyebrow">${seasonsData.current} season · ${(seasonsData.by_season[seasonsData.current]?.status ?? "in season").replace(/_/g, " ")} · ${league.name}${league.isSuperFlex ? " · superflex" : ""}</p>
+    <h1>Trades where <em>both</em> sides get better</h1>
+    <p class="lede">Pairs each team's positional needs with another team's surplus, scored by power value, to surface fair trades worth proposing.</p>
+    <p class="meta">Based on current rosters and power values · ${teams.length} teams</p>
+  </header>
+  ${S.is_current ? '' : html`<aside class="note note--brass"><b>Showing the ${seasonsData.current} season.</b> This page is only available for the season in progress.</aside>`}
+  <div class="stat-grid">
+    <div class="stat"><div class="stat__k">Win-win trades</div><div class="stat__v">${winWinTrades}</div><div class="stat__l">Both teams get a starter upgrade</div></div>
+    <div class="stat"><div class="stat__k">Trade options</div><div class="stat__v">${totalTrades}</div><div class="stat__l">Fair-value exchanges found</div></div>
+    <div class="stat"><div class="stat__k">Teams with a need</div><div class="stat__v">${teamsWithNeeds}</div><div class="stat__l">Could benefit from a trade</div></div>
   </div>
-  <div class="card" style="background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3);">
-    <h3 style="color: var(--color-text-muted); margin: 0; font-size: 0.85rem; text-transform: uppercase;">Total Opportunities</h3>
-    <div style="font-size: 2.5rem; font-weight: bold; color: #3b82f6;">${totalTrades}</div>
-    <div style="color: var(--color-text-secondary); font-size: 0.9rem;">Fair value trade options</div>
-  </div>
-  <div class="card" style="background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.3);">
-    <h3 style="color: var(--color-text-muted); margin: 0; font-size: 0.85rem; text-transform: uppercase;">Teams with Needs</h3>
-    <div style="font-size: 2.5rem; font-weight: bold; color: #f97316;">${teamsWithNeeds}</div>
-    <div style="color: var(--color-text-secondary); font-size: 0.9rem;">Could benefit from trades</div>
-  </div>
-</div>
+`);
+```
 
-## Team Analysis
+## Team needs
 
 ```js
 const teamOptions = [
-  { value: "all", label: "All Teams" },
+  { value: "all", label: "All teams" },
   ...teams.map(t => ({ value: t.rosterId.toString(), label: t.teamName }))
 ];
 
 const teamSelector = Inputs.select(teamOptions, {
-  label: "Filter by Team",
+  label: "Team",
   format: d => d.label,
   value: teamOptions[0]
 });
@@ -63,7 +75,7 @@ const teamSelector = Inputs.select(teamOptions, {
 const selectedTeam = Generators.input(teamSelector);
 ```
 
-<div style="margin-bottom: 1.5rem;">
+<div class="row">
   ${teamSelector}
 </div>
 
@@ -85,38 +97,34 @@ const selectedTeamData = selectedTeam.value !== "all"
 ```js
 // Display team needs if a specific team is selected
 function renderTeamNeeds(team) {
-  if (!team) return '';
+  if (!team) return html`<aside class="note">Pick a team above to see where it is short and where it has depth to trade.</aside>`;
 
   const positions = ['QB', 'RB', 'WR', 'TE'];
 
   return html`
-    <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem;">
-      <h3 style="margin: 0 0 1rem 0; color: var(--color-text-primary);">${team.teamName} - Position Analysis</h3>
+    <div class="card">
+      <div class="card__title">${team.teamName} by position</div>
       <div class="grid grid-4">
         ${positions.map(pos => {
           const need = team.needs[pos];
-          const status = need.isNeed ? '🔴 NEED' : need.isSurplus ? '🟢 SURPLUS' : '🟡 OK';
-          const statusColor = need.isNeed ? '#ef4444' : need.isSurplus ? '#22c55e' : '#f59e0b';
+          const status = need.isNeed ? 'Need' : need.isSurplus ? 'Surplus' : 'OK';
+          const badgeClass = need.isNeed ? 'badge badge--down' : need.isSurplus ? 'badge badge--brass' : 'badge';
 
           return html`
-            <div class="card" style="background: rgba(0,0,0,0.2);">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                <span style="font-weight: bold; font-size: 1.1rem;">${pos}</span>
-                <span style="color: ${statusColor}; font-size: 0.85rem;">${status}</span>
+            <div class="card card--tight">
+              <div class="need-head">
+                <span class="badge badge--pos-${pos.toLowerCase()}">${pos}</span>
+                <span class="${badgeClass}">${status}</span>
               </div>
-              <div style="color: var(--color-text-muted); font-size: 0.8rem;">
-                Score: ${need.needScore}
+              <div class="need-score mono text-sm muted">Score ${need.needScore}</div>
+              <div class="text-xs ink-2">
+                Starters: ${need.starters.map(p => p.name.split(' ').pop()).join(', ') || 'none'}
               </div>
-              <div style="margin-top: 0.5rem;">
-                <div style="color: var(--color-text-secondary); font-size: 0.75rem;">
-                  Starters: ${need.starters.map(p => p.name.split(' ').pop()).join(', ') || 'None'}
+              ${need.bench.length > 0 ? html`
+                <div class="text-xs muted">
+                  Bench: ${need.bench.slice(0, 3).map(p => p.name.split(' ').pop()).join(', ')}${need.bench.length > 3 ? '…' : ''}
                 </div>
-                ${need.bench.length > 0 ? html`
-                  <div style="color: var(--color-text-muted); font-size: 0.7rem; margin-top: 0.25rem;">
-                    Bench: ${need.bench.slice(0, 3).map(p => p.name.split(' ').pop()).join(', ')}${need.bench.length > 3 ? '...' : ''}
-                  </div>
-                ` : ''}
-              </div>
+              ` : ''}
             </div>
           `;
         })}
@@ -128,14 +136,14 @@ function renderTeamNeeds(team) {
 display(renderTeamNeeds(selectedTeamData));
 ```
 
-## Trade Recommendations
+## Suggested trades
 
 ```js
-const showOnlyWinWin = Inputs.toggle({label: "Show only Win-Win trades", value: false});
+const showOnlyWinWin = Inputs.toggle({label: "Win-win only", value: false});
 const winWinFilter = Generators.input(showOnlyWinWin);
 ```
 
-<div style="margin-bottom: 1rem;">
+<div class="row">
   ${showOnlyWinWin}
 </div>
 
@@ -146,128 +154,97 @@ const displayRecs = winWinFilter
 ```
 
 ```js
-function renderTradeCard(trade, index) {
-  const badges = [];
-  if (trade.bothHaveUpgrades) badges.push({ text: 'WIN-WIN', color: '#22c55e', bg: 'rgba(34, 197, 94, 0.2)' });
-  else if (trade.bothImprove) badges.push({ text: 'MUTUAL BENEFIT', color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.2)' });
-  if (trade.fairExchange) badges.push({ text: 'FAIR VALUE', color: '#f59e0b', bg: 'rgba(249, 115, 22, 0.2)' });
-
+function renderPlayer(p, showStar) {
   return html`
-    <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-        <div>
-          <span style="color: var(--color-text-muted); font-size: 0.8rem;">#${index + 1}</span>
-          <span style="margin-left: 0.5rem; color: var(--color-text-secondary); font-size: 0.85rem;">${trade.type} • ${trade.positionSwap}</span>
-        </div>
-        <div style="display: flex; gap: 0.5rem;">
-          ${badges.map(b => html`
-            <span style="background: ${b.bg}; color: ${b.color}; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600;">
-              ${b.text}
-            </span>
+    <div class="trade-player text-sm">
+      <span class="ink-2">${p.name} <span class="muted">(${p.position})</span>${showStar && p.isStarter ? html` <span class="badge badge--brass">starter</span>` : ''}</span>
+      <span class="mono muted num">${p.value.toLocaleString()}</span>
+    </div>
+  `;
+}
+
+function renderSide(name, gives, receives, impact) {
+  return html`
+    <div class="card card--tight trade-side">
+      <div class="card__title">${name}</div>
+      <div>
+        <div class="eyebrow down">Gives</div>
+        <div class="trade-list">${gives.map(p => renderPlayer(p, true))}</div>
+      </div>
+      <div>
+        <div class="eyebrow up">Receives</div>
+        <div class="trade-list">${receives.map(p => renderPlayer(p, false))}</div>
+      </div>
+      ${impact.starterUpgrades?.length > 0 ? html`
+        <div class="trade-upgrades">
+          <div class="eyebrow up">Lineup upgrades</div>
+          ${impact.starterUpgrades.map(u => html`
+            <div class="text-xs muted trade-player">
+              <span>${u.newPlayer.split(' ').pop()} replaces ${u.replaces.split(' ').pop()}</span>
+              <span class="mono up">+${u.improvement}</span>
+            </div>
           `)}
         </div>
-      </div>
+      ` : ''}
+    </div>
+  `;
+}
 
-      <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-        <!-- Team 1 Side -->
-        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 0.75rem; padding: 1rem;">
-          <div style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.75rem;">${trade.team1Name}</div>
+function renderTradeCard(trade, index) {
+  const badges = [];
+  if (trade.bothHaveUpgrades) badges.push({ text: 'Win-win', cls: 'badge badge--brass badge--solid' });
+  else if (trade.bothImprove) badges.push({ text: 'Mutual benefit', cls: 'badge badge--slate' });
+  if (trade.fairExchange) badges.push({ text: 'Fair value', cls: 'badge' });
 
-          <div style="margin-bottom: 0.75rem;">
-            <div style="color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.25rem;">📤 GIVES:</div>
-            ${trade.team1Gives.map(p => html`
-              <div style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 0.5rem;">
-                ${p.name} <span style="color: var(--color-text-muted);">(${p.position})</span>
-                <span style="color: var(--color-text-muted); font-size: 0.75rem;"> - ${p.value.toLocaleString()}</span>
-                ${p.isStarter ? html`<span style="color: #f59e0b;"> ⭐</span>` : ''}
-              </div>
-            `)}
-          </div>
-
-          <div>
-            <div style="color: #22c55e; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.25rem;">📥 RECEIVES:</div>
-            ${trade.team2Gives.map(p => html`
-              <div style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 0.5rem;">
-                ${p.name} <span style="color: var(--color-text-muted);">(${p.position})</span>
-                <span style="color: var(--color-text-muted); font-size: 0.75rem;"> - ${p.value.toLocaleString()}</span>
-              </div>
-            `)}
-          </div>
-
-          ${trade.team1Impact.starterUpgrades?.length > 0 ? html`
-            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(148, 163, 184, 0.2);">
-              <div style="color: #22c55e; font-size: 0.75rem; font-weight: 500;">🔺 LINEUP UPGRADES:</div>
-              ${trade.team1Impact.starterUpgrades.map(u => html`
-                <div style="color: var(--color-text-muted); font-size: 0.75rem; padding-left: 0.5rem;">
-                  ${u.newPlayer.split(' ').pop()} replaces ${u.replaces.split(' ').pop()} (+${u.improvement})
-                </div>
-              `)}
-            </div>
-          ` : ''}
+  return html`
+    <div class="card">
+      <div class="row row--between">
+        <div>
+          <span class="rank">${index + 1}</span>
+          <span class="text-sm ink-2">${trade.type} · ${trade.positionSwap}</span>
         </div>
-
-        <!-- Team 2 Side -->
-        <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 0.75rem; padding: 1rem;">
-          <div style="font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.75rem;">${trade.team2Name}</div>
-
-          <div style="margin-bottom: 0.75rem;">
-            <div style="color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.25rem;">📤 GIVES:</div>
-            ${trade.team2Gives.map(p => html`
-              <div style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 0.5rem;">
-                ${p.name} <span style="color: var(--color-text-muted);">(${p.position})</span>
-                <span style="color: var(--color-text-muted); font-size: 0.75rem;"> - ${p.value.toLocaleString()}</span>
-                ${p.isStarter ? html`<span style="color: #f59e0b;"> ⭐</span>` : ''}
-              </div>
-            `)}
-          </div>
-
-          <div>
-            <div style="color: #22c55e; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.25rem;">📥 RECEIVES:</div>
-            ${trade.team1Gives.map(p => html`
-              <div style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 0.5rem;">
-                ${p.name} <span style="color: var(--color-text-muted);">(${p.position})</span>
-                <span style="color: var(--color-text-muted); font-size: 0.75rem;"> - ${p.value.toLocaleString()}</span>
-              </div>
-            `)}
-          </div>
-
-          ${trade.team2Impact.starterUpgrades?.length > 0 ? html`
-            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(148, 163, 184, 0.2);">
-              <div style="color: #22c55e; font-size: 0.75rem; font-weight: 500;">🔺 LINEUP UPGRADES:</div>
-              ${trade.team2Impact.starterUpgrades.map(u => html`
-                <div style="color: var(--color-text-muted); font-size: 0.75rem; padding-left: 0.5rem;">
-                  ${u.newPlayer.split(' ').pop()} replaces ${u.replaces.split(' ').pop()} (+${u.improvement})
-                </div>
-              `)}
-            </div>
-          ` : ''}
+        <div class="row">
+          ${badges.map(b => html`<span class="${b.cls}">${b.text}</span>`)}
         </div>
       </div>
 
-      <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(148, 163, 184, 0.1); display: flex; justify-content: space-between; color: var(--color-text-muted); font-size: 0.8rem;">
-        <span>Trade Score: <strong style="color: var(--color-text-primary);">${trade.score}</strong></span>
-        <span>Value Exchange: ${trade.team1Impact.valueGiven.toLocaleString()} ↔ ${trade.team2Impact.valueGiven.toLocaleString()}</span>
+      <div class="grid grid-2">
+        ${renderSide(trade.team1Name, trade.team1Gives, trade.team2Gives, trade.team1Impact)}
+        ${renderSide(trade.team2Name, trade.team2Gives, trade.team1Gives, trade.team2Impact)}
+      </div>
+
+      <div class="card__foot row row--between">
+        <span>Trade score <strong class="mono">${trade.score}</strong></span>
+        <span class="mono">${trade.team1Impact.valueGiven.toLocaleString()} ↔ ${trade.team2Impact.valueGiven.toLocaleString()}</span>
       </div>
     </div>
   `;
 }
 
+const shown = displayRecs.slice(0, 20);
+const firstFive = shown.slice(0, 5);
+const rest = shown.slice(5);
+
 display(html`
-  <div>
-    ${displayRecs.length === 0
-      ? html`<div style="text-align: center; padding: 2rem; color: var(--color-text-muted);">No trade recommendations found for the selected filters.</div>`
-      : displayRecs.slice(0, 20).map((trade, i) => renderTradeCard(trade, i))
+  <div class="trade-stack">
+    ${shown.length === 0
+      ? html`<aside class="note">No trades match these filters. Clear the win-win toggle or pick another team; new suggestions appear when rosters or values change.</aside>`
+      : firstFive.map((trade, i) => renderTradeCard(trade, i))
     }
-    ${displayRecs.length > 20 ? html`
-      <div style="text-align: center; padding: 1rem; color: var(--color-text-muted);">
-        Showing top 20 of ${displayRecs.length} recommendations
-      </div>
+    ${rest.length > 0 ? html`
+      <details class="section-collapse" open>
+        <summary class="section-summary">More suggestions <small>${rest.length} more of ${displayRecs.length}</small></summary>
+        <div class="section-content trade-stack">
+          ${rest.map((trade, i) => renderTradeCard(trade, i + 5))}
+        </div>
+      </details>
+      ${displayRecs.length > 20 ? html`<p class="text-sm muted">Showing the top 20 of ${displayRecs.length} suggestions</p>` : ''}
     ` : ''}
   </div>
 `);
 ```
 
-## Position Needs Overview
+## Needs across the league
 
 ```js
 const needsData = [];
@@ -285,44 +262,53 @@ teams.forEach(team => {
 ```
 
 ```js
-display(
-  Plot.plot({
-    title: "Team Position Needs Heatmap",
-    marginLeft: 120,
+display(html`<figure class="chart">
+  <div class="chart__title">Need score by team and position</div>
+  <p class="chart__sub">Negative (ember) is a need, positive (green) is a surplus; the letter in each cell states it outright.</p>
+  ${Plot.plot(plotTheme({
+    width: Math.min(width, 720),
+    marginLeft: width < 640 ? 90 : 120,
     marginBottom: 40,
     height: teams.length * 35 + 80,
-    x: { label: null, domain: ['QB', 'RB', 'WR', 'TE'] },
-    y: { label: null },
+    x: { label: null, domain: ['QB', 'RB', 'WR', 'TE'], grid: false },
+    y: { label: null, grid: false },
     color: {
       type: "diverging",
-      domain: [-50, 0, 50],
-      range: ["#ef4444", "#fbbf24", "#22c55e"],
+      domain: [-50, 50],
+      pivot: 0,
+      clamp: true,
+      range: diverging,
       legend: true,
-      label: "Need Score (negative = need, positive = surplus)"
+      label: "Need score (negative = need, positive = surplus)"
     },
     marks: [
       Plot.cell(needsData, {
         x: "position",
         y: "team",
         fill: "needScore",
+        inset: 1,
         tip: true,
         title: d => `${d.team}\n${d.position}: ${d.status}\nScore: ${d.needScore}`
       }),
       Plot.text(needsData, {
         x: "position",
         y: "team",
-        text: d => d.status === 'Need' ? '🔴' : d.status === 'Surplus' ? '🟢' : '🟡',
-        fontSize: 14
+        text: d => d.status === 'Need' ? 'N' : d.status === 'Surplus' ? 'S' : '·',
+        fill: d => Math.abs(d.needScore) > 35 ? T.ground : T.ink,
+        fontSize: 12,
+        fontWeight: 600
       })
     ]
-  })
-);
+  }))}
+</figure>`);
 ```
 
-<div style="margin-top: 2rem; padding: 1rem; background: rgba(148, 163, 184, 0.1); border-radius: 0.5rem; color: var(--color-text-muted); font-size: 0.85rem;">
-  <strong>How it works:</strong> The Trade Finder analyzes each team's roster to identify positional needs and surpluses.
-  It then matches teams with complementary needs to find trades where both sides benefit.
-  Win-Win trades are those where both teams receive players who would immediately upgrade their starting lineup.
-  <br><br>
-  <strong>Last updated:</strong> ${new Date(tradeData.lastUpdated).toLocaleString()}
-</div>
+<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Needs and surpluses.</strong> Each roster is scored by position; a negative score is a need, a positive score is depth that could be traded.</li>
+    <li><strong>Pairing.</strong> Teams with complementary gaps are matched and each exchange is scored for fairness using power value, so the numbers on both sides should be close.</li>
+    <li><strong>Win-win.</strong> A trade is win-win when both teams receive a player who would start for them right away. "Mutual benefit" means both improve on value without a guaranteed new starter.</li>
+    <li><strong>Current season only.</strong> Suggestions are built from current rosters and values; there is no history for past seasons.</li>
+  </ul>
+</section>

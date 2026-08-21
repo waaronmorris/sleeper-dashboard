@@ -1,14 +1,20 @@
-# Sleeper Analytics Pro
-
 ```js
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
+import {T, plotTheme, outcome} from "./components/theme.js";
+import {mountSeasonPicker} from "./components/season.js";
 
-// Load data
-const league = await FileAttachment("data/league.json").json();
-const rosters = await FileAttachment("data/rosters.json").json();
-const users = await FileAttachment("data/users.json").json();
-const matchups = await FileAttachment("data/matchups.json").json();
+// Load data — every season in the league chain; the picker selects one
+const seasonsData = await FileAttachment("data/seasons.json").json();
+const season = Generators.input(mountSeasonPicker(seasonsData));
+```
+
+```js
+const S = seasonsData.by_season[season];
+const league = S.league;
+const rosters = S.rosters;
+const users = S.users;
+const matchups = S.matchups;
 ```
 
 ```js
@@ -37,121 +43,115 @@ const topScorer = standings.reduce((top, team) =>
 , standings[0]);
 
 const leagueLeader = standings[0];
+
+// Display helpers (formatting only)
+const fmtNum = (n, digits = 1) => Number.isFinite(n) ? n.toFixed(digits) : "—";
+const seasonStarted = totalGames > 0;
+const seasonLabel = S.is_current ? S.status.replace(/_/g, " ") : "final";
 ```
-
-<div style="margin: 0 0 3rem 0;">
-  <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 2rem; font-size: 0.875rem; font-weight: 600; color: #22c55e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem;">
-    ${league.season} Season • Week ${currentWeek}
-  </div>
-  <h1 style="margin: 0 0 1rem 0; font-size: 3rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, #f8fafc 0%, #4ade80 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-    ${league.name}
-  </h1>
-  <p style="font-size: 1.25rem; color: #cbd5e1; margin: 0; max-width: 800px; line-height: 1.6;">
-    Professional-grade analytics and insights for your fantasy football league. Track performance, analyze trends, and make data-driven decisions.
-  </p>
-</div>
-
-## League Performance
-
-<div class="grid grid-4" style="margin: 2rem 0 3rem 0;">
-  <div class="kpi-card">
-    <div class="kpi-label">Total Teams</div>
-    <div class="kpi-value">${rosters.length}</div>
-    <div style="font-size: 0.875rem; color: #94a3b8; margin-top: 0.5rem;">
-      ${league.scoring_settings?.rec ? 'PPR Scoring' : 'Standard Scoring'}
-    </div>
-  </div>
-
-  <div class="kpi-card">
-    <div class="kpi-label">Current Week</div>
-    <div class="kpi-value">${currentWeek}</div>
-    <div style="font-size: 0.875rem; color: #94a3b8; margin-top: 0.5rem;">
-      ${totalGames} games played
-    </div>
-  </div>
-
-  <div class="kpi-card">
-    <div class="kpi-label">Avg Points/Game</div>
-    <div class="kpi-value">${avgPointsPerGame.toFixed(1)}</div>
-    <div style="font-size: 0.875rem; color: #94a3b8; margin-top: 0.5rem;">
-      ${totalPoints.toFixed(0)} total points
-    </div>
-  </div>
-
-  <div class="kpi-card">
-    <div class="kpi-label">League Status</div>
-    <div class="kpi-value" style="font-size: 2rem;">${league.status === 'in_season' ? '🏈' : '✓'}</div>
-    <div style="font-size: 0.875rem; color: #94a3b8; margin-top: 0.5rem; text-transform: capitalize;">
-      ${league.status.replace('_', ' ')}
-    </div>
-  </div>
-</div>
-
-## League Leaders
-
-<div class="grid grid-2" style="margin: 2rem 0 3rem 0;">
-  <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.05) 100%); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 1rem; padding: 2rem; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: 1rem; right: 1rem; font-size: 3rem; opacity: 0.15;">🏆</div>
-    <div style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; font-weight: 600; margin-bottom: 0.5rem;">
-      League Leader
-    </div>
-    <div style="font-size: 2rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.75rem;">
-      ${leagueLeader.team}
-    </div>
-    <div style="display: flex; gap: 2rem; font-size: 0.875rem;">
-      <div>
-        <div style="color: #94a3b8;">Record</div>
-        <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">${leagueLeader.wins}-${leagueLeader.losses}${leagueLeader.ties > 0 ? `-${leagueLeader.ties}` : ''}</div>
-      </div>
-      <div>
-        <div style="color: #94a3b8;">Win %</div>
-        <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">${(leagueLeader.win_pct * 100).toFixed(0)}%</div>
-      </div>
-      <div>
-        <div style="color: #94a3b8;">Points For</div>
-        <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">${leagueLeader.points_for.toFixed(1)}</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.05) 100%); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 1rem; padding: 2rem; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: 1rem; right: 1rem; font-size: 3rem; opacity: 0.15;">💯</div>
-    <div style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; font-weight: 600; margin-bottom: 0.5rem;">
-      Top Scorer
-    </div>
-    <div style="font-size: 2rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.75rem;">
-      ${topScorer.team}
-    </div>
-    <div style="display: flex; gap: 2rem; font-size: 0.875rem;">
-      <div>
-        <div style="color: #94a3b8;">Total Points</div>
-        <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6;">${topScorer.points_for.toFixed(1)}</div>
-      </div>
-      <div>
-        <div style="color: #94a3b8;">Avg/Game</div>
-        <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6;">${(topScorer.points_for / (topScorer.wins + topScorer.losses)).toFixed(1)}</div>
-      </div>
-      <div>
-        <div style="color: #94a3b8;">Record</div>
-        <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6;">${topScorer.wins}-${topScorer.losses}</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-## Current Standings
 
 ```js
 display(html`
-  <div class="card">
+  <header class="page-head">
+    <p class="eyebrow">${season} season · ${seasonLabel}</p>
+    <h1>${league.name}, at a <em>glance</em></h1>
+    <p class="lede">Who leads, who scores, and whose record the schedule flatters.</p>
+    <p class="meta">${S.is_current ? "Updated from Sleeper" : `Final ${season} results from Sleeper`} · ${rosters.length} teams · ${league.scoring_settings?.rec ? "PPR" : "Standard"} scoring</p>
+  </header>
+`);
+```
+
+## League at a glance
+
+```js
+display(html`
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat__k">Teams</div>
+      <div class="stat__v">${rosters.length}</div>
+      <div class="stat__l">${league.scoring_settings?.rec ? "PPR scoring" : "Standard scoring"}</div>
+    </div>
+    <div class="stat">
+      <div class="stat__k">${S.is_current ? "Current week" : "Weeks played"}</div>
+      <div class="stat__v">${S.is_current ? currentWeek : matchups.length}</div>
+      <div class="stat__l">${totalGames} games played</div>
+    </div>
+    <div class="stat">
+      <div class="stat__k">Points per game</div>
+      <div class="stat__v ${seasonStarted ? "" : "stat--muted"}">${seasonStarted ? fmtNum(avgPointsPerGame) : "—"}</div>
+      <div class="stat__l">${totalPoints.toFixed(0)} total points</div>
+    </div>
+    <div class="stat">
+      <div class="stat__k">League status</div>
+      <div class="stat__v stat--text">${seasonLabel}</div>
+    </div>
+  </div>
+`);
+```
+
+## Leaders
+
+```js
+const topScorerGames = topScorer.wins + topScorer.losses;
+
+if (!seasonStarted) {
+  display(html`<div class="note">No games played yet. Leaders appear once week 1 results arrive.</div>`);
+} else display(html`
+  <div class="grid grid-2">
+    <div class="card card--accent">
+      <div class="card__k">League leader</div>
+      <div class="card__v">${leagueLeader.team}</div>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat__k">Record</div>
+          <div class="stat__v stat--brass">${leagueLeader.wins}-${leagueLeader.losses}${leagueLeader.ties > 0 ? `-${leagueLeader.ties}` : ""}</div>
+        </div>
+        <div class="stat">
+          <div class="stat__k">Win %</div>
+          <div class="stat__v stat--brass">${(leagueLeader.win_pct * 100).toFixed(0)}%</div>
+        </div>
+        <div class="stat">
+          <div class="stat__k">Points for</div>
+          <div class="stat__v stat--brass">${fmtNum(leagueLeader.points_for)}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--slate">
+      <div class="card__k">Top scorer</div>
+      <div class="card__v">${topScorer.team}</div>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat__k">Total points</div>
+          <div class="stat__v stat--slate">${fmtNum(topScorer.points_for)}</div>
+        </div>
+        <div class="stat">
+          <div class="stat__k">Per game</div>
+          <div class="stat__v stat--slate">${topScorerGames > 0 ? fmtNum(topScorer.points_for / topScorerGames) : "—"}</div>
+        </div>
+        <div class="stat">
+          <div class="stat__k">Record</div>
+          <div class="stat__v stat--slate">${topScorer.wins}-${topScorer.losses}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+`);
+```
+
+## Standings
+
+```js
+display(html`
+  <div class="table-wrap">
     ${Inputs.table(standings, {
       columns: ["team", "wins", "losses", "points_for", "points_against", "win_pct"],
       header: {
         team: "Team",
         wins: "W",
         losses: "L",
-        points_for: "Points For",
-        points_against: "Points Against",
+        points_for: "Points for",
+        points_against: "Points against",
         win_pct: "Win %"
       },
       format: {
@@ -172,54 +172,61 @@ display(html`
 `);
 ```
 
-## Points Distribution
+## Points scored
 
 ```js
-display(html`<div class="chart-container">`);
+const pointsRanked = [...standings].sort((a, b) => b.points_for - a.points_for);
+const maxPoints = Math.max(1, d3.max(pointsRanked, d => d.points_for) ?? 0);
 
-display(Plot.plot({
-  marginLeft: 180,
-  marginBottom: 60,
-  height: rosters.length * 50,
-  x: {
-    grid: true,
-    label: "Total Points Scored →",
-    labelAnchor: "center"
-  },
-  y: {
-    label: null
-  },
-  color: {
-    type: "linear",
-    domain: [Math.min(...standings.map(d => d.points_for)), Math.max(...standings.map(d => d.points_for))],
-    range: ["#16a34a", "#4ade80"]
-  },
-  marks: [
-    Plot.barX(standings, {
-      x: d => d.points_for,
-      y: d => d.team,
-      fill: d => d.points_for,
-      sort: {y: "-x"},
-      rx: 6
-    }),
-    Plot.text(standings, {
-      x: d => d.points_for,
-      y: d => d.team,
-      text: d => d.points_for.toFixed(1),
-      dx: -12,
-      fill: "#f8fafc",
-      textAnchor: "end",
-      fontSize: 13,
-      fontWeight: 600
-    }),
-    Plot.ruleX([0])
-  ]
-}));
-
-display(html`</div>`);
+if (!seasonStarted) {
+  display(html`<div class="note">No points scored yet. This chart fills in after the first week's games.</div>`);
+} else display(html`<figure class="chart">
+  <div class="chart__title">Total points by team</div>
+  <p class="chart__sub">Ranked highest to lowest. Top three in brass, bottom three in ember.</p>
+  ${Plot.plot(plotTheme({
+    width: Math.min(width, 800),
+    marginLeft: width < 640 ? 110 : 180,
+    height: rosters.length * 36 + 40,
+    x: {
+      label: "Total points",
+      domain: [0, maxPoints]
+    },
+    y: {
+      label: null,
+      domain: pointsRanked.map(d => d.team)
+    },
+    marks: [
+      Plot.barX(pointsRanked, {
+        x: d => d.points_for,
+        y: d => d.team,
+        fill: (d, i) => i < 3 ? T.brass : i >= pointsRanked.length - 3 ? T.down : T.ink4
+      }),
+      // Value labels: inside the bar when it is long enough, otherwise just past its end
+      Plot.text(pointsRanked.filter(d => d.points_for > maxPoints * 0.15), {
+        x: d => d.points_for,
+        y: d => d.team,
+        text: d => d.points_for.toFixed(1),
+        dx: -8,
+        textAnchor: "end",
+        fill: T.ground,
+        fontWeight: 500
+      }),
+      Plot.text(pointsRanked.filter(d => d.points_for <= maxPoints * 0.15), {
+        x: d => d.points_for,
+        y: d => d.team,
+        text: d => d.points_for.toFixed(1),
+        dx: 8,
+        textAnchor: "start",
+        fill: T.ink2,
+        fontWeight: 500
+      }),
+      Plot.ruleX([0], {stroke: T.hair2})
+    ]
+  }))}
+</figure>`);
 ```
 
-## Win Rate Analysis: Schedule Luck Revealed
+## Schedule luck
 
 ```js
 // Calculate all-play records for teams
@@ -280,97 +287,67 @@ const winRateData = standings.map(s => {
 
 ```js
 display(html`
-<div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 2rem 0 1.5rem 0;">
-  <div style="display: flex; align-items: start; gap: 1rem;">
-    <div style="font-size: 2rem; line-height: 1;">🎯</div>
-    <div>
-      <h3 style="margin-top: 0; color: #60a5fa; font-size: 1.25rem; font-weight: 700;">Schedule Luck Analyzer</h3>
-      <p style="color: #cbd5e1; font-size: 0.9375rem; margin: 0; line-height: 1.6;">
-        Teams <strong style="color: #22c55e;">below the line</strong> had lucky schedules. Teams <strong style="color: #ef4444;">above the line</strong> faced tougher opponents than their record suggests.
-      </p>
-    </div>
-  </div>
+<div class="note note--brass">
+  <strong>How to read it.</strong> Each team's head-to-head win rate is plotted against its all-play win rate (its record if it had faced every team every week).
+  Teams <span class="up">above the line</span> (green) have won more than their scoring earned; teams <span class="down">below the line</span> (ember) have faced tougher opponents than their record suggests.
+  ${seasonStarted ? "" : " Every team sits at 0% until week 1 is played, so the chart is hidden."}
 </div>
 `);
 
-display(Plot.plot({
-  width: 800,
-  height: 600,
-  marginLeft: 80,
+const luckNarrow = width < 640;
+if (seasonStarted) display(Plot.plot(plotTheme({
+  width: Math.min(width, 800),
+  height: luckNarrow ? 340 : 420,
+  marginLeft: 60,
   marginRight: 40,
-  marginBottom: 80,
-  marginTop: 50,
-  style: {
-    background: "transparent",
-    fontSize: "14px",
-    fontFamily: "system-ui, -apple-system, sans-serif"
-  },
+  marginBottom: 50,
+  marginTop: 30,
   x: {
-    label: "All-Play Win % →",
+    label: "All-play win %",
     domain: [0, 1],
     tickFormat: d => `${(d * 100).toFixed(0)}%`,
-    grid: true,
-    labelAnchor: "center",
-    labelOffset: 45
+    grid: true
   },
   y: {
-    label: "↑ Head-to-Head Win %",
+    label: "Head-to-head win %",
     domain: [0, 1],
-    tickFormat: d => `${(d * 100).toFixed(0)}%`,
-    grid: true,
-    labelAnchor: "center",
-    labelOffset: 50
-  },
-  color: {
-    legend: true,
-    domain: ["Perfect Schedule"],
-    range: ["#fbbf24"],
-    label: null
+    tickFormat: d => `${(d * 100).toFixed(0)}%`
   },
   marks: [
-    // Team dots with bright, visible colors and white stroke
+    // Even-schedule reference: head-to-head equals all-play
+    Plot.line([{x: 0, y: 0}, {x: 1, y: 1}], {
+      x: "x",
+      y: "y",
+      stroke: T.brass,
+      strokeWidth: 1.5,
+      strokeDasharray: "6,6"
+    }),
+
+    // Team dots, colored by the sign of their schedule luck
     Plot.dot(winRateData, {
       x: "allPlayWinPct",
       y: "win_rate",
-      r: 12,
-      fill: d => {
-        const luck = d.scheduleLuck;
-        if (luck > 8) return "#22c55e";      // Bright green - very lucky
-        if (luck > 3) return "#10b981";       // Green - lucky
-        if (luck > -3) return "#fbbf24";      // Yellow - neutral
-        if (luck > -8) return "#f97316";      // Orange - unlucky
-        return "#ef4444";                     // Red - very unlucky
-      },
-      stroke: "#ffffff",
-      strokeWidth: 3,
-      tip: true
+      r: 8,
+      fill: d => outcome(d.scheduleLuck),
+      stroke: T.ground,
+      strokeWidth: 1.5,
+      tip: true,
+      title: d => `${d.team}\nH2H ${d.wins}-${d.losses} · All-play ${d.allPlayWins}-${d.allPlayLosses}\nLuck ${d.scheduleLuck > 0 ? "+" : ""}${d.scheduleLuck.toFixed(1)} pts`
     }),
 
-    // Team labels with better positioning
+    // Team labels
     Plot.text(winRateData, {
       x: "allPlayWinPct",
       y: "win_rate",
       text: "team",
-      dy: -20,
-      fontSize: 11,
-      fontWeight: 600,
-      fill: "#e2e8f0",
-      stroke: "#0a0e14",
+      dy: -14,
+      fill: T.ink,
+      stroke: T.ground,
       strokeWidth: 3,
       paintOrder: "stroke"
-    }),
-
-    // Perfect schedule efficiency line (diagonal) - drawn last so it's on top
-    Plot.line([{x: 0, y: 0, label: "Perfect Schedule"}, {x: 1, y: 1, label: "Perfect Schedule"}], {
-      x: "x",
-      y: "y",
-      stroke: "label",
-      strokeWidth: 4,
-      strokeOpacity: 1,
-      strokeDasharray: "8,8"
     })
   ]
-}));
+})));
 ```
 
 ```js
@@ -385,124 +362,97 @@ const luckLeaderboard = winRateData
   }))
   .sort((a, b) => b.scheduleLuck - a.scheduleLuck); // Sort by luck (most lucky first)
 
+const luckExtent = Math.max(1, d3.max(luckLeaderboard, d => d.absLuck) ?? 0);
+// Record comparison (head-to-head → all-play) shown in the axis label beside each team
+const luckRecordByTeam = new Map(luckLeaderboard.map(d => [d.team, `${d.actualRecord} → ${d.allPlayRecord}`]));
+
 display(html`
-<details open style="margin-top: 3rem; background: rgba(15, 20, 28, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem; padding: 0; overflow: hidden;">
-  <summary style="font-size: 1.25rem; font-weight: 700; cursor: pointer; padding: 1.5rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(239, 68, 68, 0.15) 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #f8fafc; display: flex; align-items: center; gap: 0.75rem;">
-    <span style="font-size: 1.5rem;">📊</span>
-    <span>Schedule Luck Rankings</span>
-  </summary>
-
-  <div style="padding: 1.5rem;">
-    <p style="color: #cbd5e1; font-size: 0.9375rem; margin: 0 0 1.5rem 0; line-height: 1.6;">
-      <strong style="color: #22c55e;">Positive values</strong> indicate easier schedules. <strong style="color: #ef4444;">Negative values</strong> indicate tougher opponents.
+<details open class="section-collapse">
+  <summary class="section-summary">Schedule luck rankings <small>head-to-head minus all-play, in percentage points</small></summary>
+  <div class="section-content">
+    <p class="muted text-sm">
+      <span class="up">Positive</span> (green) means an easier schedule than the scoring earned; <span class="down">negative</span> (ember) means tougher opponents. Records read head-to-head → all-play.
     </p>
+    ${seasonStarted ? "" : html`<div class="note">No schedule luck to rank yet. Every team is at 0 until the first week is scored.</div>`}
 
-    ${Plot.plot({
-      width: 900,
-      height: luckLeaderboard.length * 55 + 100,
-      marginLeft: 150,
-      marginRight: 100,
-      marginBottom: 60,
-      marginTop: 40,
-      style: {
-        background: "transparent",
-        fontSize: "14px",
-        fontFamily: "system-ui, -apple-system, sans-serif"
-      },
+    ${!seasonStarted ? "" : Plot.plot(plotTheme({
+      width: Math.min(width, 900),
+      height: luckLeaderboard.length * 36 + 60,
+      marginLeft: width < 640 ? 110 : 210,
+      marginRight: width < 640 ? 50 : 80,
       x: {
-        label: "Schedule Luck (Percentage Points) →",
-        labelAnchor: "center",
-        grid: true,
-        labelOffset: 40
+        label: "Schedule luck (percentage points)",
+        domain: [-luckExtent, luckExtent],
+        grid: true
       },
       y: {
         label: null,
-        domain: luckLeaderboard.map(d => d.team)
+        domain: luckLeaderboard.map(d => d.team),
+        // On narrow screens drop the record from the tick label to keep the axis legible
+        tickFormat: t => width < 640 ? t : `${t}  ${luckRecordByTeam.get(t) ?? ""}`
       },
       marks: [
-        // Horizontal bars
         Plot.barX(luckLeaderboard, {
           x: d => d.scheduleLuck,
           y: d => d.team,
-          fill: d => {
-            const luck = d.scheduleLuck;
-            if (luck > 8) return "#22c55e";
-            if (luck > 3) return "#10b981";
-            if (luck > -3) return "#fbbf24";
-            if (luck > -8) return "#f97316";
-            return "#ef4444";
-          },
-          rx: 6
+          fill: d => outcome(d.scheduleLuck)
         }),
 
-        // Percentage labels on bars
-        Plot.text(luckLeaderboard, {
+        // Signed value labels at the end of each bar
+        Plot.text(luckLeaderboard.filter(d => d.scheduleLuck >= 0), {
           x: d => d.scheduleLuck,
           y: d => d.team,
           text: d => (d.scheduleLuck > 0 ? '+' : '') + d.scheduleLuck.toFixed(1) + '%',
-          textAnchor: d => d.scheduleLuck > 0 ? "start" : "end",
-          dx: d => d.scheduleLuck > 0 ? 10 : -10,
-          fill: "#f8fafc",
-          fontSize: 13,
-          fontWeight: 700
+          textAnchor: "start",
+          dx: 8,
+          fill: T.ink,
+          fontWeight: 500
         }),
-
-        // Record comparison on left side
-        Plot.text(luckLeaderboard, {
-          x: 0,
+        Plot.text(luckLeaderboard.filter(d => d.scheduleLuck < 0), {
+          x: d => d.scheduleLuck,
           y: d => d.team,
-          text: d => `${d.actualRecord} → ${d.allPlayRecord}`,
+          text: d => d.scheduleLuck.toFixed(1) + '%',
           textAnchor: "end",
-          dx: -12,
-          fill: "#94a3b8",
-          fontSize: 11,
+          dx: -8,
+          fill: T.ink,
           fontWeight: 500
         }),
 
-        // Center reference line
-        Plot.ruleX([0], {
-          stroke: "#64748b",
-          strokeWidth: 2,
-          strokeOpacity: 0.6
-        })
+        Plot.ruleX([0], {stroke: T.hair2})
       ]
-    })}
+    }))}
   </div>
 </details>
 `);
 ```
 
----
+## Where to go next
 
-<div style="margin-top: 4rem; padding: 2rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.05) 100%); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 1rem;">
-  <h3 style="margin-top: 0; color: #22c55e; display: flex; align-items: center; gap: 0.75rem;">
-    <span style="font-size: 1.5rem;">📊</span>
-    Quick Navigation
-  </h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-    <div>
-      <div style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">🏆 League Overview</div>
-      <div style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.6;">
-        Detailed league settings, rules, and historical performance data
-      </div>
-    </div>
-    <div>
-      <div style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">👥 Player Analytics</div>
-      <div style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.6;">
-        Deep dive into player performance, trends, and roster composition
-      </div>
-    </div>
-    <div>
-      <div style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">⚔️ Matchups</div>
-      <div style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.6;">
-        Week-by-week matchup analysis and head-to-head records
-      </div>
-    </div>
-    <div>
-      <div style="font-weight: 600; color: #f8fafc; margin-bottom: 0.5rem;">💀 Atrocity Score</div>
-      <div style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.6;">
-        Discover the worst lineup decisions and biggest mistakes
-      </div>
-    </div>
-  </div>
+<div class="grid grid-4">
+  <a class="card card--tight" href="./league">
+    <div class="card__title">League</div>
+    <p class="muted text-sm mb-0">Settings, rules, and how evenly strength is spread.</p>
+  </a>
+  <a class="card card--tight" href="./players">
+    <div class="card__title">Players</div>
+    <p class="muted text-sm mb-0">Player performance, trends, and roster composition.</p>
+  </a>
+  <a class="card card--tight" href="./matchups">
+    <div class="card__title">Matchups</div>
+    <p class="muted text-sm mb-0">Week-by-week results and head-to-head records.</p>
+  </a>
+  <a class="card card--tight" href="./atrocity">
+    <div class="card__title">Atrocity score</div>
+    <p class="muted text-sm mb-0">The worst lineup decisions and biggest mistakes.</p>
+  </a>
 </div>
+
+<section class="insights">
+  <h3>Reading this page</h3>
+  <ul>
+    <li><strong>Standings</strong> sort by win percentage, then points for. Win % counts ties as neither a win nor a loss.</li>
+    <li><strong>Points scored</strong> ranks total points for the season; the top three bars are brass, the bottom three ember.</li>
+    <li><strong>Schedule luck</strong> is head-to-head win % minus all-play win % (the record a team would have facing every other team every week). Green means the schedule helped; ember means it hurt.</li>
+    <li><strong>Seasons</strong> switch with the picker in the header. Past seasons show final results; the season in progress updates as weeks are scored.</li>
+  </ul>
+</section>
