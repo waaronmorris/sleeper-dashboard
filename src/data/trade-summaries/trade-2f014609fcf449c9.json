@@ -1,0 +1,197 @@
+{
+  "tradeId": "2f014609fcf449c9",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 54.9,
+        "powerRank": 4,
+        "lineupValueScore": 83.1,
+        "performanceScore": 0,
+        "positionalScore": 77.2,
+        "depthScore": 35.1,
+        "totalTeams": 12,
+        "totalRosterValue": 40299
+      },
+      "tradeImpact": {
+        "valueGained": 8347,
+        "valueLost": 10204,
+        "netValueChange": -1857,
+        "estimatedPowerScoreChange": -1.9,
+        "playersGained": [
+          {
+            "name": "Jaylen Warren",
+            "value": 629
+          },
+          {
+            "name": "Puka Nacua",
+            "value": 7718
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Zay Flowers",
+            "value": 3613
+          },
+          {
+            "name": "Rome Odunze",
+            "value": 3079
+          },
+          {
+            "name": "Marvin Harrison",
+            "value": 3512
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jaylen Warren",
+          "position": "RB",
+          "team": "PIT",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "team": "LAR",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Rome Odunze",
+          "position": "WR",
+          "team": "CHI",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Marvin Harrison",
+          "position": "WR",
+          "team": "ARI",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 30.3,
+        "powerRank": 8,
+        "lineupValueScore": 47.3,
+        "performanceScore": 0,
+        "positionalScore": 38,
+        "depthScore": 18,
+        "totalTeams": 12,
+        "totalRosterValue": 22944
+      },
+      "tradeImpact": {
+        "valueGained": 10204,
+        "valueLost": 8347,
+        "netValueChange": 1857,
+        "estimatedPowerScoreChange": 1.9,
+        "playersGained": [
+          {
+            "name": "Zay Flowers",
+            "value": 3613
+          },
+          {
+            "name": "Rome Odunze",
+            "value": 3079
+          },
+          {
+            "name": "Marvin Harrison",
+            "value": 3512
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jaylen Warren",
+            "value": 629
+          },
+          {
+            "name": "Puka Nacua",
+            "value": 7718
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Rome Odunze",
+          "position": "WR",
+          "team": "CHI",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Marvin Harrison",
+          "position": "WR",
+          "team": "ARI",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jaylen Warren",
+          "position": "RB",
+          "team": "PIT",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "team": "LAR",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "This is franchise-altering stuff right here, and I've got to be honest—PrinceofPizza just made a catastrophic miscalculation. We're talking about a team ranked #4 in power score essentially blowing up a young, ascending receiver room to chase Puka Nacua and a 27-year-old backup running back. The value metrics tell the whole story: PrinceofPizza is surrendering over 10,000 in dynasty value to receive barely 8,300 back. That's not a trade—that's a liquidation sale where you forgot to check the price tags.\n\nLet's break down what iwmrichfulton is getting here: three receivers all 25 or younger, each with legitimate WR1 upside, PLUS a first-round pick. Zay Flowers just put up nearly 10 PPG and is entering his prime years in a Baltimore offense that's learning to pass. Marvin Harrison and Rome Odunze are both 24-year-old former top-five picks who haven't even scratched the surface yet. In dynasty, you're buying exactly this kind of ascending talent before the breakout, not after. And then you throw in a 2026 first? This is a rebuild goldmine for a team sitting at #8 in power rankings. iwmrichfulton just went from basement-dweller to having one of the most exciting young receiver cores in the league.\n\nMeanwhile, PrinceofPizza is getting Puka Nacua—who, granted, is an absolute stud—but you're paying three young receivers and a first for essentially one proven asset and Jaylen Warren, who's a nice flex play but nothing more in Pittsburgh's committee. Warren is 27, which in running back years means you've got maybe one more season of relevance before the cliff. The RB scarcity factor is real at about 150 VOR, but you don't mortgage your entire future for a guy who's never been a bell cow. This screams panic move from a contender who saw Week 1 approaching and convinced themselves they needed to win NOW.\n\nThe championship implications are stark: PrinceofPizza might be slightly better for 2026, but they've torched their 2027-2029 window entirely. iwmrichfulton, who was sitting at a dismal 30.3 power score, just gained nearly 2 points while adding that first-round pick as ammunition for another move. This is textbook dynasty strategy from iwmrichfulton—accumulate young talent, stack picks, and build for sustained success. PrinceofPizza better hope Puka stays healthy and Warren doesn't lose touches to Najee Harris, because if this doesn't deliver a championship THIS year, it's going to look like one of the worst dynasty trades we'll see all decade. Clear winner: iwmrichfulton, and it's not remotely close.",
+  "generatedAt": "2026-09-01T08:09:19.408Z"
+}

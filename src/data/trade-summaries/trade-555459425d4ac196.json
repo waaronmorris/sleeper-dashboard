@@ -1,0 +1,167 @@
+{
+  "tradeId": "555459425d4ac196",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 63.9,
+        "powerRank": 3,
+        "lineupValueScore": 94.9,
+        "performanceScore": 0,
+        "positionalScore": 76.5,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 46034
+      },
+      "tradeImpact": {
+        "valueGained": 5513,
+        "valueLost": 260,
+        "netValueChange": 5253,
+        "estimatedPowerScoreChange": 5.4,
+        "playersGained": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3690
+          },
+          {
+            "name": "Kyle Pitts",
+            "value": 1823
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Rashid Shaheed",
+            "value": 260
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Kyle Pitts",
+          "position": "TE",
+          "team": "ATL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 15,
+        "powerRank": 12,
+        "lineupValueScore": 22.8,
+        "performanceScore": 0,
+        "positionalScore": 18.5,
+        "depthScore": 16.7,
+        "totalTeams": 12,
+        "totalRosterValue": 11034
+      },
+      "tradeImpact": {
+        "valueGained": 260,
+        "valueLost": 5513,
+        "netValueChange": -5253,
+        "estimatedPowerScoreChange": -5.4,
+        "playersGained": [
+          {
+            "name": "Rashid Shaheed",
+            "value": 260
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3690
+          },
+          {
+            "name": "Kyle Pitts",
+            "value": 1823
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Kyle Pitts",
+          "position": "TE",
+          "team": "ATL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "mjgrana",
+      "to": "powerperson"
+    },
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "mjgrana",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is we're looking at a classic dynasty case of contender versus rebuilder here, and sources indicate this deal makes perfect sense for both sides - even if the value chart screams highway robbery.\n\nLet's start with mjgrana, who I'm calling \"The Impatient Contender.\" Sitting at #3 in power rankings with a stacked roster, this manager just looked at Kyle Pitts turning 25 and DeVonta Smith in his age-27 peak and said \"I'm done waiting.\" They essentially torched a 2026 first-rounder and a future second to upgrade from Rashid Shaheed - a 28-year-old boom-bust WR3 - to a legitimate WR1/TE1 combo. The value disparity is staggering: they received over 5,500 points of value while giving up maybe 260 plus draft capital. That +5.4 power score jump? That's the difference between being a playoff team and being a legitimate championship threat. Smith gives you that consistent 10+ PPG floor, and Pitts at 25 is finally entering his athletic prime as a receiving weapon. For a team already ranked third, this is them planting their flag.\n\nNow here's where it gets interesting with powerperson - \"The Asset Accumulator\" - who's dead last at #12 in power rankings with a catastrophic 15.0 score. My sources tell me this isn't tanking, this is *strategic demolition*. They're sitting on 18 acquired picks historically versus only 9 traded away, and now they're adding what could be a top-three 2026 pick from a contender who might actually fall short. Keep an eye on this: if mjgrana doesn't win it all, that first-rounder becomes golden. Powerperson just turned two win-now pieces they couldn't use into future ammunition while adding Shaheed as a throw-in veteran they can flip mid-season to another contender. The -5.4 power score drop? Completely irrelevant when you're already at the bottom.\n\nThe rivalry history adds spice here - mjgrana holds a 3-1 edge and just made a power move that screams \"I'm putting distance between us.\" But here's the developing situation nobody's talking about: what if that 2026 first-rounder ends up being pick 1.01 or 1.02? What if Pitts gets hurt or Smith regresses? Dynasty is about windows, and mjgrana just went all-in on a 2-3 year championship push while powerperson is building for 2027-2030.\n\n**Winner: mjgrana wins NOW, powerperson wins LATER** - but gun to my head, I'm taking the contender getting two proven assets over mystery boxes. The Impatient Contender just became the odds-on favorite, and The Asset Accumulator better hope that first-rounder conveys early. This is high-risk, high-reward dynasty football at its finest, and my understanding is we'll know who really won this deal by playoff time.",
+  "generatedAt": "2026-09-01T08:08:56.928Z"
+}

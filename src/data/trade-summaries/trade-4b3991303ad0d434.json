@@ -1,0 +1,131 @@
+{
+  "tradeId": "4b3991303ad0d434",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 34.3,
+        "powerRank": 7,
+        "lineupValueScore": 53.6,
+        "performanceScore": 0,
+        "positionalScore": 38.8,
+        "depthScore": 33.7,
+        "totalTeams": 12,
+        "totalRosterValue": 25979
+      },
+      "tradeImpact": {
+        "valueGained": 206,
+        "valueLost": 2232,
+        "netValueChange": -2026,
+        "estimatedPowerScoreChange": -2.1,
+        "playersGained": [
+          {
+            "name": "Adonai Mitchell",
+            "value": 206
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jameson Williams",
+            "value": 2232
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Adonai Mitchell",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 68.5,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 0,
+        "positionalScore": 89.8,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 48487
+      },
+      "tradeImpact": {
+        "valueGained": 2232,
+        "valueLost": 206,
+        "netValueChange": 2026,
+        "estimatedPowerScoreChange": 2.1,
+        "playersGained": [
+          {
+            "name": "Jameson Williams",
+            "value": 2232
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Adonai Mitchell",
+            "value": 206
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Adonai Mitchell",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is one of those trades that makes you wonder if somebody's scouting department took the week off. Cosmohouck—let's call him \"The Consolidator\"—just robbed drobs blind, and I'm sitting here trying to figure out what film \"The Optimist\" was watching to convince himself this made any sense whatsoever.\n\nLet's talk athletic profile and production metrics here. Jameson Williams at 25 is entering his absolute prime window for a wide receiver, coming off 6.2 points per game in that explosive Detroit offense. You're getting a guy with elite speed who's finally putting together the full package after the ACL recovery. Adonai Mitchell? Look, I like the kid's tape—3.2 points per game as a younger player, sure—but we're talking about a VALUE differential of over 2,000 points here. That's not a gap, that's a canyon. Even adding a 2028 first-rounder, which is essentially Monopoly money at this point given how far out we're talking, doesn't come close to bridging that divide. The Optimist gave up an ascending WR2/flex asset for a prayer and a pick that might not even be in the top six.\n\nWhat really jumps off the page is The Consolidator's team construction philosophy. Sitting at the top of the power rankings at 68.5 with a perfect 100 in both lineup strength and depth, this is a team in win-now mode making a classic contender's move. He just turned a bench piece and future draft capital into an immediate impact starter. That +2.1 power score bump? That's real equity when you're already the league's alpha. Meanwhile, drobs at 34.3 power score should theoretically be in accumulation mode, but instead he's trading the proven commodity for the lottery ticket. His trading history shows balance, but this specific move screams panic or overthinking.\n\nThe scheme fit here matters too—Williams in Detroit's creative offense with Jared Goff spreading it around versus Mitchell on the Jets with whatever quarterback situation they're navigating. From a pure roster-building standpoint, if you're drobs and you're rebuilding, you don't move a 25-year-old receiver who's just hitting his stride. You move the 28-year-olds, you move the running backs, you move the aging tight ends. This is asset management malpractice dressed up as getting younger, and The Consolidator absolutely fleeced him. Clear winner: cosmohouck, and it's not particularly close.",
+  "generatedAt": "2026-09-01T08:11:34.194Z"
+}

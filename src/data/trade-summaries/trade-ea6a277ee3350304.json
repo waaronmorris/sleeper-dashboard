@@ -1,0 +1,107 @@
+{
+  "tradeId": "ea6a277ee3350304",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mastab24",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "mastab24",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 29.9,
+        "powerRank": 9,
+        "lineupValueScore": 48,
+        "performanceScore": 0,
+        "positionalScore": 31.3,
+        "depthScore": 24.2,
+        "totalTeams": 12,
+        "totalRosterValue": 23251
+      },
+      "tradeImpact": {
+        "valueGained": 142,
+        "valueLost": 0,
+        "netValueChange": 142,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Deebo Samuel",
+            "value": 142
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Deebo Samuel",
+          "position": "WR",
+          "team": "SF",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 30.3,
+        "powerRank": 8,
+        "lineupValueScore": 47.3,
+        "performanceScore": 0,
+        "positionalScore": 38,
+        "depthScore": 18,
+        "totalTeams": 12,
+        "totalRosterValue": 22944
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 142,
+        "netValueChange": -142,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Deebo Samuel",
+            "value": 142
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Deebo Samuel",
+          "position": "WR",
+          "team": "SF",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 3,
+      "from": "mastab24",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**Breaking: mastab24 Acquires Deebo Samuel for Third-Round Pick in Dynasty Deal**\n\nPer multiple league sources, mastab24 has acquired veteran 49ers wide receiver Deebo Samuel from iwmrichfulton in exchange for a 2026 third-round pick, league sources tell ESPN. I'm told this is mastab24's second move of the young season, and it fits the aggressive pattern we've seen from this manager—eight career trades, nine players acquired versus just six shipped out. This is a team that believes in buying talent over draft picks, and at 0-0 sitting at #9 in the power rankings at just 29.9, they clearly feel they need roster upgrades to compete.\n\nHere's what's fascinating about this deal: Deebo Samuel is 30 years old in a dynasty format, which is typically the beginning of the decline phase for wide receivers, yet mastab24 is acquiring him for essentially pennies on the dollar. A third-round pick in dynasty has minimal value compared to a proven WR who averaged 9.0 PPG historically. League sources say mastab24 believes they're in a win-now window and can extract 1-2 productive seasons from Samuel before that age cliff arrives. The value metrics here are stark—mastab24 received 142 points of value while giving up essentially zero.\n\nOn the flip side, I'm told iwmrichfulton is quietly retooling after sitting at #8 in power rankings at 30.3. This manager has moved eight players out versus just six acquired over their career, and adding a third-round pick while dumping a 30-year-old receiver screams rebuild mode. According to sources familiar with iwmrichfulton's thinking, they're betting that Deebo's dynasty value only goes one direction from here—down—and they'd rather have the draft capital flexibility, even if it's just a third-rounder.\n\nThe risk-reward calculus is clear: mastab24 wins if Samuel stays healthy and produces immediately, but they're one injury away from having paid for damaged goods with zero long-term upside. Meanwhile, iwmrichfulton sacrificed proven production for what amounts to a lottery ticket. In dynasty, I'm told championship contenders make exactly this type of move—consolidating picks for proven talent. The question is whether a #9 ranked team at 29.9 power score is truly a contender, or if mastab24 just mortgaged future flexibility for a player entering the twilight zone. League sources believe this trade reveals more about mastab24's self-perception than actual championship odds.",
+  "generatedAt": "2026-09-01T08:09:39.781Z"
+}

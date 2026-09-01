@@ -1,0 +1,131 @@
+{
+  "tradeId": "299183906cabc406",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 65.4,
+        "powerRank": 2,
+        "lineupValueScore": 98.1,
+        "performanceScore": 0,
+        "positionalScore": 81.6,
+        "depthScore": 82.4,
+        "totalTeams": 12,
+        "totalRosterValue": 47549
+      },
+      "tradeImpact": {
+        "valueGained": 7610,
+        "valueLost": 4170,
+        "netValueChange": 3440,
+        "estimatedPowerScoreChange": 3.5,
+        "playersGained": [
+          {
+            "name": "CeeDee Lamb",
+            "value": 7610
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "A.J. Brown",
+            "value": 4170
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "team": "NE",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 54.9,
+        "powerRank": 4,
+        "lineupValueScore": 83.1,
+        "performanceScore": 0,
+        "positionalScore": 77.2,
+        "depthScore": 35.1,
+        "totalTeams": 12,
+        "totalRosterValue": 40299
+      },
+      "tradeImpact": {
+        "valueGained": 4170,
+        "valueLost": 7610,
+        "netValueChange": -3440,
+        "estimatedPowerScoreChange": -3.5,
+        "playersGained": [
+          {
+            "name": "A.J. Brown",
+            "value": 4170
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "CeeDee Lamb",
+            "value": 7610
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "team": "NE",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "PrinceofPizza"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Shogunation has acquired CeeDee Lamb from PrinceofPizza for A.J. Brown and a 2028 first-round pick, league sources tell ESPN. Per sources, this is a fascinating gamble by the league's No. 2-ranked power team—swapping a 29-year-old receiver for a 27-year-old and mortgaging future draft capital to do it. I'm told Shogunation views this as a pure win-now consolidation move, betting that two years of age difference and one point per game in production (13.3 vs 12.3) justify surrendering a first-rounder two years out. The numbers say Shogunation won this deal decisively—+3,440 in net value—but here's what league insiders are whispering: this has serious Odell Beckham Jr. vibes. Remember when the Browns sent a haul to the Giants for OBJ, convinced they were getting a difference-maker in his prime? The age curve looked perfect, the talent was undeniable, but context matters. Brown just moved to New England's system, and we don't know how he'll adapt, but giving up a 2028 first when you're already a power team feels like unnecessary risk.\n\nAccording to multiple sources, PrinceofPizza—currently ranked fourth with a concerning 35.1 depth score—is playing the long game here. They're getting younger by acquiring… wait, they're getting *older* and adding a future first? I'm told the Prince camp believes Brown can still produce at an elite level and that 2028 pick could be gold if Shogunation's roster ages poorly. Here's my take: in dynasty, you don't trade prime CeeDee Lamb unless you're rebuilding, and nothing about PrinceofPizza's 54.9 power score screams \"tank mode.\" This looks like a team that got sweet-talked into thinking age 29 vs. 27 doesn't matter and that a pick two years away compensates for downgrading at WR1.\n\nPer sources, both managers have active trading histories—Shogunation has moved 38 assets lifetime, PrinceofPizza 23—so this isn't new territory for either. But I'm told league executives are skeptical of PrinceofPizza's strategy here. The historical head-to-head (2-7 in favor of Shogunation) suggests one manager consistently outmaneuvers the other, and this trade reinforces that pattern. Dynasty is about accumulating premium assets in their peak windows, and Shogunation just did exactly that while their opponent... didn't.\n\nMy prediction: In two years, we'll look back at this as the moment Shogunation locked up a championship window while PrinceofPizza's 2028 pick lands at 1.09 and becomes a middling tight end. Shogunation wins this trade decisively—not just on value, but on strategy. They're the #2 power team making a clear push; PrinceofPizza is a mid-tier squad acting like a rebuilder without committing to the rebuild. Breaking news often ages poorly, and I believe this one will too—just not for the team everyone expects.",
+  "generatedAt": "2026-09-01T08:10:28.906Z"
+}

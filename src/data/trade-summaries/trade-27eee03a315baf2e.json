@@ -1,0 +1,116 @@
+{
+  "tradeId": "27eee03a315baf2e",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "mastab24"
+  ],
+  "sides": [
+    {
+      "teamName": "mastab24",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 29.9,
+        "powerRank": 9,
+        "lineupValueScore": 48,
+        "performanceScore": 0,
+        "positionalScore": 31.3,
+        "depthScore": 24.2,
+        "totalTeams": 12,
+        "totalRosterValue": 23251
+      },
+      "tradeImpact": {
+        "valueGained": 853,
+        "valueLost": 3613,
+        "netValueChange": -2760,
+        "estimatedPowerScoreChange": -2.8,
+        "playersGained": [
+          {
+            "name": "Tua Tagovailoa",
+            "value": 853
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jared Goff",
+            "value": 3613
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Tua Tagovailoa",
+          "position": "QB",
+          "team": "ATL",
+          "age": 28,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jared Goff",
+          "position": "QB",
+          "team": "DET",
+          "age": 31,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 37,
+        "powerRank": 6,
+        "lineupValueScore": 59.4,
+        "performanceScore": 0,
+        "positionalScore": 42.9,
+        "depthScore": 17.3,
+        "totalTeams": 12,
+        "totalRosterValue": 28812
+      },
+      "tradeImpact": {
+        "valueGained": 3613,
+        "valueLost": 853,
+        "netValueChange": 2760,
+        "estimatedPowerScoreChange": 2.8,
+        "playersGained": [
+          {
+            "name": "Jared Goff",
+            "value": 3613
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Tua Tagovailoa",
+            "value": 853
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jared Goff",
+          "position": "QB",
+          "team": "DET",
+          "age": 31,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tua Tagovailoa",
+          "position": "QB",
+          "team": "ATL",
+          "age": 28,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [],
+  "persona": "Adam Schefter",
+  "analysis": "**BREAKING: QB Swap Rocks Dynasty League as Win-Now Team Lands Goff**\n\nPer league sources, Tishathefish has acquired Jared Goff from mastab24 in a Week 1 quarterback swap that multiple insiders are calling wildly lopsided. I'm told the value differential here is staggering – we're talking 3,613 in trade value versus 853. That's not a typo, folks. This is the fantasy equivalent of trading a first-round pick for a fifth-rounder straight up.\n\nAccording to sources familiar with both rosters, this deal highlights two completely opposite philosophies. Tishathefish – let's call them \"The Closer\" based on that aggressive buying pattern (13 players acquired historically) – just landed a 31-year-old QB who averaged 16.4 PPG and sits firmly in his peak years. Meanwhile mastab24 – we'll dub them \"The Eternal Optimist\" – traded away that production for a 28-year-old Tua Tagovailoa who's now in Atlanta and posted just 11.9 PPG historically. I'm told the Optimist believes youth equals value, but sources say the age difference doesn't justify giving up a 2.8-point power score swing.\n\nThis reminds me of the Stefon Diggs situation back in 2020, league sources say. The Vikings moved an established star for future assets, believing they were selling high. Buffalo got immediate production and never looked back. I'm told Tishathefish is positioning for a championship window *right now* at rank #6, while mastab24 sits at #9 and just made their roster demonstrably worse for 2026. The Closer gets proven production in Detroit's elite offensive system; The Optimist gets... hope?\n\nHere's my bold prediction, and I'm going on record: in two years, we'll look back at this as the trade that defined both franchises' trajectories. Goff will deliver at least one championship to Tishathefish's roster during his remaining prime years, while mastab24 will still be waiting for Tua's \"breakout season\" that never materializes in Atlanta's offense. Per sources close to the league, this might go down as the most one-sided dynasty QB swap in league history. The value gap speaks for itself.",
+  "generatedAt": "2026-09-01T08:11:14.103Z"
+}
