@@ -1,0 +1,116 @@
+{
+  "tradeId": "7fb15dd66cfd0bb9",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Langland",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 27.5,
+        "powerRank": 10,
+        "lineupValueScore": 44.4,
+        "performanceScore": 0,
+        "positionalScore": 32.6,
+        "depthScore": 8.1,
+        "totalTeams": 12,
+        "totalRosterValue": 23556
+      },
+      "tradeImpact": {
+        "valueGained": 4401,
+        "valueLost": 2917,
+        "netValueChange": 1484,
+        "estimatedPowerScoreChange": 1.4,
+        "playersGained": [
+          {
+            "name": "Emeka Egbuka",
+            "value": 4401
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Fernando Mendoza",
+            "value": 2917
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Emeka Egbuka",
+          "position": "WR",
+          "team": "TB",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Fernando Mendoza",
+          "position": "QB",
+          "team": "LV",
+          "age": 22,
+          "careerStage": "Developing"
+        }
+      ]
+    },
+    {
+      "teamName": "briankibler",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 19.4,
+        "powerRank": 11,
+        "lineupValueScore": 30.4,
+        "performanceScore": 0,
+        "positionalScore": 25.7,
+        "depthScore": 7.2,
+        "totalTeams": 12,
+        "totalRosterValue": 16125
+      },
+      "tradeImpact": {
+        "valueGained": 2917,
+        "valueLost": 4401,
+        "netValueChange": -1484,
+        "estimatedPowerScoreChange": -1.4,
+        "playersGained": [
+          {
+            "name": "Fernando Mendoza",
+            "value": 2917
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Emeka Egbuka",
+            "value": 4401
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Fernando Mendoza",
+          "position": "QB",
+          "team": "LV",
+          "age": 22,
+          "careerStage": "Developing"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Emeka Egbuka",
+          "position": "WR",
+          "team": "TB",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a fascinating early dynasty bet on two young quarterbacks with wildly different profiles – and I'm having a hard time understanding what briankibler sees here.\n\nLet's start with the film: Emeka Egbuka in Tampa Bay is a proven NFL commodity at 23 years old, posting 9.1 PPG last season with the kind of route-running polish and separation skills that translate year after year. The athletic profile here is receiver-prime territory – we're talking about a guy who should be ascending into his peak WR years (26-30) with multiple WR2 seasons ahead of him. The value metrics scream \"established asset\" at 4,401 dynasty points. Meanwhile, Fernando Mendoza is a complete unknown in Las Vegas – zero career PPG, a 22-year-old signal-caller whose NFL projection is pure speculation. Langland, sitting at a brutal 27.5 power score (10th of 12), desperately needs proven talent, not lottery tickets at quarterback. This move actually makes sense for them – swapping a QB with no track record for immediate WR production when you're staring down the barrel of another rebuild. They're up 1,484 in value and adding a piece that actually helps their woeful 44.4 lineup score.\n\nBut briankibler? This is where I'm lost. You're 11th out of 12 teams with a 19.4 power score, your trading history shows you're \"future-focused\" – and then you trade a 23-year-old rising receiver for an unproven quarterback? The age curves don't support this gamble. Running backs fall off a cliff at 27, but receivers maintain value well into their late twenties. You're giving up a guy entering his prime for a QB who might not even be a starter-quality fantasy asset. The quarterback position in dynasty has more depth and later breakout potential than receiver – you can find QB value in the draft or on waivers, but proven young receivers are premium assets. Unless Mendoza develops into a legitimate QB1 and Egbuka somehow plateaus, this is burning value to chase upside you don't need to chase at this positional cost. The -1,484 value gap tells the story: briankibler just paid a premium to speculate on a position that typically doesn't command this kind of price in dynasty formats.",
+  "generatedAt": "2026-09-02T12:24:40.789Z"
+}

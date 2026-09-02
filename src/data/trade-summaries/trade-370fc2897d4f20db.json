@@ -1,0 +1,145 @@
+{
+  "tradeId": "370fc2897d4f20db",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 19.4,
+        "powerRank": 11,
+        "lineupValueScore": 30.4,
+        "performanceScore": 0,
+        "positionalScore": 25.7,
+        "depthScore": 7.2,
+        "totalTeams": 12,
+        "totalRosterValue": 16125
+      },
+      "tradeImpact": {
+        "valueGained": 2849,
+        "valueLost": 7864,
+        "netValueChange": -5015,
+        "estimatedPowerScoreChange": -4.7,
+        "playersGained": [
+          {
+            "name": "Tyler Warren",
+            "value": 2849
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Justin Jefferson",
+            "value": 7864
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Tyler Warren",
+          "position": "TE",
+          "team": "IND",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "team": "MIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Start of season",
+      "powerScore": {
+        "powerScore": 69.3,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 0,
+        "positionalScore": 95.3,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 53047
+      },
+      "tradeImpact": {
+        "valueGained": 7864,
+        "valueLost": 2849,
+        "netValueChange": 5015,
+        "estimatedPowerScoreChange": 4.7,
+        "playersGained": [
+          {
+            "name": "Justin Jefferson",
+            "value": 7864
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Tyler Warren",
+            "value": 2849
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "team": "MIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyler Warren",
+          "position": "TE",
+          "team": "IND",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "briankibler"
+    },
+    {
+      "season": "2029",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I need to get something off my chest right now - briankibler just pulled off what might be the WORST value play I've seen in dynasty football this decade! This is like if the Raiders traded Khalil Mack and got back a third-string linebacker and two expired coupons. We're talking about Justin Jefferson here - JUSTIN JEFFERSON! The guy is 27 years old, smack in the middle of his prime window, posting 12.1 points per game, and he's got a trade value of 7,864. That's elite WR1 territory, folks! And what does briankibler get in return? Tyler Warren, a 24-year-old tight end valued at 2,849, plus a 2028 second-rounder and a 2029 third-rounder. The math isn't mathing - we're looking at a net value loss of FIVE THOUSAND FIFTEEN points!\n\nLet me tell you about these two managers, because this trade tells you everything you need to know. Cosmohouck - \"The Opportunistic Shark\" - is sitting pretty at #1 in the power rankings with a 69.3 score, and this dude POUNCED like a defensive end on a blind-side sack. This manager has made 29 trades all-time, moving 37 players out and 27 in, and just added a +4.7 power score bump while already dominating the league. Meanwhile, briankibler - and I'm calling him \"The Rebuild Believer\" because that's the ONLY explanation here - is languishing at #11 out of 12 teams with a 19.4 power score and just TANKED his roster another -4.7 points! Sure, he's been an aggressive buyer historically, but this isn't buying - this is a FIRE SALE!\n\nNow, I get it - dynasty is about the future, and Tyler Warren is a 24-year-old rising tight end with upside. The tape shows a guy who can contribute. But here's what the tape ALSO shows: premium tight ends don't grow on trees, but they also aren't worth a top-five dynasty wide receiver! Jefferson is the kind of asset you BUILD around, not tear down! This reminds me of that Khalil Mack trade where the Bears mortgaged their future with two first-rounders, except briankibler is playing the Raiders' role and somehow getting LESS return than Oakland did! A second in 2028 and a third in 2029? Those are dart throws, people! In dynasty, you're looking at mid-tier prospects AT BEST with those selections.\n\nThe Opportunistic Shark just went from power ranking #1 to absolutely UNTOUCHABLE, adding an elite WR1 to what was already the league's best roster. Meanwhile, The Rebuild Believer better PRAY that Tyler Warren develops into a top-three tight end and those draft picks hit like first-rounders, because right now, this trade has \"regret\" written all over it in permanent marker. I had Jefferson as a top-10 dynasty asset on my board coming into 2026, and you don't move guys like that unless you're getting AT LEAST a young stud plus multiple first-round picks. This is a masterclass in value extraction by cosmohouck and a head-scratcher from briankibler. The tape doesn't lie, and the value differential is SCREAMING!",
+  "generatedAt": "2026-09-02T12:25:05.631Z"
+}
