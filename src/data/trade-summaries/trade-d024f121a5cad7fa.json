@@ -1,0 +1,259 @@
+{
+  "tradeId": "d024f121a5cad7fa",
+  "week": 2,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "drobs",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 48,
+        "powerRank": 7,
+        "lineupValueScore": 46.5,
+        "performanceScore": 59.1,
+        "positionalScore": 34.3,
+        "depthScore": 38.4,
+        "totalTeams": 12,
+        "totalRosterValue": 24422
+      },
+      "tradeImpact": {
+        "valueGained": 3670,
+        "valueLost": 3273,
+        "netValueChange": 397,
+        "estimatedPowerScoreChange": 0.4,
+        "playersGained": [
+          {
+            "name": "Zach Charbonnet",
+            "value": 502
+          },
+          {
+            "name": "Brian Thomas",
+            "value": 1871
+          },
+          {
+            "name": "Jadarian Price",
+            "value": 1297
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Kenneth Walker",
+            "value": 3273
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Zach Charbonnet",
+          "position": "RB",
+          "team": "SEA",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Brian Thomas",
+          "position": "WR",
+          "team": "JAX",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Jadarian Price",
+          "position": "RB",
+          "team": "SEA",
+          "age": 22,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "team": "KC",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 17,
+        "powerRank": 12,
+        "lineupValueScore": 27,
+        "performanceScore": 0,
+        "positionalScore": 21.6,
+        "depthScore": 5.5,
+        "totalTeams": 12,
+        "totalRosterValue": 14172
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1799,
+        "netValueChange": -1799,
+        "estimatedPowerScoreChange": -1.7,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Zach Charbonnet",
+            "value": 502
+          },
+          {
+            "name": "Jadarian Price",
+            "value": 1297
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Zach Charbonnet",
+          "position": "RB",
+          "team": "SEA",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Jadarian Price",
+          "position": "RB",
+          "team": "SEA",
+          "age": 22,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 90.5,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 70,
+        "positionalScore": 96.4,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 52563
+      },
+      "tradeImpact": {
+        "valueGained": 3273,
+        "valueLost": 1871,
+        "netValueChange": 1402,
+        "estimatedPowerScoreChange": 1.3,
+        "playersGained": [
+          {
+            "name": "Kenneth Walker",
+            "value": 3273
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Brian Thomas",
+            "value": 1871
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "team": "KC",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Brian Thomas",
+          "position": "WR",
+          "team": "JAX",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "drobs",
+      "to": "briankibler"
+    },
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "drobs",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "drobs",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is we've got a fascinating three-team shuffle here in Week 2, and folks, the power dynamics at play tell quite a story. Sources indicate this deal has been brewing since briankibler—sitting dead last at 17/100 power score after an 0-1 start—decided to fully commit to the tank and accumulate draft capital. This manager has been future-focused all along, and now they're doubling down, flipping two Seattle backs for first-rounders in 2027 and 2028. Keep an eye on briankibler's draft haul over the next couple seasons.\n\nHere's the developing situation: drobs—ranked 7th with a 48 power score—is making the classic \"win-now\" consolidation move, sending Kenneth Walker and a boatload of picks to assemble a committee approach with Charbonnet and the upside play Jadarian Price, while adding the explosive Brian Thomas at receiver. The problem? Charbonnet's on the PUP with an ACL, and drobs just sent out a 10.1 PPG back in his prime for pieces that need time to develop. My understanding is this trade history shows drobs as an active mover (26 deals all-time), but the +397 net value might be misleading when you're chasing wins *right now* with injured players.\n\nBut the real winner here—and it's not particularly close—is cosmohouck, the league's runaway leader at 90.5 power score. Sources indicate they just acquired Kenneth Walker, a proven 10.1 PPG producer in his peak years, by only giving up Brian Thomas and some mid-round capital. When you're already ranked #1 with a loaded roster, adding an immediate-impact running back while maintaining depth is exactly how championship rosters separate themselves. The rich get richer, folks.\n\nKeep an eye on this three-team dynamic moving forward—briankibler is stockpiling assets for 2028 and beyond, drobs is gambling on upside plays while sitting at 1-0, and cosmohouck just added another weapon to an already dominant squad. My understanding is the championship window is wide open for cosmohouck right now, while drobs may have mortgaged too much future capital for players who won't help them catch the leader. This is the kind of early-season maneuvering that defines dynasty league champions versus pretenders.",
+  "generatedAt": "2026-09-17T08:06:58.181Z"
+}
