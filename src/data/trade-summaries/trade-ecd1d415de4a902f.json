@@ -1,0 +1,135 @@
+{
+  "tradeId": "ecd1d415de4a902f",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 61.8,
+        "powerRank": 4,
+        "lineupValueScore": 78.8,
+        "performanceScore": 24.5,
+        "positionalScore": 79.2,
+        "depthScore": 62.9,
+        "totalTeams": 12,
+        "totalRosterValue": 41461
+      },
+      "tradeImpact": {
+        "valueGained": 3537,
+        "valueLost": 0,
+        "netValueChange": 3537,
+        "estimatedPowerScoreChange": 3.4,
+        "playersGained": [
+          {
+            "name": "Zay Flowers",
+            "value": 3537
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 28.6,
+        "powerRank": 10,
+        "lineupValueScore": 39.2,
+        "performanceScore": 10.9,
+        "positionalScore": 33.4,
+        "depthScore": 14.6,
+        "totalTeams": 12,
+        "totalRosterValue": 20635
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 3537,
+        "netValueChange": -3537,
+        "estimatedPowerScoreChange": -3.4,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Zay Flowers",
+            "value": 3537
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    },
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    },
+    {
+      "season": "2029",
+      "round": 2,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a textbook case of two teams operating from completely different team-building philosophies, and I've got to say, the timing here tells you everything you need to know about roster construction strategy.\n\nLet's call PrinceofPizza \"The Win-Now General Manager\" and iwmrichfulton \"The Draft Room Architect.\" When you're sitting at a 61.8 power score - that's a legitimate contender profile - and you're shipping out three future picks for a 26-year-old receiver entering his absolute prime window, you're making the Amari Cooper call. Remember when the Cowboys sent that first-rounder to Oakland? Everyone questioned the price tag, but Cooper transformed that offense when they needed him most. Flowers is averaging 10.3 PPG historically, he's got the athletic profile that fits any offensive scheme, and Baltimore's passing game infrastructure is only getting better. The Win-Now GM looked at that 78.8 lineup score, saw championship equity sitting right there, and decided three mystery boxes spread across three years weren't worth keeping the window closed. You're getting a proven asset at the exact age where receivers typically explode into their best statistical seasons.\n\nMeanwhile, The Draft Room Architect is sitting at 28.6 overall - that's bottom-three territory - and made the exact move a rebuilding franchise should make. That 39.2 lineup score and 14.6 depth score? You're not competing this year or probably next year. Why hold onto a productive 26-year-old when you can collect premium draft capital? A 2028 first-rounder is gold in dynasty formats, and stacking picks across multiple years gives you flexibility to either draft talent or package those selections for the next wave of proven players when your competitive window actually opens. The production metrics say Flowers is valuable now, but iwmrichfulton isn't trying to win now.\n\nThe Week 1 timing is absolutely critical here. The Win-Now GM didn't wait until his roster showed cracks or injuries piled up - he identified the need before the season even started and paid the premium to secure his guy for a full 17-game stretch. That's aggressive, calculated roster building. The value exchange shows PrinceofPizza \"overpaying\" by 3,537 in pure asset value, but when you're a contender, you're not trading for equal value - you're trading future uncertainty for present-day production. This trade works perfectly for both sides because they're playing different games entirely. One's chasing a championship this season, the other's positioning for 2028 and beyond. That's dynasty football done right.",
+  "generatedAt": "2026-09-24T08:07:15.307Z"
+}
