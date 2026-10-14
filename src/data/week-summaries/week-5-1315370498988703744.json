@@ -1,0 +1,46 @@
+{
+  "week": 5,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "persona": "Dan Patrick",
+  "summary": "**Week 5: When Keeping It Real Goes Wrong**\n\nDrake Maye dropped 39.5 points for cosmohouck, who's now averaging 150.4 points per season like it's some kind of casual Tuesday. You can't stop him, you can only hope to contain him—and this week, Langland couldn't even do that, losing by 40.8 points despite Josh Allen's 30.5-point effort. It's like bringing a knife to a gunfight, except the knife is a former MVP and the gun is a rookie quarterback who apparently didn't read the scouting report that said he wasn't supposed to be this good yet. Meanwhile, Maye is *en fuego* while cosmohouck sits atop the power rankings at #1 with a 96.7 rating. That's not a ranking, that's a restraining order waiting to happen.\n\nThen we have drobs, who managed to score 31.12 points in a league where the average is 106.38. Let me put that in perspective: drobs's entire team scored fewer points than Drake Maye did by himself. Sam Darnold's 8.3 points led the squad—yes, you read that correctly, Sam Darnold was the star. Brian Thomas put up a goose egg, RJ Harvey contributed 0.7 points, and somehow drobs looked at their bench and decided, \"Nah, I'm good with this lineup.\" Classic case of paralysis by analysis, except there was no analysis. Just paralysis. Briankibler won by 67.14 points, which in football terms is called \"a war crime.\"\n\nThe budding rivalry between mjgrana and Tishathefish is heating up like a microwave burrito—intense, messy, and someone's getting burned. These two consistent scorers went toe-to-toe with mjgrana squeaking out a 14.86-point victory despite starting Tyson Bagent, who scored 1.2 points. That's not a quarterback performance, that's a rounding error. Tishathefish countered with Jordan Addison's 0.0 and Harold Fannin's 0.9, proving that sometimes you can do everything right—like starting Bucky Irving's 30.5 and Jared Goff's 28.9—and still lose because your depth chart reads like a witness protection program.\n\nShogunation's CeeDee Lamb posted 1.9 points, which is impressive considering that's roughly what you'd score if you just left the roster spot empty and claimed you were \"going with your gut.\" Jahmyr Gibbs (35.2) and James Cook (22.3) carried Shogunation to victory like two guys hauling a piano up six flights of stairs—technically successful, but exhausting to watch. And PrinceofPizza's 51.56-point demolition of iwmrichfulton felt like watching someone bring a flamethrower to a snowball fight. Jaylen Warren's 33.8 and Puka Nacua's 29.2 were absolutely *en fuego*, while iwmrichfulton started two quarterbacks who combined for 45.7 points and still lost by fifty. That's not strategy, folks. That's hope masquerading as a game plan.",
+  "generatedAt": "2026-10-14T10:03:02.477Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 31.12,
+      "team2": "briankibler",
+      "team2Score": 98.26
+    },
+    {
+      "team1": "Langland",
+      "team1Score": 113.8,
+      "team2": "cosmohouck",
+      "team2Score": 154.6
+    },
+    {
+      "team1": "mastab24",
+      "team1Score": 80.58,
+      "team2": "powerperson",
+      "team2Score": 70.94
+    },
+    {
+      "team1": "mjgrana",
+      "team1Score": 141.08,
+      "team2": "Tishathefish",
+      "team2Score": 126.22
+    },
+    {
+      "team1": "PrinceofPizza",
+      "team1Score": 134.88,
+      "team2": "iwmrichfulton",
+      "team2Score": 83.32
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 133.38,
+      "team2": "TophTT",
+      "team2Score": 108.38
+    }
+  ]
+}
