@@ -1,0 +1,107 @@
+{
+  "tradeId": "16040e9b6e096fa0",
+  "week": 6,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18.4,
+        "powerRank": 12,
+        "lineupValueScore": 24.8,
+        "performanceScore": 7.6,
+        "positionalScore": 20.6,
+        "depthScore": 11.6,
+        "totalTeams": 12,
+        "totalRosterValue": 13484
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 148,
+        "netValueChange": -148,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Aaron Jones",
+            "value": 148
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Aaron Jones",
+          "position": "RB",
+          "team": "MIN",
+          "age": 31,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 57.6,
+        "powerRank": 5,
+        "lineupValueScore": 55.1,
+        "performanceScore": 73.3,
+        "positionalScore": 44.2,
+        "depthScore": 29.3,
+        "totalTeams": 12,
+        "totalRosterValue": 29953
+      },
+      "tradeImpact": {
+        "valueGained": 148,
+        "valueLost": 0,
+        "netValueChange": 148,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Aaron Jones",
+            "value": 148
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Aaron Jones",
+          "position": "RB",
+          "team": "MIN",
+          "age": 31,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2029",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**Breaking: Per sources, briankibler ships out 31-year-old Aaron Jones to contender Tishathefish for what amounts to fantasy Monopoly money - a 2029 third-round pick. I'm told this is about as lopsided as it gets in dynasty circles, folks.**\n\nLeague sources say briankibler - who I'm calling \"The Futures Broker\" given his 9 draft picks acquired versus just 3 traded away - is now fully committed to the tank-and-rebuild strategy at 1-4. This is his sixth trade of the season, and according to multiple sources, he's treating his roster like a clearance sale at a going-out-of-business store. Trading a running back averaging 9.3 PPG for a third-rounder *three years from now*? That's not just selling low, that's practically giving assets away. I'm told Jones is questionable with a leg injury right now, which explains some of the urgency, but a 2029 third-rounder has roughly the same chance of becoming a quality starter as I do of replacing Goodell as commissioner.\n\nMeanwhile, Tishathefish - let's call her \"The Win-Now Warrior\" - is sitting pretty at 4-1 and just robbed someone in broad daylight. Per sources, she gave up essentially nothing to acquire immediate RB depth for a playoff push. Yes, Jones is 31 and banged up, but for a contender ranked 5th in power score with eight weeks until playoffs? That's championship-window thinking. League sources indicate she's historically an aggressive buyer (14 players acquired versus 9 traded), and this deal screams \"I'm going for it in 2026.\"\n\nAccording to multiple sources close to the situation, the value differential here is staggering - 148 points of dynasty value for zero in return. I'm told briankibler's power score actually *drops* 0.1 points after this deal, which in dynasty terms is like trading a dollar for a lottery ticket that expired two years ago. Sometimes rebuilding means making tough decisions, but this feels less like strategic tanking and more like liquidation panic.",
+  "generatedAt": "2026-10-15T08:06:24.299Z"
+}
