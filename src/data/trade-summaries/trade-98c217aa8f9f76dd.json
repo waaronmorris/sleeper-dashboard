@@ -1,0 +1,107 @@
+{
+  "tradeId": "98c217aa8f9f76dd",
+  "week": 7,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.9,
+        "powerRank": 12,
+        "lineupValueScore": 25.4,
+        "performanceScore": 11.9,
+        "positionalScore": 22.4,
+        "depthScore": 4.8,
+        "totalTeams": 12,
+        "totalRosterValue": 14173
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 97,
+        "netValueChange": -97,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Eli Raridon",
+            "value": 97
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Eli Raridon",
+          "position": "TE",
+          "team": "NE",
+          "age": 22,
+          "careerStage": "Developing"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 99.3,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 97.7,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 55697
+      },
+      "tradeImpact": {
+        "valueGained": 97,
+        "valueLost": 0,
+        "netValueChange": 97,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Eli Raridon",
+            "value": 97
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Eli Raridon",
+          "position": "TE",
+          "team": "NE",
+          "age": 22,
+          "careerStage": "Developing"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "This is textbook dynasty football right here—the contender mortgaging distant draft capital to shore up a weakness, and the rebuilder doing exactly what they should be doing at 1-5. Let me tell you, cosmohouck is operating like a general manager with championship tunnel vision, and I love the aggressiveness. You're 6-0, sitting at a perfect 99.3 power score, and you're identifying the one crack in your armor. That 2028 second-rounder? That's Monopoly money when you're trying to win a championship *right now*. Meanwhile, briankibler—let me give him credit here—is playing the long game beautifully. At 1-5 with a 19.9 power score, he's dead in the water this season, so why would you hold onto a 22-year-old tight end averaging five points per game when you can stockpile ammunition for the future? This is smart asset management from \"The Collector,\" who's now accumulated *ten* draft picks through trades. He's building a war chest.\n\nNow let's talk about what cosmohouck—I'm calling him \"The Closer\"—is actually getting here. Eli Raridon is a young tight end with a rising trajectory, and in dynasty, that 22-year-old age is *premium*. You're not just plugging a hole for seven weeks; you're potentially adding a piece that could be in your lineup for the next eight years if he develops. The value analysis shows cosmohouck winning this by 97 points, and frankly, that might be conservative if Raridon becomes even a mid-range TE1. The Closer has made 32 career trades—he knows how to work the market—and this fits his pattern perfectly: sacrifice future capital to maximize the current window.\n\nHere's my bold prediction: this trade looks like highway robbery for cosmohouck in two years when Raridon is a weekly TE1 and that 2028 second-rounder turns into a backup running back. The Championship implications are clear—the best team in the league just got better at the league's scarcest position, and they gave up essentially nothing that impacts their 2026 or 2027 rosters. That's terrifying for the rest of the league. With a 6-0 record and a perfect 100 in lineup construction, The Closer is pushing all his chips to the middle of the table. This is what elite contenders do.\n\nFor briankibler, this is franchise rehabilitation 101. You can't compete with a sub-20 power score, so stop pretending. Flip every veteran asset that won't be prime when you're ready to contend for picks that *will* be. The fact that he's now sitting on ten acquired picks through his trading career tells me he understands the rebuild blueprint. This might sting watching Raridon develop on a rival's roster—especially a rival he's 3-3 against all-time—but when he's sitting at the 2028 draft with multiple second-rounders and can grab two potential starters instead of rostering a tight end on a last-place team, he'll feel pretty good about this decision. Sometimes the best move is admitting where you are and playing chess while everyone else plays checkers.",
+  "generatedAt": "2026-10-24T08:06:12.956Z"
+}
