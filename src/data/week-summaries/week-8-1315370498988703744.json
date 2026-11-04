@@ -1,0 +1,46 @@
+{
+  "week": 8,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "persona": "Scott Van Pelt",
+  "summary": "Look, I've seen some bad beats in my time—and trust me, I've catalogued plenty on this show—but Shogunation winning by half a point? That's the kind of thing that makes you check the scoring settings three times and then stare at the ceiling wondering what you did to deserve this. mjgrana put up 127.68 points behind Joe Burrow's 39.5-point masterclass and Ja'Marr Chase's 25.6, and it still wasn't enough. Meanwhile, Shogunation squeaked by with Jahmyr Gibbs doing the heavy lifting at 23.8 while CeeDee Lamb contributed a cool 9.3. That's not a win, that's a pardon from the fantasy football governor with one second left on the clock.\n\nSpeaking of Bad Beats, let's talk about briankibler, who managed to score 34.36 points in a week where the league average was nearly 100. That's not just bad—that's \"the check engine light has been on for three months\" bad. Jack Bech and Demond Claiborne combined for a robust zero points, which is exactly what you want from guys you're starting in Week 8. Meanwhile, mastab24 cruised to 90.5 despite DK Metcalf and Drake London combining for 2.2 points. When D'Andre Swift outscores your entire opponent's roster by himself with 26.9, you're not playing fantasy football—you're playing a different sport entirely.\n\nAnd then there's Langland, who's colder than a Buffalo winter right now, riding a two-week skid and leaving 31.6 points on the bench. Thirty-one point six! That's not a lineup mistake, that's a cry for help. Josh Allen did his part with 26.6, but when you're starting Tre Tucker and Keon Coleman—who combined for 0.9 points—you're basically waving the white flag before kickoff. TophTT won that matchup going away with Tony Pollard's 27.2, though we should probably talk about the fact that Lamar Jackson put up a goose egg. That's the reigning MVP sitting there with zero points like he forgot he had a game.\n\nPrinceofPizza versus Tishathefish was the heavyweight bout we deserved this week—142.86 to 124.92. Tee Higgins went nuclear with 32.5 points, Brock Bowers added 24.7, and suddenly you're putting up video game numbers. Tishathefish fought back with Michael Wilson's 22.8 and Bucky Irving's 21.0, but when you're getting 8.3 from Matthew Stafford, you're bringing a knife to a gunfight. This was the fantasy equivalent of Godzilla vs. Kong, except both monsters showed up and one just happened to hit harder.\n\nHere's the thing about Week 8: it proved once again that fantasy football is less about skill and more about surviving your own decisions. Half-point wins, 56-point blowouts, and enough zeroes on rosters to make you think we're playing bingo instead of football. As the great philosopher once said, \"It's not about how hard you hit, it's about how hard you can get hit and keep moving forward.\" Shogunation got hit with a 0.50-point margin and survived. mjgrana got hit with the same margin and didn't. That's not Rocky—that's just fantasy football being fantasy football.",
+  "generatedAt": "2026-11-04T10:02:36.503Z",
+  "matchupScores": [
+    {
+      "team1": "drobs",
+      "team1Score": 89.76,
+      "team2": "cosmohouck",
+      "team2Score": 133.56
+    },
+    {
+      "team1": "Langland",
+      "team1Score": 62.06,
+      "team2": "TophTT",
+      "team2Score": 90.92
+    },
+    {
+      "team1": "mastab24",
+      "team1Score": 90.5,
+      "team2": "briankibler",
+      "team2Score": 34.36
+    },
+    {
+      "team1": "powerperson",
+      "team1Score": 68.36,
+      "team2": "iwmrichfulton",
+      "team2Score": 104.24
+    },
+    {
+      "team1": "PrinceofPizza",
+      "team1Score": 142.86,
+      "team2": "Tishathefish",
+      "team2Score": 124.92
+    },
+    {
+      "team1": "Shogunation",
+      "team1Score": 128.18,
+      "team2": "mjgrana",
+      "team2Score": 127.68
+    }
+  ]
+}
