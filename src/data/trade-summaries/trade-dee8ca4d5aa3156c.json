@@ -1,0 +1,107 @@
+{
+  "tradeId": "dee8ca4d5aa3156c",
+  "week": 9,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.2,
+        "powerRank": 8,
+        "lineupValueScore": 44.8,
+        "performanceScore": 27.6,
+        "positionalScore": 34.7,
+        "depthScore": 6,
+        "totalTeams": 12,
+        "totalRosterValue": 25163
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 197,
+        "netValueChange": -197,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Tyler Allgeier",
+            "value": 197
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyler Allgeier",
+          "position": "RB",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 55.8,
+        "powerRank": 5,
+        "lineupValueScore": 53.4,
+        "performanceScore": 67.6,
+        "positionalScore": 44.6,
+        "depthScore": 42.9,
+        "totalTeams": 12,
+        "totalRosterValue": 29967
+      },
+      "tradeImpact": {
+        "valueGained": 197,
+        "valueLost": 0,
+        "netValueChange": 197,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Tyler Allgeier",
+            "value": 197
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Tyler Allgeier",
+          "position": "RB",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "Langland"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm going to be BLUNT here - this is what we call a \"white flag\" trade, and I've got Tishathefish STEALING value like he's taking candy from a baby who's already eliminated from playoff contention!\n\nLet me break down the tape on Tyler Allgeier. This is a 26-year-old running back - RIGHT in his athletic prime window - who's trending UP with 623,000 adds and putting up 7.1 points per game as a backup. Now, I had Allgeier on my board coming out of BYU as a between-the-tackles grinder with RB2 upside if he ever got the opportunity. The value chart says 197 points for a third-round pick in 2027? That's HIGHWAY ROBBERY for Tishathefish! This reminds me of when the Browns traded for Odell Beckham Jr. - except REVERSE - because Langland is shipping out a serviceable asset for what amounts to lottery ticket that probably yields a replacement-level player eighteen months from now! The tape doesn't lie on third-round dynasty picks - historically, you're looking at maybe a 20% hit rate on finding a starter. Langland's sitting at 2-6, power score of 36.2, and instead of holding a peak-age RB who could be flipped for MORE next year, they're punting on 2026 AND 2027!\n\nHere's what gets me fired up - Tishathefish is 5-3, ranked 5th, clearly in WIN-NOW mode as an \"aggressive buyer,\" and just added RB depth for NOTHING! This is classic contender consolidation. They've got the playoff equity (63% win rate), they need the depth for the stretch run, and they're giving up a pick that'll probably be late third-round anyway. The risk-reward here is ALL in Tishathefish's favor - worst case, Allgeier gives you bye-week coverage; best case, an injury happens and suddenly you've got a starting running back you acquired for a ham sandwich!\n\nLangland's selling low in a panic move. I get it - you're 2-6, you're rebuilding, you want draft capital. But this is a FOOTBALL PLAYER in his prime years who should command AT LEAST a second-rounder or a prospect with actual upside! This franchise has now traded away 27 players versus acquiring 24 - they're bleeding talent faster than they're replenishing it. The power score impact says it all: Tishathefish goes UP 0.2, Langland goes DOWN 0.2, net value differential of 197 points. That's not marginal - that's SIGNIFICANT roster malpractice!\n\nBottom line: Tishathefish wins this trade by a COUNTRY MILE. They added a viable RB in his prime for playoff insurance while Langland mortgaged present value for future mediocrity. I've got this as a C+ move for Langland and an A- steal for Tishathefish. The ceiling for that third-rounder? Maybe you hit on a starter. The floor for Allgeier? He's ALREADY a proven NFL backup! WINNER: Tishathefish, and it's not even close!",
+  "generatedAt": "2026-11-05T08:05:09.113Z"
+}
