@@ -1,0 +1,107 @@
+{
+  "tradeId": "180f2d6bf267c2e9",
+  "week": 10,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 203,
+        "valueLost": 0,
+        "netValueChange": 203,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Kirk Cousins",
+            "value": 203
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Kirk Cousins",
+          "position": "QB",
+          "team": "MIN",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.5,
+        "powerRank": 10,
+        "lineupValueScore": 33.2,
+        "performanceScore": 26.3,
+        "positionalScore": 30,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 18639
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 203,
+        "netValueChange": -203,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Kirk Cousins",
+            "value": 203
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kirk Cousins",
+          "position": "QB",
+          "team": "MIN",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "mjgrana",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I've seen some desperate quarterback moves in my time, but mjgrana dropping a 2028 third-rounder for a 38-year-old Kirk Cousins with four weeks until playoffs? This is the fantasy football equivalent of renting a tuxedo for a wedding that might get cancelled. The power score impact tells you everything you need to know—a measly 0.2-point bump for a team sitting at 5-4 trying to claw into the postseason. Cousins is averaging 11.6 points per game and trending DOWN with over 77,000 drops across the fantasy universe. That's not a red flag, that's a billboard on fire. But here's the thing: when you're ranked fourth in power score and staring at a playoff bubble, sometimes you've got to make the uncomfortable win-now move. Mjgrana has built a reputation as a pick-seller extraordinaire—11 picks traded away versus only 5 acquired—and this trade is perfectly on brand. Let's call him \"The Liquidator\" because he treats draft capital like a going-out-of-business sale.\n\nMeanwhile, iwmrichfulton—let's dub him \"The Scavenger\"—is doing exactly what a 3-6 team ranked 10th out of 12 should be doing: collecting assets for the future. When you're scoring barely 800 points through nine weeks with a power score of 29.5, you're not Kirk Cousins away from contention; you're a complete roster reconstruction away from relevance. Trading an aging quarterback for a 2028 third-rounder is textbook rebuilding, even if that pick won't materialize for two full years. The value chart shows iwmrichfulton giving up 203 points of value for essentially zero immediate return, but in dynasty, this is about the long game. He's already accumulated seven picks through trades versus only shipping out four—this guy understands asset collection.\n\nThe timing here is fascinating because we're in Week 10 of 2026, which means The Liquidator is banking on Cousins staying upright for exactly one month of meaningful football. Four weeks to the playoffs, and he's handing over future draft capital for a quarterback who'll be collecting Social Security by the time that 2028 pick comes around. This is the definition of pushing your chips to the center of the table. If Cousins goes down or continues his downward trend, mjgrana just lit a draft pick on fire for nothing. But if Cousins somehow channels 2019 and delivers three solid weeks? That playoff berth could validate the entire gamble.\n\nThe risk-reward calculus is wildly lopsided here. The Scavenger is taking zero risk—he's adding a dart throw at a future contributor while dumping a depreciating asset. The Liquidator? He's betting his 2028 draft position on four weeks of Kirk Cousins football. That's not value-based team building; that's fantasy poker with a pair of fours. I'd have tried to snag Cousins for a future fourth or maybe packaged this with another move to get a proper QB1, but when you're win-now mode and staring at cosmohouck leading the league, sometimes you mortgage the distant future for the immediate present. Just don't come crying to me in 2028 when that third-rounder turns into someone useful and Cousins is hosting a podcast about Vikings history.",
+  "generatedAt": "2026-11-12T08:04:55.005Z"
+}
