@@ -1,0 +1,121 @@
+{
+  "tradeId": "65b0af664a936cd4",
+  "week": 7,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 283,
+        "netValueChange": -283,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Rico Dowdle",
+            "value": 283
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Isaiah Davis",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rico Dowdle",
+          "position": "RB",
+          "team": "PIT",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 283,
+        "valueLost": 0,
+        "netValueChange": 283,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Rico Dowdle",
+            "value": 283
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Rico Dowdle",
+          "position": "RB",
+          "team": "PIT",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Isaiah Davis",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "Langland"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**BREAKING: Per sources, league-leading cosmohouck goes all-in, acquiring Rico Dowdle from basement-dweller Langland in classic dynasty fire sale**\n\nI'm told this is exactly what happens when a 4-2 powerhouse ranked #1 in the league spots a 0-6 team waving the white flag, league sources say. Cosmohouck – let's call him \"The Hoarder\" for his pattern of stockpiling picks (23 acquired all-time) – just flipped the script in Week 7, surrendering a 2027 second-rounder and injured depth piece Isaiah Davis for the 28-year-old Dowdle, who's averaging a solid 8.2 PPG. Meanwhile, Langland – \"The Eternal Seller\" with 23 players moved out versus 21 acquired – continues his firesale after an 0-6 nightmare start. This is his fourth deal of the season, and according to multiple sources, he's essentially punting 2025 for future assets. The 324.9 points scored tells you everything about why he's selling.\n\nHere's what I'm hearing around the league: cosmohouck's 98.4 power score is already tops in the league, perfect lineup strength, perfect depth chart. Adding Dowdle – who's in his theoretical RB peak years at 28 – gives him immediate RB help for a playoff push that's already looking like a juggernaut run. He's scoring 789 points through six weeks while Langland can't crack 325. The value differential is staggering – 283 points of asset value flowing one direction with nothing quantifiable coming back. Per sources, this is highway robbery dressed up as a dynasty rebuild.\n\nThe Isaiah Davis piece is window dressing, folks. He's on IR with a concussion, the third-string back in New York, averaging 5.4 PPG when healthy, and he's four years younger than Dowdle – which matters in dynasty, but not when you're 0-6 and already ranked dead last in depth at 8.4. That 2027 second-rounder? It's two full years away, and I'm told Langland's already traded away 13 picks historically while acquiring just six. The win-now trader is suddenly playing the long game after the season's already cooked.\n\nChampionship implications are crystal clear here: cosmohouck just added a +0.3 power score bump to a team that's already lapping the field. He's consolidating for a title run right now while The Eternal Seller is banking on draft picks in 2027 to fix a roster that's scored barely 50 points per week. According to league sources, there's your winner – the #1 team getting better at the trade deadline while the #8 team collects scraps. Breaking: this rivalry just got more lopsided.",
+  "generatedAt": "2026-11-13T08:08:52.740Z"
+}

@@ -1,0 +1,107 @@
+{
+  "tradeId": "846b680dcd2ad4dd",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 73.1,
+        "powerRank": 3,
+        "lineupValueScore": 73.8,
+        "performanceScore": 67.7,
+        "positionalScore": 79.9,
+        "depthScore": 78.1,
+        "totalTeams": 12,
+        "totalRosterValue": 41367
+      },
+      "tradeImpact": {
+        "valueGained": 1794,
+        "valueLost": 0,
+        "netValueChange": 1794,
+        "estimatedPowerScoreChange": 1.6,
+        "playersGained": [
+          {
+            "name": "Sam Darnold",
+            "value": 1794
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Sam Darnold",
+          "position": "QB",
+          "team": "SEA",
+          "age": 29,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1794,
+        "netValueChange": -1794,
+        "estimatedPowerScoreChange": -1.6,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Sam Darnold",
+            "value": 1794
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Sam Darnold",
+          "position": "QB",
+          "team": "SEA",
+          "age": 29,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "PrinceofPizza",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I've got Sam Darnold as a QB3/streamer on my board, and PrinceofPizza just gave up a THIRD-ROUND PICK to acquire him! This is the kind of move that makes me want to pull out my draft bible and remind everyone that draft capital is CURRENCY in dynasty leagues. We're talking about a 29-year-old journeyman quarterback who averaged 5.1 points per game historically - that's not a football player you mortgage future assets for, folks!\n\nLet me tell you what's happening here: cosmohouck - and I'm calling this manager \"The Asset Accumulator\" because he's now up to 17 picks acquired in his career - just pulled off a HEIST. He's sitting at 98.4 power score, ranked #1 in this league, and he's STILL adding draft capital like he's building through the draft. This is dynasty 101! Meanwhile, PrinceofPizza - \"The Darnold Dreamer\" - is ranked #3 with a 73.1 power score and apparently thinks Sam Darnold is the missing piece. The tape doesn't lie on Darnold, people - we've seen this guy in New York, Carolina, and now Seattle. He's a backup-level talent with maybe QB2 ceiling in the right system, and you don't trade PICKS for ceiling when the floor is riding your bench!\n\nThis reminds me of the Stafford-Goff swap, except if the Rams gave UP the picks to GET Goff back! The Asset Accumulator is playing chess here - he's the league's top-ranked team dumping a replacement-level asset for future ammunition. He takes a tiny 1.6 power score hit NOW, but that third-rounder could be a young running back with three-down upside or a breakout receiver prospect. The Darnold Dreamer gets 1,794 in value according to the metrics, but in dynasty, you're paying RETAIL for a RENTAL property!\n\nHere's my BOLD prediction: By 2025, that third-round pick becomes a starting-caliber asset while Darnold is backing up a rookie somewhere, and PrinceofPizza will be kicking himself for not investing in youth. The Asset Accumulator wins this trade going away - and frankly, it's not even close. When you're already ranked #1 and you're STILL accumulating picks, you're building a dynasty within a dynasty. That's how you sustain excellence, folks. This trade gets an F for PrinceofPizza and an A+ for cosmohouck. The value gap here is GLARING!",
+  "generatedAt": "2026-11-13T08:10:39.860Z"
+}

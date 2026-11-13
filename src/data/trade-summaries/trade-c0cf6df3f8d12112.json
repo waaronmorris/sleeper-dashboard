@@ -1,0 +1,121 @@
+{
+  "tradeId": "c0cf6df3f8d12112",
+  "week": 2,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 73.1,
+        "powerRank": 3,
+        "lineupValueScore": 73.8,
+        "performanceScore": 67.7,
+        "positionalScore": 79.9,
+        "depthScore": 78.1,
+        "totalTeams": 12,
+        "totalRosterValue": 41367
+      },
+      "tradeImpact": {
+        "valueGained": 741,
+        "valueLost": 0,
+        "netValueChange": 741,
+        "estimatedPowerScoreChange": 0.7,
+        "playersGained": [
+          {
+            "name": "Daniel Jones",
+            "value": 741
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Daniel Jones",
+          "position": "QB",
+          "team": "IND",
+          "age": 29,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 741,
+        "netValueChange": -741,
+        "estimatedPowerScoreChange": -0.7,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Daniel Jones",
+            "value": 741
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Daniel Jones",
+          "position": "QB",
+          "team": "IND",
+          "age": 29,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "powerperson",
+      "to": "PrinceofPizza"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "PrinceofPizza",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Per multiple sources, PrinceofPizza has acquired Daniel Jones from powerperson in a stunning dynasty move, swapping a 2027 first-rounder for the injured quarterback plus a 2026 second-round pick. I'm told both sides believe they're getting exactly what they need here, but league sources say one team is about to learn a harsh lesson.\n\nHere's what I'm hearing: PrinceofPizza, sitting pretty at 1-0 with the third-highest power score in the league, just traded future draft capital for a quarterback on IR with an Achilles injury. According to sources, they're banking on Jones returning to form after one of the most devastating injuries in football. Meanwhile, powerperson—ranked 11th out of 12 teams and already 0-1—is doing what rebuilders do: converting present-day assets into future ammunition. This is classic dynasty rebuild strategy, and powerperson's track record (17 picks acquired versus just 8 traded away all-time) tells you everything you need to know about their process.\n\nI'm told the timing here is absolutely critical. We're in Week 2 of the 2025 season with 12 weeks until the playoffs, and PrinceofPizza just mortgaged 2027 capital for a player who won't help them this year. This isn't the Amari Cooper trade, folks—when Dallas sent a first for Cooper mid-season in 2018, he played immediately and transformed their offense. Jones is on IR. League insiders are scratching their heads at this one. If you're making a win-now move as a top-three power score team, per sources, you acquire players who can actually suit up.\n\nAccording to multiple people familiar with the situation, powerperson absolutely fleeced this deal. They dumped a 29-year-old QB coming off a career-threatening injury, downgraded from a 2027 first to a 2026 second, and somehow came out ahead by 741 points in trade value. The math here isn't close—PrinceofPizza gave up premium future draft capital for an aging, injured asset at football's most durable position. In dynasty, I'm told, you don't pay firsts for 29-year-old QBs on IR unless you're desperate. PrinceofPizza wasn't desperate. They were 1-0. This one doesn't add up, and league sources believe powerperson just pulled off the heist of the season.",
+  "generatedAt": "2026-11-13T08:08:09.078Z"
+}

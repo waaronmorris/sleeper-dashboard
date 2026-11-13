@@ -1,0 +1,97 @@
+{
+  "tradeId": "0fb91ea40e090fbb",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "FA",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "FA",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm gonna be honest with you here - this is what we call in the business a \"throwaway asset flip,\" and cosmohouck just got FLEECED. I don't care if he's sitting at #1 with a perfect power score of 98.4 - this is a TERRIBLE football trade, and I'll tell you exactly why.\n\nJimmy Garoppolo in 2023? At 34 years old? This guy is averaging 9.5 points per game and he's a FREE AGENT! You're telling me cosmohouck - who has historically been smart about stockpiling picks (11 acquired in his career) - just gave up a SECOND ROUND PICK for a quarterback who doesn't even have a team? This reeks of the Russell Wilson to Denver disaster! Everyone thought Russ still had elite QB1 upside, Denver mortgaged their future with picks, and what happened? BRUTAL. Garoppolo has nowhere near Wilson's ceiling, and he STILL cost a second-rounder! The tape doesn't lie, folks - Jimmy G is a backend QB2 at absolute best, with more injury red flags than a Chinese military parade.\n\nShogunation is sitting there at #2 in power rankings at 83.1, and they just turned a ZERO-VALUE asset into draft capital. In dynasty, a second-round pick is GOLD - you're looking at potential starting running backs, high-upside receivers, maybe even a young quarterback you can develop. Meanwhile, cosmohouck - despite being the league Goliath - just burned asset value for what amounts to a one-year QB rental who might not even start anywhere in 2023! \n\nHere's what kills me: cosmohouck's trading history shows future-focused thinking, but this screams \"panic mode\" desperation. You're 0-0, it's Week 1, and you're already mortgaging picks for a 34-year-old journeyman? This guy had Jimmy G as a QB2 on his board when the rest of the league had him as UNDRAFTABLE! Shogunation wins this trade by a LANDSLIDE - they got a legit asset for roster trash, and in dynasty, that's EXACTLY how you build sustained success!",
+  "generatedAt": "2026-11-13T08:17:30.913Z"
+}

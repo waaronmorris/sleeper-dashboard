@@ -1,0 +1,145 @@
+{
+  "tradeId": "29c493368751253e",
+  "week": 7,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "powerperson",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 266,
+        "valueLost": 3886,
+        "netValueChange": -3620,
+        "estimatedPowerScoreChange": -3.2,
+        "playersGained": [
+          {
+            "name": "Travis Kelce",
+            "value": 266
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "George Pickens",
+            "value": 3886
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Travis Kelce",
+          "position": "TE",
+          "team": "KC",
+          "age": 37,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "George Pickens",
+          "position": "WR",
+          "team": "DAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 3886,
+        "valueLost": 266,
+        "netValueChange": 3620,
+        "estimatedPowerScoreChange": 3.2,
+        "playersGained": [
+          {
+            "name": "George Pickens",
+            "value": 3886
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Travis Kelce",
+            "value": 266
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "George Pickens",
+          "position": "WR",
+          "team": "DAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Travis Kelce",
+          "position": "TE",
+          "team": "KC",
+          "age": 37,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2024",
+      "round": 1,
+      "from": "powerperson",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is that powerperson just made the classic win-now panic move at 4-2, and sources indicate this could haunt them for years. Here's what's developing: a playoff contender ranked dead last in power score (#11 of 12) despite their winning record just shipped out a 25-year-old George Pickens—who's entering his absolute prime years—PLUS a first-round pick for a 37-year-old Travis Kelce. Yes, Kelce's averaging 17.6 points per game, but we're talking about a tight end in his late thirties in dynasty. The value differential here is staggering: powerperson received assets worth 266 points while giving up 3,886. That's not a typo, folks.\n\nWhat makes this particularly fascinating is the context on both sides. Cosmohouck sits at 1-5 but ranks first in power score at 98.4 out of 100—classic case of a stacked roster underperforming early, probably due to injuries or bad luck. They're clearly pivoting to 2024 and beyond, moving their aging championship piece for a young receiver and premium draft capital. Meanwhile, powerperson's track record shows they've been relatively quiet on the trade market historically, and their first major move is... this? Keep an eye on whether Kelce can even carry them through seven weeks to the playoffs, because that 20.7 power score suggests deeper roster issues that one tight end won't solve.\n\nHere's my bold prediction: two years from now, Pickens will be a top-12 dynasty receiver while Kelce's retired, and that 2024 first-rounder becomes a foundational piece for cosmohouck's next championship run. The receiving corps age curve peaks around 26-30, putting Pickens in the sweet spot for the next five years. Sources close to the situation indicate powerperson might be chasing wins today without realizing their roster composition suggests they're not actually built to capitalize on this window. Trading away premium dynasty assets when you're ranked eleventh in power score? That's not championship strategy—that's hope disguised as aggression. Cosmohouck absolutely fleeced this one, turning a rental into long-term equity while sitting in first place for future power.",
+  "generatedAt": "2026-11-13T08:20:40.221Z"
+}

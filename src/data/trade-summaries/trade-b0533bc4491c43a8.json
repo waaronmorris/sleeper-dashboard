@@ -1,0 +1,157 @@
+{
+  "tradeId": "b0533bc4491c43a8",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 1319,
+        "valueLost": 0,
+        "netValueChange": 1319,
+        "estimatedPowerScoreChange": 1.2,
+        "playersGained": [
+          {
+            "name": "Derrick Henry",
+            "value": 1252
+          },
+          {
+            "name": "Alvin Kamara",
+            "value": 67
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "team": "BAL",
+          "age": 32,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "Alvin Kamara",
+          "position": "RB",
+          "team": "NO",
+          "age": 31,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1319,
+        "netValueChange": -1319,
+        "estimatedPowerScoreChange": -1.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Derrick Henry",
+            "value": 1252
+          },
+          {
+            "name": "Alvin Kamara",
+            "value": 67
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "team": "BAL",
+          "age": 32,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "Alvin Kamara",
+          "position": "RB",
+          "team": "NO",
+          "age": 31,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "Langland"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "Langland"
+    },
+    {
+      "season": "2027",
+      "round": 3,
+      "from": "Langland",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Per league sources, Shogunation just mortgaged its future to win *right now*, shipping out two first-round picks for aging backs Derrick Henry and Alvin Kamara in a move that has serious Odell-to-Cleveland vibes. I'm told this is classic Shogunation – already the second-most active trader in the league – trying to capitalize on that #2 power ranking by loading up before Week 1 even kicks off. Here's the thing: Henry's 32, Kamara's 31 with a questionable knee, and you're giving up *two firsts* for maybe one good season of production? That's not dynasty strategy, that's dynasty panic.\n\nAccording to multiple sources, Langland just executed the ultimate teardown here, flipping two running backs on the wrong side of 30 for premium draft capital while sitting at a 36.4 power score. This is textbook rebuild mode – Langland's historically been win-now (look at that draft capital history), but clearly recognized the window slammed shut and pivoted beautifully. I'm told they're banking on Shogunation's picks being lottery tickets in 2026-27 when this roster craters under the weight of declining veterans.\n\nThe value disparity is staggering – 1,319 points of trade value flowing to Shogunation, but league sources say that number is fool's gold. Henry might have one more King Henry season in the tank with Baltimore, but the RB age cliff is *real* at 27-28, and we're four years past that. Kamara's already dinged up before the season starts. You're trading controllable youth for immediate gratification, and history tells us how this ends.\n\nI'm told both sides feel good about this deal, which should terrify Shogunation. When a team ranked 8th of 12 happily ships you their veterans for your future, that's usually a red flag the size of Baltimore. This could backfire spectacularly by 2026 when those picks turn into league-winning rookies and Henry's riding pine. Classic case of winning the trade on paper, losing it in reality.",
+  "generatedAt": "2026-11-13T08:05:39.696Z"
+}

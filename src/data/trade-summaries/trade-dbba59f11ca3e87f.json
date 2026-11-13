@@ -1,0 +1,131 @@
+{
+  "tradeId": "dbba59f11ca3e87f",
+  "week": 9,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "drobs",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 1695,
+        "valueLost": 430,
+        "netValueChange": 1265,
+        "estimatedPowerScoreChange": 1.1,
+        "playersGained": [
+          {
+            "name": "Baker Mayfield",
+            "value": 1695
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Anthony Richardson Sr.",
+            "value": 430
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Baker Mayfield",
+          "position": "QB",
+          "team": "TB",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Anthony Richardson Sr.",
+          "position": "QB",
+          "team": "IND",
+          "age": 24,
+          "careerStage": "Developing"
+        }
+      ]
+    },
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 430,
+        "valueLost": 1695,
+        "netValueChange": -1265,
+        "estimatedPowerScoreChange": -1.1,
+        "playersGained": [
+          {
+            "name": "Anthony Richardson Sr.",
+            "value": 430
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Baker Mayfield",
+            "value": 1695
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Anthony Richardson Sr.",
+          "position": "QB",
+          "team": "IND",
+          "age": 24,
+          "careerStage": "Developing"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Baker Mayfield",
+          "position": "QB",
+          "team": "TB",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "Shogunation",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: League sources tell me drobs just pulled off a savvy win-now move at 6-2, flipping the struggling Anthony Richardson for the red-hot Baker Mayfield plus a third-rounder. Per sources close to the situation, this is exactly the kind of move a playoff-locked team makes when they realize their high-upside QB lottery ticket is killing their championship window right now. Richardson's averaging just 5.4 points per game while Mayfield is crushing it at 14.4 PPG in Tampa's system—I'm told drobs looked at those five weeks until playoffs and said enough is enough with the developmental project.\n\nAccording to multiple league sources, Shogunation is making a fascinating gamble here from the #2 power-ranked spot. They're 4-4 despite elite underlying metrics—that 83.1 power score screams they should be better than .500—and now they're trading immediate QB production for a 24-year-old with generational rushing upside. The value chart shows they're giving up 1,695 in current value to get just 430 back, but in dynasty that's the price you pay for elite age and ceiling. I'm told Shogunation believes their roster strength can absorb the short-term QB downgrade while banking on Richardson's long-term trajectory.\n\nWhat's fascinating here is the trading histories, per sources: drobs is that active trader who's moved 28 players in and 25 out over their career—they know how to strike when opportunity presents itself. Meanwhile Shogunation has been more selective with just 12 career deals, making this Richardson acquisition all the more significant. League insiders say drobs saw a classic \"contender versus pretender\" moment and acted decisively, turning their biggest weakness into a rock-solid QB1 for a playoff push.\n\nHere's my bold prediction on how this looks in hindsight: If drobs wins the championship this year—and I'm told that 75% win rate with Mayfield's stability makes them legitimate contenders—this becomes the textbook \"know when to pivot\" trade. But watch Richardson in 2025 and beyond. According to those familiar with his development, the talent is undeniable, and Shogunation just bought the dip on a potential league-winner for the next half-decade. The third-round pick sweetener could haunt drobs long-term, but sometimes you mortgage tomorrow for today's trophy. This one's going to age like wine for somebody—we just don't know who yet.",
+  "generatedAt": "2026-11-13T08:12:04.631Z"
+}

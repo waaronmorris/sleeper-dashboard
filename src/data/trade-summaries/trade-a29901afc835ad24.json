@@ -1,0 +1,179 @@
+{
+  "tradeId": "a29901afc835ad24",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "Tishathefish"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 3424,
+        "netValueChange": -3424,
+        "estimatedPowerScoreChange": -3.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Jakobi Meyers",
+            "value": 448
+          },
+          {
+            "name": "Tee Higgins",
+            "value": 2870
+          },
+          {
+            "name": "Tyjae Spears",
+            "value": 106
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "team": "FA",
+          "age": 31,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "Najee Harris",
+          "position": "RB",
+          "team": "FA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jakobi Meyers",
+          "position": "WR",
+          "team": "JAX",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tee Higgins",
+          "position": "WR",
+          "team": "CIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "team": "TEN",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 56.3,
+        "powerRank": 5,
+        "lineupValueScore": 54.9,
+        "performanceScore": 66,
+        "positionalScore": 45.8,
+        "depthScore": 42.2,
+        "totalTeams": 12,
+        "totalRosterValue": 30811
+      },
+      "tradeImpact": {
+        "valueGained": 3424,
+        "valueLost": 0,
+        "netValueChange": 3424,
+        "estimatedPowerScoreChange": 3.1,
+        "playersGained": [
+          {
+            "name": "Jakobi Meyers",
+            "value": 448
+          },
+          {
+            "name": "Tee Higgins",
+            "value": 2870
+          },
+          {
+            "name": "Tyjae Spears",
+            "value": 106
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jakobi Meyers",
+          "position": "WR",
+          "team": "JAX",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tee Higgins",
+          "position": "WR",
+          "team": "CIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "team": "TEN",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "team": "FA",
+          "age": 31,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "Najee Harris",
+          "position": "RB",
+          "team": "FA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "Tishathefish"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is we've got a fascinating dynasty divergence happening in Week 1, and sources indicate this is exactly the kind of deal that defines championship windows for years to come.\n\nShogunation – let's call him \"The Gavel\" because he's slamming down wins NOW like a judge with no patience for appeals – just mortgaged the future to vault from an already elite 83.1 power score to championship-or-bust territory. Trading away Tee Higgins at 27, a first-rounder, AND depth pieces for 31-year-old Tyreek Hill? That's a contender screaming \"my window is THIS season.\" Hill's still producing at an elite 16.9 PPG clip, and Najee gives you that workhorse back stability, but folks, that negative 3,424 in trade value tells the whole story – you're paying the age tax in dynasty. For a team ranked #2 in the league with an 82.8 lineup score, this is pure consolidation mode. The bet? Hill's got one more elite year left, and Najee's 10.3 PPG is better than hoping Spears breaks out in Tennessee's messy backfield.\n\nOn the flip side, Tishathefish – I'm dubbing her \"The Architect\" because she's building a multi-year contender brick by brick – absolutely crushed the value game here. Sitting at 56.3 power score with a suspect 42.2 depth rating, she needed assets more than aging star power. Keep an eye on that 2025 first-rounder in particular – sources indicate this could be a high pick if Shogunation's gamble backfires. Higgins is entering his absolute WR prime at 27, and while Meyers is 30, he's a solid WR2/3 in Jacksonville's revamped offense. This is textbook rebuilder math: sacrifice immediate production for long-term trajectory and draft capital.\n\nThe timing? Week 1 is actually perfect for both sides of this deal, which rarely happens. Shogunation gets his championship pieces locked in before injury chaos starts, while Tishathefish maximizes return before Hill potentially shows age-related decline. My understanding is both managers are active traders – this is deal #11 for The Gavel, #4 for The Architect – so they know what they're doing. But here's the developing situation to watch: if that first-rounder ends up top-3 and Tyreek falls off the cliff at 32 next season, this could go down as one of the most lopsided dynasty deals in league history.\n\nBottom line? Shogunation's championship odds just spiked for 2024, but the 2025-2027 window might've slammed shut. The Architect is playing chess while everyone else plays checkers, stockpiling young talent and premium picks while her competition ages out. This is dynasty football at its finest – two completely rational strategies colliding in one blockbuster deal.",
+  "generatedAt": "2026-11-13T08:10:20.171Z"
+}

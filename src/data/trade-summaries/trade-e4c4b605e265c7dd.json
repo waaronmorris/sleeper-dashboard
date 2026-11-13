@@ -1,0 +1,121 @@
+{
+  "tradeId": "e4c4b605e265c7dd",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "drobs",
+    "mjgrana"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 67,
+        "netValueChange": -67,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "MarShawn Lloyd",
+            "value": 67
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Sam Howell",
+          "position": "QB",
+          "team": "DAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "MarShawn Lloyd",
+          "position": "RB",
+          "team": "GB",
+          "age": 25,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 67,
+        "valueLost": 0,
+        "netValueChange": 67,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "MarShawn Lloyd",
+            "value": 67
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "MarShawn Lloyd",
+          "position": "RB",
+          "team": "GB",
+          "age": 25,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Sam Howell",
+          "position": "QB",
+          "team": "DAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "mjgrana",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I've seen my share of head-scratching dynasty moves, but drobs just pulled off what I'm calling the \"Sam Howell Bailout Special.\" This is a rebuilding team—sitting at #9 in the power rankings with a 35 power score—essentially waving the white flag on a rookie running back who hasn't even touched the ball yet. MarShawn Lloyd has legitimate dynasty value as a 25-year-old in his peak RB window, buried behind Josh Jacobs in Green Bay but showing the receiving chops that keep backs relevant past their expiration date. What did drobs get? A backup quarterback in Dallas and a third-round pick that'll likely net them... another MarShawn Lloyd-type prospect. The value differential here is glaring—67 points of trade value for essentially zero. That's not asset management; that's a garage sale.\n\nNow, mjgrana—let me give him the \"Opportunistic Vulture\" nickname because he just swooped in and grabbed premium draft capital for scraps. This is a top-four team with an 83.2 depth score that didn't need Sam Howell clogging their roster. They're contending right now with a 70.4 power score, and they just turned a third-string QB and a mid-round pick into a running back who could break out if Jacobs gets dinged up or loses the trust in Matt LaFleur's offense. Meanwhile, drobs becomes \"The Bargain Bin Baron,\" and not in a good way. For an active trader with 17 career deals, this feels panicky for Week 1. You're rebuilding? Fine—but Lloyd is exactly the kind of young asset rebuilders should be hoarding, not dumping for quarterback depth pieces.\n\nHere's where this gets interesting from a dynasty construction standpoint: drobs has now acquired 23 players all-time but only moved 20, suggesting they like to accumulate. Yet they just dumped their best accumulation piece! This doesn't fit the pattern. Sam Howell had one decent fantasy stretch in Washington before becoming irrelevant behind Dak Prescott. In dynasty, backup QBs are roster cloggers unless you're in Superflex—and even then, Howell's ceiling is QB3 spot-starts. The third-round pick sweetens it slightly, but in dynasty, third-rounders hit at maybe 20% the rate of first-rounders. You're essentially hoping to draft another MarShawn Lloyd in 2025... when you already had him in 2024.\n\nThis reminds me of those \"scared money\" trades teams make after one preseason headline. Maybe drobs saw Josh Jacobs's contract and panicked. Maybe they think Lloyd's pass-catching profile doesn't translate. But in dynasty, you don't sell youth for aging depth and late picks unless you're getting *overwhelmed* with value. This is the opposite. My bold prediction? MarShawn Lloyd finishes as a top-24 dynasty RB asset within two years—either as Green Bay's featured back in 2025 or through a trade to a backfield with opportunity—while Sam Howell never starts another NFL game and that third-rounder becomes a taxi squad guy. mjgrana just pulled off highway robbery in broad daylight, and drobs is going to be kicking themselves when Lloyd starts getting those Packers' high-value targets out of the backfield. This one's a total steal for the contender.",
+  "generatedAt": "2026-11-13T08:09:56.521Z"
+}

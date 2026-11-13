@@ -1,0 +1,163 @@
+{
+  "tradeId": "e155a6b5bc7618f7",
+  "week": 7,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "powerperson",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 198,
+        "valueLost": 0,
+        "netValueChange": 198,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Kenny Gainwell",
+            "value": 198
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Kenny Gainwell",
+          "position": "RB",
+          "team": "TB",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Jahan Dotson",
+          "position": "WR",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Hunter Renfrow",
+          "position": "WR",
+          "team": "FA",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Cam Akers",
+          "position": "RB",
+          "team": "FA",
+          "age": 26,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 198,
+        "netValueChange": -198,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Kenny Gainwell",
+            "value": 198
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Hunter Renfrow",
+          "position": "WR",
+          "team": "FA",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Cam Akers",
+          "position": "RB",
+          "team": "FA",
+          "age": 26,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kenny Gainwell",
+          "position": "RB",
+          "team": "TB",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Jahan Dotson",
+          "position": "WR",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "drobs",
+      "to": "powerperson"
+    },
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "powerperson",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I'm going to be blunt here: this is a bizarre trade that makes me question whether both managers were watching the same season unfold. You've got drobs at 2-4, essentially dead in the water, making what should be a full-blown rebuild move—and they're upgrading from a 30-year-old Hunter Renfrow averaging 3.2 points per game to... Jahan Dotson at 6.6 PPG? In a dynasty league, when you're buried at 2-4 with a 35 power score ranking 9th out of 12, you should be stockpiling draft capital and acquiring players under 24. Instead, drobs is trading a 2023 second-rounder for a 2024 third? That's moving BACKWARDS in draft value while your window is already boarded up.\n\nNow let's talk about powerperson, who's sitting pretty at 4-2 as a legitimate playoff contender but with an absolutely baffling power score of 20.7—somehow ranking 11th despite that winning record. This screams unsustainable, and what does this manager do? Dumps the younger Dotson (26) who's actually producing at a respectable clip for the ghost of Cam Akers, who's averaging 3.1 points and is already a free agent in this data set. The only thing that makes sense here is acquiring that 2023 second-rounder to potentially flip for immediate help, but you're giving up your best asset in Dotson to get it. Kenny Gainwell at 27 has some value as a change-of-pace back, but we're talking about a guy who's never been more than a committee player.\n\nThe value metrics tell the whole story—drobs gets a +198 net value while powerperson goes -198. That's not close, folks. This is drobs accidentally stumbling into a better rebuild package despite seemingly trying NOT to rebuild properly. Dotson is the crown jewel here, a 26-year-old receiver in his athletic prime who's doubling Renfrow's production. Even if you love Akers' talent (and I've always been skeptical post-Achilles), you're banking on a complete career resurrection from a guy NFL teams didn't even want rostered.\n\nHere's my bold prediction: by Week 7 of 2023, Jahan Dotson will be a top-36 fantasy receiver, Cam Akers will be on his third team trying to prove he's not washed, and powerperson will be furiously trying to trade that second-round pick back to drobs to undo this disaster. This is a classic case of a contender panicking and making a win-now move with players who won't move the needle now OR later. Drobs wins this going away, even if they didn't fully commit to the proper rebuild strategy.",
+  "generatedAt": "2026-11-13T08:20:21.940Z"
+}

@@ -1,0 +1,157 @@
+{
+  "tradeId": "1bd517c02150d85c",
+  "week": 2,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1779,
+        "netValueChange": -1779,
+        "estimatedPowerScoreChange": -1.6,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Baker Mayfield",
+            "value": 1695
+          },
+          {
+            "name": "Brian Robinson Jr.",
+            "value": 84
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Marvin Mims Jr.",
+          "position": "WR",
+          "team": "DEN",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Baker Mayfield",
+          "position": "QB",
+          "team": "TB",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Brian Robinson Jr.",
+          "position": "RB",
+          "team": "ATL",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 1779,
+        "valueLost": 0,
+        "netValueChange": 1779,
+        "estimatedPowerScoreChange": 1.6,
+        "playersGained": [
+          {
+            "name": "Baker Mayfield",
+            "value": 1695
+          },
+          {
+            "name": "Brian Robinson Jr.",
+            "value": 84
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Baker Mayfield",
+          "position": "QB",
+          "team": "TB",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Brian Robinson Jr.",
+          "position": "RB",
+          "team": "ATL",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Marvin Mims Jr.",
+          "position": "WR",
+          "team": "DEN",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "mjgrana",
+      "to": "drobs"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "mjgrana",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**Breaking: drobs Opts for Dynasty Youth Movement in Stunning Week 2 Pivot**\n\nPer sources, drobs just pressed the reset button harder than anyone anticipated this early in the season, and I'm told this is one of the clearest rebuilding declarations we've seen in dynasty fantasy this year. Despite sitting at 1-0, drobs—who ranks dead last among contenders at #9 in power score (35/100)—just shipped out a peak-age quarterback and running back for a 24-year-old ascending receiver and *two premium draft picks*. According to multiple sources close to the situation, this is dynasty asset management 101: selling aging win-now pieces before the market collapses. Baker Mayfield is 31. Brian Robinson Jr. is 27—that's *the* running back cliff age. Meanwhile, Marvin Mims Jr. is trending up with 576 recent adds and sits as Denver's WR4 with legitimate breakout potential in what league insiders expect to be an explosive Broncos offense.\n\nHere's what makes this fascinating: mjgrana (70.4 power score, #4 overall) is mortgaging future capital to win *now*, giving up a 2027 first-rounder—potentially gold in dynasty—for immediate production. I'm told mjgrana feels the championship window is open this season despite the 0-1 start, and Baker instantly upgrades a quarterback room while BRob provides steady RB depth. But sources say the value exchange here is lopsided: drobs netted negative 1,779 in immediate value but acquired infinite future flexibility. That 2027 first-rounder alone could be a league-winner if mjgrana's roster ages poorly.\n\nThe rivalry angle adds juice here—these teams are deadlocked 6-6 all-time, and drobs just signaled they're playing chess while mjgrana plays checkers. League sources suggest drobs, historically an active trader (23 career deals), is building toward 2026-2027 dominance while mjgrana burns picks for marginal upgrades. The power score impact tells the story: mjgrana gains 1.6 points now; drobs loses 1.6 but positions for exponential future gains.\n\n**My bold prediction**: This trade looks brilliant for drobs in 18 months when that 2027 first becomes a stud rookie RB, Mims develops into a WR2, and Baker's retired while BRob is a backup. mjgrana better win the championship this year, because sources say they just paid a king's ransom for rental pieces. Dynasty is about tomorrow—drobs is playing the long game, and I'm told they just fleeced a contender blinded by win-now urgency.",
+  "generatedAt": "2026-11-13T08:08:31.279Z"
+}

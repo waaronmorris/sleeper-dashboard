@@ -1,0 +1,159 @@
+{
+  "tradeId": "784eef6b2595b4e3",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 997,
+        "valueLost": 4938,
+        "netValueChange": -3941,
+        "estimatedPowerScoreChange": -3.5,
+        "playersGained": [
+          {
+            "name": "Chuba Hubbard",
+            "value": 997
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jonathan Taylor",
+            "value": 4938
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Chuba Hubbard",
+          "position": "RB",
+          "team": "CAR",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "team": "IND",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 4938,
+        "valueLost": 997,
+        "netValueChange": 3941,
+        "estimatedPowerScoreChange": 3.5,
+        "playersGained": [
+          {
+            "name": "Jonathan Taylor",
+            "value": 4938
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Chuba Hubbard",
+            "value": 997
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "team": "IND",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chuba Hubbard",
+          "position": "RB",
+          "team": "CAR",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2025",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "powerperson",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: In what league sources are calling a potential dynasty-defining heist, top-ranked cosmohouck just acquired Jonathan Taylor from basement-dwelling powerperson in exchange for Chuba Hubbard and two first-round picks, per multiple sources familiar with the deal. I'm told this is the kind of trade that gets dissected for years—and not in a good way for one side.\n\nHere's what I'm hearing from around the league: cosmohouck, already sitting at a 98.4 power score as the league's undisputed juggernaut, just added a premium RB1 asset while giving up essentially spare parts and future capital. The value discrepancy is staggering—we're talking 4,938 in Taylor value versus 997 for Hubbard. That's not a gap, that's a canyon. Per sources, cosmohouck's willingness to surrender two first-rounders signals one thing: this team is going all-in on a championship window RIGHT NOW. When you're ranked #1 of 12, you don't rebuild—you consolidate elite talent and steamroll the competition.\n\nMeanwhile, powerperson—languishing at 20.7 power score, dead last at #11—appears to be waving the white flag on 2023. I'm told the logic here is classic dynasty rebuilding: accumulate picks, get younger, reset the foundation. But here's the problem: both players are 27 years old! There's no age arbitrage here. League sources are scratching their heads at trading a 7.0 PPG back for a 4.9 PPG back when you're supposedly rebuilding. The historical data shows powerperson as an active trader (7 deals all-time, 3 this season already), but this -3.5 projected power score hit feels like panic, not process.\n\nAccording to people close to the situation, this trade represents the rich getting richer while the desperate get draft tickets. Two first-rounders are premium dynasty assets, sure—but you're banking on hitting on those picks to maybe, possibly, eventually get someone as good as the Jonathan Taylor you just shipped out. I'm told contenders around the league are furious they didn't get a chance to bid on Taylor, because this return feels light for an elite RB still in his theoretical prime. The winner here? Laughably obvious. Cosmohouck just added +3.5 power score and a legitimate league-breaking weapon. Powerperson better hope those picks turn into gold, because right now, this looks like selling a Lamborghini to buy lottery tickets.",
+  "generatedAt": "2026-11-13T08:15:07.605Z"
+}

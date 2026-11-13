@@ -1,0 +1,97 @@
+{
+  "tradeId": "09107c33b70da4d6",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Keaontay Ingram",
+          "position": "RB",
+          "team": "FA",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 56.3,
+        "powerRank": 5,
+        "lineupValueScore": 54.9,
+        "performanceScore": 66,
+        "positionalScore": 45.8,
+        "depthScore": 42.2,
+        "totalTeams": 12,
+        "totalRosterValue": 30811
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Keaontay Ingram",
+          "position": "RB",
+          "team": "FA",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is we've got a classic dynasty depth-chart gamble here in Week 1, and honestly, this one's all about reading the tea leaves on Keaontay Ingram's future.\n\nSources indicate Shogunation - let's call them \"The Asset Flipper\" given their pattern of moving pieces around with six deals already this season - saw an opportunity to extract something from nothing. They're sitting pretty at #2 in the power rankings at 83.1, clearly in win-now mode based on their history of selling picks for talent, but here's the twist: they're taking a 2025 third-rounder for a 26-year-old running back who averaged 0.8 points per game and is currently a free agent. That's peak contender behavior - turning roster cloggers into future assets while you chase a championship.\n\nMeanwhile, Tishathefish - we'll dub them \"The Lottery Ticket Collector\" - is making the classic rebuilder's play from the #5 spot with a 56.3 power score. My understanding is they're swapping a distant third-round pick for a flier on a young back who might catch on somewhere. Here's the developing situation to monitor: at 26 years old, Ingram's running out of runway in the brutal RB age curve, and paying a third-rounder for a guy who isn't even rostered in the NFL is... optimistic. Their future-focused approach makes sense given their roster construction, but this feels like paying retail for damaged goods.\n\nKeep an eye on whether Ingram lands anywhere with a legitimate path to touches - that's the only way this move makes sense for Tishathefish. For Shogunation, they just turned a practice squad body into a draft asset they can flip later. Smart business from the contender, questionable asset management from the rebuilder. Sources tell me third-round picks in dynasty typically yield *someone* who at least makes a roster.",
+  "generatedAt": "2026-11-13T08:13:29.184Z"
+}

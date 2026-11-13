@@ -1,0 +1,145 @@
+{
+  "tradeId": "6a0fde66ae0f9f04",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 8419,
+        "valueLost": 6247,
+        "netValueChange": 2172,
+        "estimatedPowerScoreChange": 1.9,
+        "playersGained": [
+          {
+            "name": "Caleb Williams",
+            "value": 8419
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Drake Maye",
+            "value": 6247
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Caleb Williams",
+          "position": "QB",
+          "team": "CHI",
+          "age": 24,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Drake Maye",
+          "position": "QB",
+          "team": "NE",
+          "age": 24,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 6247,
+        "valueLost": 8419,
+        "netValueChange": -2172,
+        "estimatedPowerScoreChange": -1.9,
+        "playersGained": [
+          {
+            "name": "Drake Maye",
+            "value": 6247
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Caleb Williams",
+            "value": 8419
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Drake Maye",
+          "position": "QB",
+          "team": "NE",
+          "age": 24,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Caleb Williams",
+          "position": "QB",
+          "team": "CHI",
+          "age": 24,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "Shogunation"
+    },
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is this is one of the more fascinating quarterback swaps we'll see all season, folks – and here's why sources around the league are talking about it. Shogunation, who we'll call \"The Believer\" based on this move, just sent out Drake Maye plus essentially a pick swap to upgrade to Caleb Williams. Now, this manager has a history of moving pieces – 16 players dealt in their career versus just 11 acquired – but they're getting back over 2,000 in value here according to the market. When you're sitting at a 83.1 power score as the second-ranked team in your league, this is the kind of win-now consolidation move that makes sense.\n\nHere's what's developing with cosmohouck, \"The Dynasty Architect,\" who's somehow rating at a stunning 98.4 power score – tops in the league. My understanding is this manager is already stacked across the board with perfect scores in lineup strength, positional advantage, and depth. So why downgrade from Williams (14.9 PPG last year) to Maye (10.7 PPG)? Sources indicate this is a classic case of trading from a position of extreme strength. When you're this dominant, you can afford to take the discount on a younger quarterback – both are 24 years old, keep an eye on that – and bank the value elsewhere. This manager has made 24 career deals with a clear pattern: accumulate assets (21 picks acquired versus 15 traded).\n\nThe timing here is absolutely critical, and I think both managers played this smartly in Week 1. Before we see any 2025 data, you're making decisions purely on projection and offseason narrative. Williams has the better supporting cast in Chicago with more weapons, while Maye is working with a Patriots offense that's, let's just say, in transition. The Believer is going all-in on proven production – Williams' 14.9 PPG average gives them a safer floor when you're trying to chase down that 98.4-rated juggernaut ahead of you.\n\nKeep an eye on whether The Dynasty Architect flips that value surplus into another move – three trades already this season suggests more dominoes could fall. My sources say when you're already the league's top-rated team and you're adding 2,000+ in trade value, you're either building an empire or setting up a multi-part transaction. This looks like a situation where cosmohouck is playing 4D chess while everyone else is playing checkers. The real question: did Shogunation just mortgage future value to catch an uncatchable team, or is Williams the missing piece to dethrone the champion? Developing situation, folks.",
+  "generatedAt": "2026-11-13T08:06:01.274Z"
+}

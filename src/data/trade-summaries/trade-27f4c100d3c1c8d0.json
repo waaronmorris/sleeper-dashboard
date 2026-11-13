@@ -1,0 +1,167 @@
+{
+  "tradeId": "27f4c100d3c1c8d0",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 2313,
+        "valueLost": 4938,
+        "netValueChange": -2625,
+        "estimatedPowerScoreChange": -2.3,
+        "playersGained": [
+          {
+            "name": "Jameson Williams",
+            "value": 2258
+          },
+          {
+            "name": "Tory Horton",
+            "value": 55
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jonathan Taylor",
+            "value": 4938
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Tory Horton",
+          "position": "WR",
+          "team": "SEA",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "team": "IND",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 4938,
+        "valueLost": 2313,
+        "netValueChange": 2625,
+        "estimatedPowerScoreChange": 2.3,
+        "playersGained": [
+          {
+            "name": "Jonathan Taylor",
+            "value": 4938
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jameson Williams",
+            "value": 2258
+          },
+          {
+            "name": "Tory Horton",
+            "value": 55
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "team": "IND",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Tory Horton",
+          "position": "WR",
+          "team": "SEA",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "drobs",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a classic \"win-now versus rebuild\" transaction, and cosmohouck just pulled off a heist that perfectly aligns with their championship window. When you're sitting at the top of the power rankings with a 98.4 rating and you can consolidate two fringe assets into Jonathan Taylor—who just posted 9.0 PPG last season—you do that deal every single time. The value disparity here is stark: cosmohouck nets over 2,600 points of value by essentially packaging Jameson Williams and draft filler for a proven RB1. Taylor's 27 years old, which puts him right at the critical age threshold for running backs, but this is a win-now roster acquiring him. The pick swap is negligible—who cares about swapping 2026 and 2028 third-rounders when you're chasing a championship this year?\n\nNow let's talk about drobs' side of this equation, because this is where the athletic profile and production metrics completely fall apart. You're giving up a top-12 running back with elite production for Jameson Williams, who averaged just 5.0 PPG and hasn't proven he can be a consistent WR2, much less the centerpiece of a dynasty roster rebuild. Williams has the speed and scheme fit in Detroit's offense, but we've been waiting for the breakout since he entered the league. Tory Horton is currently on IR with a shin injury and listed as the fourth option in Seattle's passing game—that's roster clogger territory, not a rebuilding block. When I'm evaluating this from drobs' perspective at 35/100 power score, I understand the desire to get younger, but you cannot sell Jonathan Taylor at this steep of a discount. The value received doesn't match the caliber of asset being moved.\n\nThe timing here is fascinating because it's Week 1, meaning cosmohouck made this move with championship conviction before a single snap was played. That's aggressive roster management from someone who clearly evaluated their depth chart and identified running back as the missing piece. Meanwhile, drobs is selling Taylor without even seeing if they could compete—you're ninth out of twelve teams, but it's literally Week 1. The urgency level is low, yet they're acting like a team punting on the season before the season even starts. From a talent evaluation standpoint, that's how you stay in the bottom third of the league rankings.\n\nHere's my bold prediction: Jonathan Taylor finishes as a top-8 running back this season, Jameson Williams fails to crack top-24 at receiver, and drobs is kicking themselves by Week 6 when they realize they sold their best trade chip for pennies on the dollar. Cosmohouck wins this trade by a landslide—it's the kind of consolidation move that championship rosters make, acquiring scarcity at running back while their competition is still figuring out their identity. This won't even be close when we look back in December.",
+  "generatedAt": "2026-11-13T08:04:30.738Z"
+}

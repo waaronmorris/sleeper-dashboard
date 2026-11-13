@@ -1,0 +1,149 @@
+{
+  "tradeId": "461cda6c092c9e04",
+  "week": 7,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Langland",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 1252,
+        "valueLost": 0,
+        "netValueChange": 1252,
+        "estimatedPowerScoreChange": 1.1,
+        "playersGained": [
+          {
+            "name": "Derrick Henry",
+            "value": 1252
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "team": "BAL",
+          "age": 32,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyler Boyd",
+          "position": "WR",
+          "team": "FA",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1252,
+        "netValueChange": -1252,
+        "estimatedPowerScoreChange": -1.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Derrick Henry",
+            "value": 1252
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Tyler Boyd",
+          "position": "WR",
+          "team": "FA",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "team": "BAL",
+          "age": 32,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 1,
+      "from": "Langland",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "Langland",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "Langland",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I need to talk about the elephant in the room here – this is one of the most bizarre roster constructions I've seen all season. Cosmohouck sits at 1-5, likely eliminated from playoff contention, yet somehow has the #1 power score in the entire league at 98.4 out of 100. Perfect lineup rating, perfect positional balance, elite depth – and they're getting absolutely shellacked every week. That tells me everything I need to know: this team is loaded but the breaks aren't going their way, and they're making the exact right move by blowing it up now. Moving Derrick Henry at age 32 for a haul of three draft picks spanning the next three years? That's textbook dynasty rebuilding. You're selling a depreciating asset at peak value to a contender who's desperate for running back help.\n\nNow let's talk about Langland. You're 5-1, sitting pretty in playoff position, and your power score is 36.4 – eighth out of twelve teams. That's... concerning for a team making a win-now move. This is the fantasy football equivalent of mortgaging your future to put a new engine in a used Honda Civic. Yes, Henry is averaging 14.7 points per game and can absolutely help you contend, but you just gave up a 2023 first-rounder, a 2024 second, AND a 2025 third for a running back who's staring down the age cliff. In dynasty, that's borderline malpractice. Running backs age like milk, not wine, and Henry has more career carries than most rental cars have miles. Tyler Boyd was a throw-in here – solid WR3 production but hardly the centerpiece.\n\nThe timing actually works for both sides, which is rare in these lopsided deals. Week 7 gives Langland enough runway to integrate Henry and make a playoff push with seven weeks until the postseason. For cosmohouck, you're acknowledging reality early enough to pivot into full tank mode and start planning for 2023 and beyond. That 2023 first-rounder could be a top-three pick given Langland's mediocre power score – you might be looking at Bijan Robinson or Jahmyr Gibbs territory. Add in future second and third rounders, and you're accumulating the draft capital necessary for a proper rebuild.\n\nHere's my bold prediction: In two years, we'll look back at this as highway robbery by cosmohouck. Henry will have maybe one more solid season left in the tank before Father Time catches up, while those draft picks will be hitting their prime years. Langland might squeeze out a playoff appearance or two, but without sustainable assets and a middling roster foundation, they're going to find themselves in purgatory – not bad enough to rebuild, not good enough to truly compete. Cosmohouck wins this trade decisively, and honestly, it's not even close. Sometimes the best move is admitting the season's lost and playing chess while everyone else is playing checkers.",
+  "generatedAt": "2026-11-13T08:21:03.329Z"
+}

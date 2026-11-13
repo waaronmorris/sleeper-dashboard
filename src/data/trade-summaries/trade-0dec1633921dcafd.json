@@ -1,0 +1,131 @@
+{
+  "tradeId": "0dec1633921dcafd",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "mastab24"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 5918,
+        "valueLost": 227,
+        "netValueChange": 5691,
+        "estimatedPowerScoreChange": 5.1,
+        "playersGained": [
+          {
+            "name": "Drake London",
+            "value": 5918
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Rachaad White",
+            "value": 227
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "team": "ATL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rachaad White",
+          "position": "RB",
+          "team": "WAS",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "mastab24",
+      "teamContext": "Middle of pack - unclear direction",
+      "powerScore": {
+        "powerScore": 37.4,
+        "powerRank": 7,
+        "lineupValueScore": 37.5,
+        "performanceScore": 44,
+        "positionalScore": 29.7,
+        "depthScore": 19.7,
+        "totalTeams": 12,
+        "totalRosterValue": 21035
+      },
+      "tradeImpact": {
+        "valueGained": 227,
+        "valueLost": 5918,
+        "netValueChange": -5691,
+        "estimatedPowerScoreChange": -5.1,
+        "playersGained": [
+          {
+            "name": "Rachaad White",
+            "value": 227
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Drake London",
+            "value": 5918
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Rachaad White",
+          "position": "RB",
+          "team": "WAS",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "team": "ATL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "mastab24"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "This is highway robbery in broad daylight, and I'm genuinely confused about what mastab24 was thinking here. We've got \"The Vault Builder\" Shogunation doing what they do best—accumulating young talent like they're running a prospect farm system—while \"The Fire Sale\" mastab24 just gave away a 22-year-old (at the time) franchise cornerstone for pennies on the dollar.\n\nLet's cut through the noise: Drake London was the eighth overall pick in the 2022 NFL Draft, had just finished a respectable rookie campaign, and was entering Year 2 with a massive target share locked in. You're talking about a 6'4\" possession monster who profiles as a WR1 for the next 6-8 years. Shogunation, sitting pretty at #2 in the power rankings with an 83.1 score, just added a true building block without sacrificing any meaningful roster equity. Rachaad White? At 27 years old, he's a replacement-level back who was barely relevant in Tampa's committee, and a mid-second-round pick in dynasty is essentially a lottery ticket that usually busts. The value gap here is staggering—we're talking 5,918 to 227. That's not a trade, that's a donation.\n\nThis has serious DeAndre Hopkins vibes, and I mean that as a warning to mastab24. Remember when Bill O'Brien shipped Hopkins to Arizona for David Johnson and a second-rounder? Everyone knew immediately it was lopsided, but the true pain came watching Hopkins rack up Pro Bowl seasons while the Texans spiraled into irrelevance. That's the trajectory we're looking at here. Shogunation is a legitimate contender who just got significantly more dangerous for years to come, while mastab24—already sitting at a concerning 37.4 power score in 7th place—just traded away their best chance at long-term competitiveness. When you're rebuilding, you accumulate Londons, you don't give them away for aging committee backs.\n\nHere's my bold prediction: Three years from now, Drake London will be a top-12 dynasty receiver, and this trade will be referenced in that league as the moment mastab24's window completely closed. Shogunation? They're going to ride this young core to multiple championship appearances, and London will be a central piece of that puzzle. This is the kind of move that defines franchises in dynasty leagues—one team building smart, the other team building nowhere.",
+  "generatedAt": "2026-11-13T08:17:13.116Z"
+}

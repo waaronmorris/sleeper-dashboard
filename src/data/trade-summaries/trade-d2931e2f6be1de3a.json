@@ -1,0 +1,97 @@
+{
+  "tradeId": "d2931e2f6be1de3a",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mastab24",
+    "Tishathefish"
+  ],
+  "sides": [
+    {
+      "teamName": "mastab24",
+      "teamContext": "Middle of pack - unclear direction",
+      "powerScore": {
+        "powerScore": 37.4,
+        "powerRank": 7,
+        "lineupValueScore": 37.5,
+        "performanceScore": 44,
+        "positionalScore": 29.7,
+        "depthScore": 19.7,
+        "totalTeams": 12,
+        "totalRosterValue": 21035
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Noah Fant",
+          "position": "TE",
+          "team": "NO",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 56.3,
+        "powerRank": 5,
+        "lineupValueScore": 54.9,
+        "performanceScore": 66,
+        "positionalScore": 45.8,
+        "depthScore": 42.2,
+        "totalTeams": 12,
+        "totalRosterValue": 30811
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Noah Fant",
+          "position": "TE",
+          "team": "NO",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "mastab24",
+      "to": "Tishathefish"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I'm going to be honest with you – this trade is like comparing two wet paper bags to see which one holds more water. Neither team is getting meaningful value here, and frankly, that's a problem for mastab24.\n\nHere's the deal: Noah Fant averaged 5.1 points per game before this trade. Five point one! In a dynasty league, you're trading a third-round pick – which could land you a promising young receiver or a lottery ticket running back – for a 28-year-old tight end who was basically a streamer option. Fant had just moved to New Orleans, where he'd be competing for targets in an offense that historically spreads the ball around. The tight end position already has razor-thin scoring margins outside the elite tier, and Fant wasn't sniffing that territory. This is reaching for roster filler when you should be accumulating assets.\n\nTishathefish is sitting at a 56.3 power score – middle of the pack but competitive – and they recognized something crucial: in dynasty, aging tight ends depreciate faster than a luxury car off the lot. Getting *any* draft capital for a backup-caliber TE at 28 years old is smart business. Meanwhile, mastab24 is down at a 37.4 power score, ranked seventh in a twelve-team league, and they're hemorrhaging draft picks like they're going out of style. This is their second trade this season, and they've now acquired three players while giving up four total assets including picks. That's not contending – that's panic.\n\nMy bold prediction? By the 2024 draft, mastab24 will deeply regret not having that third-rounder when a breakout college receiver is sitting there for the taking. This reminds me of the Russell Wilson trade in one specific way – not the magnitude, obviously, but the philosophy. The Broncos mortgaged multiple premium picks for an aging asset whose best days were behind him, banking on past reputation over current trajectory. Mastab24 just did the same thing on a micro scale, trading future flexibility for a name-brand tight end who'll give them maybe six points per week. That third-rounder could've been flipped with other assets to move up in the draft or package for a legitimate difference-maker.\n\nWinner: Tishathefish, and it's not particularly close. They turned a replacement-level asset into draft capital while sitting in playoff contention. Mastab24 is burning picks to tread water, and in dynasty, that's how rebuilds turn into five-year death spirals. Championship implications? Minimal for both teams – but at least Tishathefish is building correctly for sustained success.",
+  "generatedAt": "2026-11-13T08:14:09.074Z"
+}

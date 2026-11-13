@@ -1,0 +1,145 @@
+{
+  "tradeId": "160d3164bfd2038b",
+  "week": 1,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 7,
+        "valueLost": 6395,
+        "netValueChange": -6388,
+        "estimatedPowerScoreChange": -5.7,
+        "playersGained": [
+          {
+            "name": "Audric Estime",
+            "value": 7
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Brock Purdy",
+            "value": 6395
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Audric Estime",
+          "position": "RB",
+          "team": "NO",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Brock Purdy",
+          "position": "QB",
+          "team": "SF",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 6395,
+        "valueLost": 7,
+        "netValueChange": 6388,
+        "estimatedPowerScoreChange": 5.7,
+        "playersGained": [
+          {
+            "name": "Brock Purdy",
+            "value": 6395
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Audric Estime",
+            "value": 7
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Brock Purdy",
+          "position": "QB",
+          "team": "SF",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Audric Estime",
+          "position": "RB",
+          "team": "NO",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Louis Riddick",
+  "analysis": "From a front office standpoint, this is one of the most lopsided transactions I've seen in Week 1 of any dynasty format. Cosmohouck, sitting at 98.4 power score as the league's dominant force, just executed what amounts to organizational highway robbery—acquiring a 26-year-old ascending QB1 while surrendering essentially nothing. Two future picks and Audric Estime, a depth piece averaging 2.2 points per game buried as the fourth running back on a depth chart? That's not asset management, that's a clearance sale, and powerperson is the one liquidating premium inventory for pennies on the dollar.\n\nLet's talk about the strategic failure here. Powerperson is ranked 11th out of 12 teams with a power score barely above 20, and their response is to trade away a starting-caliber quarterback in his prime for futures? This is asset mismanagement disguised as rebuilding. Yes, they're \"future-focused\" according to their profile, but you don't punt on proven production at the game's most important position for lottery tickets when you need to establish organizational credibility. Brock Purdy just posted 16.8 PPG in a Kyle Shanahan offense—that's a foundational piece you build around, not a chip you cash in for a couple of 2026 picks that could easily end up as mid-round busts. The -6,388 net value differential isn't just significant, it's catastrophic.\n\nWhat makes this particularly egregious is the timing and the championship window implications. Cosmohouck is already the league's powerhouse, and now they've plugged their only conceivable hole without sacrificing any current roster strength. That +5.7 power score bump? That's the gap between a championship favorite and an unbeatable juggernaut. They're stacking their championship window right now, and they did it by convincing a rebuilding team to give them exactly what they needed while taking back nothing that hurts them this season. Meanwhile, powerperson added maybe a 10% chance those picks turn into something useful two years from now.\n\nThe only scenario where this makes sense for powerperson is if they know with absolute certainty that those 2026 picks are going to be early firsts, but even then—you're betting on the come while giving up a young QB with five-plus years of QB1 production ahead of him. Cosmohouck's organizational philosophy is clear: maximize the current roster's elite talent while it's in its prime. Powerperson's philosophy appears to be hope and pray. In dynasty, you rebuild by accumulating young talent at premium positions, not by trading it away for speculative dart throws. This wasn't shrewd asset accumulation—it was a fundamental misunderstanding of positional value and competitive timing.",
+  "generatedAt": "2026-11-13T08:07:05.002Z"
+}

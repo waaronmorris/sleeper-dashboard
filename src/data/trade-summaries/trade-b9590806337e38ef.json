@@ -1,0 +1,121 @@
+{
+  "tradeId": "b9590806337e38ef",
+  "week": 8,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 106,
+        "netValueChange": -106,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Tyjae Spears",
+            "value": 106
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Roschon Johnson",
+          "position": "RB",
+          "team": "CHI",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "team": "TEN",
+          "age": 25,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 106,
+        "valueLost": 0,
+        "netValueChange": 106,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Tyjae Spears",
+            "value": 106
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "team": "TEN",
+          "age": 25,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Roschon Johnson",
+          "position": "RB",
+          "team": "CHI",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: League sources tell me Shogunation just pulled off a savvy mid-season consolidation move, acquiring Tyjae Spears from drobs in exchange for Roschon Johnson and a 2026 second-rounder. I'm told the #2-ranked team in the league saw an opportunity to upgrade their contending roster with six weeks until playoffs, and per sources, they pounced. The value disparity here is notable – Spears carries a dynasty value of 106 while Johnson's minimal scoring (4.3 PPG) made him essentially a throw-in piece. For a team at 83.1 power score already sitting pretty at 5-2, this is textbook win-now aggression.\n\nAccording to multiple sources, drobs – sitting at 4-3 and ranked #9 in power score – appears to be reading the tea leaves here. I'm told this move signals a subtle pivot toward 2026 assets, which makes sense when you're staring up at a massive talent gap in this league. The manager has been active all season (4 trades, 12 all-time), but flipping a 25-year-old backup RB in his theoretical prime years for a future second-rounder? That's not contender behavior, folks. League sources say drobs is taking a -106 net value hit here, which is significant even if Spears remains stuck behind Derrick Henry and Tony Pollard in Tennessee's pecking order.\n\nPer sources, Shogunation has been absolutely dealing this year – this marks their eighth trade of the season. The aggressive pattern continues: they're consolidating depth pieces and future picks to load up for a championship run. I'm told both managers feel good about this deal, but the math doesn't lie. Shogunation gets a younger backup RB with clearer upside and dynasty appeal while giving up essentially replacement-level production and a distant draft pick. The timing is perfect for them – they're playoff locked, and Spears gives them a potential flex play down the stretch.\n\nLeague sources say this is the kind of trade that separates the contenders from the pretenders at the deadline. One team is going for it, the other is subtly repositioning for future battles. I'm told drobs will argue that 2026 second-rounder has real value in dynasty formats, but when you're 4-3 and trying to make noise *this year*, trading away RB depth for picks three years out sends a message. Shogunation just got better for the playoff push – breaking news you can use heading into championship season.",
+  "generatedAt": "2026-11-13T08:18:10.647Z"
+}

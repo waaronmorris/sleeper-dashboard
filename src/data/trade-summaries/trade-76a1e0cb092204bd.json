@@ -1,0 +1,97 @@
+{
+  "tradeId": "76a1e0cb092204bd",
+  "week": 7,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Langland",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Dontrell Hilliard",
+          "position": "RB",
+          "team": "FA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Dontrell Hilliard",
+          "position": "RB",
+          "team": "FA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "Langland",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm going to tell you something right now - this is a CLASSIC case of a contender panicking at the wrong time and making a move they're going to regret in about six weeks. Langland is sitting pretty at 5-1, playoff lock status, but their power score tells me EVERYTHING I need to know - 36.4 out of 100, ranked EIGHTH in a twelve-team league! This roster has holes, and they're trying to plug them with Dontrell Hilliard? Are you KIDDING me? This guy is 28 years old, he's a free agent journeyman who's averaging 5.7 points per game. The tape doesn't lie, folks - Hilliard is a replacement-level backup with ZERO upside. In dynasty, you don't trade picks for 28-year-old street free agents unless you're absolutely desperate. And here's the thing - with seven weeks until the playoffs, this is WAY too early to be making panic moves like this.\n\nNow let me tell you about cosmohouck - this is how you REBUILD in dynasty football. They're 1-5, likely eliminated from playoff contention, but look at that power score: 98.4 out of 100, FIRST in the entire league! This manager understands roster construction, depth, and the long game. They've now acquired FIVE draft picks while only trading away one, and they just flipped a 28-year-old running back with no future for draft capital two years down the road. That's TEXTBOOK asset management. When you're 1-5, you're not competing this year - you're building for 2024 and beyond. This is exactly what you should be doing.\n\nThis trade reminds me of the Odell Beckham Jr. deal when the Giants shipped him to Cleveland. Big splash move, everyone thought the Browns were going all-in to compete NOW, and what happened? It fizzled out completely because they overvalued the immediate impact and didn't consider the long-term cost. Langland is making the same mistake here - trading future assets for a guy who won't move the needle. Here's my bold prediction: Dontrell Hilliard will be out of the league or completely irrelevant by 2024, and that third-round pick cosmohouck just acquired? That's going to turn into a young running back or wide receiver with actual ceiling, actual upside, actual DYNASTY VALUE.\n\nThe winner here is cosmohouck, and it's not even close. They're playing chess while Langland is playing checkers. In dynasty, you BUILD through the draft, you accumulate picks when you're not competing, and you absolutely DO NOT trade future capital for aging veterans who can't help you win a championship. Langland might squeeze out a few decent weeks from Hilliard, but in two years when that third-round pick is producing and Hilliard is sitting on someone's couch, this trade is going to look absolutely LOPSIDED. The timing was perfect for cosmohouck - mid-season, clear picture of who's contending, and they capitalized on a desperate team making a desperate move. That's good general management right there.",
+  "generatedAt": "2026-11-13T08:19:15.069Z"
+}

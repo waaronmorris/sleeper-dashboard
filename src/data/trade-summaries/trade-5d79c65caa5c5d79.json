@@ -1,0 +1,135 @@
+{
+  "tradeId": "5d79c65caa5c5d79",
+  "week": 7,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Langland",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 1306,
+        "valueLost": 0,
+        "netValueChange": 1306,
+        "estimatedPowerScoreChange": 1.2,
+        "playersGained": [
+          {
+            "name": "Matthew Stafford",
+            "value": 1306
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Matthew Stafford",
+          "position": "QB",
+          "team": "LAR",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Dawson Knox",
+          "position": "TE",
+          "team": "BUF",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1306,
+        "netValueChange": -1306,
+        "estimatedPowerScoreChange": -1.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Matthew Stafford",
+            "value": 1306
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Dawson Knox",
+          "position": "TE",
+          "team": "BUF",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Matthew Stafford",
+          "position": "QB",
+          "team": "LAR",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 3,
+      "from": "Langland",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "Langland",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Looking at this Week 7 swap, we've got a textbook case of competing timelines colliding, and honestly, I love what cosmohouck—let's call him \"The Asset Accumulator\"—is doing here at 1-5. When you're staring down the barrel of a lost season with the league's top power score somehow translating to a 17% win rate, it's time to harvest. Matthew Stafford at 38 years old is depreciating faster than a luxury car driven off the lot, and moving him for Knox plus two picks is exactly how you rebuild the right way in dynasty.\n\nLangland—we'll dub him \"Mr. All-In\"—is sitting pretty at 5-1 and just made his *sixth* trade of the season, having already burned through four draft picks in previous deals. This is a contender saying \"I don't care about 2025, I need a QB right now.\" And you know what? I get it. But here's my concern: Stafford's averaging 9.4 points per game, he's in the back nine of his career, and you just surrendered future draft capital for a guy who might give you one solid playoff run. This reminds me of when the Bills traded for Stefon Diggs—except in reverse. The Vikings got draft capital and youth for an aging asset who had maybe two elite years left. That's cosmohouck's play here.\n\nThe trade value differential screams louder than a Bills Mafia tailgate: 1,306 to zero. Now, those metrics don't always capture QB scarcity in dynasty, but let's be real—Dawson Knox at 29 still has functional years as a backend TE1, and those picks in 2023 and 2025? That's premium rebuilding ammunition. The Accumulator just turned one aging quarterback into three assets that could anchor his next competitive window. Meanwhile, Langland's power score sits at 36.4, ranked eighth despite that gaudy record, which tells me this roster needs more than just a QB band-aid.\n\nThis is textbook divergent team-building philosophy executed perfectly by both sides. The contender mortgages tomorrow, the cellar-dweller invests in it. But if I'm being honest? I'm giving the edge to cosmohouck. Stafford might help Langland make noise in 2022, but The Asset Accumulator just turned one depreciating asset into a rebuild accelerator. Sometimes the best trades aren't about winning this year—they're about positioning yourself to dominate for the next five.",
+  "generatedAt": "2026-11-13T08:18:52.923Z"
+}

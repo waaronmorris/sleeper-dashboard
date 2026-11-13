@@ -1,0 +1,173 @@
+{
+  "tradeId": "3c432707ce9905ed",
+  "week": 7,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 73.1,
+        "powerRank": 3,
+        "lineupValueScore": 73.8,
+        "performanceScore": 67.7,
+        "positionalScore": 79.9,
+        "depthScore": 78.1,
+        "totalTeams": 12,
+        "totalRosterValue": 41367
+      },
+      "tradeImpact": {
+        "valueGained": 1312,
+        "valueLost": 6410,
+        "netValueChange": -5098,
+        "estimatedPowerScoreChange": -4.5,
+        "playersGained": [
+          {
+            "name": "Kyle Pitts Sr.",
+            "value": 1312
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Kenneth Walker III",
+            "value": 6410
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kyle Pitts Sr.",
+          "position": "TE",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Isiah Pacheco",
+          "position": "RB",
+          "team": "DET",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kenneth Walker III",
+          "position": "RB",
+          "team": "KC",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.5,
+        "powerRank": 10,
+        "lineupValueScore": 33.2,
+        "performanceScore": 26.3,
+        "positionalScore": 30,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 18639
+      },
+      "tradeImpact": {
+        "valueGained": 6410,
+        "valueLost": 1312,
+        "netValueChange": 5098,
+        "estimatedPowerScoreChange": 4.5,
+        "playersGained": [
+          {
+            "name": "Kenneth Walker III",
+            "value": 6410
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Kyle Pitts Sr.",
+            "value": 1312
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kenneth Walker III",
+          "position": "RB",
+          "team": "KC",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kyle Pitts Sr.",
+          "position": "TE",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Isiah Pacheco",
+          "position": "RB",
+          "team": "DET",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 1,
+      "from": "iwmrichfulton",
+      "to": "PrinceofPizza"
+    },
+    {
+      "season": "2024",
+      "round": 1,
+      "from": "iwmrichfulton",
+      "to": "PrinceofPizza"
+    },
+    {
+      "season": "2025",
+      "round": 1,
+      "from": "iwmrichfulton",
+      "to": "PrinceofPizza"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is that PrinceofPizza just executed what sources around the league are calling one of the most puzzling dynasty fire sales in recent memory. Here's a manager sitting at 3-3, ranked third in power score at 73.1, still very much alive for a playoff run – and they just shipped out Kenneth Walker III, who's averaging over 10 points per game in his peak years, for a package that screams \"I'm rebuilding\" when they absolutely shouldn't be.\n\nLet me break down what's developing here, because this is fascinating from multiple angles. iwmrichfulton is 5-1 despite having the tenth-ranked power score at just 29.5 – they're clearly over-performing and needed a move exactly like this to stabilize their contender status. They just landed a premium RB1 in his absolute prime for Kyle Pitts, who's been struggling at 4.5 points per game, Isiah Pacheco as a throw-in, and three future first-rounders. In dynasty terms, that's a massive overpay – we're talking a net value difference of over 5,000 points in iwmrichfulton's favor. Sources indicate this is the kind of win-now move that could vault them from pretender to legitimate championship threat. Keep an eye on their lineup construction going forward, because Walker immediately becomes their focal point.\n\nNow here's where it gets interesting for what I'm calling \"The Premature Rebuilder\" – PrinceofPizza is sitting there with the third-best roster construction in the league, still in playoff contention, and they're liquidating their best running back like they're a last-place team with no hope. The three first-rounders are valuable, sure, but in dynasty you don't blow up a winning core unless you're truly out of it. This feels like panic after a couple losses rather than strategic roster management. My understanding is this manager hasn't made a trade in their entire tenure, and their first move is... this? That's what we call a rough debut in the trade market.\n\nThe developing situation for \"The Highway Robber\" – iwmrichfulton – is that they just turned future assets and underperforming pieces into immediate production at the most scarce position in fantasy football. Getting Walker at his age-26 peak while giving up picks that won't help them this year or next? That's championship-level aggression. Sources around the league are whispering this could be the move that defines their season. PrinceofPizza better hope those draft picks turn into multiple Kenneth Walkers, because right now, they just handed their opponent a golden ticket while downgrading their own playoff odds significantly. Keep an eye on Week 14 when these two potentially meet in the postseason – that's going to be uncomfortable viewing for one side.",
+  "generatedAt": "2026-11-13T08:19:37.114Z"
+}

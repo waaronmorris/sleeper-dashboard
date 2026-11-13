@@ -1,0 +1,145 @@
+{
+  "tradeId": "4677ee1fec93b0b2",
+  "week": 10,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "mjgrana"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 3886,
+        "valueLost": 997,
+        "netValueChange": 2889,
+        "estimatedPowerScoreChange": 2.6,
+        "playersGained": [
+          {
+            "name": "George Pickens",
+            "value": 3886
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Chuba Hubbard",
+            "value": 997
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "George Pickens",
+          "position": "WR",
+          "team": "DAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chuba Hubbard",
+          "position": "RB",
+          "team": "CAR",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 997,
+        "valueLost": 3886,
+        "netValueChange": -2889,
+        "estimatedPowerScoreChange": -2.6,
+        "playersGained": [
+          {
+            "name": "Chuba Hubbard",
+            "value": 997
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "George Pickens",
+            "value": 3886
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Chuba Hubbard",
+          "position": "RB",
+          "team": "CAR",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "George Pickens",
+          "position": "WR",
+          "team": "DAL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 1,
+      "from": "mjgrana",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "mjgrana"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I've analyzed over a thousand dynasty trades in my career, and this one has me scratching my head at cosmohouck's strategy here. The league's top-ranked team just torched nearly $3,000 in dynasty value to grab a 27-year-old running back hitting his age cliff. Let me be crystal clear: **mjgrana absolutely fleeced the league leader in this deal**.\n\nHere's what bothers me about cosmohouck's side of this transaction. You're already sitting at 98.4 power score – you're the Death Star of this league with a perfect 100 in lineup, position, and depth ratings. Four weeks from the playoffs, you don't need Chuba Hubbard's 8.6 points per game to put you over the top. What you're giving up is George Pickens, a 25-year-old receiver entering his prime years with WR1 upside, **plus** you're downgrading from a first-round pick to a third-rounder in a dynasty format. That's roster construction malpractice. Running backs have a shelf life shorter than milk in July, and Hubbard's already at the age where production falls off a cliff. Meanwhile, Pickens could be a cornerstone piece for the next five seasons. This screams panic move from a team that shouldn't be panicking.\n\nNow mjgrana – let's call him \"The Value Vulture\" – just pulled off highway robbery while sitting at 6-3 as the fourth-ranked squad. He's getting a young receiver with legitimate dynasty equity and moving UP two rounds in draft capital while dumping an aging asset. That +2.6 power score swing tells the whole story. For a manager who's been balanced in his approach (11 acquired, 10 traded historically), this is the kind of opportunistic strike that separates championship rosters from pretenders. The Value Vulture is building for sustained success while simultaneously improving his playoff push.\n\nAs for cosmohouck – we'll dub him \"The Desperate Dominator\" – this trade makes me question whether he understands his own roster strength. When you're ranked first in the league, you don't mortgage the future for marginal present-day gains. The irony is beautiful: he's been masterful at accumulating draft picks (18 acquired versus 10 traded historically), but here he's reversing course at the worst possible moment. Unless Chuba Hubbard somehow carries him to a championship in the next six weeks, this trade will haunt the Desperate Dominator for years. mjgrana wins this deal by a country mile, and frankly, it's not even close.",
+  "generatedAt": "2026-11-13T08:12:24.294Z"
+}

@@ -1,0 +1,121 @@
+{
+  "tradeId": "29f9a50181dfdbb4",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Langland",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 176,
+        "valueLost": 0,
+        "netValueChange": 176,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Jordan Mason",
+            "value": 176
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jordan Mason",
+          "position": "RB",
+          "team": "MIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 176,
+        "netValueChange": -176,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Jordan Mason",
+            "value": 176
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jordan Mason",
+          "position": "RB",
+          "team": "MIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 3,
+      "from": "Langland",
+      "to": "powerperson"
+    },
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "Langland",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I'm going to be completely honest here—this trade tells me everything I need to know about where these two franchises think they are, and one of them is absolutely delusional about their timeline.\n\nLangland is sitting at #8 in power rankings with a 36.4 score, and they just mortgaged future draft capital for Jordan Mason, a 27-year-old backup running back who averaged 2.2 fantasy points per game historically. This is the football equivalent of buying a timeshare in Atlantic City. Mason had his moment in the sun early in 2024 when Christian McCaffrey was hurt, but he's now in Minnesota as a depth piece, and Langland is treating him like he's acquiring Derrick Henry in his prime. The historical pattern here is alarming—this manager has dealt away eight draft picks while only acquiring zero in return over their career. That's not win-now aggression; that's portfolio mismanagement. You're already near the bottom of the league in depth (8.4 ranking), and you're burning a future second-rounder for a guy who might give you one usable week all season?\n\nMeanwhile, powerperson—dead last in power score at 20.7—is playing chess while Langland plays checkers. They're collecting draft capital like they're preparing for the apocalypse, and honestly, with their roster construction, they should be. This is textbook rebuild execution: sell aging, replaceable assets for future picks. The 2027 second-rounder could be gold if Langland continues this trajectory, and even the 2026 third has legitimate value in dynasty formats. Powerperson's track record backs this up—11 picks acquired versus only six traded away. They understand asset accumulation.\n\nHere's my bold prediction: in two years, when we're looking back at this trade, Langland will have gotten maybe four total fantasy-relevant weeks out of Jordan Mason before he faded into backup obscurity, while powerperson will have flipped those picks into actual building blocks. This is the anti-Stafford/Goff trade—instead of a contender going all-in for the missing piece, you've got a borderline playoff team reaching for fool's gold.\n\nThe trade impact numbers don't lie—176 in value for literally zero return picks. In dynasty, that's not just bad process; it's actively destructive to your franchise's future. Langland better hope Mason channels his inner 2024 CMC injury replacement magic, because they just paid premium prices for a lottery ticket that's already been scratched.",
+  "generatedAt": "2026-11-13T08:09:29.402Z"
+}

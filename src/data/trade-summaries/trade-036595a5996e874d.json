@@ -1,0 +1,217 @@
+{
+  "tradeId": "036595a5996e874d",
+  "week": 4,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 11195,
+        "valueLost": 13097,
+        "netValueChange": -1902,
+        "estimatedPowerScoreChange": -1.7,
+        "playersGained": [
+          {
+            "name": "Joe Burrow",
+            "value": 8379
+          },
+          {
+            "name": "Kyren Williams",
+            "value": 2816
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Puka Nacua",
+            "value": 7646
+          },
+          {
+            "name": "C.J. Stroud",
+            "value": 5451
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Joe Burrow",
+          "position": "QB",
+          "team": "CIN",
+          "age": 29,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "team": "LAR",
+          "age": 26,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Skyy Moore",
+          "position": "WR",
+          "team": "GB",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jerome Ford",
+          "position": "RB",
+          "team": "ARI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "team": "LAR",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "C.J. Stroud",
+          "position": "QB",
+          "team": "HOU",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.5,
+        "powerRank": 10,
+        "lineupValueScore": 33.2,
+        "performanceScore": 26.3,
+        "positionalScore": 30,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 18639
+      },
+      "tradeImpact": {
+        "valueGained": 13097,
+        "valueLost": 11195,
+        "netValueChange": 1902,
+        "estimatedPowerScoreChange": 1.7,
+        "playersGained": [
+          {
+            "name": "Puka Nacua",
+            "value": 7646
+          },
+          {
+            "name": "C.J. Stroud",
+            "value": 5451
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Joe Burrow",
+            "value": 8379
+          },
+          {
+            "name": "Kyren Williams",
+            "value": 2816
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jerome Ford",
+          "position": "RB",
+          "team": "ARI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "team": "LAR",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "C.J. Stroud",
+          "position": "QB",
+          "team": "HOU",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Joe Burrow",
+          "position": "QB",
+          "team": "CIN",
+          "age": 29,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "team": "LAR",
+          "age": 26,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Skyy Moore",
+          "position": "WR",
+          "team": "GB",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 1,
+      "from": "mjgrana",
+      "to": "iwmrichfulton"
+    },
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "iwmrichfulton",
+      "to": "mjgrana"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: This trade absolutely screams \"0-3 panic mode,\" per multiple league sources, and I'm told iwmrichfulton just went full rebuild at the worst possible time. League sources say mjgrana—let's call him \"The Instant Gratification King\"—shipped out a treasure trove of dynasty gold for immediate QB security, acquiring Burrow while his team sits pretty at 2-1. But here's what's fascinating: he's trading away the No. 1 overall rookie WR (Puka at 19.0 PPG!) and a 25-year-old stud QB in Stroud who's putting up 18.5 per game, plus a first-rounder, all for a 29-year-old Burrow and spare parts. According to sources familiar with the situation, this is a classic \"I don't trust my rookies\" move from a contender who's already ranked fourth in power score.\n\nNow let's talk about iwmrichfulton—\"The Desperate Architect\"—who's sitting at 0-3 with a brutal 29.5 power score and apparently just discovered what a rebuild looks like. Per sources, he's moving an established QB1 and collecting youth like he's storing acorns for winter, but here's the kicker: his historical pattern shows zero picks acquired before this while hemorrhaging draft capital. I'm told both sides think they won, which usually means someone's about to look foolish. The value differential of 1,902 points heavily favors iwmrichfulton on paper, but dynasty value and immediate production are two different animals.\n\nWhat strikes me most, according to league insiders, is that mjgrana just downgraded his 2024 first to a second while his team is already playoff-viable at 2-1. I'm hearing Burrow provides stability over Stroud, sure, but you're talking about a four-year age gap and nearly identical per-game production. Meanwhile, Puka Nacua is putting up WR1 numbers as a 25-year-old—that's a decade-long asset in dynasty formats—and Kyren Williams' 4.6 PPG is replacement level at best. Per sources close to the situation, this trade makes iwmrichfulton's rebuild timeline fascinating but mjgrana's championship window potentially shorter.\n\nBreaking it down: The Instant Gratification King gets his veteran security blanket but mortgages long-term dynasty dominance for marginal 2023 improvement. The Desperate Architect finally embraces the tank with premium assets but did it three weeks too late—those losses already count. According to multiple sources, this is the kind of trade that looks brilliant or catastrophic depending on whether Burrow stays healthy and whether that 2024 first-rounder becomes a top-three pick. I'm told the league is watching closely, because right now, iwmrichfulton just fleeced a contender who got impatient with his embarrassment of riches.",
+  "generatedAt": "2026-11-13T08:17:52.698Z"
+}

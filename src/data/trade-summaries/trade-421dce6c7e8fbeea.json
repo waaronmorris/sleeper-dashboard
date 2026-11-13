@@ -1,0 +1,173 @@
+{
+  "tradeId": "421dce6c7e8fbeea",
+  "week": 1,
+  "season": "2024",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "powerperson",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 346,
+        "valueLost": 4712,
+        "netValueChange": -4366,
+        "estimatedPowerScoreChange": -3.9,
+        "playersGained": [
+          {
+            "name": "Jake Ferguson",
+            "value": 346
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Trey McBride",
+            "value": 4712
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jake Ferguson",
+          "position": "TE",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "DeMario Douglas",
+          "position": "WR",
+          "team": "NE",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Trey McBride",
+          "position": "TE",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 4712,
+        "valueLost": 346,
+        "netValueChange": 4366,
+        "estimatedPowerScoreChange": 3.9,
+        "playersGained": [
+          {
+            "name": "Trey McBride",
+            "value": 4712
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jake Ferguson",
+            "value": 346
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Trey McBride",
+          "position": "TE",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jake Ferguson",
+          "position": "TE",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "DeMario Douglas",
+          "position": "WR",
+          "team": "NE",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "powerperson"
+    },
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "powerperson",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I've seen some questionable moves in my years analyzing this league, but this one makes the DeAndre Hopkins trade look like a masterclass in asset management. We've got cosmohouck—let's call him \"The Landlord\" because he's collecting rent from everybody in this league—sitting pretty at 98.4 power score, the Ferrari of this 12-team garage. Then there's powerperson, \"The Bargain Bin Browser,\" languishing at 20.7 and ranked 11th out of 12, somehow convincing himself that quantity beats quality. The value disparity here is absolutely staggering: 4,712 going out versus 346 coming back. That's not a trade, that's a charity write-off.\n\nHere's what kills me about this deal—Trey McBride is a legitimate TE1 building block at 26 years old, right in his athletic prime with target volume that makes him a cornerstone asset in dynasty. The Landlord just robbed The Bargain Bin Browser blind, giving up Jake Ferguson (who's a year older and significantly less valuable), a borderline flex receiver in DeMario Douglas, and swapping two 2025 second-rounders for a single 2026 second. In what universe does accelerating draft capital by one year and adding a dart-throw receiver justify downgrading massively at tight end? McBride's TE scarcity value is through the roof—we're talking a normalized VOR around 120—and powerperson just shipped him out for spare parts.\n\nThe most alarming part? This fits powerperson's pattern perfectly. We're looking at a manager who's made 11 trades historically, accumulated nine draft picks, and somehow ended up with the second-worst roster in the league. That's not rebuilding, that's roster demolition without a blueprint. Meanwhile, The Landlord is doing what contenders do—consolidating assets, upgrading at premium positions, and pushing talent down to teams that don't understand valuation. Ferguson averaged 7.4 PPG historically compared to McBride's 5.1, sure, but we're projecting future value here, and McBride's target trajectory in Arizona makes him the far superior dynasty asset.\n\nThis is the kind of trade that gets brought up three years from now when McBride is posting TE3 overall finishes and Ferguson is somebody's desperation streamer. The Bargain Bin Browser thought he was getting value with extra picks and a warm body at receiver, but he just handed a championship-caliber team their missing piece while moving further away from relevance. When you're ranked 11th out of 12, you can't afford to trade elite young positional scarcity for depth and future considerations. You need studs, not a drawer full of second-round lottery tickets. This is the Hopkins trade all over again—one team walks away laughing, and the other spends years wondering what they were thinking.",
+  "generatedAt": "2026-11-13T08:10:59.830Z"
+}

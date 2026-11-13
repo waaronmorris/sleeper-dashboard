@@ -1,0 +1,131 @@
+{
+  "tradeId": "973f6afd387db3da",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 83.1,
+        "powerRank": 2,
+        "lineupValueScore": 82.8,
+        "performanceScore": 84.1,
+        "positionalScore": 82.8,
+        "depthScore": 80.6,
+        "totalTeams": 12,
+        "totalRosterValue": 46404
+      },
+      "tradeImpact": {
+        "valueGained": 706,
+        "valueLost": 316,
+        "netValueChange": 390,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Davante Adams",
+            "value": 706
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Chris Godwin Jr.",
+            "value": 316
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Davante Adams",
+          "position": "WR",
+          "team": "LAR",
+          "age": 33,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chris Godwin Jr.",
+          "position": "WR",
+          "team": "TB",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 20.7,
+        "powerRank": 11,
+        "lineupValueScore": 20.7,
+        "performanceScore": 23.6,
+        "positionalScore": 18.5,
+        "depthScore": 10.4,
+        "totalTeams": 12,
+        "totalRosterValue": 11609
+      },
+      "tradeImpact": {
+        "valueGained": 316,
+        "valueLost": 706,
+        "netValueChange": -390,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [
+          {
+            "name": "Chris Godwin Jr.",
+            "value": 316
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Davante Adams",
+            "value": 706
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Chris Godwin Jr.",
+          "position": "WR",
+          "team": "TB",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Davante Adams",
+          "position": "WR",
+          "team": "LAR",
+          "age": 33,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Louis Riddick",
+  "analysis": "From a front office standpoint, this is a fascinating case study in how quickly organizational philosophies can shift when you're staring at 33-year-old talent versus 30-year-old talent in a dynasty format. Shogunation—let's call him \"The Desperate Buyer\"—is a contender sitting at 83.1 power score, second in the league, and he just made the classic win-now miscalculation. He's trading a second-round pick AND a productive Chris Godwin who's still averaging 9.4 points per game in his prime years for Davante Adams, who yes, averaged 15.5 last year, but is now 33 years old. This reminds me of the Russell Wilson blockbuster—Denver mortgaged premium assets for a declining quarterback they *thought* had elite years left, and we all saw how that movie ended. The Desperate Buyer is banking on Adams defying the wide receiver age curve, which historically falls off a cliff around 32-33, and he paid a premium for that privilege.\n\nNow powerperson—we'll call him \"The Asset Accumulator\"—is sitting at a dismal 20.7 power score, ranked 11th out of 12 teams, and this is exactly the kind of rebuild move you draw up on the whiteboard. He's turning an aging asset into a younger player plus draft capital, which is textbook asset management when you're not competing. The 390-point value swing in his favor tells you everything you need to know about market inefficiency. Godwin at 30 still has 2-3 quality years left, and that 2025 second-rounder becomes a premium piece when you're building for the future. This fits powerperson's historical pattern perfectly—he's balanced but opportunistic, and he just extracted maximum value from a depreciating asset.\n\nThe Desperate Buyer's problem is he's already made seven trades all-time and five this season alone—he's constantly tinkering, which suggests he doesn't trust his process. For a team ranked second with an 82.8 lineup score, adding marginal wins at the cost of future flexibility is questionable asset allocation. That 0.3 projected power score bump is essentially negligible, and he's now exposed to significant age-related risk. If Adams hits the cliff this season—and 33-year-old receivers do that abruptly—he's got no draft capital to recover.\n\nThe Asset Accumulator made the smart play here, flipping short-term production for long-term value when his championship window isn't even open. He's now positioned to consolidate those picks and young assets into his core once he identifies his window. This is how you rebuild intelligently in dynasty—you don't hold onto declining veterans hoping for lightning in a bottle. You maximize return, accumulate premium picks, and build through the draft. The Desperate Buyer just handed him that blueprint on a silver platter, and when Adams inevitably declines and that 2025 pick turns into a difference-maker, we'll look back at this as the moment The Asset Accumulator's rebuild truly began.",
+  "generatedAt": "2026-11-13T08:15:30.158Z"
+}

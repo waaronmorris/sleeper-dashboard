@@ -1,0 +1,107 @@
+{
+  "tradeId": "88207c5e8a197930",
+  "week": 9,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.4,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 35.9,
+        "depthScore": 8.4,
+        "totalTeams": 12,
+        "totalRosterValue": 25437
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 184,
+        "netValueChange": -184,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Rashid Shaheed",
+            "value": 184
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 184,
+        "valueLost": 0,
+        "netValueChange": 184,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Rashid Shaheed",
+            "value": 184
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 3,
+      "from": "mjgrana",
+      "to": "Langland"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a textbook example of timeline alignment in dynasty football, and mjgrana just made the kind of measured win-now move that contending teams should execute in Week 9.\n\nLet's talk about what Rashid Shaheed represents from a production metrics perspective. We're looking at a 28-year-old receiver who's averaging 6.2 points per game – that's WR4/5 production with big-play upside built into his athletic profile. Now, he's not a foundational piece, but here's what matters: mjgrana is sitting at 5-3 with a power score of 70.4, ranked fourth in the league with elite depth at 83.2. They're giving up a 2027 third-round pick – a dart throw two years from now – to acquire an immediate contributor during their championship window. That's asset management 101. You can debate whether Shaheed moves the needle significantly for their title odds, but the cost is negligible for a team that scores over 126 points per week and needs to maximize their current roster construction.\n\nLangland's side of this tells the opposite story, and honestly, it's the right process even if the return feels light. At 0-8 with a 36.4 power score, they're in full teardown mode. They're converting a 28-year-old receiver in his peak years into future capital, which aligns perfectly with their rebuild timeline. My concern here is the price point – a third-rounder in 2027 for a guy with proven NFL production feels thin. From a value perspective, they're taking a 184-point asset hit for essentially lottery ticket compensation. In dynasty, rebuilding teams should be accumulating picks, but you want to maximize the return on any player with current NFL relevance.\n\nHere's my bold prediction: this trade looks fine for mjgrana regardless of outcome, but Langland needed to extract at least a second-rounder or package Shaheed with another piece for better draft capital. The timing works for both teams' competitive windows, but the execution favors the contender by a significant margin.\n\n**Winner: mjgrana** – they paid appropriate cost for a depth piece during a playoff push, while Langland settled for insufficient compensation given their need to stockpile future assets. Net value differential of 184 points tells the story clearly.",
+  "generatedAt": "2026-11-13T08:09:10.618Z"
+}

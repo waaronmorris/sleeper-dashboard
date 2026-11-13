@@ -1,0 +1,219 @@
+{
+  "tradeId": "5755573f01331cd4",
+  "week": 8,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "drobs",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 1148,
+        "valueLost": 0,
+        "netValueChange": 1148,
+        "estimatedPowerScoreChange": 1,
+        "playersGained": [
+          {
+            "name": "Isaiah Likely",
+            "value": 1148
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Raheem Mostert",
+          "position": "RB",
+          "team": "FA",
+          "age": 33,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "Kadarius Toney",
+          "position": "WR",
+          "team": "FA",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "team": "NYG",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Hayden Hurst",
+          "position": "TE",
+          "team": "FA",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Jahan Dotson",
+          "position": "WR",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Bailey Zappe",
+          "position": "QB",
+          "team": "FA",
+          "age": 27,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1148,
+        "netValueChange": -1148,
+        "estimatedPowerScoreChange": -1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Isaiah Likely",
+            "value": 1148
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Hayden Hurst",
+          "position": "TE",
+          "team": "FA",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Jahan Dotson",
+          "position": "WR",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Bailey Zappe",
+          "position": "QB",
+          "team": "FA",
+          "age": 27,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Raheem Mostert",
+          "position": "RB",
+          "team": "FA",
+          "age": 33,
+          "careerStage": "Veteran/End of Career"
+        },
+        {
+          "name": "Kadarius Toney",
+          "position": "WR",
+          "team": "FA",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "team": "NYG",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 1,
+      "from": "drobs",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is this deal is about as lopsided as they come, and frankly, I'm getting phone calls questioning what exactly drobs is thinking here. Sources indicate cosmohouck – who's already sitting at the top of the power rankings despite that 1-6 record – just pulled off an absolute heist in Week 8, acquiring a 2023 first-round pick while dumping aging assets and dart throws. Let me break down what's happening behind the scenes here.\n\nFrom cosmohouck's perspective, this is textbook dynasty rebuilding from a manager who's clearly committed to the tank-and-reload strategy. They're 1-6, likely eliminated from playoff contention, and they just turned Raheem Mostert – a 33-year-old running back with maybe six good weeks left in his career – into long-term assets. They packaged Kadarius Toney, who's been more hype than production at 0.4 PPG, and Isaiah Likely, a backup tight end, along with three mid-to-late round picks to move UP into the first round of 2023. That first-rounder becomes a premium dynasty asset, and they're collecting young talent like Jahan Dotson, who at 26 is just entering his peak WR window. My sources tell me cosmohouck has now acquired EIGHT draft picks through trades this season – this is a full-scale teardown with a clear vision.\n\nBut here's where it gets interesting: drobs is sitting at 3-4, still very much alive for a playoff push with six weeks to go, and they're trading AWAY a first-round pick for... what exactly? Mostert might give you a few spot starts, but he's 33 and that running back cliff is real – keep an eye on whether he even finishes the season healthy. Toney has been one of the biggest busts we've seen, and while Likely has some dynasty appeal at 26, you're talking about a TE putting up 4.0 PPG. The value disparity here is stark: drobs received 1,148 in trade value while giving up assets the system couldn't even quantify because most have aged out or flamed out. For a team ranked 9th out of 12 in power score, this feels like desperation moves rather than calculated win-now aggression.\n\nThe head-to-head history adds another layer – these rivals are 4-5 all-time against each other, and my understanding is drobs just handed cosmohouck the blueprint for future dominance. While drobs picked up a marginal +1 power score boost that might help squeeze into the playoffs THIS year, cosmohouck sacrificed -1 point now to stockpile assets that'll pay dividends for the next three seasons. In dynasty formats, you're playing the long game, and trading a first-rounder when you're barely above .500 is how you mortgage your future for a playoff appearance that probably doesn't end in a championship anyway.\n\nSources indicate this is a developing situation worth monitoring – cosmohouck now has that premium 2023 first-rounder plus all those accumulated picks to either draft elite young talent or package for a stud when they're ready to compete. Meanwhile, drobs better hope Mostert stays healthy and Likely breaks out, because they just traded away their best rebuilding chip for a rental car and some lottery tickets. Keep an eye on how this shakes out, but right now? Cosmohouck wins this deal going away, and it's not particularly close.",
+  "generatedAt": "2026-11-13T08:21:29.313Z"
+}

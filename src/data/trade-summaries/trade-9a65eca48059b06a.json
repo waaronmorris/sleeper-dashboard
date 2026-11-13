@@ -1,0 +1,145 @@
+{
+  "tradeId": "9a65eca48059b06a",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 35,
+        "powerRank": 9,
+        "lineupValueScore": 39.3,
+        "performanceScore": 29.6,
+        "positionalScore": 32,
+        "depthScore": 33,
+        "totalTeams": 12,
+        "totalRosterValue": 22051
+      },
+      "tradeImpact": {
+        "valueGained": 4689,
+        "valueLost": 4635,
+        "netValueChange": 54,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [
+          {
+            "name": "Breece Hall",
+            "value": 4689
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Garrett Wilson",
+            "value": 4635
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Breece Hall",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 70.4,
+        "powerRank": 4,
+        "lineupValueScore": 76,
+        "performanceScore": 58.3,
+        "positionalScore": 71.9,
+        "depthScore": 83.2,
+        "totalTeams": 12,
+        "totalRosterValue": 42635
+      },
+      "tradeImpact": {
+        "valueGained": 4635,
+        "valueLost": 4689,
+        "netValueChange": -54,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [
+          {
+            "name": "Garrett Wilson",
+            "value": 4635
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Breece Hall",
+            "value": 4689
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2023 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Breece Hall",
+          "position": "RB",
+          "team": "NYJ",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2023 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2023",
+      "round": 3,
+      "from": "drobs",
+      "to": "mjgrana"
+    },
+    {
+      "season": "2023",
+      "round": 2,
+      "from": "mjgrana",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Per league sources, drobs just sent shockwaves through this dynasty league, acquiring Breece Hall from mjgrana in a straight-up swap of Jets offensive weapons. I'm told this deal — Hall and a second-rounder for Garrett Wilson and a third — represents a classic win-now pivot from a team sitting at ninth in power rankings. According to multiple sources familiar with the situation, drobs is banking everything on positional scarcity at running back, and frankly, the numbers back it up. Hall's VOR of approximately 150 crushes Wilson's 100, even though Wilson averaged 9.8 PPG historically compared to Hall's 6.4. This is reminiscent of the Amari Cooper deal when Dallas sent a first-rounder to Oakland — everyone questioned the price tag until Cooper immediately transformed their offense. League sources say drobs (35 power score) desperately needed this kind of foundational piece.\n\nHere's what I'm hearing around the league: mjgrana, already sitting at a robust 70.4 power score and ranked fourth overall, just made a luxury move that prioritizes receiver depth and draft capital over running back security. The 54-point value differential favors drobs, but that's not the full story. Multiple executives I've spoken with believe mjgrana is playing chess while everyone else plays checkers — Wilson's approaching peak years at 26, and that second-round pick could be a league-winner down the line. I'm told mjgrana's 83.2 depth score means they can absorb this move without breaking a sweat.\n\nBreaking this down further, sources close to the situation say drobs needed this more than their next breath. An active trader with eight all-time deals, they've shown they're not afraid to make bold moves, and acquiring a 25-year-old running back entering his absolute prime checks every dynasty box. The pick upgrade from third to second is gravy. But here's the controversy I'm hearing whispers about: did drobs overpay for injury history? Hall's coming off an ACL tear, and league insiders are split on whether his ceiling justifies giving up a receiver who just put up double-digit fantasy performances.\n\nPer sources, I'm calling this one for drobs by a field goal. They got the scarcer position, the better draft pick, and a slight value advantage. Championship implications? I'm told this vaults drobs from rebuilder to dark horse contender if Hall returns to form. Meanwhile, mjgrana remains a powerhouse either way — that's the luxury of trading from strength. This rivalry just got spicier heading into their inevitable playoff collision.",
+  "generatedAt": "2026-11-13T08:16:55.018Z"
+}

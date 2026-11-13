@@ -1,0 +1,97 @@
+{
+  "tradeId": "9552dd7863dc231c",
+  "week": 1,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "briankibler",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.6,
+        "powerRank": 12,
+        "lineupValueScore": 24.3,
+        "performanceScore": 12.6,
+        "positionalScore": 21.4,
+        "depthScore": 8,
+        "totalTeams": 12,
+        "totalRosterValue": 13641
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "FA",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56071
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jimmy Garoppolo",
+          "position": "QB",
+          "team": "FA",
+          "age": 34,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "briankibler",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**Breaking: Dynasty QB Salvage Operation Unfolds in Week 1**\n\nPer league sources, briankibler just made what I'm calling a \"desperation dart throw\" in Week 1, acquiring 34-year-old Jimmy Garoppolo for a 2024 second-round pick. I'm told this is only briankibler's second trade all-time, and here's the thing – when you're sitting at a 19.6 power score (dead last, 12th of 12), you don't have the luxury of being patient. Multiple sources tell me briankibler is clearly in win-now mode, which is fascinating considering this roster profiles more like \"win-never.\" Trading future draft capital when you're the weakest team in the league? That's playing with fire. Jimmy G averaged 9.5 PPG historically, and at 34 years old in a dynasty format, his age curve is screaming \"SELL\" not \"BUY.\" Let's call briankibler \"The Optimist\" – someone who believes a journeyman backup QB is the missing piece to a championship puzzle.\n\nOn the flip side, I'm told cosmohouck – who I'm dubbing \"The Liquidator\" – just executed textbook dynasty asset management. According to sources familiar with the trade, the league's top-ranked team (98.4 power score) just turned an aging, rosterable QB into draft capital while already sitting on a juggernaut. Cosmohouck has now made 14 career trades, moving 16 players out versus 12 in, accumulating 14 picks while trading just 8. That's a consolidation strategy, folks. When you're already dominant, you flip depth pieces for ammunition to stay dominant. League sources say this is cosmohouck's fifth trade already this season – that's asset optimization at its finest.\n\nThe risk profile here is wildly asymmetric. Briankibler is gambling that Garoppolo somehow becomes fantasy-relevant (spoiler alert: he won't) while sacrificing a second-rounder that could yield an actual long-term contributor. I'm told the 3-3 head-to-head rivalry between these teams makes this even spicier – cosmohouck just extracted value from a direct competitor who desperately needed QB help. The irony? Trading away picks when you're rebuilding is dynasty malpractice, plain and simple.\n\nAccording to multiple sources, this trade reflects perfectly on both managers' histories: briankibler buying now despite lacking the roster foundation, cosmohouck ruthlessly accumulating assets from the top. Zero power score impact for either side tells you everything – this was cosmohouck taking advantage of perceived need. The Liquidator wins this one going away.",
+  "generatedAt": "2026-11-13T08:13:13.455Z"
+}
