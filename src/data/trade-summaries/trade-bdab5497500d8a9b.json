@@ -1,0 +1,107 @@
+{
+  "tradeId": "bdab5497500d8a9b",
+  "week": 6,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.4,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 94.5,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56395
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1189,
+        "netValueChange": -1189,
+        "estimatedPowerScoreChange": -1.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Matthew Stafford",
+            "value": 1189
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Matthew Stafford",
+          "position": "QB",
+          "team": "LAR",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 55.7,
+        "powerRank": 5,
+        "lineupValueScore": 54.2,
+        "performanceScore": 66,
+        "positionalScore": 45.5,
+        "depthScore": 40.1,
+        "totalTeams": 12,
+        "totalRosterValue": 30543
+      },
+      "tradeImpact": {
+        "valueGained": 1189,
+        "valueLost": 0,
+        "netValueChange": 1189,
+        "estimatedPowerScoreChange": 1.1,
+        "playersGained": [
+          {
+            "name": "Matthew Stafford",
+            "value": 1189
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Matthew Stafford",
+          "position": "QB",
+          "team": "LAR",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "Tishathefish",
+      "to": "cosmohouck"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm going to tell you something right now - when you're sitting at 5-0 with a NINETY-EIGHT POINT FOUR power score, the HIGHEST in this entire league, you don't need Matthew Stafford! The tape doesn't lie here, folks. Cosmohouck - and I'm calling him \"The Window Closer\" because he's clearly shutting down his championship window by dumping a starter QB - is making the RIGHT move for dynasty. This is CLASSIC sell-high execution! Stafford is THIRTY-EIGHT years old, we're in Week 6 of 2026, and the age curve for quarterbacks says you've got maybe one, MAYBE two more years of productivity. This guy is getting a 2028 second-round pick - that's draft capital TWO YEARS down the line - for a depreciating asset. That's dynasty IQ right there!\n\nNow let's talk about Tishathefish - \"The Mortgage Broker\" - because this manager is leveraging future assets to win NOW. I had this move rated as a CLASSIC win-now acquisition, reminiscent of the Amari Cooper trade when Dallas sent that first-rounder to Oakland mid-season. Cooper TRANSFORMED that offense, and if Stafford can give Tisha even ONE playoff run, maybe a championship THIS season or next, that 2028 second is PAID IN FULL. The profile checks out: aggressive buyer, 15 players acquired versus only 9 traded away historically. This manager CONSOLIDATES, and at 4-1 with playoff positioning already locked in, you're going for the throat. The power score delta is only plus-1.1, but that doesn't capture quarterback STABILITY in the fantasy playoffs!\n\nHere's what concerns me about The Window Closer's side - you're 100% win rate, you're DOMINANT, and you just traded away quarterback depth. Unless there's a stud QB already on this roster, you're creating a HOLE at the most stable position in fantasy football. Yes, the value chart says Stafford is worth 1,189 points and you got essentially zero measurable return, but dynasty is about WINDOWS. This team is clearly transitioning from \"win-now\" to \"sustained excellence,\" banking picks for 2028 when the core might need refreshing.\n\nThe Mortgage Broker gets an IMMEDIATE starter who's trending UP with 65,000-plus adds - that means Stafford is PRODUCING right now in 2026. The floor is QB2 numbers, the ceiling is he pulls a Tom Brady and plays until he's 40. For a team ranked 5th in power score trying to catch the top dogs, you NEED this kind of move.\n\nHere's my BOLD prediction: In two years when we look back at this trade, Stafford will have retired after the 2027 season, Tishathefish will have won at least ONE championship in 2026 or 2027, and that 2028 second-rounder The Window Closer acquired? It'll turn into a starting-caliber running back who anchors cosmohouck's NEXT dynasty run. Both managers WIN this trade in different timelines - that's the beauty of dynasty football, baby!",
+  "generatedAt": "2026-11-14T08:04:13.973Z"
+}

@@ -1,0 +1,107 @@
+{
+  "tradeId": "4449729c9e92a04b",
+  "week": 6,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.9,
+        "powerRank": 12,
+        "lineupValueScore": 24.6,
+        "performanceScore": 12.6,
+        "positionalScore": 21.6,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 13899
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 116,
+        "netValueChange": -116,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Aaron Jones Sr.",
+            "value": 116
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "team": "MIN",
+          "age": 31,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 55.7,
+        "powerRank": 5,
+        "lineupValueScore": 54.2,
+        "performanceScore": 66,
+        "positionalScore": 45.5,
+        "depthScore": 40.1,
+        "totalTeams": 12,
+        "totalRosterValue": 30543
+      },
+      "tradeImpact": {
+        "valueGained": 116,
+        "valueLost": 0,
+        "netValueChange": 116,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Aaron Jones Sr.",
+            "value": 116
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "team": "MIN",
+          "age": 31,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2029",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is textbook dynasty roster management—briankibler is selling the last drops of juice from a thirty-one-year-old running back who's already showing up on injury reports, while Tishathefish is making the classic contender's gamble that Aaron Jones has just enough left in the tank to push them over the top. You've got \"The Fire Sale General\" liquidating assets from 1-4, stacking future draft capital like he's building a war chest for 2029, versus \"The Win-Now Whale\" at 4-1 who's already traded away three picks historically and clearly believes this is their window. The production metrics tell you everything—Jones is averaging 9.3 points per game in his age-31 season with a questionable tag on his leg, and the athletic profile says we're on borrowed time with the RB age curve screaming danger past 27.\n\nHere's what makes this fascinating: briankibler has now traded away seven players while acquiring nine and collected a staggering nine draft picks versus only three sent out. That's not roster churn—that's a full-scale teardown with purpose. Meanwhile, Tishathefish sits at 55.7 power score, fifth in the league, and just moved 116 points of trade value for essentially nothing (a third-rounder three years out). The Net Value of +116 for the contender looks ugly on paper, but from a championship equity standpoint, you're betting those eight weeks until playoffs matter more than whatever mid-round dart you're throwing in 2029.\n\nThe scheme fit question is critical here—does Tishathefish have a genuine RB need that justifies giving up any draft capital for a back with a leg issue? At 644 points scored (second-most context we have), they're clearly scoring, but that 54.2 lineup component versus 66 performance rating suggests some volatility in their weekly deployments. If Jones can give them even six more weeks of RB2 production during the playoff push, mission accomplished. But if that questionable tag turns into a multi-week absence, they just torched future assets for nothing.\n\nWhat's truly compelling is the asymmetry of conviction: briankibler at 19.9 power score and dead last in the standings has fully committed to the tank-and-rebuild philosophy, turning every aging asset into lottery tickets. Six trades this season alone—this manager isn't waiting around. For a team likely eliminated from playoff contention, converting a thirty-one-year-old running back into any future pick is addition by subtraction. Tishathefish, conversely, is playing championship or bust at 4-1, betting they can extract enough value from Jones's veteran presence to make a deep run before the wheels completely fall off. One's playing 2027, the other's playing December 2026—and honestly, from a roster construction standpoint, both are making the correct decision for their timelines.",
+  "generatedAt": "2026-11-14T08:04:36.120Z"
+}
