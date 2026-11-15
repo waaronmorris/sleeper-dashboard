@@ -1,0 +1,107 @@
+{
+  "tradeId": "6979d804575a6faa",
+  "week": 9,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "Langland"
+  ],
+  "sides": [
+    {
+      "teamName": "Langland",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 36.5,
+        "powerRank": 8,
+        "lineupValueScore": 45.4,
+        "performanceScore": 26.3,
+        "positionalScore": 36.9,
+        "depthScore": 7.6,
+        "totalTeams": 12,
+        "totalRosterValue": 25587
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 203,
+        "netValueChange": -203,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Tyler Allgeier",
+            "value": 203
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyler Allgeier",
+          "position": "RB",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 55.7,
+        "powerRank": 5,
+        "lineupValueScore": 54.2,
+        "performanceScore": 66,
+        "positionalScore": 45.5,
+        "depthScore": 40.1,
+        "totalTeams": 12,
+        "totalRosterValue": 30543
+      },
+      "tradeImpact": {
+        "valueGained": 203,
+        "valueLost": 0,
+        "netValueChange": 203,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Tyler Allgeier",
+            "value": 203
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Tyler Allgeier",
+          "position": "RB",
+          "team": "ARI",
+          "age": 26,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "Langland"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I'm gonna be brutally honest here - this is the most LOPSIDED mid-season move I've seen in a while, and the tape doesn't lie on what's happening here.\n\nTishathefish is making an ALL-IN push at 5-3, and they just acquired Tyler Allgeier - a 26-year-old running back in his absolute PEAK YEARS - for what amounts to PENNIES on the dollar. A third-round pick in 2027? Are you KIDDING me? This guy is trending UP with 623,000 adds, he's got JUICE right now as a backup getting opportunity, and in dynasty you're telling me his value is a late third? I had Allgeier as worth AT LEAST a second-rounder on my board, maybe more if he's getting increased touches. This is a \"win-now\" acquisition that makes total sense for a contender - you need depth, you need FOOTBALL PLAYERS who can contribute immediately with five weeks until the playoffs, and Allgeier fits that profile perfectly. Meanwhile, Langland at 2-6 is waving the white flag, which is fine - but you've got to get FAIR VALUE when you're rebuilding!\n\nThis reminds me of the Tyreek Hill trade, but in REVERSE. When the Chiefs moved Hill to Miami, they got a HAUL - multiple first-rounders, they recognized his value and maximized their return. Langland? They're the anti-Chiefs here - shipping out a productive asset for future consideration that could turn into absolutely NOTHING. Tishathefish is playing the Miami role, going all-in on winning NOW, except they didn't have to mortgage the future to do it. That +203 net value tells you everything - this aggressive buyer just highway-robbed a rebuilding squad.\n\nHere's my BOLD prediction: Tyler Allgeier finishes this season as a top-24 running back in PPG, becomes a weekly flex play for Tishathefish during their playoff run, and that 2027 third-rounder? It turns into a tight end who never cracks a starting lineup. Two years from now, we're looking back at this as the moment \"The Playoff Pillager\" (Tishathefish) stole from \"The Surrender Cobra\" (Langland), and it might've been the difference between a championship and an early playoff exit.\n\nThis is CLASSIC contender-versus-pretender economics, and Tishathefish just won this trade by a LANDSLIDE. No question. Book it!",
+  "generatedAt": "2026-11-15T08:04:32.100Z"
+}
