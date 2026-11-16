@@ -1,0 +1,131 @@
+{
+  "tradeId": "6a01cee194bbc5e7",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 82.2,
+        "powerRank": 2,
+        "lineupValueScore": 81.4,
+        "performanceScore": 85.2,
+        "positionalScore": 81.2,
+        "depthScore": 74.2,
+        "totalTeams": 12,
+        "totalRosterValue": 45910
+      },
+      "tradeImpact": {
+        "valueGained": 7901,
+        "valueLost": 2823,
+        "netValueChange": 5078,
+        "estimatedPowerScoreChange": 4.5,
+        "playersGained": [
+          {
+            "name": "CeeDee Lamb",
+            "value": 7901
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "A.J. Brown",
+            "value": 2823
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "team": "NE",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 72.4,
+        "powerRank": 4,
+        "lineupValueScore": 73,
+        "performanceScore": 67.7,
+        "positionalScore": 79.7,
+        "depthScore": 72.2,
+        "totalTeams": 12,
+        "totalRosterValue": 41175
+      },
+      "tradeImpact": {
+        "valueGained": 2823,
+        "valueLost": 7901,
+        "netValueChange": -5078,
+        "estimatedPowerScoreChange": -4.5,
+        "playersGained": [
+          {
+            "name": "A.J. Brown",
+            "value": 2823
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "CeeDee Lamb",
+            "value": 7901
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "team": "NE",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "team": "DAL",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "PrinceofPizza"
+    }
+  ],
+  "persona": "Ian Rapoport",
+  "analysis": "My understanding is that Shogunation – let's call him \"The Age Curve Capitalist\" – just executed a textbook dynasty move that has PrinceofPizza, aka \"The Compensation Collector,\" thinking he found gold in that 2028 first-rounder. Sources indicate this trade is all about a two-year age gap and the price of premium production. We're looking at CeeDee Lamb at 27 versus A.J. Brown at 29, and in dynasty terms, that's the difference between a WR still in his absolute prime window and one entering the tail end. The value differential here – over 5,000 points – tells you everything about how the market views these two years. Keep an eye on Brown's situation in New England, because that's the real variable nobody's talking about enough.\n\nHere's what makes this fascinating from an insider perspective: this has major Davante Adams vibes written all over it. Brown reuniting with his former quarterback situation in New England could either validate PrinceofPizza's gamble or expose why Shogunation was willing to attach a 2028 first to move him. Sources tell me that when you're ranked #2 in power score like Shogunation, you're making win-now moves, and swapping a 29-year-old for a 27-year-old while sitting on an 82.2 power score screams championship window optimization. The tape shows Brown averaged 12.3 PPG historically versus Lamb's 13.5, and that 1.2-point edge compounds over a full season when you're chasing titles.\n\nThe risk-reward matrix here is developing in real-time. For The Age Curve Capitalist, the risk is minimal – you're getting the younger, more productive asset while extending your competitive window. My understanding is the only way this backfires is if Brown somehow rejuvenates in New England and that 2028 pick lands top-three, but we're talking about a team ranked #4 giving up their future first. For The Compensation Collector, you're betting that a 2028 first-rounder plus two years of A.J. Brown equals or exceeds what you're losing in CeeDee Lamb. Sources indicate PrinceofPizza is taking a -4.5 power score hit immediately, which in Week 1 of a dynasty league signals either a calculated rebuild or a miscalculation of asset values.\n\nWhat's really interesting here is the trading pattern context – Shogunation has moved 21 players historically while acquiring only 17, and he's consistently been a net-seller of draft capital. This move fits his profile perfectly: consolidating assets, prioritizing proven production, and maintaining that #2 power ranking. Meanwhile, PrinceofPizza just added his sixth pick acquired versus only three traded away in his career, building a draft chest for a potential reload. My sources say watch how that 2028 pick materializes, because if Shogunation maintains elite status, that late first-rounder might be the most expensive rental insurance PrinceofPizza ever purchased. Keep an eye on Brown's target share in New England – that's the number that either justifies this compensation package or exposes it as an overpay for age-curve concerns.",
+  "generatedAt": "2026-11-16T08:15:07.480Z"
+}

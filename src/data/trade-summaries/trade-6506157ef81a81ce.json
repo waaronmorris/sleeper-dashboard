@@ -1,0 +1,135 @@
+{
+  "tradeId": "6506157ef81a81ce",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 72.4,
+        "powerRank": 4,
+        "lineupValueScore": 73,
+        "performanceScore": 67.7,
+        "positionalScore": 79.7,
+        "depthScore": 72.2,
+        "totalTeams": 12,
+        "totalRosterValue": 41175
+      },
+      "tradeImpact": {
+        "valueGained": 4723,
+        "valueLost": 0,
+        "netValueChange": 4723,
+        "estimatedPowerScoreChange": 4.2,
+        "playersGained": [
+          {
+            "name": "Zay Flowers",
+            "value": 4723
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.7,
+        "powerRank": 10,
+        "lineupValueScore": 33.5,
+        "performanceScore": 26.9,
+        "positionalScore": 30.1,
+        "depthScore": 8.5,
+        "totalTeams": 12,
+        "totalRosterValue": 18869
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 4723,
+        "netValueChange": -4723,
+        "estimatedPowerScoreChange": -4.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Zay Flowers",
+            "value": 4723
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    },
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    },
+    {
+      "season": "2029",
+      "round": 2,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "This is a full-scale teardown versus all-in consolidation, and it's a textbook example of how contenders and rebuilders should operate in dynasty leagues. PrinceofPizza is loading up the cannons at 72.4 power score, sitting fourth in the league, and they just mortgaged three years of draft capital to acquire a WR1 entering his athletic prime. Meanwhile, iwmrichfulton is stuck in basketball-score territory at 29.7 power score—tenth in a twelve-team league—and they're wisely cashing out their best asset for a treasure chest of future picks. This is how you tank properly, folks.\n\nLet's talk about the haul iwmrichfulton is getting: a 2027 second, a 2028 *first*, and a 2029 second. That 2028 first-rounder is the crown jewel here. Given PrinceofPizza's win-now aggression and the fact they're dealing three picks for one player, there's a real chance that first becomes a top-five selection if this championship push doesn't pan out. For a team sitting at 29.7 power score with catastrophic depth issues (8.5 depth rating!), this is exactly the reset button they needed to push. You don't compete with that roster—you accumulate assets and rebuild the foundation.\n\nFor PrinceofPizza, this is a tremendous value consolidation move for a contender. Zay Flowers just posted 10.3 PPG historically and he's 26 years old—right in that WR prime window. He's got Lamar Jackson throwing him the football in a run-heavy offense that creates explosive play opportunities downfield. They're getting a plug-and-play WR1 who addresses an immediate need while their championship window is wide open. Yes, they gave up significant draft capital, but when you're ranked fourth with a 73 lineup score, you don't need lottery tickets—you need proven producers who can help you win *now*.\n\nHere's my bold prediction: this trade looks like highway robbery for PrinceofPizza in 2027, but by 2029, it becomes the foundation of iwmrichfulton's resurgence. If that 2028 first-rounder lands in the top three and iwmrichfulton nails the pick on a generational RB or elite QB prospect, they'll have flipped one aging asset into a young cornerstone plus additional ammunition. PrinceofPizza wins the next two seasons, but the Pizza man better hope he hoists a trophy—because he just gave a basement dweller the blueprint to dethrone him by decade's end.",
+  "generatedAt": "2026-11-16T08:12:02.721Z"
+}

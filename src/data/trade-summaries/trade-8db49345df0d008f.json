@@ -1,0 +1,107 @@
+{
+  "tradeId": "8db49345df0d008f",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mastab24",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "mastab24",
+      "teamContext": "Middle of pack - unclear direction",
+      "powerScore": {
+        "powerScore": 36.9,
+        "powerRank": 7,
+        "lineupValueScore": 37.2,
+        "performanceScore": 42.9,
+        "positionalScore": 29.9,
+        "depthScore": 18.7,
+        "totalTeams": 12,
+        "totalRosterValue": 20995
+      },
+      "tradeImpact": {
+        "valueGained": 152,
+        "valueLost": 0,
+        "netValueChange": 152,
+        "estimatedPowerScoreChange": 0.1,
+        "playersGained": [
+          {
+            "name": "Deebo Samuel Sr.",
+            "value": 152
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Deebo Samuel Sr.",
+          "position": "WR",
+          "team": "SF",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.7,
+        "powerRank": 10,
+        "lineupValueScore": 33.5,
+        "performanceScore": 26.9,
+        "positionalScore": 30.1,
+        "depthScore": 8.5,
+        "totalTeams": 12,
+        "totalRosterValue": 18869
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 152,
+        "netValueChange": -152,
+        "estimatedPowerScoreChange": -0.1,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Deebo Samuel Sr.",
+            "value": 152
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2026 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Deebo Samuel Sr.",
+          "position": "WR",
+          "team": "SF",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 3,
+      "from": "mastab24",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "Look, I'm all for getting your guy, but mastab24 just made iwmrichfulton's day here—and honestly, it's not even close.\n\nLet's talk about what's actually changing hands. Deebo Samuel at 30 years old is a fascinating asset in dynasty, but we're talking about a player averaging 9.2 PPG historically who's firmly in the backend of his career window. For a wide receiver, we're already past the premium years, and while Deebo's unique rushing ability has extended his shelf life, Father Time is undefeated. Meanwhile, mastab24 is giving up a third-round pick for what amounts to a short-term rental on a player with declining dynasty value. This is the definition of win-now desperation, except here's the problem: mastab24 is ranked seventh in power score at 36.9! They're not a contender making that final push—they're a middling team mortgaging future assets for a player who won't fundamentally change their trajectory.\n\nWhat makes this particularly egregious is the timing. Week 1 of 2026? You don't even have real performance data yet! mastab24 is making a panic move before they've seen their roster in action, which tells me they're either terrified of their receiving corps or they've drastically overvalued what Deebo brings to the table. That third-round pick has lottery ticket upside—could be a breakout rookie WR, a high-upside QB, or prime trade ammunition mid-season when contenders get desperate. Instead, they're locking in a 30-year-old with maybe one solid season left. The +0.1 power score bump tells you everything: this move barely registers.\n\nFor iwmrichfulton, sitting at 29.7 power score and clearly in rebuild mode? This is textbook asset management. They're flipping an aging piece for draft capital, which is exactly what you do when you're ranked tenth out of twelve. That third-rounder becomes either a roster cornerstone or additional trade currency to accelerate the rebuild. They're playing chess while mastab24 is playing checkers, and the net value of -152 versus +152 perfectly captures the imbalance here.\n\nThis is mastab24 reaching for the wrong player at the wrong time. When you're not a championship roster, you don't trade picks for players on the back nine. You build through the draft, accumulate youth, and strike when you're actually ready to compete. Meanwhile, iwmrichfulton just got tremendous value for a depreciating asset and should be sending a thank-you note.",
+  "generatedAt": "2026-11-16T08:14:25.240Z"
+}

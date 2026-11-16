@@ -1,0 +1,197 @@
+{
+  "tradeId": "cd13e58aff0b50ba",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "PrinceofPizza",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "PrinceofPizza",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 72.4,
+        "powerRank": 4,
+        "lineupValueScore": 73,
+        "performanceScore": 67.7,
+        "positionalScore": 79.7,
+        "depthScore": 72.2,
+        "totalTeams": 12,
+        "totalRosterValue": 41175
+      },
+      "tradeImpact": {
+        "valueGained": 8853,
+        "valueLost": 8541,
+        "netValueChange": 312,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Jaylen Warren",
+            "value": 1153
+          },
+          {
+            "name": "Puka Nacua",
+            "value": 7700
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Zay Flowers",
+            "value": 4723
+          },
+          {
+            "name": "Rome Odunze",
+            "value": 2700
+          },
+          {
+            "name": "Marvin Harrison Jr.",
+            "value": 1118
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jaylen Warren",
+          "position": "RB",
+          "team": "PIT",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "team": "LAR",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Rome Odunze",
+          "position": "WR",
+          "team": "CHI",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Marvin Harrison Jr.",
+          "position": "WR",
+          "team": "HOU",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.7,
+        "powerRank": 10,
+        "lineupValueScore": 33.5,
+        "performanceScore": 26.9,
+        "positionalScore": 30.1,
+        "depthScore": 8.5,
+        "totalTeams": 12,
+        "totalRosterValue": 18869
+      },
+      "tradeImpact": {
+        "valueGained": 8541,
+        "valueLost": 8853,
+        "netValueChange": -312,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [
+          {
+            "name": "Zay Flowers",
+            "value": 4723
+          },
+          {
+            "name": "Rome Odunze",
+            "value": 2700
+          },
+          {
+            "name": "Marvin Harrison Jr.",
+            "value": 1118
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jaylen Warren",
+            "value": 1153
+          },
+          {
+            "name": "Puka Nacua",
+            "value": 7700
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "team": "BAL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Rome Odunze",
+          "position": "WR",
+          "team": "CHI",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Marvin Harrison Jr.",
+          "position": "WR",
+          "team": "HOU",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jaylen Warren",
+          "position": "RB",
+          "team": "PIT",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "team": "LAR",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "PrinceofPizza",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I've been doing this for over four decades, and when I see a trade like this, the tape doesn't lie - PrinceofPizza just pulled off a HEIST in broad daylight! This guy is what I call \"Mr. Consolidation,\" and he just turned three developmental assets and a first-rounder into two proven producers. Meanwhile, iwmrichfulton - and I'm calling him \"The Rebuilder's Remorse\" after this move - just mortgaged his ONLY elite asset for a bunch of maybes and a pick that might not even crack the top-8.\n\nNow, Puka Nacua is a FOOTBALL PLAYER, folks. This guy put up 13.5 points per game and at 25 years old, he's entering his absolute prime window for wide receivers. You're getting WR1 production with upside still on the horizon. And here's what nobody's talking about - PrinceofPizza desperately needed running back help, and Jaylen Warren at 28 gives him two more solid RB2 years right NOW when he's trying to compete at 72.4 power score, ranked fourth in this league. The value chart says he gave up 8,541 and got back 8,853? That's a WIN in the value column, but the positional value here is even more lopsided than that number suggests because of running back scarcity!\n\nLet me tell you about the assets iwmrichfulton acquired, because I need to be fair here - Rome Odunze and Marvin Harrison Jr. have upside, sure. But we're talking about a 24-year-old who averaged 7.0 PPG and another 24-year-old at 7.5 PPG. These are PROJECTION plays, not production! Zay Flowers at 26 is the only proven commodity in this package, and even he's a tier below Nacua's production. When you're sitting at 29.7 power score, ranked TENTH in a 12-team league, you can't afford to trade away your best player for lottery tickets! The first-round pick is nice, but you just lost -0.3 in projected power score - that's the WRONG direction when you're already in the basement!\n\nThe timing on this is what really gets me fired up. Week 1, 2026! PrinceofPizza is making a win-NOW move with 13 weeks until playoffs, consolidating young pieces into immediate impact. That's SMART roster construction for a contender. But The Rebuilder's Remorse? If you're punting on the season at 29.7 power score, I get it - accumulate picks and youth. But you better PRAY that 2026 first-rounder turns into a stud, because you just gave up a 25-year-old WR1 who should be the CORNERSTONE of your rebuild! This trade screams desperation, and on my board, PrinceofPizza wins this going away. The floor-ceiling differential here heavily favors the guy getting proven production, and that's Mr. Consolidation all day long!",
+  "generatedAt": "2026-11-16T08:14:08.217Z"
+}

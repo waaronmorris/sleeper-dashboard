@@ -1,0 +1,145 @@
+{
+  "tradeId": "9aed36271fef3065",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 82.2,
+        "powerRank": 2,
+        "lineupValueScore": 81.4,
+        "performanceScore": 85.2,
+        "positionalScore": 81.2,
+        "depthScore": 74.2,
+        "totalTeams": 12,
+        "totalRosterValue": 45910
+      },
+      "tradeImpact": {
+        "valueGained": 1514,
+        "valueLost": 53,
+        "netValueChange": 1461,
+        "estimatedPowerScoreChange": 1.3,
+        "playersGained": [
+          {
+            "name": "Saquon Barkley",
+            "value": 1514
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Kimani Vidal",
+            "value": 53
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "team": "PHI",
+          "age": 29,
+          "careerStage": "Declining"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kimani Vidal",
+          "position": "RB",
+          "team": "LAC",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2029 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18.5,
+        "powerRank": 12,
+        "lineupValueScore": 24.6,
+        "performanceScore": 8.2,
+        "positionalScore": 21.6,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 13899
+      },
+      "tradeImpact": {
+        "valueGained": 53,
+        "valueLost": 1514,
+        "netValueChange": -1461,
+        "estimatedPowerScoreChange": -1.3,
+        "playersGained": [
+          {
+            "name": "Kimani Vidal",
+            "value": 53
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Saquon Barkley",
+            "value": 1514
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kimani Vidal",
+          "position": "RB",
+          "team": "LAC",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2029 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "team": "PHI",
+          "age": 29,
+          "careerStage": "Declining"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2029",
+      "round": 1,
+      "from": "Shogunation",
+      "to": "briankibler"
+    },
+    {
+      "season": "2029",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Per league sources, Shogunation just went all-in for a championship run, sending a package including a 2029 first-rounder and second-rounder plus Kimani Vidal to briankibler for 29-year-old Saquon Barkley. I'm told the second-ranked power team (82.2/100) is making the classic win-now move, mortgaging three years down the road for immediate firepower. Sources say Shogunation—let's call him \"The Closer\"—has been stockpiling assets (19 players acquired all-time) and now he's cashing in those chips. This is the textbook contender consolidation play.\n\nAccording to multiple sources familiar with the situation, briankibler—who ranks dead last in power score at 18.5—just executed the full teardown. \"The Architect\" is rebuilding from the ground up, and I'm told he views those 2029 picks as foundational pieces. He's now sitting on premium draft capital three years out, betting that a 25-year-old Vidal has more long-term utility than a running back on the wrong side of the age curve. League sources say briankibler's aggressive buying pattern (6 total trades) suggests he's not afraid to make uncomfortable moves, and moving on from a 14.2 PPG back to accumulate youth fits the full rebuild blueprint.\n\nThe value disparity here is striking—1,514 points going out versus just 53 coming back for briankibler. But I'm told both sides feel they won, which tells you everything about their different timelines. Shogunation gets a proven 14-point-per-game weapon who can help him chase cosmohouck for the league title right now. The Architect gets to draft impact rookies when Barkley's completely out of the league. This is dynasty football in its purest form—present versus future.\n\nHere's my bold call: This trade will be remembered as the moment briankibler's rebuild officially began, and I'm told those 2029 picks will turn into cornerstone players. Barkley might help Shogunation make a playoff run this year, but by 2029, when those picks are hitting their stride, league insiders believe The Closer will be wishing he kept that first-rounder. Age curves don't lie, and Saquon's odometer is running high. Sources say this could haunt the contender sooner than expected.",
+  "generatedAt": "2026-11-16T08:12:40.591Z"
+}

@@ -1,0 +1,121 @@
+{
+  "tradeId": "0cc5bb17fb84430f",
+  "week": 9,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "drobs",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 34.4,
+        "powerRank": 9,
+        "lineupValueScore": 38.9,
+        "performanceScore": 28.5,
+        "positionalScore": 32.4,
+        "depthScore": 30.1,
+        "totalTeams": 12,
+        "totalRosterValue": 21948
+      },
+      "tradeImpact": {
+        "valueGained": 365,
+        "valueLost": 0,
+        "netValueChange": 365,
+        "estimatedPowerScoreChange": 0.3,
+        "playersGained": [
+          {
+            "name": "Chris Godwin Jr.",
+            "value": 365
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Chris Godwin Jr.",
+          "position": "WR",
+          "team": "TB",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kadarius Toney",
+          "position": "WR",
+          "team": "FA",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.5,
+        "powerRank": 11,
+        "lineupValueScore": 20.4,
+        "performanceScore": 20.3,
+        "positionalScore": 18.2,
+        "depthScore": 9.1,
+        "totalTeams": 12,
+        "totalRosterValue": 11483
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 365,
+        "netValueChange": -365,
+        "estimatedPowerScoreChange": -0.3,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Chris Godwin Jr.",
+            "value": 365
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kadarius Toney",
+          "position": "WR",
+          "team": "FA",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2026 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chris Godwin Jr.",
+          "position": "WR",
+          "team": "TB",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 2,
+      "from": "drobs",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a classic win-now versus rebuild transaction, and honestly, I love the decisiveness from both sides. Drobs is sitting at 5-3, firmly in playoff contention despite being ranked ninth in power score, and they're looking at Chris Godwin putting up 9.1 points per game while Kadarius Toney is essentially a roster clogger averaging under three points. For a team trying to make a playoff push with just five weeks until the postseason, you're getting proven weekly production in a Tampa Bay offense that feeds Godwin targets. The athletic profile isn't what it was when Godwin was 25, but the production metrics are rock solid, and that's what matters when you're trying to win games right now.\n\nPowerperson's side of this deal is where it gets interesting from a dynasty asset accumulation standpoint. At 1-7, they're basically dead in the water this season, and moving a 30-year-old receiver who's in the back half of his prime makes total sense. They're betting on the lottery ticket potential of Toney—who still has the elite athletic profile that made him a first-round pick—plus banking a 2026 second-rounder. Now, let's be real: Toney's production metrics have been absolutely abysmal, and he's now a free agent, which tells you everything about his NFL trajectory. But when you're rebuilding in dynasty, sometimes you take flyers on former first-round talent at 25 years old, especially when you're getting draft capital sweetener. The second-rounder three years out is premium currency for a rebuilder.\n\nThe scheme fit and timing here couldn't be more appropriate. Drobs needed an immediate upgrade at receiver to maximize their playoff window, and they're getting exactly that—a proven veteran who doesn't need to learn a new system and can contribute immediately. The +365 net value they're gaining tells you this is essentially Godwin for a second-round pick, because Toney has zero measurable value at this point. For a contender with middling depth (30.1 depth score), adding a floor play like Godwin makes perfect sense. Meanwhile, powerperson is doing textbook dynasty rebuilding: accumulating picks, taking chances on young talent with pedigree, and punting on aging assets.\n\nWhere this gets controversial is whether drobs gave up enough. A single second-rounder for a 30-year-old receiver feels light in dynasty circles, even for a contender. Godwin's age curve suggests he's got maybe two more solid seasons before decline sets in, and drobs is already sitting at a pedestrian 34.4 power score. Are they really a championship-caliber team, or are they mortgaging future assets for a first-round playoff exit? From a pure value standpoint, powerperson probably should've squeezed for a first-rounder or a younger piece, because Godwin's production metrics this season justify more than Toney's corpse and a mid-round pick two drafts away. But when you're 1-7 and ranked eleventh, you take what you can get and hope the draft capital pays off. This trade won't move the needle dramatically for either side—the +0.3 power score swing is marginal—but it's smart roster management based on each team's timeline.",
+  "generatedAt": "2026-11-16T08:19:01.953Z"
+}

@@ -1,0 +1,173 @@
+{
+  "tradeId": "34c24d616038beaa",
+  "week": 9,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "drobs",
+    "cosmohouck"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 34.4,
+        "powerRank": 9,
+        "lineupValueScore": 38.9,
+        "performanceScore": 28.5,
+        "positionalScore": 32.4,
+        "depthScore": 30.1,
+        "totalTeams": 12,
+        "totalRosterValue": 21948
+      },
+      "tradeImpact": {
+        "valueGained": 3423,
+        "valueLost": 1315,
+        "netValueChange": 2108,
+        "estimatedPowerScoreChange": 1.9,
+        "playersGained": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3423
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Isaiah Likely",
+            "value": 1315
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Dawson Knox",
+          "position": "TE",
+          "team": "BUF",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "team": "NYG",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.7,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 95.6,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56395
+      },
+      "tradeImpact": {
+        "valueGained": 1315,
+        "valueLost": 3423,
+        "netValueChange": -2108,
+        "estimatedPowerScoreChange": -1.9,
+        "playersGained": [
+          {
+            "name": "Isaiah Likely",
+            "value": 1315
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3423
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "team": "NYG",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Dawson Knox",
+          "position": "TE",
+          "team": "BUF",
+          "age": 30,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 1,
+      "from": "drobs",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "drobs",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a textbook dynasty rebuild move that perfectly illustrates the gap between win-now desperation and proper asset accumulation. DeVonta Smith at 28 years old is right in that WR peak window we talk about, putting up 8.5 points per game with solid production metrics, but here's the fascinating part – cosmohouck is sitting at 1-7 with the league's *highest* power score at 98.7. That's the ultimate misalignment between roster construction and actual results, and this manager clearly recognized it. Trading away a productive WR in his prime plus Dawson Knox to essentially swap a late second for an early first while grabbing Isaiah Likely as the TE replacement? That's hitting the reset button with conviction. They've now stockpiled 9 picks while trading away just 4 – the classic rebuilder's blueprint when you realize the season's toast.\n\nNow drobs at 3-5 is making the opposite calculation, and I've got some concerns about the execution here. You're on the playoff bubble, you need wins *now*, and DeVonta Smith absolutely helps that cause. The problem? You just gave up a projected first-round pick in 2024 that's likely to be top-3 given cosmohouck's record, plus your own second-rounder, to move from Isaiah Likely to Dawson Knox at tight end – guys separated by 0.1 points per game – and add Smith. That's premium draft capital for a 28-year-old receiver when your power score sits at 34.4, ranked 9th out of 12. The value metrics show it clearly: you received $3,423 in value but gave up picks worth significantly more in a dynasty format, netting positive in the short-term but mortgaging serious future flexibility.\n\nThe timing here cuts both ways. Week 9 is exactly when you should know whether to buy or sell, and cosmohouck correctly identified they're sellers despite that elite power score. Five weeks until playoffs means drobs still has a puncher's chance, but here's my scout's take: when you're future-focused by nature – this manager has stockpiled 5 picks historically while trading away just 2 – suddenly pivoting to win-now mode with a sub-.500 record feels like mixing strategies. You're either building through the draft or you're consolidating talent to compete. Doing both halfway typically leaves you stuck in mediocrity. The 2,108-point net value advantage looks great on paper, but dynasty value isn't just about this season's points – it's about controlled assets and age curves. Cosmohouck just turned one great young receiver into what could be two impact rookies in 2024, and from a long-term roster construction standpoint, that first-rounder is the crown jewel of this deal.",
+  "generatedAt": "2026-11-16T08:19:46.829Z"
+}

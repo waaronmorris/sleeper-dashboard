@@ -1,0 +1,97 @@
+{
+  "tradeId": "96d3440e080cb4bd",
+  "week": 8,
+  "season": "2025",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Tishathefish",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 82.2,
+        "powerRank": 2,
+        "lineupValueScore": 81.4,
+        "performanceScore": 85.2,
+        "positionalScore": 81.2,
+        "depthScore": 74.2,
+        "totalTeams": 12,
+        "totalRosterValue": 45910
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Theo Johnson",
+          "position": "TE",
+          "team": "NYG",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "Tishathefish",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 57.2,
+        "powerRank": 5,
+        "lineupValueScore": 54.2,
+        "performanceScore": 70.9,
+        "positionalScore": 45.5,
+        "depthScore": 40.1,
+        "totalTeams": 12,
+        "totalRosterValue": 30543
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Theo Johnson",
+          "position": "TE",
+          "team": "NYG",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "Tishathefish",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Shogunation cashes out on Theo Johnson for a 2028 third-round pick, per league sources, in what I'm told is a savvy dynasty asset management move by the 5-2 contender.\n\nHere's what makes this fascinating, folks: Shogunation is sitting at 82.2 power score, second in the league, already a playoff lock — and they're shipping out a 25-year-old Giants tight end averaging 4.6 PPG for future draft capital. I'm told this is classic dynasty roster optimization. They're a win-now team that clearly doesn't need Johnson's modest production, and according to multiple sources familiar with their thinking, converting depth pieces into picks three years out is textbook dynasty strategy for contenders. With 16 career deals under their belt and a pattern of trading away more players than they acquire, this front office knows how to trim fat.\n\nLeague sources say Tishathefish at 3-4 is making a calculated gamble here. They're on the playoff bubble with a 57.2 power score, and I'm told they believe Johnson — who's a starter in New York at just 25 years old — represents a buy-low opportunity. The tight end position has premium scarcity value, and acquiring a young starter for essentially a throwaway third three years from now? That's the kind of risk playoff-bubble teams need to take. Their positional strength of just 45.5 suggests they need impact help anywhere they can find it.\n\nMy bold prediction: This trade looks brilliant for Tishathefish in 18 months when Johnson becomes a weekly TE1. Tight ends break out late, and 25 is right in that sweet spot window. Shogunation gets organizational points for process, but I'm told you can't eat process — and that 2028 third-rounder likely becomes a dart throw while Johnson develops into a dynasty TE cornerstone.\n\nThe timing cuts both ways here. For a 5-2 juggernaut, Week 8 is exactly when you should be consolidating — but they went the opposite direction, trading present for future. For Tishathefish, six weeks until playoffs means this is their last chance to add pieces before it's too late. According to sources close to the situation, they're betting Johnson's starter role translates to volume, and volume at tight end wins leagues.",
+  "generatedAt": "2026-11-16T08:17:35.098Z"
+}

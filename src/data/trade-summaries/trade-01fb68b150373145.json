@@ -1,0 +1,97 @@
+{
+  "tradeId": "01fb68b150373145",
+  "week": 9,
+  "season": "2022",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "powerperson",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 34.4,
+        "powerRank": 9,
+        "lineupValueScore": 38.9,
+        "performanceScore": 28.5,
+        "positionalScore": 32.4,
+        "depthScore": 30.1,
+        "totalTeams": 12,
+        "totalRosterValue": 21948
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Chase Edmonds",
+          "position": "RB",
+          "team": "FA",
+          "age": 29,
+          "careerStage": "Declining"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.5,
+        "powerRank": 11,
+        "lineupValueScore": 20.4,
+        "performanceScore": 20.3,
+        "positionalScore": 18.2,
+        "depthScore": 9.1,
+        "totalTeams": 12,
+        "totalRosterValue": 11483
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Chase Edmonds",
+          "position": "RB",
+          "team": "FA",
+          "age": 29,
+          "careerStage": "Declining"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 3,
+      "from": "powerperson",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Mel Kiper Jr.",
+  "analysis": "Look, I've been doing this for over forty years, and when I see a late-season desperation move for a 26-year-old running back averaging FIVE POINTS per game, I have to ask myself - WHAT ARE WE DOING HERE? This is Chase Edmonds we're talking about, not Chase Claypool! The tape from 2022 shows a running back who's clearly lost a step, buried on Miami's depth chart behind Raheem Mostert, and powerperson - let's call him \"The Panic Button Pusher\" - is trading away a future third-rounder like he's one running back away from hoisting the trophy. Meanwhile, drobs - \"The Garage Sale Guy\" - is sitting at 3-5, liquidating assets faster than a team moving to a new city, and honestly? He's making the SMART play here getting ANY draft capital back for this guy!\n\nThis reminds me SO MUCH of that Odell Beckham Jr. trade when the Giants shipped him to Cleveland. Big name, fading production, team desperately thinking they're adding that missing piece. You know what happened there? OBJ couldn't stay healthy, the Browns kept being the Browns, and the Giants ended up looking brilliant for cashing out at the right time. Edmonds had ONE good half-season in Arizona as a change-of-pace back - that's his entire résumé! Now he's 29 years old in DYNASTY, hitting that running back cliff that I've been warning people about since the 1980s, and powerperson is at 5-3 thinking this move pushes him over the top. The floor on this asset is ZERO, people!\n\nHere's what kills me about powerperson's position - you're ranked 11th out of 12 teams in power score with a 19.5! Your DEPTH is 9.1! You need to be ACCUMULATING assets, not throwing away future picks for a replacement-level running back who might give you three weeks of RB3 production before disappearing entirely. The Panic Button Pusher sees that 5-3 record and thinks he's a contender, but the underlying numbers scream \"paper tiger.\" This is classic win-now tunnel vision that destroys dynasty rosters.\n\nFor drobs, The Garage Sale Guy, this is addition by subtraction at its finest. You're 3-5, you're ranked 9th in power, and you've got FIVE trades under your belt this season - you clearly understand this roster needs a full rebuild. Getting a 2025 third-rounder for a washed running back is like finding a twenty-dollar bill in your old jacket. It's not changing your franchise, but it's value where there was NONE. In dynasty, those third-rounders can turn into rotational starters or solid trade chips. The upside here is capped but the floor is way higher than rostering Chase Edmonds for another year!\n\nBottom line: drobs wins this going away. He turned an expiring asset into future capital - that's DYNASTY 101! Powerperson just mortgaged 2025 for maybe five weeks of Chase Edmonds limping through garbage time carries. When you're making moves like this at 5-3 with the second-worst power score in the league, you're not building a champion - you're rearranging deck chairs on the Titanic. This guy is a ROSTER FILLER at this stage of his career, and the tape doesn't lie!",
+  "generatedAt": "2026-11-16T08:20:12.925Z"
+}

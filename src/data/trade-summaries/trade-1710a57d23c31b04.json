@@ -1,0 +1,211 @@
+{
+  "tradeId": "1710a57d23c31b04",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mastab24",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 82.2,
+        "powerRank": 2,
+        "lineupValueScore": 81.4,
+        "performanceScore": 85.2,
+        "positionalScore": 81.2,
+        "depthScore": 74.2,
+        "totalTeams": 12,
+        "totalRosterValue": 45910
+      },
+      "tradeImpact": {
+        "valueGained": 8549,
+        "valueLost": 7875,
+        "netValueChange": 674,
+        "estimatedPowerScoreChange": 0.6,
+        "playersGained": [
+          {
+            "name": "A.J. Brown",
+            "value": 2823
+          },
+          {
+            "name": "James Cook III",
+            "value": 5726
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Dallas Goedert",
+            "value": 371
+          },
+          {
+            "name": "D'Andre Swift",
+            "value": 1558
+          },
+          {
+            "name": "Drake London",
+            "value": 5946
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "team": "NE",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "James Cook III",
+          "position": "RB",
+          "team": "BUF",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Dallas Goedert",
+          "position": "TE",
+          "team": "PHI",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "D'Andre Swift",
+          "position": "RB",
+          "team": "CHI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "team": "ATL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "mastab24",
+      "teamContext": "Middle of pack - unclear direction",
+      "powerScore": {
+        "powerScore": 36.9,
+        "powerRank": 7,
+        "lineupValueScore": 37.2,
+        "performanceScore": 42.9,
+        "positionalScore": 29.9,
+        "depthScore": 18.7,
+        "totalTeams": 12,
+        "totalRosterValue": 20995
+      },
+      "tradeImpact": {
+        "valueGained": 7875,
+        "valueLost": 8549,
+        "netValueChange": -674,
+        "estimatedPowerScoreChange": -0.6,
+        "playersGained": [
+          {
+            "name": "Dallas Goedert",
+            "value": 371
+          },
+          {
+            "name": "D'Andre Swift",
+            "value": 1558
+          },
+          {
+            "name": "Drake London",
+            "value": 5946
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "A.J. Brown",
+            "value": 2823
+          },
+          {
+            "name": "James Cook III",
+            "value": 5726
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Dallas Goedert",
+          "position": "TE",
+          "team": "PHI",
+          "age": 31,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "D'Andre Swift",
+          "position": "RB",
+          "team": "CHI",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "team": "ATL",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "team": "NE",
+          "age": 29,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "James Cook III",
+          "position": "RB",
+          "team": "BUF",
+          "age": 27,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2027",
+      "round": 2,
+      "from": "Shogunation",
+      "to": "mastab24"
+    },
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "mastab24",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "Breaking: Shogunation and mastab24 have agreed to a blockbuster Week 1 dynasty deal that's already dividing the league, per multiple sources. I'm told Shogunation is going all-in on 2026, acquiring A.J. Brown and James Cook III while shipping out the younger Drake London (25) and swapping a 2027 second-rounder for a 2028 first. League sources say mastab24, sitting at a concerning 36.9 power score (#7 of 12), is pivoting toward the future after realizing this roster needs more than a quick fix. According to those familiar with the negotiations, this is your classic win-now versus rebuild scenario—think the Stafford/Goff swap—where both sides believe they're getting exactly what they need at exactly the right time.\n\nHere's what I'm hearing from around the league: Shogunation is making a massive bet that Brown (29) and Cook (27) have enough juice left to deliver a championship *right now* to that 82.2 power score roster. The problem? Sources tell me they're trading away London, who's 25 years old and valued at 5,946 compared to Brown's 2,823. In dynasty terms, that's sacrificing tomorrow's WR1 for today's aging asset. Per my calculations, they netted +674 in value, but I'm told the age curve could make this look completely different by 2027. Brown's already 29, and we know receiver production typically peaks around 26-30 before the cliff arrives.\n\nLeague insiders point to mastab24's desperation move here as the real story. This team is ranked #7 with abysmal depth (18.7 depth score) and needed to get younger in the worst way. According to sources close to the situation, they viewed London as a potential building block—someone who could be productive for the next 5-7 years while they accumulate assets. Trading away a 2028 first-rounder hurts, but I'm told they believe the 2027 second plus London's youth gives them the foundation to compete when it actually matters. Swift at 27 provides immediate RB help, and Goedert—while 31—fills a positional need without sacrificing long-term flexibility.\n\nHere's my bold prediction, per what I'm seeing: This trade looks brilliant for Shogunation in 2026 if they win the championship, but by 2028, when Brown's likely declining and that mastab24 first-rounder hits, we'll be calling this the heist of the decade for the rebuilding side. I'm told both GMs feel they won, which usually means someone's about to be very wrong. League sources say Shogunation wins NOW—that 0.6 power score bump could be the difference in a title—but mastab24 wins the next three years. This is dynasty poker at its finest, and someone just went all-in on the river.",
+  "generatedAt": "2026-11-16T08:15:29.780Z"
+}

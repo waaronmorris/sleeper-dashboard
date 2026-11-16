@@ -1,0 +1,131 @@
+{
+  "tradeId": "4ea7ad5ee403c4e4",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "Shogunation",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 82.2,
+        "powerRank": 2,
+        "lineupValueScore": 81.4,
+        "performanceScore": 85.2,
+        "positionalScore": 81.2,
+        "depthScore": 74.2,
+        "totalTeams": 12,
+        "totalRosterValue": 45910
+      },
+      "tradeImpact": {
+        "valueGained": 570,
+        "valueLost": 322,
+        "netValueChange": 248,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Brenton Strange",
+            "value": 570
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Oronde Gadsden",
+            "value": 322
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Brenton Strange",
+          "position": "TE",
+          "team": "JAX",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Oronde Gadsden",
+          "position": "TE",
+          "team": "LAC",
+          "age": 23,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18.5,
+        "powerRank": 12,
+        "lineupValueScore": 24.6,
+        "performanceScore": 8.2,
+        "positionalScore": 21.6,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 13899
+      },
+      "tradeImpact": {
+        "valueGained": 322,
+        "valueLost": 570,
+        "netValueChange": -248,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [
+          {
+            "name": "Oronde Gadsden",
+            "value": 322
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Brenton Strange",
+            "value": 570
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Oronde Gadsden",
+          "position": "TE",
+          "team": "LAC",
+          "age": 23,
+          "careerStage": "Developing"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Brenton Strange",
+          "position": "TE",
+          "team": "JAX",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "Shogunation",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Louis Riddick",
+  "analysis": "From a front office standpoint, this is a fascinating case study in dynasty asset management – and honestly, I think briankibler just pulled off a heist in broad daylight while everyone's focused on Week 1 projections. Let me break down why the team sitting dead last at 18.5 power score just made the smarter long-term play than the contender at 82.2.\n\nShogunation – let's call them \"The Impatient Contender\" – is doing exactly what championship-window teams do wrong. They're looking at that 570 value on Brenton Strange versus the 322 on Oronde Gadsden and thinking they're upgrading. But here's what the spreadsheet doesn't tell you: Gadsden is 23 years old, Strange is 25, and in dynasty football, that two-year age gap at the tight end position is organizational gold. You're essentially buying the pre-peak version of a rising asset and throwing in a 2028 third-round pick as a sweetener? That's not championship maneuvering – that's panic buying at the Mercedes dealership because you like the newer model better. When you're ranked #2 in power score and historically active with 20 career trades, you should be *extracting* draft capital from basement dwellers, not gifting it to them.\n\nNow let's talk about briankibler – I'm calling him \"The Basement Architect\" – who's sitting at the absolute bottom of this league with a 10.2 depth score and somehow just convinced a contender to pay him for the privilege of getting older at tight end. This is textbook rebuilding strategy: accumulate young assets, collect draft picks, and let desperate contenders talk themselves into marginal upgrades. His trading profile tells you everything – he's acquired four players without giving up a single one before this, and he's already shed three picks in his career. Now he's reversing that trend, getting younger AND adding a 2028 third? From a front office standpoint, that's how you rebuild the right way. The value numbers say he \"lost\" this deal by 248 points, but value charts don't account for age curves, championship windows, or organizational philosophy.\n\nHere's my bold prediction: by 2027, Oronde Gadsden outproduces Brenton Strange in fantasy points per game, and that 2028 third-rounder becomes a starting-caliber player that Shogunation desperately wishes they still had. This is the Matthew Stafford-Jared Goff swap all over again – the Lions got younger, collected picks, and built a dynasty foundation while the Rams mortgaged their future for one championship window. Difference is, Shogunation isn't even getting the Super Bowl ring out of this deal – they're getting 0.2 power score points and the sinking feeling that comes when you realize you just helped the worst team in your league start their rebuild on your dime. That's not asset management – that's asset mismanagement with a nice bow on top.",
+  "generatedAt": "2026-11-16T08:13:26.080Z"
+}

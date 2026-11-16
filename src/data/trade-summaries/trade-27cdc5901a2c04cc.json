@@ -1,0 +1,107 @@
+{
+  "tradeId": "27cdc5901a2c04cc",
+  "week": 10,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "iwmrichfulton"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 72.5,
+        "powerRank": 3,
+        "lineupValueScore": 76.3,
+        "performanceScore": 64.3,
+        "positionalScore": 72.1,
+        "depthScore": 85.8,
+        "totalTeams": 12,
+        "totalRosterValue": 43021
+      },
+      "tradeImpact": {
+        "valueGained": 177,
+        "valueLost": 0,
+        "netValueChange": 177,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Kirk Cousins",
+            "value": 177
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Kirk Cousins",
+          "position": "QB",
+          "team": "MIN",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "iwmrichfulton",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 29.7,
+        "powerRank": 10,
+        "lineupValueScore": 33.5,
+        "performanceScore": 26.9,
+        "positionalScore": 30.1,
+        "depthScore": 8.5,
+        "totalTeams": 12,
+        "totalRosterValue": 18869
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 177,
+        "netValueChange": -177,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Kirk Cousins",
+            "value": 177
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kirk Cousins",
+          "position": "QB",
+          "team": "MIN",
+          "age": 38,
+          "careerStage": "Veteran/End of Career"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "mjgrana",
+      "to": "iwmrichfulton"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a textbook case of two teams operating on completely different timelines, and honestly, iwmrichfulton is selling at precisely the wrong moment in Kirk Cousins' value curve. Look, mjgrana is sitting at 5-4 with a power score of 72.5—this is a playoff roster that's clearly a quarterback away from making noise. Meanwhile, iwmrichfulton at 3-6 is waving the white flag, but here's what bothers me: Cousins is producing 11.8 points per game *right now*, with 77,000 roster drops suggesting the market has completely turned on him. You're getting pennies on the dollar for a guy who still has immediate value. This reminds me of the Tyreek Hill trade, but in reverse—Miami gave up multiple first-rounders for Hill because they were desperate to win now, and Kansas City got future draft capital. The difference? Hill was 28. Cousins is 38. That 2028 third-rounder iwmrichfulton is getting back won't even materialize for two years, and in dynasty formats, third-round picks historically hit at maybe a 15-20% clip on becoming fantasy-relevant assets.\n\nThe production metrics here tell me mjgrana is making a pure win-now calculation, and his trading history backs that up—11 picks traded versus 5 acquired over his career. This guy is all-in, and frankly, when you're ranked third in power score with four weeks until playoffs, you *should* be selling future assets for immediate quarterback stability. That 0.2 power score bump might seem marginal, but in a league where he's already dominating most matchups 7-0 all-time against iwmrichfulton, you're just plugging the last hole in the boat. Cousins gives you 12 points a week of solid floor—not sexy, but it's functional quarterbacking that won't lose you weeks.\n\nBut here's my bold prediction: in two years, when that 2028 third-rounder turns into a backup running back or a WR4, iwmrichfulton is going to look at this trade and realize he panic-sold a depreciating asset for essentially nothing. The timing is atrocious for the seller—you're dealing Cousins after his perceived value has cratered (hence the massive drop trend), when you should've moved him in Week 3 or 4 when contenders were still evaluating their roster needs and Cousins was putting up QB1 numbers. The athletic profile at 38 is what it is—he's cooked from a dynasty asset perspective—but you're leaving meat on the bone here. From a scheme fit perspective, mjgrana gets a guy who can manage games in a four-week sprint; iwmrichfulton gets a lottery ticket two years from now when his roster will look completely different anyway.\n\nThe league context matters too: this is trade number 20 of 20 this season, meaning we're at maximum transaction activity with everyone declaring their intentions. mjgrana has been here before—twelve all-time trades, consistently aggressive—and this absolutely fits his win-now pattern. iwmrichfulton, meanwhile, has been more balanced historically but just made three deals this season, clearly pivoting to rebuild mode. The strategic context screams desperation on both sides, but only one team is desperate from a position of strength. When you're ranked 10th of 12 with a 29.7 power score and anemic 8.5 depth rating, you need multiple high-upside swings, not a third-round pick in 2028. This trade gets mjgrana maybe one or two playoff wins; it gets iwmrichfulton virtually nothing in the grand scheme of dynasty roster construction.",
+  "generatedAt": "2026-11-16T08:16:55.799Z"
+}

@@ -1,0 +1,97 @@
+{
+  "tradeId": "11cb7235b038a5da",
+  "week": 6,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mastab24",
+    "Shogunation"
+  ],
+  "sides": [
+    {
+      "teamName": "Shogunation",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 82.2,
+        "powerRank": 2,
+        "lineupValueScore": 81.4,
+        "performanceScore": 85.2,
+        "positionalScore": 81.2,
+        "depthScore": 74.2,
+        "totalTeams": 12,
+        "totalRosterValue": 45910
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Dalton Schultz",
+          "position": "TE",
+          "team": "HOU",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "mastab24",
+      "teamContext": "Middle of pack - unclear direction",
+      "powerScore": {
+        "powerScore": 36.9,
+        "powerRank": 7,
+        "lineupValueScore": 37.2,
+        "performanceScore": 42.9,
+        "positionalScore": 29.9,
+        "depthScore": 18.7,
+        "totalTeams": 12,
+        "totalRosterValue": 20995
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 0,
+        "netValueChange": 0,
+        "estimatedPowerScoreChange": 0,
+        "playersGained": [],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Dalton Schultz",
+          "position": "TE",
+          "team": "HOU",
+          "age": 30,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2025 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2025",
+      "round": 2,
+      "from": "mastab24",
+      "to": "Shogunation"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is one of those classic win-now versus future asset trades that really exposes what each manager thinks about their championship window. Shogunation at 3-2 is sitting pretty with an 82.2 power score—that's a legitimate contender profile—but they're cashing out Dalton Schultz, a thirty-year-old tight end averaging 6.4 points per game, for a 2025 second-rounder. Meanwhile, mastab24 is 4-1 but here's where it gets fascinating: their power score is only 36.9, ranked seventh. That's the classic \"punching above your weight\" situation we see early in seasons, and this manager knows they need to strike while they're hot.\n\nThe athletic profile and production metrics on Schultz tell you everything about why Shogunation is moving on. He's already thirty—that's basically geriatric at the tight end position where you see precipitous declines after age twenty-eight. The 6.4 points per game in Houston isn't getting you anywhere in dynasty, and the long-term trajectory is pointing straight down. Getting a 2025 second-round pick is actually savvy asset management. You're trading a replacement-level tight end for what could be a young receiver or running back with a four-year runway. That's \"The Asset Collector\" doing smart dynasty business, especially for a team that's already stacked enough to compete without Schultz.\n\nNow mastab24—let's call them \"The Window Shopper\"—is making a fascinating all-in gamble here. They're 4-1 but that 36.9 power score screams regression is coming. They clearly have a positional hole at tight end that's holding them back, and from a scheme fit perspective, sometimes you just need a warm body who can give you consistent TE2 production. The problem is they're mortgaging 2025 capital when their underlying metrics suggest this hot start might be fool's gold. Eight weeks until playoffs means there's still time to capitalize, but you're banking on everything breaking right when your roster construction says you're overperforming.\n\n**The Winner: Shogunation, and it's not particularly close.** They're getting future draft capital for a declining asset while sitting at the second-highest power score in the league—they clearly don't need Schultz to compete. The Window Shopper is making a desperate push with a roster that doesn't have the foundation to sustain it, giving up picks when they should probably be accumulating them. That's how you end up perpetually mediocre in dynasty—trading tomorrow for a today that your power metrics say isn't real. Smart contenders consolidate talent, not add replacement-level tight ends for premium picks.",
+  "generatedAt": "2026-11-16T08:18:36.509Z"
+}

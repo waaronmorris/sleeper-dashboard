@@ -1,0 +1,259 @@
+{
+  "tradeId": "c82714f8306133d5",
+  "week": 2,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "drobs",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 34.4,
+        "powerRank": 9,
+        "lineupValueScore": 38.9,
+        "performanceScore": 28.5,
+        "positionalScore": 32.4,
+        "depthScore": 30.1,
+        "totalTeams": 12,
+        "totalRosterValue": 21948
+      },
+      "tradeImpact": {
+        "valueGained": 2800,
+        "valueLost": 6073,
+        "netValueChange": -3273,
+        "estimatedPowerScoreChange": -2.9,
+        "playersGained": [
+          {
+            "name": "Zach Charbonnet",
+            "value": 377
+          },
+          {
+            "name": "Brian Thomas Jr.",
+            "value": 1186
+          },
+          {
+            "name": "Jadarian Price",
+            "value": 1237
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Kenneth Walker III",
+            "value": 6073
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Zach Charbonnet",
+          "position": "RB",
+          "team": "SEA",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Brian Thomas Jr.",
+          "position": "WR",
+          "team": "JAX",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "Jadarian Price",
+          "position": "RB",
+          "team": "SEA",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Kenneth Walker III",
+          "position": "RB",
+          "team": "KC",
+          "age": 26,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18.5,
+        "powerRank": 12,
+        "lineupValueScore": 24.6,
+        "performanceScore": 8.2,
+        "positionalScore": 21.6,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 13899
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 1614,
+        "netValueChange": -1614,
+        "estimatedPowerScoreChange": -1.4,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Zach Charbonnet",
+            "value": 377
+          },
+          {
+            "name": "Jadarian Price",
+            "value": 1237
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Zach Charbonnet",
+          "position": "RB",
+          "team": "SEA",
+          "age": 25,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Jadarian Price",
+          "position": "RB",
+          "team": "SEA",
+          "age": 23,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.7,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 95.6,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56395
+      },
+      "tradeImpact": {
+        "valueGained": 6073,
+        "valueLost": 1186,
+        "netValueChange": 4887,
+        "estimatedPowerScoreChange": 4.3,
+        "playersGained": [
+          {
+            "name": "Kenneth Walker III",
+            "value": 6073
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Brian Thomas Jr.",
+            "value": 1186
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Kenneth Walker III",
+          "position": "RB",
+          "team": "KC",
+          "age": 26,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Brian Thomas Jr.",
+          "position": "WR",
+          "team": "JAX",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2027 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "drobs",
+      "to": "briankibler"
+    },
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "drobs",
+      "to": "cosmohouck"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2028",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "drobs"
+    },
+    {
+      "season": "2027",
+      "round": 1,
+      "from": "drobs",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this three-way swap is absolutely fascinating—you've got a tanking operation, a confused middling roster, and a juggernaut who just pulled off highway robbery in broad daylight.\n\nLet's start with \"The Desperate Pivot\" drobs, sitting at 34.4 power score despite that shiny 1-0 record. This is a classic case of a manager who looked at his roster after Week 1 and panicked. Kenneth Walker III at age 26 is literally the textbook definition of peak RB value—10.4 PPG historically, now in Kansas City's offense—and you're shipping him out for what amounts to a lottery ticket convention. Brian Thomas Jr. has the athletic profile you want at receiver, but 9.6 PPG isn't moving needles. Jadarian Price is a backup running back dart throw. And here's the killer: Zach Charbonnet is on the PUP with an ACL tear! You gave up 6,073 in value for 2,800, and one of your \"gets\" can't even suit up. The production metrics here are catastrophic—you're swapping proven RB scarcity for lottery tickets when you're already ranked ninth in a twelve-team league.\n\nNow \"The Tank Commander\" briankibler is doing exactly what a 0-1, dead-last power score roster should do—accumulating draft capital like it's going out of style. This is their fifth trade already, and the pattern is clear: strip for parts, bank on the future. Converting two Seattle backup running backs (one injured, one unproven) into two first-rounders is textbook rebuilding. The scheme fit doesn't matter when you're not competing. Smart process, even if the immediate value says you \"lost\" 1,614.\n\nBut the real winner? \"The Consolidator\" cosmohouck, who's sitting at 98.7 power score, leading the league in scoring at 149.8 points, and just added Kenneth Walker III for essentially Brian Thomas Jr. and some mid-rounders. This is what contending looks like—you've got the depth to absorb giving up a young receiver, and you're getting peak-age RB production to stack wins right now. Plus-4.9k in value, and you're already dominating.\n\n**Bold prediction:** In two years, drobs will be kicking themselves when Brian Thomas Jr. is a WR3, Jadarian Price is out of the league, and Kenneth Walker III just helped cosmohouck win back-to-back championships. This is the trade equivalent of selling your car for Monopoly money because you got nervous about the check engine light.",
+  "generatedAt": "2026-11-16T08:16:11.251Z"
+}

@@ -1,0 +1,131 @@
+{
+  "tradeId": "286e7b688c6ff718",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "drobs"
+  ],
+  "sides": [
+    {
+      "teamName": "drobs",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 34.4,
+        "powerRank": 9,
+        "lineupValueScore": 38.9,
+        "performanceScore": 28.5,
+        "positionalScore": 32.4,
+        "depthScore": 30.1,
+        "totalTeams": 12,
+        "totalRosterValue": 21948
+      },
+      "tradeImpact": {
+        "valueGained": 408,
+        "valueLost": 2237,
+        "netValueChange": -1829,
+        "estimatedPowerScoreChange": -1.6,
+        "playersGained": [
+          {
+            "name": "Adonai Mitchell",
+            "value": 408
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Jameson Williams",
+            "value": 2237
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Adonai Mitchell",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.7,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 95.6,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56395
+      },
+      "tradeImpact": {
+        "valueGained": 2237,
+        "valueLost": 408,
+        "netValueChange": 1829,
+        "estimatedPowerScoreChange": 1.6,
+        "playersGained": [
+          {
+            "name": "Jameson Williams",
+            "value": 2237
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Adonai Mitchell",
+            "value": 408
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "team": "DET",
+          "age": 25,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Adonai Mitchell",
+          "position": "WR",
+          "team": "NYJ",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 1 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 1,
+      "from": "cosmohouck",
+      "to": "drobs"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is exactly the type of trade that gets dynasty managers fired – and I'm looking squarely at drobs here. When you're moving a proven asset like Jameson Williams for a dart throw and a pick two years away, you better have a championship window that's completely slammed shut. But here's the problem: drobs is sitting at 34.4 power score, ranked ninth in a twelve-team league. That's not tear-down territory – that's purgatory. And in purgatory, you don't mortgage real production for lottery tickets.\n\nLet's talk athletic profiles and production metrics. Jameson Williams is entering his age-25 season with elite speed and a high-powered Detroit offense that force-feeds him opportunities. He's averaged 6.3 fantasy points per game historically, and he's approaching that sweet spot in the wide receiver age curve where the lightbulb typically goes on. Meanwhile, Adonai Mitchell has shown flashes with a 3.5 PPG average, but we're talking about a massive gap in established production. Mitchell's got an intriguing skill set, sure, but he's on the Jets – and unless their quarterback situation dramatically improves, his ceiling is capped. The value differential here is staggering: 2,237 versus 408. That's not a trade, that's a heist.\n\nThe timing element makes this even more puzzling. We're in Week 1, which means drobs is making this decision before he even knows what his team looks like in 2026. If you're going to blow it up, at least wait until Week 4 or 5 when you *know* you're cooked. Instead, he's preemptively waving the white flag based on a power ranking that, frankly, could swing dramatically with a couple breaks. Cosmohouck, sitting pretty at 98.7 power score as the league's top dog, just added a WR2 with legitimate upside to an already dominant roster. That's how you stay on top – buying low on guys approaching their peak while selling lottery tickets to desperate teams.\n\nHere's my bold prediction: twelve months from now, Jameson Williams will be a top-24 fantasy receiver putting up consistent WR2 numbers in one of the league's best offenses, while Adonai Mitchell will still be \"a guy to monitor\" on waiver wires. That 2028 first-rounder? It'll probably end up being late first-round because cosmohouck is building a dynasty juggernaut. This is a masterclass in how the rich get richer in dynasty leagues. **Clear winner: cosmohouck, and it's not particularly close.** From a scheme fit and roster construction standpoint, he just added proven production without giving up anything that impacts his championship window. That's elite roster management.",
+  "generatedAt": "2026-11-16T08:15:50.582Z"
+}

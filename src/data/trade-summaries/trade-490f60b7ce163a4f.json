@@ -1,0 +1,107 @@
+{
+  "tradeId": "490f60b7ce163a4f",
+  "week": 7,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18.5,
+        "powerRank": 12,
+        "lineupValueScore": 24.6,
+        "performanceScore": 8.2,
+        "positionalScore": 21.6,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 13899
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 241,
+        "netValueChange": -241,
+        "estimatedPowerScoreChange": -0.2,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Eli Raridon",
+            "value": 241
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Eli Raridon",
+          "position": "TE",
+          "team": "NE",
+          "age": 22,
+          "careerStage": "Developing"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.7,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 95.6,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56395
+      },
+      "tradeImpact": {
+        "valueGained": 241,
+        "valueLost": 0,
+        "netValueChange": 241,
+        "estimatedPowerScoreChange": 0.2,
+        "playersGained": [
+          {
+            "name": "Eli Raridon",
+            "value": 241
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Eli Raridon",
+          "position": "TE",
+          "team": "NE",
+          "age": 22,
+          "careerStage": "Developing"
+        }
+      ],
+      "gives": [
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**Breaking: Undefeated cosmohouck Adds TE Depth in Dynasty Move**\n\nPer multiple league sources, the 6-0 juggernaut cosmohouck has acquired 22-year-old tight end Eli Raridon from the rebuilding briankibler in exchange for a 2028 second-round pick. I'm told this move reflects the starkly different timelines these two franchises are operating on right now.\n\nLeague sources say briankibler—sitting at 1-5 with a league-worst 18.5 power score—is in full teardown mode, and this move is absolutely consistent with his future-focused strategy. This marks his seventh trade of the season, and he's now stockpiled 10 draft picks while moving out eight players. I'm told the thinking here is simple: Raridon carries a value of 241 in this dynasty format, but what good is a rising 22-year-old tight end when you're likely eliminated from playoff contention? Cash out now, accumulate assets, and build for 2027 and beyond. The competitive window isn't open for this roster.\n\nOn the flip side, sources indicate cosmohouck—who leads the league with a staggering 98.7 power score and has outscored opponents 907.7 to who-knows-what—is making the classic win-now consolidation move. Giving up a 2028 second-rounder when you're undefeated? That's championship equity talking. I'm told cosmohouck views this as buying low-cost insurance at a premium position, adding a young ascending asset without mortgaging future first-rounders. With 32 career trades under his belt, this manager knows how to operate, and adding Raridon's 5.0 PPG upside at tight end—a notoriously scarce position with ~120 VOR scarcity—could be the difference in a playoff matchup seven weeks from now.\n\nHere's my bold prediction: this trade looks like highway robbery for cosmohouck in six months when they're hoisting a championship trophy, but briankibler wins long-term if that 2028 pick converts into a productive starter during their 2027-2028 competitive window. I'm told both sides believe they got exactly what they needed—and in dynasty football, that's often when the best deals get done.",
+  "generatedAt": "2026-11-16T08:16:28.527Z"
+}

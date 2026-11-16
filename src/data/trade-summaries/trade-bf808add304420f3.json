@@ -1,0 +1,135 @@
+{
+  "tradeId": "bf808add304420f3",
+  "week": 5,
+  "season": "2023",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 72.5,
+        "powerRank": 3,
+        "lineupValueScore": 76.3,
+        "performanceScore": 64.3,
+        "positionalScore": 72.1,
+        "depthScore": 85.8,
+        "totalTeams": 12,
+        "totalRosterValue": 43021
+      },
+      "tradeImpact": {
+        "valueGained": 675,
+        "valueLost": 0,
+        "netValueChange": 675,
+        "estimatedPowerScoreChange": 0.6,
+        "playersGained": [
+          {
+            "name": "Terry McLaurin",
+            "value": 675
+          }
+        ],
+        "playersLost": []
+      },
+      "receives": [
+        {
+          "name": "Terry McLaurin",
+          "position": "WR",
+          "team": "WAS",
+          "age": 31,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Donovan Peoples-Jones",
+          "position": "WR",
+          "team": "FA",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.5,
+        "powerRank": 11,
+        "lineupValueScore": 20.4,
+        "performanceScore": 20.3,
+        "positionalScore": 18.2,
+        "depthScore": 9.1,
+        "totalTeams": 12,
+        "totalRosterValue": 11483
+      },
+      "tradeImpact": {
+        "valueGained": 0,
+        "valueLost": 675,
+        "netValueChange": -675,
+        "estimatedPowerScoreChange": -0.6,
+        "playersGained": [],
+        "playersLost": [
+          {
+            "name": "Terry McLaurin",
+            "value": 675
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Donovan Peoples-Jones",
+          "position": "WR",
+          "team": "FA",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2024 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Terry McLaurin",
+          "position": "WR",
+          "team": "WAS",
+          "age": 31,
+          "careerStage": "Declining"
+        },
+        {
+          "name": "2024 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2024",
+      "round": 3,
+      "from": "powerperson",
+      "to": "mjgrana"
+    },
+    {
+      "season": "2024",
+      "round": 2,
+      "from": "mjgrana",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Adam Schefter",
+  "analysis": "**Breaking: League sources tell me mjgrana just executed a classic \"go for it now\" move, acquiring Terry McLaurin from rebuilding powerperson in exchange for Donovan Peoples-Jones and a 2024 second-rounder. Per multiple sources, this is the kind of calculated gamble that defines championship runs.**\n\nI'm told mjgrana (3-1, Power Score 72.5, ranked #3) identified a clear window to consolidate assets and pounce. According to league insiders, powerperson at 0-4 with a historically low 19.5 Power Score had zero choice but to flip McLaurin's remaining value while they could. What makes this fascinating: mjgrana is upgrading from a 6.1 PPG player in Peoples-Jones to McLaurin's 10.5 PPG production, giving up one round of draft capital to do it. The math is simple when you're in win-now mode with nine weeks until playoffs. League sources say mjgrana's already made four trades all-time and this is the second this season—this front office understands urgency.\n\n**Here's where it gets interesting, and I'm reminded of the Odell Beckham Jr. trade to Cleveland.** The Browns gave up significant assets for a splash move that looked brilliant on paper but fizzled due to age and declining production. McLaurin at 31 years old with a \"declining\" trend tag? Per sources, that's the gamble mjgrana is making. Yes, Terry is producing now, but dynasty value craters fast for receivers past 30. I'm told the smart money says this could look genius in January 2024 or disastrous by draft season when that surrendered second-rounder becomes a premium young asset.\n\nMeanwhile, powerperson is doing textbook rebuild work—collecting draft capital (now sitting on 7 picks acquired versus 4 traded historically), banking on youth over veterans. According to team sources, when you're 0-4 and likely eliminated, you flip every declining asset for futures. The 675-point value differential tells the story: powerperson is betting that second-round pick turns into a dynasty cornerstone while McLaurin's window slams shut. **Breaking news: sometimes the team that \"loses\" the trade today wins the dynasty tomorrow.**",
+  "generatedAt": "2026-11-16T08:17:53.723Z"
+}

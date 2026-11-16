@@ -1,0 +1,145 @@
+{
+  "tradeId": "6c9d30861bf91172",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "cosmohouck",
+    "briankibler"
+  ],
+  "sides": [
+    {
+      "teamName": "briankibler",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 18.5,
+        "powerRank": 12,
+        "lineupValueScore": 24.6,
+        "performanceScore": 8.2,
+        "positionalScore": 21.6,
+        "depthScore": 10.2,
+        "totalTeams": 12,
+        "totalRosterValue": 13899
+      },
+      "tradeImpact": {
+        "valueGained": 2816,
+        "valueLost": 7486,
+        "netValueChange": -4670,
+        "estimatedPowerScoreChange": -4.1,
+        "playersGained": [
+          {
+            "name": "Tyler Warren",
+            "value": 2816
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Justin Jefferson",
+            "value": 7486
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Tyler Warren",
+          "position": "TE",
+          "team": "IND",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "team": "MIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ]
+    },
+    {
+      "teamName": "cosmohouck",
+      "teamContext": "Strong contender - win-now mode",
+      "powerScore": {
+        "powerScore": 98.7,
+        "powerRank": 1,
+        "lineupValueScore": 100,
+        "performanceScore": 95.6,
+        "positionalScore": 100,
+        "depthScore": 100,
+        "totalTeams": 12,
+        "totalRosterValue": 56395
+      },
+      "tradeImpact": {
+        "valueGained": 7486,
+        "valueLost": 2816,
+        "netValueChange": 4670,
+        "estimatedPowerScoreChange": 4.1,
+        "playersGained": [
+          {
+            "name": "Justin Jefferson",
+            "value": 7486
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Tyler Warren",
+            "value": 2816
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "team": "MIN",
+          "age": 27,
+          "careerStage": "Prime Years"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Tyler Warren",
+          "position": "TE",
+          "team": "IND",
+          "age": 24,
+          "careerStage": "Entering Prime"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2029 Round 3 pick",
+          "position": "PICK"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "cosmohouck",
+      "to": "briankibler"
+    },
+    {
+      "season": "2029",
+      "round": 3,
+      "from": "cosmohouck",
+      "to": "briankibler"
+    }
+  ],
+  "persona": "Todd McShay",
+  "analysis": "This is a franchise-altering gut check for briankibler, and I've got to be honest—I'm struggling to see the vision here. You're trading Justin Jefferson, a top-three dynasty WR asset in his absolute prime at 27 years old, for Tyler Warren and what amounts to lottery tickets two and three years down the road? That's not roster construction, that's roster demolition. The value gap here is staggering—nearly 5,000 points in cosmohouck's favor—and for a team already sitting at dead last with an 18.5 power score, this feels like waving the white flag before Week 1 even kicks off.\n\nNow look, I understand the Tyler Warren intrigue. He's 24, he's shown flashes, and tight end is a wasteland where even modest production has value. But you're talking about a guy who averaged 8.6 points per game versus Jefferson's elite 12.5. In dynasty, you don't trade established alpha dogs for potential unless you're getting a haul that makes sense, and a mid-second in 2028 plus a third-rounder in 2029 doesn't move the needle enough. This is the Matthew Stafford-Jared Goff trade in reverse—except briankibler is getting the aging quarterback's contract without the Super Bowl window. Meanwhile, cosmohouck, already the league's powerhouse at 98.7/100, just added a plug-and-play WR1 to go full \"win now\" mode. That's how dynasties get extended.\n\nHere's my bold prediction: three years from now, briankibler will still be searching for that franchise cornerstone while Jefferson is helping cosmohouck compete for championships. The 2028 second-rounder? Probably turns into a decent RB3. The 2029 third? Coin flip. Warren might develop into a back-end TE1, but you already had a generational talent locked in at receiver. The path to contention in dynasty is accumulating elite assets, not dispersing them for maybes and what-ifs. You need blue-chip players to build around, especially when you're already in the basement.\n\nThis is textbook value destruction for a rebuilding team that should be collecting premium assets, not trading them away. Cosmohouck absolutely fleeced this deal—adding 4.1 points to an already dominant roster while giving up spare parts and mid-round picks that won't materialize for years. If you're briankibler and you're truly committed to tearing it down, you better hope those draft picks hit like Travis Kelce and Justin Jefferson 2.0, because right now, you just handed your rival ammunition to dominate this league for the next half-decade.",
+  "generatedAt": "2026-11-16T08:12:23.068Z"
+}

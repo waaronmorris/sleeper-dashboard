@@ -1,0 +1,167 @@
+{
+  "tradeId": "774da5e6d44f438b",
+  "week": 1,
+  "season": "2026",
+  "leagueId": "1315370498988703744",
+  "participants": [
+    "mjgrana",
+    "powerperson"
+  ],
+  "sides": [
+    {
+      "teamName": "mjgrana",
+      "teamContext": "Playoff contender - competitive",
+      "powerScore": {
+        "powerScore": 72.5,
+        "powerRank": 3,
+        "lineupValueScore": 76.3,
+        "performanceScore": 64.3,
+        "positionalScore": 72.1,
+        "depthScore": 85.8,
+        "totalTeams": 12,
+        "totalRosterValue": 43021
+      },
+      "tradeImpact": {
+        "valueGained": 4798,
+        "valueLost": 191,
+        "netValueChange": 4607,
+        "estimatedPowerScoreChange": 4.1,
+        "playersGained": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3423
+          },
+          {
+            "name": "Kyle Pitts Sr.",
+            "value": 1375
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "Rashid Shaheed",
+            "value": 191
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Kyle Pitts Sr.",
+          "position": "TE",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ],
+      "gives": [
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ]
+    },
+    {
+      "teamName": "powerperson",
+      "teamContext": "Rebuilding - future-focused",
+      "powerScore": {
+        "powerScore": 19.5,
+        "powerRank": 11,
+        "lineupValueScore": 20.4,
+        "performanceScore": 20.3,
+        "positionalScore": 18.2,
+        "depthScore": 9.1,
+        "totalTeams": 12,
+        "totalRosterValue": 11483
+      },
+      "tradeImpact": {
+        "valueGained": 191,
+        "valueLost": 4798,
+        "netValueChange": -4607,
+        "estimatedPowerScoreChange": -4.1,
+        "playersGained": [
+          {
+            "name": "Rashid Shaheed",
+            "value": 191
+          }
+        ],
+        "playersLost": [
+          {
+            "name": "DeVonta Smith",
+            "value": 3423
+          },
+          {
+            "name": "Kyle Pitts Sr.",
+            "value": 1375
+          }
+        ]
+      },
+      "receives": [
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "team": "SEA",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "2026 Round 1 pick",
+          "position": "PICK"
+        },
+        {
+          "name": "2028 Round 2 pick",
+          "position": "PICK"
+        }
+      ],
+      "gives": [
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "team": "PHI",
+          "age": 28,
+          "careerStage": "Prime Years"
+        },
+        {
+          "name": "Kyle Pitts Sr.",
+          "position": "TE",
+          "team": "ATL",
+          "age": 26,
+          "careerStage": "Entering Prime"
+        }
+      ]
+    }
+  ],
+  "draftPicks": [
+    {
+      "season": "2026",
+      "round": 1,
+      "from": "mjgrana",
+      "to": "powerperson"
+    },
+    {
+      "season": "2028",
+      "round": 2,
+      "from": "mjgrana",
+      "to": "powerperson"
+    }
+  ],
+  "persona": "Daniel Jeremiah",
+  "analysis": "From a talent evaluation standpoint, this is a classic dynasty rebuild fire sale, and mjgrana is absolutely pouncing on the opportunity. When you've got a power score of 72.5 sitting at third in the league and you're staring across the table at a team ranked 11th with a 19.5 power score, you know exactly what's happening here—powerperson is waving the white flag and collecting draft capital like it's going out of style. They've already accumulated 18 picks throughout their trading history while shipping out 20 players, and this move screams \"tear it down to the studs.\" Meanwhile, mjgrana—who's historically been more selective with their moves—is making a legitimate championship push here, sacrificing future assets to win now.\n\nThe athletic profiles and production metrics tell the whole story. DeVonta Smith at 28 years old is averaging 10.3 points per game in his absolute prime window for wide receivers, and you're pairing him with Kyle Pitts at 26, who's finally approaching that peak TE production zone we've been waiting for since he was the fourth overall pick. That's a combined value of 4,798 against Rashid Shaheed's 191—we're talking about a 25-to-1 value differential here. Shaheed's a fine complementary piece with that 5.8 PPG, but he's not moving the needle for a rebuilding squad. The draft picks are the real currency powerperson wants, especially that 2026 first-rounder which could be a premium selection given mjgrana's win-now stance might mortgage their draft position.\n\nThis reminds me of the Stefon Diggs situation when Minnesota shipped him to Buffalo—you've got a contender (mjgrana) acquiring proven, established talent in their prime windows while the selling team (powerperson) decides to reset the board entirely. The Bills went all-in on immediate production, and it transformed their offense overnight. That's the bet mjgrana is making here: Smith gives you that WR1/WR2 upside every single week, and Pitts—despite the \"Sr.\" designation suggesting he's been around—is still young enough at 26 to be a three-year weapon at the league's scarcest position. When you look at that +4.1 power score swing, you're essentially watching mjgrana separate themselves from the middle of the pack.\n\nHere's my bold prediction: in two years, we're going to look back at this as the move that won mjgrana the 2026 championship, but by 2028, powerperson will have completely rebuilt their roster with that first-round pick developing into a stud and the 2028 second-rounder providing crucial depth. Both teams win on different timelines—that's the beauty of dynasty when both managers understand their competitive windows. The 4-1 historical head-to-head record favoring mjgrana isn't a coincidence; they've consistently made sharper roster management decisions, and consolidating talent while in championship mode is exactly what contenders with an 85.8 depth score should be doing. This is textbook dynasty roster construction from both sides—exploit your window, harvest assets during the rebuild, and never get stuck in no man's land.",
+  "generatedAt": "2026-11-16T08:13:47.711Z"
+}
